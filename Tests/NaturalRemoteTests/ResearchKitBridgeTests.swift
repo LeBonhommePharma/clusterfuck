@@ -80,4 +80,45 @@ final class ResearchKitBridgeTests: XCTestCase {
         let events = await crooks.recordedEvents()
         XCTAssertTrue(events.contains { $0.service == .researchKit })
     }
+
+    /// Regression: one survey + two HRV ingests must not double subjective / alexa entropy hints.
+    func testSurveyOnceTwoHRVDoesNotDoubleSubjectiveHint() async {
+        let loop = RemoteControlLoop()
+        await loop.attach()
+
+        // High intensity survey once
+        _ = await loop.ingestSurvey(instrument: .currentStateLog, rawScore: 9)
+        let afterSurvey = loop.state
+        let hintAfterSurvey = afterSurvey.subjectiveWorkHint
+        let alexaAfterSurvey = afterSurvey.alexaEntropyHint
+        XCTAssertGreaterThan(hintAfterSurvey, 0, "survey should set subjectiveWorkHint")
+        XCTAssertEqual(alexaAfterSurvey, 0, accuracy: 1e-12, "survey must not mutate alexaEntropyHint")
+
+        // Two HRV ticks (each path calls researchKit.apply)
+        let rr = Array(repeating: 800.0, count: 16)
+        _ = await loop.ingestHRV(rmssd: 40, sdnn: 50, rrIntervals: rr)
+        let afterHRV1 = loop.state
+        _ = await loop.ingestHRV(rmssd: 42, sdnn: 51, rrIntervals: rr)
+        let afterHRV2 = loop.state
+
+        XCTAssertEqual(
+            afterHRV1.subjectiveWorkHint,
+            hintAfterSurvey,
+            accuracy: 1e-12,
+            "first HRV re-apply must not grow subjectiveWorkHint"
+        )
+        XCTAssertEqual(
+            afterHRV2.subjectiveWorkHint,
+            afterHRV1.subjectiveWorkHint,
+            accuracy: 1e-12,
+            "second HRV re-apply must not grow subjectiveWorkHint"
+        )
+        XCTAssertEqual(afterHRV2.alexaEntropyHint, alexaAfterSurvey, accuracy: 1e-12)
+        XCTAssertEqual(
+            afterHRV2.subjectiveWorkHint,
+            loop.researchKit.lastSubjectiveWorkHint,
+            accuracy: 1e-12,
+            "state field must equal last survey recompute, not a running sum"
+        )
+    }
 }

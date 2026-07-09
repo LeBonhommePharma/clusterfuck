@@ -45,6 +45,8 @@ public struct RemoteMultiSignalState: Codable, Sendable, Equatable {
     public var sci: Double
     public var pcci: Double
     public var alexaEntropyHint: Double
+    /// Last ResearchKit/subjective survey work contribution (idempotent; never accumulate across ticks).
+    public var subjectiveWorkHint: Double
     public var airPodsANCEngaged: Bool
     public var conversationAwarenessActive: Bool
     public var doseMg: Double
@@ -58,6 +60,7 @@ public struct RemoteMultiSignalState: Codable, Sendable, Equatable {
         sci: Double = 0.5,
         pcci: Double = 0.5,
         alexaEntropyHint: Double = 0,
+        subjectiveWorkHint: Double = 0,
         airPodsANCEngaged: Bool = false,
         conversationAwarenessActive: Bool = false,
         doseMg: Double = 0,
@@ -70,6 +73,7 @@ public struct RemoteMultiSignalState: Codable, Sendable, Equatable {
         self.sci = sci
         self.pcci = pcci
         self.alexaEntropyHint = alexaEntropyHint
+        self.subjectiveWorkHint = subjectiveWorkHint
         self.airPodsANCEngaged = airPodsANCEngaged
         self.conversationAwarenessActive = conversationAwarenessActive
         self.doseMg = doseMg

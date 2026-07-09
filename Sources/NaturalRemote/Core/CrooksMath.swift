@@ -16,10 +16,11 @@ public enum CrooksMath: Sendable {
         let flexTerm = state.flexAIDDeltaS * 0.3
         let audioTerm = state.audioEntropyBits * 0.15
         let alexaTerm = state.alexaEntropyHint * 0.1
+        let subjectiveTerm = state.subjectiveWorkHint * 0.35
         let ancTerm = state.airPodsANCEngaged ? -0.05 : 0.08
         let convoTerm = state.conversationAwarenessActive ? 0.12 : 0.0
         let sciTerm = (0.5 - state.sci) * 0.25
-        return hrvTerm + flexTerm + bpmTerm + audioTerm + alexaTerm + ancTerm + convoTerm + sciTerm
+        return hrvTerm + flexTerm + bpmTerm + audioTerm + alexaTerm + subjectiveTerm + ancTerm + convoTerm + sciTerm
     }
 
     /// Irreversible entropy production with thermodynamic lower bound at 0.
