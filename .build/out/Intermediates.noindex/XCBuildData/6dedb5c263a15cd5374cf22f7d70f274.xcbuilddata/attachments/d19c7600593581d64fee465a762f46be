@@ -1,4 +1,0 @@
-module BonhommeCore {
-header "BonhommeCore-Swift.h"
-export *
-}
