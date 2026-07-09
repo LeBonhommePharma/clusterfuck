@@ -1,0 +1,793 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D7F3E685E4F6772EFCB07A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01EA915B1E41BAF63F6B96F0 /* Assets.xcassets */; };
+		22314F5A9B29411E99E9A78D /* PhoneConnectivityBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241EDA3E447E40D17AC91CA /* PhoneConnectivityBridge.swift */; };
+		289F8106B05C008F24C29F53 /* ClusterFuckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59502156033935FB07A3F /* ClusterFuckApp.swift */; };
+		351317DE2743B0F931433E23 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6BB21FF78D6894984838F6D4 /* BonhommeCore */; };
+		4926DEC8642DEFE96BE888F2 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 649E363B253F3D0D6F6DB00F /* BonhommeCore */; };
+		4B7BC9D11B383430F0625A85 /* RemoteWatchConnectivityBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B465B91DFC283EE7204C27C /* RemoteWatchConnectivityBridge.swift */; };
+		5438EEBFA01AB5F1C7DBDBA5 /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = 7B9C033794F1CB675A3BB5DB /* NaturalRemote */; };
+		5D1B728528D61514E2849D9C /* BonhommeRemotePhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0A0C2804C3FDE7E9667E2A /* BonhommeRemotePhoneApp.swift */; };
+		65653650AE4E0E5C9A36A1D3 /* ClusterFuckRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB16BA840ADE3DE5CB0D75 /* ClusterFuckRootView.swift */; };
+		762B83808292C57DBB1B13BA /* BonhommeRemoteWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA97ECF456B50432B8B123C /* BonhommeRemoteWatchApp.swift */; };
+		834F007DAA13F22E9741AFE9 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = E2FAB413B6F1B7CCC3297A7E /* BonhommeCore */; };
+		8410A7AE519AB9F4D9FCDA95 /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = B45D8613D9E4CEF452C2524B /* NaturalRemote */; };
+		888FA14F4EDA1AF107DC7871 /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = C65FE58FF2A03946E5D13CE1 /* NaturalRemote */; };
+		8CB335B078620D2C3ED60B0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A151C44BE0B0D0AF599373E5 /* Assets.xcassets */; };
+		A174AB3AA470C96DFEAD32F1 /* BonhommeRemoteWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E736BB4867842BC6BB4C7266 /* BonhommeRemoteWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BD268D62BDF689FE38D14F8C /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = 7C171AFF3FAF07AD4AF89BBC /* NaturalRemote */; };
+		D5CB8692606C17AE30C83520 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 321640F2B4CF1F5936F256F9 /* BonhommeCore */; };
+		FEEDBC21E96068FA6E0C48E0 /* ClusterFuckWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3316115E810184D7DBF2B36C /* ClusterFuckWatchApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		221EED8099D3FE11BA3324FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59B5DCA28E6D996993776A53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2273A7E0C39595B4016CB2F3;
+			remoteInfo = BonhommeRemoteWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9B4168682A0A9FE7A208924A /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				A174AB3AA470C96DFEAD32F1 /* BonhommeRemoteWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01EA915B1E41BAF63F6B96F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0C8D805450A161AF3AC0B70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1506B3FC10C91CD962931056 /* ClusterFuckWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClusterFuckWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C28F7A9BA3F40A9CCFF0457 /* ClusterFuck */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ClusterFuck; path = .; sourceTree = SOURCE_ROOT; };
+		3316115E810184D7DBF2B36C /* ClusterFuckWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckWatchApp.swift; sourceTree = "<group>"; };
+		45665E301A6D233C6DC91324 /* BonhommeRemotePhone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BonhommeRemotePhone.entitlements; sourceTree = "<group>"; };
+		5B465B91DFC283EE7204C27C /* RemoteWatchConnectivityBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWatchConnectivityBridge.swift; sourceTree = "<group>"; };
+		5B8889597211A2E6CD8B2643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5BBB16BA840ADE3DE5CB0D75 /* ClusterFuckRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckRootView.swift; sourceTree = "<group>"; };
+		657A5257038789B7FDA58814 /* BonhommeRemoteWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BonhommeRemoteWatch.entitlements; sourceTree = "<group>"; };
+		793233821D45250152208135 /* BonhommeRemotePhone.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BonhommeRemotePhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F3B023300E2DA3E18E88DBB /* ClusterFuck.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ClusterFuck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A151C44BE0B0D0AF599373E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A241EDA3E447E40D17AC91CA /* PhoneConnectivityBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneConnectivityBridge.swift; sourceTree = "<group>"; };
+		A7FECF475413AF3DD3FCAF76 /* BonhommeCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BonhommeCore; path = ../NATURaL/BonhommeCore; sourceTree = SOURCE_ROOT; };
+		AA0A0C2804C3FDE7E9667E2A /* BonhommeRemotePhoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonhommeRemotePhoneApp.swift; sourceTree = "<group>"; };
+		BBA97ECF456B50432B8B123C /* BonhommeRemoteWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonhommeRemoteWatchApp.swift; sourceTree = "<group>"; };
+		D2C8B0E23940AE30360C41C7 /* ClusterFuck.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClusterFuck.entitlements; sourceTree = "<group>"; };
+		D476328C557C42D8462FA2EE /* ClusterFuckWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClusterFuckWatch.entitlements; sourceTree = "<group>"; };
+		D9EBBFA349805667C642790B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E736BB4867842BC6BB4C7266 /* BonhommeRemoteWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonhommeRemoteWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBB59502156033935FB07A3F /* ClusterFuckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckApp.swift; sourceTree = "<group>"; };
+		FEB8948F5045B5438FDF29C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B69DEC94697C6F145055C43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8410A7AE519AB9F4D9FCDA95 /* NaturalRemote in Frameworks */,
+				351317DE2743B0F931433E23 /* BonhommeCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7C38966CA78CBD0709FAF2D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD268D62BDF689FE38D14F8C /* NaturalRemote in Frameworks */,
+				D5CB8692606C17AE30C83520 /* BonhommeCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7CC838AF48E90D70B8C273BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5438EEBFA01AB5F1C7DBDBA5 /* NaturalRemote in Frameworks */,
+				834F007DAA13F22E9741AFE9 /* BonhommeCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FDAB21DCBF8A5F23250ABAE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				888FA14F4EDA1AF107DC7871 /* NaturalRemote in Frameworks */,
+				4926DEC8642DEFE96BE888F2 /* BonhommeCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CEEF833DA2B181C2E426300 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				A7FECF475413AF3DD3FCAF76 /* BonhommeCore */,
+				1C28F7A9BA3F40A9CCFF0457 /* ClusterFuck */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		2119BE80E0A512CB802894F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				793233821D45250152208135 /* BonhommeRemotePhone.app */,
+				E736BB4867842BC6BB4C7266 /* BonhommeRemoteWatch.app */,
+				9F3B023300E2DA3E18E88DBB /* ClusterFuck.app */,
+				1506B3FC10C91CD962931056 /* ClusterFuckWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B15515B623B524CB54A9A2B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				BBA97ECF456B50432B8B123C /* BonhommeRemoteWatchApp.swift */,
+				5B465B91DFC283EE7204C27C /* RemoteWatchConnectivityBridge.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		446207AADA55E46FCB54D37C /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				BB00424962BBFCFFB111FA7C /* BonhommeRemotePhone */,
+				9FD10252A42A40B071886198 /* BonhommeRemoteWatch */,
+				A924F1591A6C5455FA95F3E6 /* ClusterFuck */,
+				79A488AC03D22E698C3D6121 /* ClusterFuckWatch */,
+				95ED77537A5E5A826A90DE8B /* Shared */,
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
+		79A488AC03D22E698C3D6121 /* ClusterFuckWatch */ = {
+			isa = PBXGroup;
+			children = (
+				01EA915B1E41BAF63F6B96F0 /* Assets.xcassets */,
+				D476328C557C42D8462FA2EE /* ClusterFuckWatch.entitlements */,
+				3316115E810184D7DBF2B36C /* ClusterFuckWatchApp.swift */,
+				D9EBBFA349805667C642790B /* Info.plist */,
+			);
+			path = ClusterFuckWatch;
+			sourceTree = "<group>";
+		};
+		86EA6AC22E328F546B32214B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AA0A0C2804C3FDE7E9667E2A /* BonhommeRemotePhoneApp.swift */,
+				A241EDA3E447E40D17AC91CA /* PhoneConnectivityBridge.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		95ED77537A5E5A826A90DE8B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5BBB16BA840ADE3DE5CB0D75 /* ClusterFuckRootView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9FD10252A42A40B071886198 /* BonhommeRemoteWatch */ = {
+			isa = PBXGroup;
+			children = (
+				3B15515B623B524CB54A9A2B /* App */,
+				657A5257038789B7FDA58814 /* BonhommeRemoteWatch.entitlements */,
+				FEB8948F5045B5438FDF29C9 /* Info.plist */,
+			);
+			path = BonhommeRemoteWatch;
+			sourceTree = "<group>";
+		};
+		A924F1591A6C5455FA95F3E6 /* ClusterFuck */ = {
+			isa = PBXGroup;
+			children = (
+				A151C44BE0B0D0AF599373E5 /* Assets.xcassets */,
+				D2C8B0E23940AE30360C41C7 /* ClusterFuck.entitlements */,
+				FBB59502156033935FB07A3F /* ClusterFuckApp.swift */,
+				0C8D805450A161AF3AC0B70A /* Info.plist */,
+			);
+			path = ClusterFuck;
+			sourceTree = "<group>";
+		};
+		BB00424962BBFCFFB111FA7C /* BonhommeRemotePhone */ = {
+			isa = PBXGroup;
+			children = (
+				86EA6AC22E328F546B32214B /* App */,
+				45665E301A6D233C6DC91324 /* BonhommeRemotePhone.entitlements */,
+				5B8889597211A2E6CD8B2643 /* Info.plist */,
+			);
+			path = BonhommeRemotePhone;
+			sourceTree = "<group>";
+		};
+		E5468BCA51001F0AA6F26846 = {
+			isa = PBXGroup;
+			children = (
+				446207AADA55E46FCB54D37C /* Apps */,
+				1CEEF833DA2B181C2E426300 /* Packages */,
+				2119BE80E0A512CB802894F0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1C066168585FEB2985587BDA /* ClusterFuck */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 506D96F4E00B91CA7CAC134B /* Build configuration list for PBXNativeTarget "ClusterFuck" */;
+			buildPhases = (
+				30E33B45B2B59996E9F6BA4E /* Sources */,
+				FAB014647DEE73382866D53B /* Resources */,
+				FDAB21DCBF8A5F23250ABAE6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClusterFuck;
+			packageProductDependencies = (
+				C65FE58FF2A03946E5D13CE1 /* NaturalRemote */,
+				649E363B253F3D0D6F6DB00F /* BonhommeCore */,
+			);
+			productName = ClusterFuck;
+			productReference = 9F3B023300E2DA3E18E88DBB /* ClusterFuck.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2273A7E0C39595B4016CB2F3 /* BonhommeRemoteWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0801CA69E014842BB40BC92 /* Build configuration list for PBXNativeTarget "BonhommeRemoteWatch" */;
+			buildPhases = (
+				9414C362A33931CE10410964 /* Sources */,
+				7B69DEC94697C6F145055C43 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BonhommeRemoteWatch;
+			packageProductDependencies = (
+				B45D8613D9E4CEF452C2524B /* NaturalRemote */,
+				6BB21FF78D6894984838F6D4 /* BonhommeCore */,
+			);
+			productName = BonhommeRemoteWatch;
+			productReference = E736BB4867842BC6BB4C7266 /* BonhommeRemoteWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		984AE0B43AFD0BD308CA701D /* ClusterFuckWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B318FD238D87728142C002F /* Build configuration list for PBXNativeTarget "ClusterFuckWatch" */;
+			buildPhases = (
+				23BA55FF162C44B68A591CEC /* Sources */,
+				AE23457AD620B86BA3BFFAC8 /* Resources */,
+				7C38966CA78CBD0709FAF2D9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClusterFuckWatch;
+			packageProductDependencies = (
+				7C171AFF3FAF07AD4AF89BBC /* NaturalRemote */,
+				321640F2B4CF1F5936F256F9 /* BonhommeCore */,
+			);
+			productName = ClusterFuckWatch;
+			productReference = 1506B3FC10C91CD962931056 /* ClusterFuckWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DE61A9770E3A685D825CC6C7 /* BonhommeRemotePhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A613A3F842A8C357D2BB05E /* Build configuration list for PBXNativeTarget "BonhommeRemotePhone" */;
+			buildPhases = (
+				5C227E3C42FBA7CA2346DCB1 /* Sources */,
+				7CC838AF48E90D70B8C273BF /* Frameworks */,
+				9B4168682A0A9FE7A208924A /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F87A15F5DE556E92F878133D /* PBXTargetDependency */,
+			);
+			name = BonhommeRemotePhone;
+			packageProductDependencies = (
+				7B9C033794F1CB675A3BB5DB /* NaturalRemote */,
+				E2FAB413B6F1B7CCC3297A7E /* BonhommeCore */,
+			);
+			productName = BonhommeRemotePhone;
+			productReference = 793233821D45250152208135 /* BonhommeRemotePhone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		59B5DCA28E6D996993776A53 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					1C066168585FEB2985587BDA = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					2273A7E0C39595B4016CB2F3 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					984AE0B43AFD0BD308CA701D = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					DE61A9770E3A685D825CC6C7 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 66E70DE78DE55E43449BDBAF /* Build configuration list for PBXProject "BonhommeRemote" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = E5468BCA51001F0AA6F26846;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2BDC2BDC27E0233BCBB8BDB2 /* XCLocalSwiftPackageReference "../NATURaL/BonhommeCore" */,
+				D1B229106829DB06ED01BB0E /* XCLocalSwiftPackageReference "." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2119BE80E0A512CB802894F0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DE61A9770E3A685D825CC6C7 /* BonhommeRemotePhone */,
+				2273A7E0C39595B4016CB2F3 /* BonhommeRemoteWatch */,
+				1C066168585FEB2985587BDA /* ClusterFuck */,
+				984AE0B43AFD0BD308CA701D /* ClusterFuckWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AE23457AD620B86BA3BFFAC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D7F3E685E4F6772EFCB07A7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB014647DEE73382866D53B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CB335B078620D2C3ED60B0D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		23BA55FF162C44B68A591CEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEEDBC21E96068FA6E0C48E0 /* ClusterFuckWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30E33B45B2B59996E9F6BA4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				289F8106B05C008F24C29F53 /* ClusterFuckApp.swift in Sources */,
+				65653650AE4E0E5C9A36A1D3 /* ClusterFuckRootView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C227E3C42FBA7CA2346DCB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D1B728528D61514E2849D9C /* BonhommeRemotePhoneApp.swift in Sources */,
+				22314F5A9B29411E99E9A78D /* PhoneConnectivityBridge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9414C362A33931CE10410964 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				762B83808292C57DBB1B13BA /* BonhommeRemoteWatchApp.swift in Sources */,
+				4B7BC9D11B383430F0625A85 /* RemoteWatchConnectivityBridge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F87A15F5DE556E92F878133D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2273A7E0C39595B4016CB2F3 /* BonhommeRemoteWatch */;
+			targetProxy = 221EED8099D3FE11BA3324FC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		058CCECBE7569CD199C3F657 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuck.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuck/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck;
+				PRODUCT_NAME = ClusterFuck;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3468B3776431343296398465 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/BonhommeRemoteWatch/BonhommeRemoteWatch.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/BonhommeRemoteWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.natural.BonhommeRemote.watchkitapp;
+				PRODUCT_NAME = BonhommeRemoteWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 4;
+				WKRunsIndependentlyOfCompanionApp = YES;
+			};
+			name = Debug;
+		};
+		3B1631B01B7BC2BB6DD17573 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		875D6100E67C2ED409C2F3B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/BonhommeRemotePhone/BonhommeRemotePhone.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/BonhommeRemotePhone/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.natural.BonhommeRemote;
+				PRODUCT_NAME = BonhommeRemotePhone;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		89C6FB0961B3BDBEE9302BD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/BonhommeRemoteWatch/BonhommeRemoteWatch.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/BonhommeRemoteWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.natural.BonhommeRemote.watchkitapp;
+				PRODUCT_NAME = BonhommeRemoteWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 4;
+				WKRunsIndependentlyOfCompanionApp = YES;
+			};
+			name = Release;
+		};
+		97958F03FD39F73D6457BE8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/BonhommeRemotePhone/BonhommeRemotePhone.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/BonhommeRemotePhone/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.natural.BonhommeRemote;
+				PRODUCT_NAME = BonhommeRemotePhone;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A2096271AA8FB81A3747FD5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuck.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuck/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck;
+				PRODUCT_NAME = ClusterFuck;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D719A7D08C9A07CAE1977CBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuckWatch/ClusterFuckWatch.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuckWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.watchkitapp;
+				PRODUCT_NAME = ClusterFuckWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 4;
+				WKRunsIndependentlyOfCompanionApp = YES;
+			};
+			name = Release;
+		};
+		E54D7092F91A3BC161759A87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuckWatch/ClusterFuckWatch.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuckWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.watchkitapp;
+				PRODUCT_NAME = ClusterFuckWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 4;
+				WKRunsIndependentlyOfCompanionApp = YES;
+			};
+			name = Debug;
+		};
+		EE7C3299C46D688D78E5FFA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		506D96F4E00B91CA7CAC134B /* Build configuration list for PBXNativeTarget "ClusterFuck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				058CCECBE7569CD199C3F657 /* Debug */,
+				A2096271AA8FB81A3747FD5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		66E70DE78DE55E43449BDBAF /* Build configuration list for PBXProject "BonhommeRemote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE7C3299C46D688D78E5FFA1 /* Debug */,
+				3B1631B01B7BC2BB6DD17573 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7B318FD238D87728142C002F /* Build configuration list for PBXNativeTarget "ClusterFuckWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E54D7092F91A3BC161759A87 /* Debug */,
+				D719A7D08C9A07CAE1977CBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8A613A3F842A8C357D2BB05E /* Build configuration list for PBXNativeTarget "BonhommeRemotePhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97958F03FD39F73D6457BE8C /* Debug */,
+				875D6100E67C2ED409C2F3B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A0801CA69E014842BB40BC92 /* Build configuration list for PBXNativeTarget "BonhommeRemoteWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3468B3776431343296398465 /* Debug */,
+				89C6FB0961B3BDBEE9302BD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		2BDC2BDC27E0233BCBB8BDB2 /* XCLocalSwiftPackageReference "../NATURaL/BonhommeCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../NATURaL/BonhommeCore;
+		};
+		D1B229106829DB06ED01BB0E /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		321640F2B4CF1F5936F256F9 /* BonhommeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BonhommeCore;
+		};
+		649E363B253F3D0D6F6DB00F /* BonhommeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BonhommeCore;
+		};
+		6BB21FF78D6894984838F6D4 /* BonhommeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BonhommeCore;
+		};
+		7B9C033794F1CB675A3BB5DB /* NaturalRemote */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NaturalRemote;
+		};
+		7C171AFF3FAF07AD4AF89BBC /* NaturalRemote */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NaturalRemote;
+		};
+		B45D8613D9E4CEF452C2524B /* NaturalRemote */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NaturalRemote;
+		};
+		C65FE58FF2A03946E5D13CE1 /* NaturalRemote */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NaturalRemote;
+		};
+		E2FAB413B6F1B7CCC3297A7E /* BonhommeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BonhommeCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 59B5DCA28E6D996993776A53 /* Project object */;
+}

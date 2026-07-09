@@ -55,7 +55,7 @@ public final class AppleMusicController: MusicTransportControlling, RemoteActuat
     }
 
     public func play() async throws {
-        #if canImport(MusicKit)
+        #if canImport(MusicKit) && !os(watchOS)
         if _authorized {
             try await ApplicationMusicPlayer.shared.play()
         }
@@ -64,7 +64,7 @@ public final class AppleMusicController: MusicTransportControlling, RemoteActuat
     }
 
     public func pause() async throws {
-        #if canImport(MusicKit)
+        #if canImport(MusicKit) && !os(watchOS)
         ApplicationMusicPlayer.shared.pause()
         #endif
         lock.lock(); _playing = false; lock.unlock()
@@ -73,7 +73,8 @@ public final class AppleMusicController: MusicTransportControlling, RemoteActuat
     public func setTargetBPM(_ bpm: Double) async throws {
         lock.lock(); _bpm = bpm; lock.unlock()
         // MusicKit has no direct BPM set; selection policy is encoded as search mood.
-        #if canImport(MusicKit)
+        // ApplicationMusicPlayer is unavailable on watchOS — state-only control there.
+        #if canImport(MusicKit) && !os(watchOS)
         if _authorized {
             let term = bpm < 100 ? "ambient chill focus" : (bpm > 130 ? "progressive house energy" : "electronic midtempo")
             var request = MusicCatalogSearchRequest(term: term, types: [Playlist.self])

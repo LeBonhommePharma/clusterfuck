@@ -1,0 +1,144 @@
+# XcodeGen — NATURaL Remote / ClusterFuck app hosts (Session 0)
+#   brew install xcodegen && xcodegen generate && open BonhommeRemote.xcodeproj
+# Requires sibling: ../NATURaL/BonhommeCore
+name: BonhommeRemote
+options:
+  bundleIdPrefix: com.natural
+  deploymentTarget:
+    iOS: "17.0"
+    macOS: "14.0"
+    watchOS: "10.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+  generateEmptyDirectories: true
+
+packages:
+  NaturalRemote:
+    path: .
+  BonhommeCore:
+    path: ../NATURaL/BonhommeCore
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  # Canonical Session 0 phone host (OAuth liver + full RemoteSessionView)
+  BonhommeRemotePhone:
+    type: application
+    platform: iOS
+    sources:
+      - path: Apps/BonhommeRemotePhone
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.natural.BonhommeRemote
+        PRODUCT_NAME: BonhommeRemotePhone
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Apps/BonhommeRemotePhone/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Apps/BonhommeRemotePhone/BonhommeRemotePhone.entitlements
+        TARGETED_DEVICE_FAMILY: "1,2"
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+    dependencies:
+      - package: NaturalRemote
+        product: NaturalRemote
+      - package: BonhommeCore
+        product: BonhommeCore
+      - target: BonhommeRemoteWatch
+        embed: true
+
+  # Canonical Session 0 watch host
+  BonhommeRemoteWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - path: Apps/BonhommeRemoteWatch
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.natural.BonhommeRemote.watchkitapp
+        PRODUCT_NAME: BonhommeRemoteWatch
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Apps/BonhommeRemoteWatch/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Apps/BonhommeRemoteWatch/BonhommeRemoteWatch.entitlements
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+        SKIP_INSTALL: NO
+        WKRunsIndependentlyOfCompanionApp: YES
+    dependencies:
+      - package: NaturalRemote
+        product: NaturalRemote
+      - package: BonhommeCore
+        product: BonhommeCore
+
+  # Codename iOS host (same kernel; shared chrome)
+  ClusterFuck:
+    type: application
+    platform: iOS
+    sources:
+      - path: Apps/ClusterFuck
+      - path: Apps/Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lebonhommepharma.clusterfuck
+        PRODUCT_NAME: ClusterFuck
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Apps/ClusterFuck/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Apps/ClusterFuck/ClusterFuck.entitlements
+        TARGETED_DEVICE_FAMILY: "1,2"
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+    dependencies:
+      - package: NaturalRemote
+        product: NaturalRemote
+      - package: BonhommeCore
+        product: BonhommeCore
+
+  # Codename watch host
+  ClusterFuckWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - path: Apps/ClusterFuckWatch
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lebonhommepharma.clusterfuck.watchkitapp
+        PRODUCT_NAME: ClusterFuckWatch
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Apps/ClusterFuckWatch/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Apps/ClusterFuckWatch/ClusterFuckWatch.entitlements
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+        SKIP_INSTALL: NO
+        WKRunsIndependentlyOfCompanionApp: YES
+    dependencies:
+      - package: NaturalRemote
+        product: NaturalRemote
+      - package: BonhommeCore
+        product: BonhommeCore
+
+schemes:
+  BonhommeRemotePhone:
+    build:
+      targets:
+        BonhommeRemotePhone: all
+        BonhommeRemoteWatch: all
+    run:
+      config: Debug
+  BonhommeRemoteWatch:
+    build:
+      targets:
+        BonhommeRemoteWatch: all
+    run:
+      config: Debug
+  ClusterFuck:
+    build:
+      targets:
+        ClusterFuck: all
+    run:
+      config: Debug
+  ClusterFuckWatch:
+    build:
+      targets:
+        ClusterFuckWatch: all
+    run:
+      config: Debug

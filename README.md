@@ -6,16 +6,37 @@ Wrist-oriented **Crooks σ_irr minimization** control stack: multi-service music
 
 This is not “just a media remote.” Dose logs, ΔHRV, hybrid predictions, actuator events, and σ_irr trajectories are first-class **pharmacovigilance signals** — exposure, outcome, intervention, audit. See [`docs/PHARMACOVIGILANCE.md`](docs/PHARMACOVIGILANCE.md).
 
-Alexa+ details: [`docs/ALEXA_PLUS.md`](docs/ALEXA_PLUS.md).
+## Sibling layout (required)
 
-## Build & test
+```
+/Users/lp.more/Projects/
+  NATURaL/          # https://github.com/LeBonhommePharma/NATURaL
+  ClusterFuck/      # this repo — path dep ../NATURaL/BonhommeCore
+```
+
+## Build & test (SPM kernel)
 
 ```bash
 cd /Users/lp.more/Projects/ClusterFuck
+swift package describe
 swift test
 ```
 
-Requires sibling checkout: `../NATURaL/BonhommeCore`.
+## App hosts (Session 0)
+
+```bash
+# Optional XcodeGen
+brew install xcodegen
+xcodegen generate
+open BonhommeRemote.xcodeproj
+```
+
+| Target | Path | Bundle ID |
+|---|---|---|
+| Watch | `Apps/BonhommeRemoteWatch` | `com.natural.BonhommeRemote.watchkitapp` |
+| Phone | `Apps/BonhommeRemotePhone` | `com.natural.BonhommeRemote` |
+
+Details: [`docs/XCODE_TARGET_SETUP.md`](docs/XCODE_TARGET_SETUP.md) · [`docs/CAPABILITIES.md`](docs/CAPABILITIES.md)
 
 ## Layout
 
@@ -25,19 +46,37 @@ Sources/NaturalRemote/
   Music/          Apple Music, Spotify, Sonos, DI.fm, AVAudio spectral
   AirPods/        Max H1 + Pro H2
   Analysis/       DeltaHRV, FlexAID hybrid, EigenMetalBridge, ANE predictor
-  Actuators/      Alexa, Foundation Models
-  DrugKit/        DrugKitEngine
+  Actuators/      Alexa, Foundation Models, ResearchKit
+  DrugKit/        DrugKitEngine + PV export
   Session/        RemoteControlLoop, PharmaControlSessionManager, RemoteSessionView
+Apps/
+  BonhommeRemoteWatch/   watchOS shell + WCSession
+  BonhommeRemotePhone/   iOS liver + WCSession
 docs/
-  SESSION_PROMPTS.md   Swarm agent prompts (Sessions 0–6)
+  SESSION_PROMPTS.md     Swarm agent prompts (Sessions 0–6) ← start here
+  NATURAL_REUSE_MAP.md   NATURaL symbol inventory
   IMPLEMENTATION_ROADMAP.md
   CAPABILITIES.md
+  PHARMACOVIGILANCE.md
+  ALEXA_PLUS.md
 ```
+
+## Swarm prompts
+
+Feed **one session at a time** from [`docs/SESSION_PROMPTS.md`](docs/SESSION_PROMPTS.md):
+
+0. Project setup, targets, capabilities  
+1. Core models + Crooks σ_irr  
+2. Music stack  
+3. AirPods H1/H2  
+4. DeltaHRV + FlexAID + ANE  
+5. UI + control loop  
+6. Validation harness  
 
 ## Docs
 
 - **Pharmacovigilance mission:** [`docs/PHARMACOVIGILANCE.md`](docs/PHARMACOVIGILANCE.md)
+- **NATURaL reuse:** [`docs/NATURAL_REUSE_MAP.md`](docs/NATURAL_REUSE_MAP.md)
 - Swarm prompts: [`docs/SESSION_PROMPTS.md`](docs/SESSION_PROMPTS.md)
 - Roadmap: [`docs/IMPLEMENTATION_ROADMAP.md`](docs/IMPLEMENTATION_ROADMAP.md)
 - Alexa+: [`docs/ALEXA_PLUS.md`](docs/ALEXA_PLUS.md)
-- Capabilities: [`docs/CAPABILITIES.md`](docs/CAPABILITIES.md)

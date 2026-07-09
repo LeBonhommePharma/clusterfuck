@@ -1,0 +1,632 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0EBEA9AA2E5015A1923A8C72 /* ClusterFuckRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A9F14CF650931501385338 /* ClusterFuckRootView.swift */; };
+		4B04A061F3019A8C1D9C8B58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41020D54B7E61C61B0D0E734 /* Assets.xcassets */; };
+		5E95BAB7D2A8DB87886356A8 /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = C10810B826D1F28A61512DF9 /* NaturalRemote */; };
+		6D4FBD79D186090B9C84C8E7 /* ClusterFuckWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DE12BEBE45351378046A1B /* ClusterFuckWatchApp.swift */; };
+		854BE95D7E317CE938C2DEBD /* ClusterFuckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41131B387FBBF7FBB8F80F73 /* ClusterFuckApp.swift */; };
+		B054A44AB08390187EF9FED3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF1706EEA8B1D5783EA68D1 /* Assets.xcassets */; };
+		DC50E8DB640381A644296A39 /* ClusterFuckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41131B387FBBF7FBB8F80F73 /* ClusterFuckApp.swift */; };
+		E62973C0D7F392FF94AE8279 /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = 729C2C4AAA8DB7FFDCE2A1F6 /* NaturalRemote */; };
+		ED5624C4FB8CE4558B7F98B7 /* ClusterFuckRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A9F14CF650931501385338 /* ClusterFuckRootView.swift */; };
+		F015F47D1D948F821343219A /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = 2D8CEEE264D9E232347B6BCF /* NaturalRemote */; };
+		F3631A57057C16ECB37DEED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF1706EEA8B1D5783EA68D1 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		14B6F772A427688BFFB5BF6E /* ClusterFuck */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ClusterFuck; path = .; sourceTree = SOURCE_ROOT; };
+		41020D54B7E61C61B0D0E734 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		41131B387FBBF7FBB8F80F73 /* ClusterFuckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckApp.swift; sourceTree = "<group>"; };
+		93DE12BEBE45351378046A1B /* ClusterFuckWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckWatchApp.swift; sourceTree = "<group>"; };
+		BC458E3181CEF9CA95781843 /* ClusterFuckMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClusterFuckMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3F764EC741A0C46C90F2ED8 /* ClusterFuckWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClusterFuckWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F172CF59E3B564DA93DC6A30 /* ClusterFuck.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ClusterFuck.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5A9F14CF650931501385338 /* ClusterFuckRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckRootView.swift; sourceTree = "<group>"; };
+		FFF1706EEA8B1D5783EA68D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		76F1C3D30D433584149D48D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E62973C0D7F392FF94AE8279 /* NaturalRemote in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB868A9CA84C319FA4699770 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F015F47D1D948F821343219A /* NaturalRemote in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF1D7A85EDE0B97F751B5924 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E95BAB7D2A8DB87886356A8 /* NaturalRemote in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B804CD896FAA8D6FB11D955 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F172CF59E3B564DA93DC6A30 /* ClusterFuck.app */,
+				BC458E3181CEF9CA95781843 /* ClusterFuckMac.app */,
+				E3F764EC741A0C46C90F2ED8 /* ClusterFuckWatch.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		46279AB3FDC58BAE19EC6DA9 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				9994B5D2804FD8EF88DAA269 /* ClusterFuck */,
+				CCF47D36DF9620C619E188D1 /* ClusterFuckWatch */,
+				97979173614B3F69F5C7EA8E /* Shared */,
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
+		87CA5A24BB7542A267E4E9E7 = {
+			isa = PBXGroup;
+			children = (
+				46279AB3FDC58BAE19EC6DA9 /* Apps */,
+				AE4AACC0F0487B381D515607 /* Packages */,
+				2B804CD896FAA8D6FB11D955 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		97979173614B3F69F5C7EA8E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F5A9F14CF650931501385338 /* ClusterFuckRootView.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		9994B5D2804FD8EF88DAA269 /* ClusterFuck */ = {
+			isa = PBXGroup;
+			children = (
+				FFF1706EEA8B1D5783EA68D1 /* Assets.xcassets */,
+				41131B387FBBF7FBB8F80F73 /* ClusterFuckApp.swift */,
+			);
+			path = ClusterFuck;
+			sourceTree = "<group>";
+		};
+		AE4AACC0F0487B381D515607 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				14B6F772A427688BFFB5BF6E /* ClusterFuck */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		CCF47D36DF9620C619E188D1 /* ClusterFuckWatch */ = {
+			isa = PBXGroup;
+			children = (
+				41020D54B7E61C61B0D0E734 /* Assets.xcassets */,
+				93DE12BEBE45351378046A1B /* ClusterFuckWatchApp.swift */,
+			);
+			path = ClusterFuckWatch;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		532141D46875BB27CEF1A2E7 /* ClusterFuckMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D709DF01EC9B71FAA8E2F0A /* Build configuration list for PBXNativeTarget "ClusterFuckMac" */;
+			buildPhases = (
+				93C5CF661A90461F05ECE376 /* Sources */,
+				130EAE182F3DF47FA9C8BD56 /* Resources */,
+				76F1C3D30D433584149D48D1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClusterFuckMac;
+			packageProductDependencies = (
+				729C2C4AAA8DB7FFDCE2A1F6 /* NaturalRemote */,
+			);
+			productName = ClusterFuckMac;
+			productReference = BC458E3181CEF9CA95781843 /* ClusterFuckMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5823729D31C39017A5F400F9 /* ClusterFuckWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30F32A7A6907B757308B6AB7 /* Build configuration list for PBXNativeTarget "ClusterFuckWatch" */;
+			buildPhases = (
+				3F59F08F360EE11F09376331 /* Sources */,
+				AAC4B797EE8A7A3ED49A7777 /* Resources */,
+				BF1D7A85EDE0B97F751B5924 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClusterFuckWatch;
+			packageProductDependencies = (
+				C10810B826D1F28A61512DF9 /* NaturalRemote */,
+			);
+			productName = ClusterFuckWatch;
+			productReference = E3F764EC741A0C46C90F2ED8 /* ClusterFuckWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9B691EF57841975F06BD2AD0 /* ClusterFuck */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B94092095D27FF532B48BD4 /* Build configuration list for PBXNativeTarget "ClusterFuck" */;
+			buildPhases = (
+				BD8039B60B1FF649F7CD0BB1 /* Sources */,
+				CB872E6E062F5F6ACE3D3033 /* Resources */,
+				BB868A9CA84C319FA4699770 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClusterFuck;
+			packageProductDependencies = (
+				2D8CEEE264D9E232347B6BCF /* NaturalRemote */,
+			);
+			productName = ClusterFuck;
+			productReference = F172CF59E3B564DA93DC6A30 /* ClusterFuck.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21341ED5A74A9EA5113BEA4D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					532141D46875BB27CEF1A2E7 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					5823729D31C39017A5F400F9 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					9B691EF57841975F06BD2AD0 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C717EE2922A146A1319E6C05 /* Build configuration list for PBXProject "ClusterFuck" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 87CA5A24BB7542A267E4E9E7;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A749DCF9620055D80B1DA509 /* XCLocalSwiftPackageReference "." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2B804CD896FAA8D6FB11D955 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9B691EF57841975F06BD2AD0 /* ClusterFuck */,
+				532141D46875BB27CEF1A2E7 /* ClusterFuckMac */,
+				5823729D31C39017A5F400F9 /* ClusterFuckWatch */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		130EAE182F3DF47FA9C8BD56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B054A44AB08390187EF9FED3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAC4B797EE8A7A3ED49A7777 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B04A061F3019A8C1D9C8B58 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB872E6E062F5F6ACE3D3033 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3631A57057C16ECB37DEED2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F59F08F360EE11F09376331 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D4FBD79D186090B9C84C8E7 /* ClusterFuckWatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93C5CF661A90461F05ECE376 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC50E8DB640381A644296A39 /* ClusterFuckApp.swift in Sources */,
+				0EBEA9AA2E5015A1923A8C72 /* ClusterFuckRootView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD8039B60B1FF649F7CD0BB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				854BE95D7E317CE938C2DEBD /* ClusterFuckApp.swift in Sources */,
+				ED5624C4FB8CE4558B7F98B7 /* ClusterFuckRootView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3F20D79DC72BD3CFCC7E9498 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuck.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck;
+				PRODUCT_NAME = ClusterFuck;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		42B8A1C3D0F375E965EF735B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuck.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Apps/ClusterFuck/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClusterFuck;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "ClusterFuck reads HR/HRV for ΔHRV and σ_irr.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "ClusterFuck may write session health context.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Spectral audio analysis.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Headphone motion.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.mac;
+				PRODUCT_NAME = ClusterFuck;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4C93F255276013D2023DEFE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuck.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuck/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck;
+				PRODUCT_NAME = ClusterFuck;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9FF366EE3B3027D5614546AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				AD_HOC_CODE_SIGNING_ALLOWED = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		A0BCA17C28F5936F52445993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuck.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Apps/ClusterFuck/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClusterFuck;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "ClusterFuck reads HR/HRV for ΔHRV and σ_irr.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "ClusterFuck may write session health context.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Spectral audio analysis.";
+				INFOPLIST_KEY_NSMotionUsageDescription = "Headphone motion.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.mac;
+				PRODUCT_NAME = ClusterFuck;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		EEB69A6DA885AF893F826EB2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				AD_HOC_CODE_SIGNING_ALLOWED = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		F3C955D00EDB52337FFE5D88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuckWatch/ClusterFuckWatch.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuckWatch/Info.plist;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.watchkitapp;
+				PRODUCT_NAME = ClusterFuckWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		F72726C1E4ED01FD6A3B4A78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuckWatch/ClusterFuckWatch.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuckWatch/Info.plist;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.watchkitapp;
+				PRODUCT_NAME = ClusterFuckWatch;
+				SDKROOT = watchos;
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D709DF01EC9B71FAA8E2F0A /* Build configuration list for PBXNativeTarget "ClusterFuckMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0BCA17C28F5936F52445993 /* Debug */,
+				42B8A1C3D0F375E965EF735B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		30F32A7A6907B757308B6AB7 /* Build configuration list for PBXNativeTarget "ClusterFuckWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F72726C1E4ED01FD6A3B4A78 /* Debug */,
+				F3C955D00EDB52337FFE5D88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5B94092095D27FF532B48BD4 /* Build configuration list for PBXNativeTarget "ClusterFuck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C93F255276013D2023DEFE8 /* Debug */,
+				3F20D79DC72BD3CFCC7E9498 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C717EE2922A146A1319E6C05 /* Build configuration list for PBXProject "ClusterFuck" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EEB69A6DA885AF893F826EB2 /* Debug */,
+				9FF366EE3B3027D5614546AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A749DCF9620055D80B1DA509 /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2D8CEEE264D9E232347B6BCF /* NaturalRemote */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NaturalRemote;
+		};
+		729C2C4AAA8DB7FFDCE2A1F6 /* NaturalRemote */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NaturalRemote;
+		};
+		C10810B826D1F28A61512DF9 /* NaturalRemote */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NaturalRemote;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 21341ED5A74A9EA5113BEA4D /* Project object */;
+}

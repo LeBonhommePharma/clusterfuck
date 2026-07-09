@@ -42,10 +42,19 @@ public struct RemoteSessionView: View {
                 .font(.caption2)
                 .lineLimit(2)
                 .foregroundStyle(.secondary)
-            Button("Minimize σ") {
-                Task { await model.forceMinimize() }
+            HStack(spacing: 8) {
+                Button(model.isSessionRunning ? "Stop" : "Start") {
+                    Task {
+                        if model.isSessionRunning { model.stop() }
+                        else { await model.start() }
+                    }
+                }
+                .buttonStyle(.bordered)
+                Button("Minimize σ") {
+                    Task { await model.forceMinimize() }
+                }
+                .buttonStyle(.borderedProminent)
             }
-            .buttonStyle(.borderedProminent)
         }
         .padding()
     }
@@ -127,6 +136,51 @@ public final class RemoteSessionViewModel: ObservableObject {
     public func start() async {
         await manager.start()
         refreshFromLoop()
+    }
+
+    /// Stop the pharmacovigilance / remote session.
+    public func stop() {
+        manager.stop()
+        lastAction = "session_stopped"
+        refreshFromLoop()
+    }
+
+    public var isSessionRunning: Bool { manager.isRunning }
+
+    /// Drive multi-signal update through the **shipped** control path (app UI + tests).
+    @discardableResult
+    public func applySyntheticMultiSignal(
+        deltaHRV: Double,
+        musicBPM: Double,
+        audioEntropy: Double,
+        sci: Double
+    ) async -> CrooksSnapshot {
+        if !manager.isRunning {
+            await manager.start()
+        }
+        let rr = (0..<24).map { _ in 800.0 + Double.random(in: -20...20) }
+        _ = await manager.loop.ingestHRV(rmssd: 40 + abs(deltaHRV), sdnn: 50, rrIntervals: rr)
+        var samples = [Float](repeating: 0, count: 512)
+        let freq = max(1.0, musicBPM / 60.0)
+        for n in 0..<512 {
+            samples[n] = Float(sin(2 * Double.pi * freq * Double(n) / 64.0) * (0.3 + audioEntropy * 0.1))
+        }
+        _ = await manager.loop.ingestAudio(samples: samples, sampleRate: 16_000)
+        var state = manager.loop.state
+        state.deltaHRV = deltaHRV
+        state.musicBPM = musicBPM
+        state.audioEntropyBits = audioEntropy
+        state.sci = sci
+        let snap = await manager.loop.crooks.update(with: state)
+        self.sigmaIrr = snap.sigmaIrr
+        self.closurePercent = snap.closurePercent
+        self.phaseLabel = snap.phase.rawValue
+        self.lastAction = snap.lastActionSummary
+        self.musicBPM = musicBPM
+        self.audioEntropy = audioEntropy
+        self.deltaHRV = deltaHRV
+        self.sciScore = sci
+        return snap
     }
 
     public func forceMinimize() async {

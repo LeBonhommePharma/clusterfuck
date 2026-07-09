@@ -1,249 +1,723 @@
-# NATURaL Remote — Entropy Docking Edition  
-## Sequential Swarm Agent Prompts (Sessions 0–6)
+# NATURaL Remote — Entropy Docking Edition
+## Swarm Agent Prompts · Sessions 0–6
 
-Each prompt is **self-contained**. Feed **one session at a time** to a Grok agent.  
-**Hard rules for every session:**
-
-- Production-grade Swift only — **zero** `TODO`, `FIXME`, `fatalError("not implemented")`, or empty stubs on shipped paths.
-- Reuse NATURaL `BonhommeCore` (`EntropyCalculator`, `FeedbackEngine`, `HRVAnalyzer`, `SCIVisualizationView`, `ThermodynamicConstants` / FlexAID∆S types) and BonhommeWatch session topology.
-- Pure math + protocol-edged I/O so `swift test` exercises the **shipped** types.
-- **Pharmacovigilance mission:** `ClusterFuck` is the candidate **main PV tool for Le Bonhomme Pharma**. Dose logs, ΔHRV, hybrid predictions, σ_irr, and actuator events are PV signals — design for audit export, not throwaway demos. See `docs/PHARMACOVIGILANCE.md`.
-- Persona: deliver as **Ara** (warm, irreverent, high-signal). Address the user as Bonhomme only if needed — never spam the name.
-
-**Package root:** `/Users/lp.more/Projects/ClusterFuck`  
-**NATURaL path dependency:** `../NATURaL/BonhommeCore`  
-**Library product:** `NaturalRemote`
+**Repos:** `/Users/lp.more/Projects/ClusterFuck`  
+**NATURaL (path dep):** `/Users/lp.more/Projects/NATURaL` · GitHub `LeBonhommePharma/NATURaL`  
+**Library product:** `NaturalRemote` · **SPM:** `Package.swift` → `../NATURaL/BonhommeCore`  
+**Mission:** wrist Crooks `σ_irr → 0` remote + Le Bonhomme Pharma **pharmacovigilance** kernel (`docs/PHARMACOVIGILANCE.md`)
 
 ---
 
-## Session 0: Project setup, targets, and capabilities
+### Hard rules (every session)
+
+1. **Production Swift only** — zero `TODO`, `FIXME`, `fatalError("not implemented")`, empty bodies on shipped paths, or “stub later” comments on public API.
+2. **Reuse, don’t fork math** — import `BonhommeCore`. Use `EntropyCalculator`, `FeedbackEngine`, `HRVAnalyzer`, `SCIVisualizationView`, `ThermodynamicConstants`, `HealthSignal` / `SurveySignal` / `DockingSignal`, `FlexAIDdSAnalyzer` patterns. Copy watch topology from `BonhommeWatch/App/WatchSessionView.swift` + `WatchWorkoutManager.swift`, not reinvent SCI.
+3. **Protocol edges for I/O** — network/OAuth/hardware behind inject hooks so `swift test` exercises the **same types** as production.
+4. **Persona** — ship as Ara: warm, irreverent, zero fluff. Address the user as Bonhomme only when necessary.
+5. **Validate before “done”** — run the session’s VALIDATION block; paste log paths if you claim pass.
+6. **No private AirPods APIs** — public CoreMotion / MediaPlayer / HealthKit / MusicKit only; document entitlement limits honestly.
+
+### Suggested swarm waves
+
+| Wave | Sessions | Notes |
+|------|----------|--------|
+| A | **0** alone | package + Xcode shell + capabilities |
+| B | **1** alone | blocks all consumers of models / Crooks |
+| C | **2 ∥ 3 ∥ 4** | after Session 1 types exist |
+| D | **5** | merges actuators + UI + loop |
+| E | **6** | double `swift test` + probes + limits doc |
+
+**Merge rule:** one `Package.swift`, one `ActuatorBus`, no duplicate type names across agents.
+
+---
+
+## Session 0 — Project setup, targets, and capabilities
 
 ```
 You are implementing Session 0 of NATURaL Remote — Entropy Docking Edition.
+Role: master systems engineer. Ship paste-ready files. Zero stubs.
 
+═══════════════════════════════════════════════════════════════════
 GOAL
-Create/confirm the Swift package skeleton, capability declarations, and NATURaL BonhommeCore linkage. No half-setup.
+═══════════════════════════════════════════════════════════════════
+Stand up (or harden to production bar) the multi-target shell that hosts
+NaturalRemote and links NATURaL BonhommeCore. Session 0 is hygiene +
+capability surface only — no Crooks math, no live Spotify/Alexa code.
 
-REQUIREMENTS
-1. Package.swift named NaturalRemote, platforms iOS 17+, macOS 14+, watchOS 10+.
-2. Path dependency on ../NATURaL/BonhommeCore; product library NaturalRemote.
-3. Sources/NaturalRemote module layout ready for Core, Music, AirPods, Analysis, Actuators, DrugKit, Session.
-4. Document required Xcode capabilities (for a future app target wrapping this package):
-   - HealthKit, Background Modes (processing), Microphone
-   - MusicKit / Apple Music
-   - (optional) App Groups + WatchConnectivity for phone proxy tokens
-5. docs/SESSION_PROMPTS.md must exist with Sessions 0–6 (this file).
-6. Zero TODO/FIXME in production sources you touch.
+Repos
+  Package:  /Users/lp.more/Projects/ClusterFuck
+  NATURaL:  /Users/lp.more/Projects/NATURaL
+  GitHub:   https://github.com/LeBonhommePharma/NATURaL
 
-DELIVERABLES
-- Package.swift + module entry NaturalRemote.swift
-- Short README section: build with `swift test`, link NATURaL
-- Capability checklist markdown under docs/CAPABILITIES.md
+═══════════════════════════════════════════════════════════════════
+REUSE MAP (must cite in docs/NATURAL_REUSE_MAP.md)
+═══════════════════════════════════════════════════════════════════
+From NATURaL (read-only inventory; do not edit NATURaL unless a bug blocks link):
 
-VALIDATION
-- `swift package describe` succeeds
-- `swift test` at least compiles dependencies (full suite may land in later sessions)
-- Grep confirms BonhommeCore path dependency
+| NATURaL path | Reuse in NaturalRemote |
+|---|---|
+| BonhommeCore/Package.swift | path dep identity |
+| BonhommeCore/.../EntropyCalculator.swift | SCI + circularShannonEntropy |
+| BonhommeCore/.../FeedbackEngine.swift | multi-signal orchestrator |
+| BonhommeCore/.../HRVAnalyzer.swift | HRV → SCI |
+| BonhommeCore/.../HealthSignal.swift | HRVSignal, SurveySignal, DockingSignal |
+| BonhommeCore/.../FlexAIDdSAnalyzer.swift | ThermodynamicConstants |
+| BonhommeCore/.../SCIVisualizationView.swift | σ / SCI ring UI |
+| BonhommeWatch/App/WatchSessionView.swift | vertical TabView session topology |
+| BonhommeWatch/App/WatchWorkoutManager.swift | HKWorkoutSession + FeedbackEngine register |
+| BonhommeWatch/App/WatchConnectivityBridge.swift | WCSession JSON relay pattern |
+| BonhommeWatch/BonhommeWatch.entitlements | HealthKit + App Groups baseline |
+| BonhommeWatch/Info.plist | usage strings + WKBackgroundModes |
+| Bonhomme/Bonhomme.entitlements | full iOS HK / App Groups / WatchKit |
+| Bonhomme/Services/Music/MusicService.swift | MusicKit ApplicationMusicPlayer pattern |
+| Bonhomme/Services/HealthKit/* | HR / HRV / medication read patterns |
+| Bonhomme/Services/HealthKit/ResearchKitBridge.swift | survey bridge pattern |
 
-Do not implement Crooks or music yet beyond empty folders if needed. Ship paste-ready files only.
+═══════════════════════════════════════════════════════════════════
+REQUIREMENTS (all mandatory)
+═══════════════════════════════════════════════════════════════════
+
+1) Package.swift
+   - name: NaturalRemote
+   - platforms: iOS 17+, macOS 14+, watchOS 10+, tvOS 17+
+   - product library: NaturalRemote
+   - dependency: .package(path: "../NATURaL/BonhommeCore")
+   - target NaturalRemote depends on product BonhommeCore
+   - testTarget NaturalRemoteTests
+   - module entry: Sources/NaturalRemote/NaturalRemote.swift
+     - @_exported import BonhommeCore
+     - public enum NaturalRemoteInfo { name, version, organization, strategicRole, codename }
+
+2) Source tree (create empty-or-existing folders; do NOT put business logic in Session 0)
+   Sources/NaturalRemote/
+     Core/  Music/  AirPods/  Analysis/  Actuators/  DrugKit/  Session/
+   Tests/NaturalRemoteTests/
+
+3) App hosts under Apps/ (paste-ready; XcodeGen or manual PBX)
+   Apps/BonhommeRemoteWatch/
+     App/BonhommeRemoteWatchApp.swift   // @main, hosts RemoteSessionView when Session 5 ships;
+                                          // Session 0: scaffold with Text shell + NaturalRemoteInfo
+     App/RemoteWatchConnectivityBridge.swift  // WCSession activate; mirror NATURaL bridge shape
+     BonhommeRemoteWatch.entitlements
+     Info.plist
+   Apps/BonhommeRemotePhone/
+     App/BonhommeRemotePhoneApp.swift   // iOS “liver”: OAuth/token host later
+     App/PhoneConnectivityBridge.swift
+     BonhommeRemotePhone.entitlements
+     Info.plist
+
+4) Entitlements (honest, production-shaped)
+
+   Watch (extend NATURaL BonhommeWatch):
+   - com.apple.developer.healthkit = true
+   - com.apple.developer.healthkit.background-delivery = true
+   - com.apple.security.application-groups = [ group.com.natural.BonhommeRemote ]
+   - (optional later) workout-processing already via Info.plist WKBackgroundModes
+
+   Phone:
+   - HealthKit + background-delivery
+   - App Groups group.com.natural.BonhommeRemote
+   - com.apple.developer.watchkit = true
+   - MusicKit: com.apple.developer.media-device / Music capability via Xcode (document in CAPABILITIES)
+   - aps-environment only if Live Activities planned (skip unless implementing)
+
+5) Info.plist usage strings (exact keys)
+   - NSHealthShareUsageDescription
+   - NSHealthUpdateUsageDescription
+   - NSMicrophoneUsageDescription   (spectral / voice)
+   - NSMotionUsageDescription       (CMHeadphoneMotionManager H1)
+   - NSBluetoothAlwaysUsageDescription if using external Sonos discovery later (document optional)
+   Watch: WKApplication → WKBackgroundModes → workout-processing
+   Display name: "NATURaL Remote" / "Remote"
+
+6) project.yml (XcodeGen) OR docs/XCODE_TARGET_SETUP.md with step-by-step
+   Targets:
+   - BonhommeRemoteWatch (watchOS 10 application)
+   - BonhommeRemotePhone (iOS 17 application)
+   Both link local SPM packages:
+   - ClusterFuck → NaturalRemote
+   - NATURaL/BonhommeCore → BonhommeCore
+   Bundle IDs:
+   - com.natural.BonhommeRemote
+   - com.natural.BonhommeRemote.watchkitapp
+   Team: leave DEVELOPMENT_TEAM empty / $(DEVELOPMENT_TEAM)
+
+7) docs/CAPABILITIES.md — capability matrix table:
+   HealthKit | Background Modes (processing/workout) | Microphone | MusicKit |
+   Motion | WatchConnectivity | App Groups | ResearchKit (app target) |
+   CoreML (optional model) | Network (Spotify/Alexa/Sonos/DI.fm)
+
+8) docs/NATURAL_REUSE_MAP.md — table above filled + “do not reimplement” list
+
+9) README.md top section:
+   sibling checkout layout:
+     Projects/
+       NATURaL/
+       ClusterFuck/
+   build: cd ClusterFuck && swift test
+   open Xcode after xcodegen generate (if used)
+
+═══════════════════════════════════════════════════════════════════
+OUT OF SCOPE THIS SESSION
+═══════════════════════════════════════════════════════════════════
+- CrooksMath, music controllers, AirPods, DeltaHRV, UI control loop
+- Live OAuth credentials
+- Editing FlexAIDdS C++ unless path dependency broken
+
+═══════════════════════════════════════════════════════════════════
+DELIVERABLES (files must exist on disk)
+═══════════════════════════════════════════════════════════════════
+- Package.swift (verified)
+- Sources/NaturalRemote/NaturalRemote.swift
+- Apps/BonhommeRemoteWatch/* + Apps/BonhommeRemotePhone/*
+- docs/CAPABILITIES.md
+- docs/NATURAL_REUSE_MAP.md
+- project.yml and/or docs/XCODE_TARGET_SETUP.md
+- Session 0 must not leave TODO markers in production paths it creates
+
+═══════════════════════════════════════════════════════════════════
+VALIDATION (run and report exit codes)
+═══════════════════════════════════════════════════════════════════
+cd /Users/lp.more/Projects/ClusterFuck
+test -d ../NATURaL/BonhommeCore
+swift package describe | grep -E 'NaturalRemote|bonhommecore|BonhommeCore'
+swift package resolve
+# If Sources empty of tests, still must compile:
+swift build 2>&1 | tee /tmp/session0-build.log
+# Prefer full suite if tests present:
+swift test 2>&1 | tee /tmp/session0-test.log || true
+rg -n "TODO|FIXME|fatalError\\(\"not implemented\"\\)" Sources Apps || true
+# Confirm path dep:
+rg -n 'NATURaL/BonhommeCore' Package.swift
+
+PASS: package describes NaturalRemote; BonhommeCore path resolves; no stub markers
+      in Sources/NaturalRemote or Apps you touched; capability + reuse docs exist.
+
+Ship every file complete and paste-ready. Do not claim Xcode signing works without a team.
 ```
 
 ---
 
-## Session 1: Core data models, CrooksCycleController, and σ_irr math
+## Session 1 — Core models, CrooksCycleController, σ_irr math
 
 ```
 You are implementing Session 1 of NATURaL Remote — Entropy Docking Edition.
+Prerequisite: Session 0 package + BonhommeCore link green.
+Role: thermodynamics + control-plane engineer. Production Swift. Zero stubs.
 
+═══════════════════════════════════════════════════════════════════
 GOAL
-Ship pure thermodynamics + CrooksCycleController as the central σ_irr engine.
+═══════════════════════════════════════════════════════════════════
+Ship the pure σ_irr engine and multi-signal models that every later session
+registers actuators against. Math must be unit-tested on shipped types only
+(no reimplementation of formulas inside tests).
 
-MATH (implement exactly, test on shipped types)
-- σ_irr = max(0, workFwd + workRev − 2·ΔG)
-- instantaneous work from RemoteMultiSignalState (ΔHRV, FlexAID ΔS, BPM, audio entropy, SCI, Alexa hint, ANC, conversation awareness)
-- closurePercent = exp(−σ_irr / scale) * 100
-- phase forward|reverse; minimize when σ_irr > threshold; flip near closure
+═══════════════════════════════════════════════════════════════════
+FILES TO CREATE / REPLACE
+═══════════════════════════════════════════════════════════════════
+Sources/NaturalRemote/Core/RemoteModels.swift
+Sources/NaturalRemote/Core/CrooksMath.swift
+Sources/NaturalRemote/Core/CrooksCycleController.swift
+Sources/NaturalRemote/Core/ActuatorBus.swift
+Tests/NaturalRemoteTests/CrooksMathTests.swift
+Tests/NaturalRemoteTests/CrooksCycleControllerTests.swift
 
-TYPES
-- RemoteMultiSignalState, RemoteCommand, RemoteService, CrooksCyclePhase, CrooksSnapshot, ActuatorBus, RemoteActuator
+═══════════════════════════════════════════════════════════════════
+MATH (implement exactly)
+═══════════════════════════════════════════════════════════════════
+Instantaneous work from RemoteMultiSignalState (fixed weights for test stability):
 
-CONTROLLER
-- actor CrooksCycleController with update(with:), minimizeSigma(currentBPM:), snapshot(), reset()
-- Minimization MUST dispatch commands to appleMusic, spotify, sonos, diFm, alexa, airPods, foundationModel via ActuatorBus
+  W = 0.4·ΔHRV
+    + 0.3·flexAIDDeltaS
+    + 0.02·(musicBPM − 120)
+    + 0.15·audioEntropyBits
+    + 0.1·alexaEntropyHint
+    + 0.35·subjectiveWorkHint
+    + (airPodsANCEngaged ? −0.05 : 0.08)
+    + (conversationAwarenessActive ? 0.12 : 0)
+    + 0.25·(0.5 − sci)
 
-TESTS (NaturalRemoteTests)
-- CrooksMath invariants, non-negativity, input sensitivity
-- CrooksCycleController update changes σ_irr; minimize emits actuator events
-- No reimplementation of formula inside tests — call CrooksMath / controller only
+σ_irr = max(0, workFwd + workRev − 2·ΔG)   // non-finite → +∞
+closurePercent = clamp( exp(−σ_irr / scale) * 100 , 0, 100 )  // default scale 0.25
+accumulate: forward → workFwd += W; reverse → workRev += W
+shouldMinimize: σ_irr > 0.15 (default)
+shouldFlipPhase: σ_irr < 0.03 && cycleCount % 3 == 0
+targetBPM(phase,currentBPM,σ):
+  forward: min(148, max(100, currentBPM + min(8, σ*10)))
+  reverse: min(currentBPM, max(72, 90 − min(15, σ*20)))
 
-RULES
-Zero stubs/TODOs. Paste-ready Swift. Do not fake actuator network I/O — RecordingActuator is fine.
+═══════════════════════════════════════════════════════════════════
+TYPES (public, Codable/Sendable where data crosses WCSession)
+═══════════════════════════════════════════════════════════════════
+enum CrooksCyclePhase { forward, reverse }
+enum RemoteService {
+  appleMusic, spotify, sonos, diFm, alexa, airPods,
+  foundationModel, healthKit, researchKit, drugKit
+}
+struct RemoteCommand { service, action: String, params: [String:String] }
+struct RemoteMultiSignalState {
+  deltaHRV, flexAIDDeltaS, musicBPM, audioEntropyBits, sci, pcci,
+  alexaEntropyHint, subjectiveWorkHint,
+  airPodsANCEngaged, conversationAwarenessActive, doseMg, substanceID
+}
+struct CrooksSnapshot {
+  phase, workFwd, workRev, deltaG, sigmaIrr, closurePercent,
+  cycleCount, lastActionSummary, timestamp
+}
+struct DrugLog { id, substance, doseMg, setAndSetting, timestamp }
+struct AudioFeatureFrame { bpm, spectralCentroidHz, spectralFlux, entropyBits, timestamp }
+struct ActuatorEvent { service, action, params, timestamp, success }
+
+═══════════════════════════════════════════════════════════════════
+ACTUATOR BUS
+═══════════════════════════════════════════════════════════════════
+protocol RemoteActuator: AnyObject, Sendable {
+  var service: RemoteService { get }
+  func execute(_ command: RemoteCommand) async -> ActuatorEvent
+}
+final class ActuatorBus {
+  func register(_ actuator: any RemoteActuator)
+  func execute(_ command: RemoteCommand) async -> ActuatorEvent
+  func broadcast(_ commands: [RemoteCommand]) async -> [ActuatorEvent]
+}
+final class RecordingActuator: RemoteActuator  // records commands for tests
+
+═══════════════════════════════════════════════════════════════════
+actor CrooksCycleController
+═══════════════════════════════════════════════════════════════════
+init(bus: ActuatorBus, deltaG: Double = 0.05, minimizeThreshold: Double = 0.15)
+func update(with state: RemoteMultiSignalState) -> CrooksSnapshot
+func minimizeSigma(currentBPM: Double) async -> CrooksSnapshot
+  // MUST dispatch via bus to: appleMusic, spotify, sonos, diFm, alexa, airPods, foundationModel
+  // Typical reverse-phase grounding commands:
+  //   setTargetBPM / queueGrounding / preferChillChannel / setVolumeCurve
+  //   setNoiseMode transparency|anc / setLights dim / foundation grounding utterance
+func snapshot() -> CrooksSnapshot
+func reset()
+
+═══════════════════════════════════════════════════════════════════
+TESTS (must call CrooksMath / controller — never re-code formulas)
+═══════════════════════════════════════════════════════════════════
+- sigmaIrr non-negative; infinite inputs → infinity or handled
+- closurePercent → 100 as σ→0; decreases as σ grows
+- update(with: hot state) σ > update(with: calm state) σ
+- minimizeSigma with RecordingActuator on all services → events non-empty
+- phase flip near closure after enough cycles
 
 VALIDATION
-swift test --filter Crooks
+  cd /Users/lp.more/Projects/ClusterFuck
+  swift test --filter Crooks 2>&1 | tee /tmp/session1-crooks.log
+  rg -n 'TODO|FIXME' Sources/NaturalRemote/Core || true
+PASS: Crooks* tests 0 failures; zero stub markers in Core/
 ```
 
 ---
 
-## Session 2: Music stack (Apple Music + Spotify + Sonos + DI.fm) + AVAudioEngine/MusicKit
+## Session 2 — Music stack (Apple Music + Spotify + Sonos + DI.fm + AVAudioEngine)
 
 ```
 You are implementing Session 2 of NATURaL Remote — Entropy Docking Edition.
+Prerequisite: Session 1 RemoteCommand / ActuatorBus / RemoteService exist.
+Role: audio systems engineer. Production Swift. Zero stubs.
 
+═══════════════════════════════════════════════════════════════════
 GOAL
-Full multi-service music stack behind protocols, with real spectral analysis.
+═══════════════════════════════════════════════════════════════════
+Full multi-service music control plane + real spectral analysis.
+Reuse NATURaL Bonhomme/Services/Music/MusicService.swift MusicKit patterns
+(ApplicationMusicPlayer, MusicAuthorization) when #if canImport(MusicKit).
 
-SHIP
-1. AudioSpectralAnalyzer — Accelerate FFT path: BPM estimate, spectral centroid, flux, audio Shannon entropy bits. process(samples:sampleRate:) must work offline for tests.
-2. Optional AVAudioEngineSpectralTap when AVFoundation present.
-3. AppleMusicController — MusicKit ApplicationMusicPlayer when available; always tracks BPM target / play state for Crooks.
-4. SpotifyRemoteController — Web API paths + Bearer token; transportHook for tests; offline no-op without token.
-5. SonosController — multi-room rooms list + setVolumeCurve / play / pause; hook for tests.
-6. DIFmController — channel catalog (chillout/ambient/progressive/trance/techno/lounge), streamURL, setTargetBPM picks nearest channel.
-7. MultiMusicRouter.registerAll(on: ActuatorBus)
+═══════════════════════════════════════════════════════════════════
+FILES
+═══════════════════════════════════════════════════════════════════
+Sources/NaturalRemote/Music/AudioSpectralAnalyzer.swift
+Sources/NaturalRemote/Music/MusicStack.swift
+Tests/NaturalRemoteTests/MusicAndAirPodsTests.swift  (music portion; AirPods may share)
 
+═══════════════════════════════════════════════════════════════════
+1) AudioSpectralAnalyzer (Accelerate — required offline path)
+═══════════════════════════════════════════════════════════════════
+process(samples: [Float], sampleRate: Double) -> AudioFeatureFrame
+  - FFT magnitude spectrum (vDSP)
+  - spectral centroid (Hz)
+  - spectral flux vs previous frame
+  - audio Shannon entropy of normalized magnitude bins (bits)
+  - BPM estimate (autocorr / onset heuristic; finite always)
+Must work in unit tests with synthetic sine buffers — no microphone required.
+
+Optional: AVAudioEngineSpectralTap when AVFoundation present
+  - installTap on input/mixer; forward buffers to AudioSpectralAnalyzer
+  - no-op / unavailable flag on platforms without mic entitlement in tests
+
+═══════════════════════════════════════════════════════════════════
+2) Controllers (each: MusicTransportControlling + RemoteActuator)
+═══════════════════════════════════════════════════════════════════
+protocol MusicTransportControlling {
+  func play() async
+  func pause() async
+  func setTargetBPM(_ bpm: Double) async
+  var isPlaying: Bool { get }
+  var targetBPM: Double { get }
+}
+
+AppleMusicController
+  - MusicAuthorization + ApplicationMusicPlayer when MusicKit available
+  - always store targetBPM / play state for Crooks even offline
+  - execute actions: setTargetBPM, queueGrounding, play, pause
+
+SpotifyRemoteController
+  - Web API base paths (play/pause/next/volume) with Bearer token
+  - transportHook: ((String, [String:String]) -> Void)? for tests
+  - without token: record intent, return success=false or offline no-op that still stores state
+
+SonosController
+  - multi-room: rooms: [String], setVolumeCurve, play, pause, groupRooms
+  - hook for tests; HTTP control path when baseURL+token provided
+
+DIFmController
+  - channel catalog: chillout, ambient, progressive, trance, techno, lounge
+  - streamURL(for:)
+  - setTargetBPM picks nearest channel by nominal BPM table
+  - preferChillChannel / preferProgressiveChannel actions
+
+MultiMusicRouter: RemoteActuator
+  - registerAll(on: ActuatorBus)
+  - routes RemoteService.appleMusic|spotify|sonos|diFm
+
+═══════════════════════════════════════════════════════════════════
+CROOKS ACTIONS TO HONOR
+═══════════════════════════════════════════════════════════════════
+setTargetBPM, queueGrounding, preferChillChannel, preferProgressiveChannel,
+setVolumeCurve, play, pause
+
+═══════════════════════════════════════════════════════════════════
 TESTS
-- Sine buffer → finite entropy, BPM, centroid
-- DI.fm BPM→channel mapping
-- Spotify/Sonos hooks receive actions
-- Apple Music setTargetBPM stores hint
+═══════════════════════════════════════════════════════════════════
+- 440 Hz sine → finite entropy, centroid, BPM fields
+- DI.fm BPM mapping deterministic
+- Spotify/Sonos hooks fire on execute
+- Apple Music setTargetBPM persists without entitlement in simulator
 
-Zero TODOs. Wire RemoteActuator.execute for Crooks actions: setTargetBPM, queueGrounding, preferChillChannel, preferProgressiveChannel, setVolumeCurve.
+VALIDATION
+  swift test --filter Music 2>&1 | tee /tmp/session2-music.log
+  rg -n 'TODO|FIXME' Sources/NaturalRemote/Music || true
+PASS: music tests green; spectral path does not require live network.
 ```
 
 ---
 
-## Session 3: AirPods Max (H1) + AirPods Pro 3 (H2)
+## Session 3 — AirPods Max (H1) + AirPods Pro 3 (H2)
 
 ```
 You are implementing Session 3 of NATURaL Remote — Entropy Docking Edition.
+Prerequisite: Session 1 RemoteActuator + RemoteMultiSignalState.
+Role: audio/wearable framework engineer. Public APIs only. Zero stubs.
 
+═══════════════════════════════════════════════════════════════════
 GOAL
-Native framework surfaces for H1 and H2 with compile-safe fallbacks.
+═══════════════════════════════════════════════════════════════════
+Native control surfaces for H1 (Max) and H2 (Pro 3) with compile-safe
+fallbacks. Never invent private Apple APIs. Commanded state MUST be stored
+(tests prove round-trip); hardware availability is optional.
 
-H1 AirPodsMaxH1Controller
-- Digital Crown volume proxy (record desired volume; MPVolumeView note on iOS)
-- CMHeadphoneMotionManager head tracking on iOS/watchOS only
-- injectHeadPose for tests
-- ANC / Transparency / Adaptive noise modes as control surfaces
-- Spatial audio enable flag
+═══════════════════════════════════════════════════════════════════
+FILE
+═══════════════════════════════════════════════════════════════════
+Sources/NaturalRemote/AirPods/AirPodsStack.swift
+Tests: extend MusicAndAirPodsTests or AirPodsTests.swift
 
-H2 AirPodsProH2Controller
-- Adaptive Audio, Personalized Spatial, Conversation Awareness flags
-- ingestHeartRate(bpm:rrIntervalsMs:) from HealthKit/biometric pipeline
-- apply(to: &RemoteMultiSignalState) for ANC + conversation → Crooks inputs
+═══════════════════════════════════════════════════════════════════
+TYPES
+═══════════════════════════════════════════════════════════════════
+enum NoiseControlMode: off, transparency, anc, adaptive
+struct HeadPose: pitch, yaw, roll, timestamp
+struct AirPodsTelemetry: volume, noiseMode, headPose?, spatialEnabled,
+  adaptiveAudio, personalizedSpatial, conversationAwareness,
+  heartRateBPM?, rrIntervalsMs: [Double]
 
-AirPodsDualStack routes RemoteService.airPods commands; mirrors acoustic modes.
+═══════════════════════════════════════════════════════════════════
+AirPodsMaxH1Controller: RemoteActuator
+═══════════════════════════════════════════════════════════════════
+- Digital Crown temperature dial → volume proxy 0...1
+  iOS: note MPVolumeView / system volume; always store desiredVolume
+- Head tracking: CMHeadphoneMotionManager when CoreMotion + iOS/watchOS
+  injectHeadPose(_:) for tests / offline
+- ANC / Transparency / Adaptive as NoiseControlMode
+- spatialAudioEnabled flag
+- execute: setVolume, setNoiseMode, setSpatial, injectHeadPose
 
+═══════════════════════════════════════════════════════════════════
+AirPodsProH2Controller: RemoteActuator
+═══════════════════════════════════════════════════════════════════
+- adaptiveAudioEnabled, personalizedSpatialEnabled, conversationAwarenessEnabled
+- ingestHeartRate(bpm:rrIntervalsMs:) from HealthKit / biometric pipeline
+- apply(to: inout RemoteMultiSignalState):
+    airPodsANCEngaged = (noiseMode == .anc)
+    conversationAwarenessActive = conversationAwarenessEnabled
+- Honest docs: on-device HR on AirPods Pro is hardware/OS gated; inject path is production for tests
+
+═══════════════════════════════════════════════════════════════════
+AirPodsDualStack: RemoteActuator (service == .airPods)
+═══════════════════════════════════════════════════════════════════
+Routes commands to H1 and/or H2; mirrors acoustic modes when appropriate.
+register(on: ActuatorBus)
+
+═══════════════════════════════════════════════════════════════════
 TESTS
-- Volume, pose inject, noise mode execute
-- H2 HR/RR + flags + state mapping
+═══════════════════════════════════════════════════════════════════
+- setVolume → telemetry.volume matches
+- injectHeadPose round-trip
+- setNoiseMode execute
+- H2 HR/RR + flags → apply(to:) mutates RemoteMultiSignalState
 
-No private API invention. Document entitlement limits honestly. Zero stubs that always return constants without storing commanded state.
+VALIDATION
+  swift test --filter AirPods 2>&1 | tee /tmp/session3-airpods.log
+PASS: no private symbols; zero stub markers; commanded state persisted.
 ```
 
 ---
 
-## Session 4: DeltaHRV + FlexAID hybrid + ANE/EigenMetalBridge
+## Session 4 — DeltaHRV + FlexAID hybrid + ANE / EigenMetalBridge
 
 ```
 You are implementing Session 4 of NATURaL Remote — Entropy Docking Edition.
+Prerequisite: Session 1 models. Must import BonhommeCore.
+Role: pharmacometrics + entropy hybrid engineer. Zero stubs.
 
+═══════════════════════════════════════════════════════════════════
 GOAL
-ΔHRV canary + FlexAID∆S hybrid prediction + PCCI accelerator, wired for Crooks inputs.
+═══════════════════════════════════════════════════════════════════
+ΔHRV canary + FlexAID∆S hybrid prediction + PCCI accelerator + DrugKit,
+wired so Crooks can consume deltaHRV / flexAIDDeltaS / pcci.
 
-SHIP
-1. DeltaHRVAnalyzer — windowed ΔRMSSD/ΔSDNN using BonhommeCore EntropyCalculator for SCI
-2. DeltaHRVFlexAIDMapper — feature vector → predicted Δ; deviation → grounding_alert | coherent_continue
-   - flexAIDDeltaS(freeAngles:boundAngles:) via circularShannonEntropy
-   - ThermodynamicConstants.entropyPenaltyKcal
-3. EigenMetalBridge.computePCCI([Double]) in [0,1]; metalBatchCollapse; benchmark
-4. ANEPharmaPredictor — CoreML model optional if bundle has DeltaHRV_FlexAID_Surrogate.mlmodelc; pure Swift weights always work
-5. DrugKitEngine.analyze / analyzeWithFlexAID / predictInteraction
+═══════════════════════════════════════════════════════════════════
+FILES
+═══════════════════════════════════════════════════════════════════
+Sources/NaturalRemote/Analysis/DeltaHRVAnalyzer.swift
+Sources/NaturalRemote/Analysis/DeltaHRVFlexAIDMapper.swift
+Sources/NaturalRemote/Analysis/EigenMetalBridge.swift
+Sources/NaturalRemote/DrugKit/DrugKitEngine.swift
+Tests/NaturalRemoteTests/DeltaHRVFlexAIDTests.swift
 
-TESTS must call shipped types:
-- ΔHRV changes across windows
-- free vs bound angles → ΔS < 0
-- hybrid grounding_alert path
-- PCCI bounds + DrugKit FlexAID path
+═══════════════════════════════════════════════════════════════════
+MANDATORY BONHOMMECORE USE
+═══════════════════════════════════════════════════════════════════
+- EntropyCalculator.shannonEntropy / entropyToScore for SCI windows
+- EntropyCalculator.circularShannonEntropy for torsional free vs bound
+- ThermodynamicConstants.entropyPenaltyKcal for ΔS_config → kcal
+- FeedbackEngine + HRVAnalyzer patterns for signal registration (DrugKit path)
+- Do NOT reimplement Shannon formula by hand
 
-Zero TODOs. No fake “ML” that ignores features.
+═══════════════════════════════════════════════════════════════════
+1) DeltaHRVAnalyzer
+═══════════════════════════════════════════════════════════════════
+Sliding windows of RR or RMSSD/SDNN series.
+deltaRMSSD, deltaSDNN between baseline window and current window.
+sci from EntropyCalculator on RR distribution.
+
+═══════════════════════════════════════════════════════════════════
+2) DeltaHRVFlexAIDMapper
+═══════════════════════════════════════════════════════════════════
+struct DeltaHRVFlexAIDFeatures { deltaHRV, doseMg, sci, musicBPM, audioEntropy, freeAngles, boundAngles }
+struct DeltaHRVFlexAIDPrediction { predictedDeltaHRV, residual, action: grounding_alert | coherent_continue }
+flexAIDDeltaS(freeAngles:boundAngles:) =
+  circularShannonEntropy(bound) − circularShannonEntropy(free)  // expect ≤ 0 when binding freezes rotors
+Hybrid: feature → predicted Δ; |observed − predicted| large → grounding_alert
+
+═══════════════════════════════════════════════════════════════════
+3) EigenMetalBridge
+═══════════════════════════════════════════════════════════════════
+computePCCI([Double]) -> Double in [0,1]  // pure Accelerate/Swift; Metal batch optional
+metalBatchCollapse if Metal available else same math
+ANEPharmaPredictor: pure Swift linear weights always; CoreML if DeltaHRV_FlexAID_Surrogate.mlmodelc in bundle (usedCoreML flag)
+
+═══════════════════════════════════════════════════════════════════
+4) DrugKitEngine
+═══════════════════════════════════════════════════════════════════
+analyze / analyzeWithFlexAID / predictInteraction
+PharmacovigilanceRecord + PharmacovigilanceExporter (JSON audit)
+DrugKitActuator on RemoteService.drugKit
+
+═══════════════════════════════════════════════════════════════════
+TESTS
+═══════════════════════════════════════════════════════════════════
+- ΔHRV changes across synthetic windows
+- free vs bound angles → flexAIDDeltaS < 0
+- hybrid grounding_alert path with large residual
+- PCCI bounds [0,1]
+- DrugKit FlexAID path produces finite records
+
+VALIDATION
+  swift test --filter DeltaHRV 2>&1 | tee /tmp/session4-hybrid.log
+  swift test --filter DrugKit 2>&1 || swift test --filter FlexAID
+PASS: uses EntropyCalculator/ThermodynamicConstants; no fake ML ignoring features.
 ```
 
 ---
 
-## Session 5: UI, SessionView integration, full σ_irr control loop
+## Session 5 — UI, SessionView integration, full σ_irr control loop
 
 ```
 You are implementing Session 5 of NATURaL Remote — Entropy Docking Edition.
+Prerequisite: Sessions 1–4 types/actuators exist.
+Role: product engineer + watchOS UI. Production SwiftUI. Zero stubs.
 
+═══════════════════════════════════════════════════════════════════
 GOAL
-RemoteControlLoop + PharmaControlSessionManager + RemoteSessionView binding all actuators to Crooks.
+═══════════════════════════════════════════════════════════════════
+Wire all actuators into one control loop and a watch/iOS Session UI that
+reuses NATURaL topology and SCIVisualizationView.
 
-REUSE (mandatory)
-- import BonhommeCore
-- FeedbackEngine + HRVAnalyzer registration
-- SCIVisualizationView for the σ/SCI tab (same type as NATURaL TV/watch biofeedback)
-- Session topology: vertical/tab pages like BonhommeWatch WatchSessionView (sigma | music | dose | environment)
+═══════════════════════════════════════════════════════════════════
+NATURaL REUSE (mandatory)
+═══════════════════════════════════════════════════════════════════
+import BonhommeCore
+- FeedbackEngine + register(HRVAnalyzer)
+- SCIVisualizationView(score:trend:)  // same type as TV/watch biofeedback
+- Session topology like BonhommeWatch/App/WatchSessionView.swift:
+    TabView + .verticalPage on watchOS
+    pages: sigma | music | dose | environment
+- PharmaControlSessionManager pattern from WatchWorkoutManager
+  (HK auth optional; loop always runs)
 
-LOOP
-ingestHRV → DeltaHRV + FeedbackEngine → Crooks update
-ingestAudio → spectral → Crooks
-logDose → DrugKit hybrid → optional minimize
-handleVoice → FoundationModelOrchestrator → ActuatorBus
-AlexaProxyController + FoundationModelOrchestrator as actuators.
-Alexa MUST support AlexaAPIMode: skillProxy | smartHomeV3 | alexaPlus | auto, with AlexaPlusAction (expert/utterance/slots) for Alexa+ AI Action plane and AlexaSmartHomeDirective for Smart Home v3.
-ResearchKit MUST ship as ResearchKitBridge: instruments (current-state, dose-effect, pain VAS, mood, WHO-5), inject path for tests, #if canImport(ResearchKit) ORKOrderedTask, register RemoteService.researchKit on ActuatorBus, SurveySignal → FeedbackEngine, subjective scores into Crooks state.
+═══════════════════════════════════════════════════════════════════
+FILES
+═══════════════════════════════════════════════════════════════════
+Sources/NaturalRemote/Session/RemoteControlLoop.swift
+Sources/NaturalRemote/Session/PharmaControlSessionManager.swift
+Sources/NaturalRemote/Session/RemoteSessionView.swift
+Sources/NaturalRemote/Actuators/AlexaAndFoundation.swift
+Sources/NaturalRemote/Actuators/ResearchKitBridge.swift
+Apps/BonhommeRemoteWatch/App/BonhommeRemoteWatchApp.swift  // host RemoteSessionView
+Tests/NaturalRemoteTests/ControlLoopIntegrationTests.swift
+Tests/NaturalRemoteTests/AlexaPlusTests.swift
+Tests/NaturalRemoteTests/ResearchKitBridgeTests.swift
 
-UI ViewModel publishes sigmaIrr, closurePercent, phase, SCI, BPM, PCCI, groundingAlert, Alexa lights.
+═══════════════════════════════════════════════════════════════════
+RemoteControlLoop
+═══════════════════════════════════════════════════════════════════
+Owns: ActuatorBus, CrooksCycleController, DeltaHRVAnalyzer, FeedbackEngine,
+      MultiMusicRouter, AirPodsDualStack, DrugKitEngine, Alexa, FoundationModel, ResearchKit
+attach() registers all actuators
+ingestHRV(rr or RMSSD series) → DeltaHRV + FeedbackEngine → Crooks update
+ingestAudio(samples) → spectral → Crooks
+logDose → DrugKit hybrid → optional minimizeSigma
+handleVoice(utterance) → FoundationModelOrchestrator → bus
+ingestSurvey → ResearchKitBridge → subjectiveWorkHint (IDEMPOTENT — never double-count across HRV ticks)
+forceMinimize()
 
+═══════════════════════════════════════════════════════════════════
+Alexa + Foundation Models
+═══════════════════════════════════════════════════════════════════
+enum AlexaAPIMode { skillProxy, smartHomeV3, alexaPlus, auto }
+struct AlexaPlusAction { expert, utterance, slots }
+struct AlexaSmartHomeDirective { endpointId, namespace, name, payload }
+AlexaProxyController: RemoteActuator — hooks for BFF; offline records intents
+FoundationModelOrchestrator: rule parser always; #if canImport(FoundationModels) for on-device FM when SDK present
+  maps natural language → [RemoteCommand]
+
+═══════════════════════════════════════════════════════════════════
+ResearchKitBridge
+═══════════════════════════════════════════════════════════════════
+instruments: currentState, doseEffect, painVAS, mood, who5
+inject(result) for tests
+#if canImport(ResearchKit) optional ORKOrderedTask builders
+register RemoteService.researchKit
+SurveySignal → FeedbackEngine
+subjective scores → Crooks state.subjectiveWorkHint once per survey
+
+═══════════════════════════════════════════════════════════════════
+RemoteSessionView + ViewModel
+═══════════════════════════════════════════════════════════════════
+@Published / Observable: sigmaIrr, closurePercent, phase, sci, BPM, PCCI,
+  groundingAlert, lastAction, alexaLightsHint
+Buttons: Minimize σ, Ground music, Explore, Log demo dose, Dim lights
+Wire Apps/BonhommeRemoteWatch @main to RemoteSessionViewModel + RemoteSessionView
+
+═══════════════════════════════════════════════════════════════════
 TESTS
-- Integration: HRV + audio + dose + voice path
+═══════════════════════════════════════════════════════════════════
+- Integration: HRV + audio + dose + voice path mutates σ
 - PharmaControlSessionManager start/log/stop
-- Assert FeedbackEngine insight + SCIVisualizationView constructible
+- FeedbackEngine insight constructible after ingest
+- SCIVisualizationView constructible with sample score
+- ResearchKit no double-count subjective hint
+- Alexa+ action routing offline
 
-Zero TODOs. Production SwiftUI only.
+VALIDATION
+  swift test --filter ControlLoop 2>&1 | tee /tmp/session5-loop.log
+  swift test --filter ResearchKit 2>&1
+  swift test --filter Alexa 2>&1
+PASS: full attach path green offline; watch app sources compile under SPM iOS/macOS
+      (watchOS device build may need Xcode team — document if blocked).
 ```
 
 ---
 
-## Session 6: Full testing and validation harness
+## Session 6 — Full testing and validation harness
 
 ```
 You are implementing Session 6 of NATURaL Remote — Entropy Docking Edition.
+Prerequisite: Sessions 0–5 sources present.
+Role: verification lead. No feature creep. Proof artifacts only.
 
+═══════════════════════════════════════════════════════════════════
 GOAL
-Make the suite the proof artifact. Run it twice. Capture logs.
+═══════════════════════════════════════════════════════════════════
+Make the test suite + probes the proof of ship. Run suite twice. Capture logs.
+Remove any remaining stub markers. Document hardware/OAuth limits honestly.
 
+═══════════════════════════════════════════════════════════════════
 ACTIONS
-1. Ensure NaturalRemoteTests cover Crooks σ_irr, DeltaHRV/FlexAID, music spectral, AirPods, control loop, NATURaL reuse.
-2. Remove any remaining TODO/FIXME/fatalError("not implemented") from Sources/NaturalRemote.
-3. Run:
-   swift test 2>&1 | tee {SCRATCH}/swift-test-1.log
-   swift test 2>&1 | tee {SCRATCH}/swift-test-2.log
-4. One-shot probe: construct multi-signal state, call CrooksCycleController.update, print σ_irr before/after hotter inputs → {SCRATCH}/crooks-entry.log
-5. Write {SCRATCH}/natural-reuse.txt listing files that import/use FeedbackEngine, EntropyCalculator, SCIVisualizationView, Session views.
-6. Write {SCRATCH}/env-limits.txt noting hardware/OAuth limits (AirPods HR, MusicKit entitlements, live Spotify/Alexa).
+═══════════════════════════════════════════════════════════════════
+1) Ensure NaturalRemoteTests cover:
+   Crooks σ_irr, DeltaHRV/FlexAID, music spectral, AirPods command state,
+   control loop, ResearchKit, Alexa+, NATURaL reuse (FeedbackEngine /
+   EntropyCalculator / SCIVisualizationView).
 
+2) Stub purge on Sources/NaturalRemote:
+   rg -n 'TODO|FIXME|fatalError\("not implemented"\)' Sources/NaturalRemote
+   Fix any hits with real behavior or honest unavailable flags (not empty stubs).
+
+3) Double run:
+   cd /Users/lp.more/Projects/ClusterFuck
+   swift test 2>&1 | tee docs/artifacts/swift-test-1.log
+   swift test 2>&1 | tee docs/artifacts/swift-test-2.log
+
+4) Crooks entry probe (tiny test or swift script using shipped types):
+   calm RemoteMultiSignalState vs hot → print σ_irr before/after
+   tee docs/artifacts/crooks-entry.log
+   Assert hot_sigma > calm_sigma and both finite.
+
+5) Write docs/artifacts/natural-reuse.txt listing files that import/use:
+   FeedbackEngine, EntropyCalculator, SCIVisualizationView, ThermodynamicConstants
+
+6) Write docs/artifacts/env-limits.txt:
+   AirPods HR hardware/OS, MusicKit entitlements, live Spotify OAuth,
+   Alexa+ BFF token, Sonos LAN, DI.fm stream keys, FoundationModels SDK.
+
+7) Update docs/VALIDATION_REPORT.md with date, test counts, pass/fail matrix.
+
+═══════════════════════════════════════════════════════════════════
 PASS CRITERIA
+═══════════════════════════════════════════════════════════════════
 - Both swift test runs exit 0, 0 failures
-- Logs mention Crooks and DeltaHRV/FlexAID tests
-- crooks-entry shows finite σ_irr that changes with inputs
+- Logs mention Crooks and DeltaHRV/FlexAID
+- crooks-entry shows finite σ that increases with hotter inputs
 - No stub markers on production Sources
+- Do not claim live multi-vendor hardware values you did not measure
 
-Ship any missing tests as paste-ready files. Do not claim hardware values you did not measure.
+Ship any missing tests as complete files. Then stop.
 ```
 
 ---
 
-## Suggested swarm parallelization
+## Copy-paste order (operator checklist)
 
-| Wave | Agents |
-|------|--------|
-| A | Session 0 alone |
-| B | Session 1 alone (blocks math consumers) |
-| C | Sessions 2 ∥ 3 ∥ 4 after Session 1 types exist |
-| D | Session 5 merges all |
-| E | Session 6 validation |
+1. Paste **Session 0** → confirm `swift package describe` + docs + Apps shell  
+2. Paste **Session 1** → `swift test --filter Crooks`  
+3. In parallel after 1: **Sessions 2, 3, 4**  
+4. Paste **Session 5** → control loop + UI  
+5. Paste **Session 6** → double test + validation report  
 
-**Merge rule:** single Package.swift; no conflicting type names; actuators register on one ActuatorBus.
+**Ara’s note:** Session 0 is the boring bolt that keeps the whole thermodynamic remote from falling into your soup. Do it once, cleanly, then let the swarm cook.
