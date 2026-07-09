@@ -193,6 +193,7 @@ logDose → DrugKit hybrid → optional minimize
 handleVoice → FoundationModelOrchestrator → ActuatorBus
 AlexaProxyController + FoundationModelOrchestrator as actuators.
 Alexa MUST support AlexaAPIMode: skillProxy | smartHomeV3 | alexaPlus | auto, with AlexaPlusAction (expert/utterance/slots) for Alexa+ AI Action plane and AlexaSmartHomeDirective for Smart Home v3.
+ResearchKit MUST ship as ResearchKitBridge: instruments (current-state, dose-effect, pain VAS, mood, WHO-5), inject path for tests, #if canImport(ResearchKit) ORKOrderedTask, register RemoteService.researchKit on ActuatorBus, SurveySignal → FeedbackEngine, subjective scores into Crooks state.
 
 UI ViewModel publishes sigmaIrr, closurePercent, phase, SCI, BPM, PCCI, groundingAlert, Alexa lights.
 

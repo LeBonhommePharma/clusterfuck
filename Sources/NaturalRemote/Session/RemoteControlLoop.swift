@@ -12,6 +12,7 @@ public final class RemoteControlLoop: @unchecked Sendable {
     public let foundation: FoundationModelOrchestrator
     public let drugKit: DrugKitEngine
     public let drugActuator: DrugKitActuator
+    public let researchKit: ResearchKitBridge
     public let deltaHRV: DeltaHRVAnalyzer
     public let flexMapper: DeltaHRVFlexAIDMapper
     public let eigen: EigenMetalBridge
@@ -35,6 +36,7 @@ public final class RemoteControlLoop: @unchecked Sendable {
         self.foundation = FoundationModelOrchestrator()
         self.drugKit = DrugKitEngine.shared
         self.drugActuator = DrugKitActuator(engine: self.drugKit)
+        self.researchKit = ResearchKitBridge(feedbackEngine: feedback)
         self.deltaHRV = DeltaHRVAnalyzer()
         self.flexMapper = DeltaHRVFlexAIDMapper.shared
         self.eigen = EigenMetalBridge.shared
@@ -44,6 +46,7 @@ public final class RemoteControlLoop: @unchecked Sendable {
         bus.register(alexa)
         bus.register(foundation)
         bus.register(drugActuator)
+        bus.register(researchKit)
         feedback.register(hrvAnalyzer)
     }
 
@@ -76,12 +79,38 @@ public final class RemoteControlLoop: @unchecked Sendable {
         lock.unlock()
 
         airPods.proH2.apply(to: &local)
+        researchKit.apply(to: &local)
         let snap = await crooks.update(with: local)
         lock.lock()
         _state = local
         _snapshot = snap
         lock.unlock()
         return snap
+    }
+
+    /// ResearchKit / subjective survey path → FeedbackEngine + Crooks.
+    @discardableResult
+    public func ingestSurvey(
+        instrument: ResearchKitInstrument,
+        rawScore: Double,
+        responses: [String: String] = [:]
+    ) async -> (result: ResearchKitSurveyResult, snapshot: CrooksSnapshot) {
+        let result = researchKit.injectSurvey(
+            instrument: instrument,
+            rawScore: rawScore,
+            responses: responses
+        )
+        _ = feedback.analyze(for: .survey)
+        lock.lock()
+        var local = _state
+        lock.unlock()
+        researchKit.apply(to: &local)
+        let snap = await crooks.update(with: local)
+        lock.lock()
+        _state = local
+        _snapshot = snap
+        lock.unlock()
+        return (result, snap)
     }
 
     /// Push spectral audio features into state and Crooks.

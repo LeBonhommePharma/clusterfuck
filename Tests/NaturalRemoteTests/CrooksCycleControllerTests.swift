@@ -11,6 +11,7 @@ final class CrooksCycleControllerTests: XCTestCase {
         bus.register(RecordingActuator(service: .alexa))
         bus.register(RecordingActuator(service: .airPods))
         bus.register(RecordingActuator(service: .foundationModel))
+        bus.register(RecordingActuator(service: .researchKit))
 
         let crooks = CrooksCycleController(deltaG: -1.0, bus: bus, minimizeThreshold: 0.01)
 
@@ -54,6 +55,7 @@ final class CrooksCycleControllerTests: XCTestCase {
         bus.register(alexa)
         bus.register(RecordingActuator(service: .airPods))
         bus.register(RecordingActuator(service: .foundationModel))
+        bus.register(RecordingActuator(service: .researchKit))
 
         let crooks = CrooksCycleController(deltaG: -8.2, bus: bus)
         await crooks.minimizeSigma(currentBPM: 130)

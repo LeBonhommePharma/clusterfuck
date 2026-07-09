@@ -249,17 +249,17 @@ See `docs/ALEXA_PLUS.md` for POST shapes and Amazon SDK references.
 
 ---
 
-### Phase 5 — HealthKit + ResearchKit + DrugKit
+### Phase 5 — HealthKit + ResearchKit + DrugKit (**SHIPPED in NaturalRemote**)
 
-**Intent:** Pharmacokinetic telemetry backbone (psychopharm command hub).
+**Intent:** Pharmacokinetic + subjective PV backbone (psychopharm command hub).
 
-| Work | Detail |
-|---|---|
-| 5.1 | HealthKit: HR/HRV, medication writes, mindful sessions, background delivery |
-| 5.2 | ResearchKit: wrist “Current State Log” / effect-rating ordered tasks |
-| 5.3 | `DrugKitEngine`: `DrugLog`, analyze → PCCI, HealthKit + FHIR-oriented write |
-| 5.4 | Dose & Log tab; PokeDrug-style quick selector reuse |
-| 5.5 | Collapse policy: high PCCI → simplify UI + haptics; low → survey + grounding |
+| Work | Detail | Status |
+|---|---|---|
+| 5.1 | HealthKit session hooks in `PharmaControlSessionManager` | present (auth + inject path) |
+| 5.2 | **ResearchKitBridge**: instrument catalog, inject path, `#if canImport(ResearchKit)` ORKOrderedTask, FeedbackEngine `SurveySignal`, `.researchKit` on ActuatorBus, Crooks subjective work hints | **shipped** |
+| 5.3 | `DrugKitEngine` + `PharmacovigilanceRecord` export | **shipped** |
+| 5.4 | Dose & Log tab in `RemoteSessionView` | **shipped** |
+| 5.5 | Collapse / grounding + ResearchKit prompt on minimize | **shipped** |
 
 **Full-stack happy path (thread definition)**
 
@@ -274,8 +274,7 @@ See `docs/ALEXA_PLUS.md` for POST shapes and Amazon SDK references.
 
 - Logged dose appears in Health; PCCI updates; at least one auto-actuator fires on threshold  
 - Reproducible unit test / console: `predictInteraction(substance:)` returns concrete output  
-
----
+- ResearchKit inject/survey path unit-tested without device ResearchKit binary  
 
 ### Phase 6 — DeltaHRV analyzer
 

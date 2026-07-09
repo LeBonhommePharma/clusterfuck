@@ -127,6 +127,14 @@ public actor CrooksCycleController {
             ]
         ))
 
+        // Subjective PV check-in when entropy production is elevated
+        try? await bus.execute(RemoteCommand(
+            service: .researchKit,
+            action: "promptCurrentState",
+            params: ["sigmaIrr": String(format: "%.4f", sigmaIrr)]
+        ))
+        actions.append("researchKit")
+
         lastActionSummary = actions.joined(separator: "+")
     }
 

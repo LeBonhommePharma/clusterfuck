@@ -5,6 +5,7 @@ When wrapping `NaturalRemote` in an app target (iOS / watchOS):
 | Capability | Why |
 |---|---|
 | HealthKit | HR / HRV / medication records for DrugKit + ΔHRV |
+| ResearchKit (app target) | Dose-effect / current-state surveys → `ResearchKitBridge` (SPM works offline via inject) |
 | Background Modes → processing | Continuous session samples |
 | Microphone | AVAudioEngine spectral tap / voice |
 | MusicKit | Apple Music playback |
