@@ -86,4 +86,33 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
         let text = engine.predictInteraction(substance: "LSD")
         XCTAssertTrue(text.contains("5-HT2A"))
     }
+
+    func testPharmacovigilanceExportRoundTrip() throws {
+        let engine = DrugKitEngine()
+        let record = PharmacovigilanceRecord(
+            substance: "2C-B",
+            doseMg: 12,
+            setAndSetting: "home / lo-fi",
+            observedDeltaHRV: 18,
+            predictedDeltaHRV: 12,
+            deviation: 0.5,
+            action: "grounding_alert",
+            sci: 0.55,
+            pcci: 0.7,
+            sigmaIrr: 0.22,
+            crooksPhase: "reverse",
+            closurePercent: 40,
+            musicBPM: 88,
+            audioEntropyBits: 2.1,
+            alexaLightsPercent: 30,
+            flexAIDDeltaS: -0.6
+        )
+        engine.recordPharmacovigilance(record)
+        let data = try engine.exportPharmacovigilanceJSON()
+        let decoded = try PharmacovigilanceExporter.decode(data)
+        XCTAssertEqual(decoded.count, 1)
+        XCTAssertEqual(decoded[0].substance, "2C-B")
+        XCTAssertEqual(decoded[0].action, "grounding_alert")
+        XCTAssertEqual(NaturalRemoteInfo.strategicRole, "primary_pharmacovigilance_candidate")
+    }
 }

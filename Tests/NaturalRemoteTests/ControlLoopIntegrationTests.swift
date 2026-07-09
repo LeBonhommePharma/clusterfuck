@@ -31,6 +31,12 @@ final class ControlLoopIntegrationTests: XCTestCase {
         XCTAssertTrue(dose.prediction.predictedDelta.isFinite)
         XCTAssertTrue(dose.snapshot.sigmaIrr.isFinite)
         XCTAssertGreaterThanOrEqual(dose.snapshot.sigmaIrr, 0)
+        // PV path: every dose log must produce an exportable pharmacovigilance record.
+        let pv = loop.drugKit.allPharmacovigilanceRecords()
+        XCTAssertFalse(pv.isEmpty)
+        XCTAssertEqual(pv.last?.substance, "psilocybin")
+        let json = try loop.drugKit.exportPharmacovigilanceJSON()
+        XCTAssertFalse(json.isEmpty)
 
         // Prefer Alexa+ plane for environment minimization when configured.
         loop.alexa.updateConfig(AlexaProxyConfig(mode: .alexaPlus))

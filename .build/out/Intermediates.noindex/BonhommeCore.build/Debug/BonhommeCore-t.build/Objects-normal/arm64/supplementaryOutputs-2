@@ -1,0 +1,37 @@
+{
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/EnthalpyEntropyCompensation.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EnthalpyEntropyCompensation.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EnthalpyEntropyCompensation.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EnthalpyEntropyCompensation.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EnthalpyEntropyCompensation.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EnthalpyEntropyCompensation.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/EntropyCalculator.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EntropyCalculator.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EntropyCalculator.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EntropyCalculator.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EntropyCalculator.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EntropyCalculator.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/EvolutionThermodynamics.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EvolutionThermodynamics.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EvolutionThermodynamics.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EvolutionThermodynamics.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EvolutionThermodynamics.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/EvolutionThermodynamics.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/FeedbackEngine.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FeedbackEngine.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FeedbackEngine.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FeedbackEngine.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FeedbackEngine.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FeedbackEngine.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/FlexAIDdSAnalyzer.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FlexAIDdSAnalyzer.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FlexAIDdSAnalyzer.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FlexAIDdSAnalyzer.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FlexAIDdSAnalyzer.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/FlexAIDdSAnalyzer.swiftdeps"
+  }
+}

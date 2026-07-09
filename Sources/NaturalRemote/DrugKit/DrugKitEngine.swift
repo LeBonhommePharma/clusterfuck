@@ -1,12 +1,94 @@
 import Foundation
 import BonhommeCore
 
-/// DrugKit: dose logging + PCCI computation for the remote psychopharm backbone.
+// MARK: - Pharmacovigilance export contract
+
+/// One auditable PV event: exposure + outcome + prediction + control-loop context.
+/// Designed so ClusterFuck can graduate to Le Bonhomme Pharma’s main PV pipeline.
+public struct PharmacovigilanceRecord: Codable, Sendable, Equatable {
+    public var timestamp: Date
+    public var substance: String
+    public var doseMg: Double
+    public var setAndSetting: String
+    public var observedDeltaHRV: Double
+    public var predictedDeltaHRV: Double
+    public var deviation: Double
+    public var action: String
+    public var sci: Double
+    public var pcci: Double
+    public var sigmaIrr: Double
+    public var crooksPhase: String
+    public var closurePercent: Double
+    public var musicBPM: Double
+    public var audioEntropyBits: Double
+    public var alexaLightsPercent: Int
+    public var flexAIDDeltaS: Double
+    public var sourceBuild: String
+
+    public init(
+        timestamp: Date = Date(),
+        substance: String,
+        doseMg: Double,
+        setAndSetting: String,
+        observedDeltaHRV: Double,
+        predictedDeltaHRV: Double,
+        deviation: Double,
+        action: String,
+        sci: Double,
+        pcci: Double,
+        sigmaIrr: Double,
+        crooksPhase: String,
+        closurePercent: Double,
+        musicBPM: Double,
+        audioEntropyBits: Double,
+        alexaLightsPercent: Int,
+        flexAIDDeltaS: Double,
+        sourceBuild: String = NaturalRemoteInfo.version
+    ) {
+        self.timestamp = timestamp
+        self.substance = substance
+        self.doseMg = doseMg
+        self.setAndSetting = setAndSetting
+        self.observedDeltaHRV = observedDeltaHRV
+        self.predictedDeltaHRV = predictedDeltaHRV
+        self.deviation = deviation
+        self.action = action
+        self.sci = sci
+        self.pcci = pcci
+        self.sigmaIrr = sigmaIrr
+        self.crooksPhase = crooksPhase
+        self.closurePercent = closurePercent
+        self.musicBPM = musicBPM
+        self.audioEntropyBits = audioEntropyBits
+        self.alexaLightsPercent = alexaLightsPercent
+        self.flexAIDDeltaS = flexAIDDeltaS
+        self.sourceBuild = sourceBuild
+    }
+}
+
+/// Serializes PV records for cohort review (JSON array). Durable store is a later phase.
+public enum PharmacovigilanceExporter: Sendable {
+    public static func jsonData(_ records: [PharmacovigilanceRecord]) throws -> Data {
+        let enc = JSONEncoder()
+        enc.outputFormatting = [.prettyPrinted, .sortedKeys]
+        enc.dateEncodingStrategy = .iso8601
+        return try enc.encode(records)
+    }
+
+    public static func decode(_ data: Data) throws -> [PharmacovigilanceRecord] {
+        let dec = JSONDecoder()
+        dec.dateDecodingStrategy = .iso8601
+        return try dec.decode([PharmacovigilanceRecord].self, from: data)
+    }
+}
+
+/// DrugKit: dose logging + PCCI + pharmacovigilance record assembly for the remote backbone.
 public final class DrugKitEngine: @unchecked Sendable {
     public static let shared = DrugKitEngine()
 
     private let lock = NSLock()
     private var logs: [DrugLog] = []
+    private var pvRecords: [PharmacovigilanceRecord] = []
     private let bridge: EigenMetalBridge
     private let mapper: DeltaHRVFlexAIDMapper
     private let entropyCalc: EntropyCalculator
@@ -29,6 +111,22 @@ public final class DrugKitEngine: @unchecked Sendable {
     public func allLogs() -> [DrugLog] {
         lock.lock(); defer { lock.unlock() }
         return logs
+    }
+
+    public func allPharmacovigilanceRecords() -> [PharmacovigilanceRecord] {
+        lock.lock(); defer { lock.unlock() }
+        return pvRecords
+    }
+
+    /// Append a full PV record after hybrid analysis (call from control loop).
+    public func recordPharmacovigilance(_ record: PharmacovigilanceRecord) {
+        lock.lock()
+        pvRecords.append(record)
+        lock.unlock()
+    }
+
+    public func exportPharmacovigilanceJSON() throws -> Data {
+        try PharmacovigilanceExporter.jsonData(allPharmacovigilanceRecords())
     }
 
     /// Analyze dose context with music/alexa state → PCCI.

@@ -11,7 +11,9 @@ This document is the **general structure** of the implementation roadmap distill
 
 ## 0. North star
 
-Build a **wrist-native psychopharm command hub** that:
+**Org trajectory:** `ClusterFuck` / NATURaL Remote is positioned to become **Le Bonhomme Pharma’s main pharmacovigilance tool** — continuous exposure–outcome–intervention capture under thermodynamic control. See `docs/PHARMACOVIGILANCE.md`.
+
+Build a **wrist-native psychopharm command hub** (and PV sensor node) that:
 
 | Ligand (input / actuator) | Role |
 |---|---|

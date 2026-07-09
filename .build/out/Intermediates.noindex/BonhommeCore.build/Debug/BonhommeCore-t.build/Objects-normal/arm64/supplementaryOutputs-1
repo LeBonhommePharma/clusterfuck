@@ -1,0 +1,37 @@
+{
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/AnalysisConfiguration.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/AnalysisConfiguration.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/AnalysisConfiguration.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/AnalysisConfiguration.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/AnalysisConfiguration.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/AnalysisConfiguration.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/BindingEntropyProfile.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/BindingEntropyProfile.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/BindingEntropyProfile.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/BindingEntropyProfile.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/BindingEntropyProfile.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/BindingEntropyProfile.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/CrossDomainValidator.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/CrossDomainValidator.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/CrossDomainValidator.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/CrossDomainValidator.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/CrossDomainValidator.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/CrossDomainValidator.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/DockingInsightAnalyzer.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DockingInsightAnalyzer.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DockingInsightAnalyzer.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DockingInsightAnalyzer.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DockingInsightAnalyzer.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DockingInsightAnalyzer.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/DrugResponseAnalyzer.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DrugResponseAnalyzer.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DrugResponseAnalyzer.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DrugResponseAnalyzer.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DrugResponseAnalyzer.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/DrugResponseAnalyzer.swiftdeps"
+  }
+}

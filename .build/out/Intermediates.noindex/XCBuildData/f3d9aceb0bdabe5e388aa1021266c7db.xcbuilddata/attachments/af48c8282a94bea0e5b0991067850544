@@ -1,0 +1,4 @@
+module NaturalRemote {
+header "NaturalRemote-Swift.h"
+export *
+}

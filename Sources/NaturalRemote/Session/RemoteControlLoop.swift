@@ -130,6 +130,26 @@ public final class RemoteControlLoop: @unchecked Sendable {
         if prediction.isGroundingAlert {
             await crooks.minimizeSigma(currentBPM: local.musicBPM)
         }
+        // Pharmacovigilance: always record exposure + prediction + control context.
+        let pv = PharmacovigilanceRecord(
+            substance: log.substance,
+            doseMg: log.doseMg,
+            setAndSetting: log.setAndSetting,
+            observedDeltaHRV: observed,
+            predictedDeltaHRV: prediction.predictedDelta,
+            deviation: prediction.deviation,
+            action: prediction.action,
+            sci: sci,
+            pcci: pcci,
+            sigmaIrr: snap.sigmaIrr,
+            crooksPhase: snap.phase.rawValue,
+            closurePercent: snap.closurePercent,
+            musicBPM: local.musicBPM,
+            audioEntropyBits: local.audioEntropyBits,
+            alexaLightsPercent: alexa.lightsPercent,
+            flexAIDDeltaS: prediction.flexAIDDeltaS
+        )
+        drugKit.recordPharmacovigilance(pv)
         lock.lock(); _snapshot = snap; lock.unlock()
         return (pcci, prediction, snap)
     }

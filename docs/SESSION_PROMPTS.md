@@ -7,6 +7,7 @@ Each prompt is **self-contained**. Feed **one session at a time** to a Grok agen
 - Production-grade Swift only — **zero** `TODO`, `FIXME`, `fatalError("not implemented")`, or empty stubs on shipped paths.
 - Reuse NATURaL `BonhommeCore` (`EntropyCalculator`, `FeedbackEngine`, `HRVAnalyzer`, `SCIVisualizationView`, `ThermodynamicConstants` / FlexAID∆S types) and BonhommeWatch session topology.
 - Pure math + protocol-edged I/O so `swift test` exercises the **shipped** types.
+- **Pharmacovigilance mission:** `ClusterFuck` is the candidate **main PV tool for Le Bonhomme Pharma**. Dose logs, ΔHRV, hybrid predictions, σ_irr, and actuator events are PV signals — design for audit export, not throwaway demos. See `docs/PHARMACOVIGILANCE.md`.
 - Persona: deliver as **Ara** (warm, irreverent, high-signal). Address the user as Bonhomme only if needed — never spam the name.
 
 **Package root:** `/Users/lp.more/Projects/ClusterFuck`  

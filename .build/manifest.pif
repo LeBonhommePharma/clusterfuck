@@ -1,0 +1,4049 @@
+[
+  {
+    "contents" : {
+      "guid" : "Workspace:/Users/lp.more/Projects/ClusterFuck",
+      "name" : "NaturalRemote",
+      "path" : "/Users/lp.more/Projects/ClusterFuck",
+      "projects" : [
+        "1ec8e5b19b4b33f77259fdbf619d3fdb62f0167d7b3f6b094d43bd754bc3fb7b",
+        "458976abec6100d384c3af4fd644e23da382fb2698fbaa05f308135417a6509f",
+        "d65f712bdf0fbd77474a9961da64b4cd02770751077c8eb101204fb55a3534dd"
+      ]
+    },
+    "signature" : "4f9a6e11e039995a222bdfcc6e99e79c9b1850e13b6efb60b638682546c20743",
+    "type" : "workspace"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "BUILD_SERVER_PROTOCOL_TARGET_TAGS" : [
+              "$(inherited)",
+              "dependency"
+            ],
+            "CLANG_ENABLE_MODULES[__platform_filter=driverkit]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios-maccatalyst]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios;ios-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=macos]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=tvos;tvos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=watchos;watchos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=xros;xros-simulator]" : "YES",
+            "CODE_SIGNING_REQUIRED" : "NO",
+            "CODE_SIGN_IDENTITY" : "",
+            "COMPILER_WORKING_DIRECTORY" : "$(WORKSPACE_DIR)",
+            "COPY_PHASE_STRIP" : "NO",
+            "DEBUG_INFORMATION_FORMAT" : "dwarf",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=driverkit]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios-maccatalyst]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios;ios-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=macos]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=tvos;tvos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=watchos;watchos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=xros;xros-simulator]" : "@rpath",
+            "ENABLE_NS_ASSERTIONS" : "YES",
+            "ENABLE_TESTABILITY" : "YES",
+            "ENABLE_TESTING_SEARCH_PATHS" : "YES",
+            "ENTITLEMENTS_REQUIRED" : "NO",
+            "GCC_OPTIMIZATION_LEVEL" : "0",
+            "GCC_PREPROCESSOR_DEFINITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE",
+              "DEBUG=1"
+            ],
+            "INDEX_ENABLE_DATA_STORE" : "YES",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "17.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "17.0",
+            "KEEP_PRIVATE_EXTERNS" : "NO",
+            "LIBTOOL_NO_WARNING_FOR_NO_SYMBOLS" : "YES",
+            "LINKER_DRIVER" : "auto",
+            "MACOSX_DEPLOYMENT_TARGET" : "14.0",
+            "ONLY_ACTIVE_ARCH" : "YES",
+            "OTHER_CFLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "OTHER_LDRFLAGS" : [
+
+            ],
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SKIP_INSTALL" : "YES",
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=ios;ios-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=macos]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=tvos;tvos-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=watchos;watchos-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=xros;xros-simulator]" : [
+
+            ],
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ],
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE",
+              "DEBUG"
+            ],
+            "SWIFT_INSTALL_OBJC_HEADER" : "NO",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "",
+            "SWIFT_OPTIMIZATION_LEVEL" : "-Onone",
+            "TARGETED_DEVICE_FAMILY" : "",
+            "TVOS_DEPLOYMENT_TARGET" : "17.0",
+            "USE_HEADERMAP" : "NO",
+            "WATCHOS_DEPLOYMENT_TARGET" : "10.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE:bonhommecore::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "BUILD_SERVER_PROTOCOL_TARGET_TAGS" : [
+              "$(inherited)",
+              "dependency"
+            ],
+            "CLANG_ENABLE_MODULES[__platform_filter=driverkit]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios-maccatalyst]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios;ios-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=macos]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=tvos;tvos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=watchos;watchos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=xros;xros-simulator]" : "YES",
+            "CODE_SIGNING_REQUIRED" : "NO",
+            "CODE_SIGN_IDENTITY" : "",
+            "COMPILER_WORKING_DIRECTORY" : "$(WORKSPACE_DIR)",
+            "COPY_PHASE_STRIP" : "YES",
+            "DEBUG_INFORMATION_FORMAT" : "dwarf-with-dsym",
+            "DEPLOYMENT_POSTPROCESSING" : "YES",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=driverkit]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios-maccatalyst]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios;ios-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=macos]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=tvos;tvos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=watchos;watchos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=xros;xros-simulator]" : "@rpath",
+            "ENABLE_TESTING_SEARCH_PATHS" : "YES",
+            "ENTITLEMENTS_REQUIRED" : "NO",
+            "GCC_OPTIMIZATION_LEVEL" : "s",
+            "GCC_PREPROCESSOR_DEFINITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE"
+            ],
+            "IPHONEOS_DEPLOYMENT_TARGET" : "17.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "17.0",
+            "KEEP_PRIVATE_EXTERNS" : "NO",
+            "LIBTOOL_NO_WARNING_FOR_NO_SYMBOLS" : "YES",
+            "LINKER_DRIVER" : "auto",
+            "MACOSX_DEPLOYMENT_TARGET" : "14.0",
+            "OTHER_CFLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "OTHER_LDRFLAGS" : [
+
+            ],
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SKIP_INSTALL" : "YES",
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=ios;ios-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=macos]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=tvos;tvos-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=watchos;watchos-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=xros;xros-simulator]" : [
+
+            ],
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ],
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE"
+            ],
+            "SWIFT_INSTALL_OBJC_HEADER" : "NO",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "",
+            "SWIFT_OPTIMIZATION_LEVEL" : "-Owholemodule",
+            "TARGETED_DEVICE_FAMILY" : "",
+            "TVOS_DEPLOYMENT_TARGET" : "17.0",
+            "USE_HEADERMAP" : "NO",
+            "WATCHOS_DEPLOYMENT_TARGET" : "10.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE:bonhommecore::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "defaultConfigurationName" : "Release",
+      "groupTree" : {
+        "children" : [
+          {
+            "children" : [
+
+            ],
+            "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_0",
+            "name" : "AdditionalFiles",
+            "path" : "/",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+
+            ],
+            "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_1",
+            "name" : "Binaries",
+            "path" : "/",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_0",
+                "name" : "Analysis/AnalysisConfiguration.swift",
+                "path" : "Analysis/AnalysisConfiguration.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_1",
+                "name" : "Analysis/BindingEntropyProfile.swift",
+                "path" : "Analysis/BindingEntropyProfile.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_2",
+                "name" : "Analysis/CrossDomainValidator.swift",
+                "path" : "Analysis/CrossDomainValidator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_3",
+                "name" : "Analysis/DockingInsightAnalyzer.swift",
+                "path" : "Analysis/DockingInsightAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_4",
+                "name" : "Analysis/DrugResponseAnalyzer.swift",
+                "path" : "Analysis/DrugResponseAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_5",
+                "name" : "Analysis/EnthalpyEntropyCompensation.swift",
+                "path" : "Analysis/EnthalpyEntropyCompensation.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_6",
+                "name" : "Analysis/EntropyCalculator.swift",
+                "path" : "Analysis/EntropyCalculator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_7",
+                "name" : "Analysis/EvolutionThermodynamics.swift",
+                "path" : "Analysis/EvolutionThermodynamics.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_8",
+                "name" : "Analysis/FeedbackEngine.swift",
+                "path" : "Analysis/FeedbackEngine.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_9",
+                "name" : "Analysis/FlexAIDdSAnalyzer.swift",
+                "path" : "Analysis/FlexAIDdSAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_10",
+                "name" : "Analysis/HRVAnalyzer.swift",
+                "path" : "Analysis/HRVAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_11",
+                "name" : "Analysis/HealthSignal.swift",
+                "path" : "Analysis/HealthSignal.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_12",
+                "name" : "Analysis/LigandEfficiencyCalculator.swift",
+                "path" : "Analysis/LigandEfficiencyCalculator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_13",
+                "name" : "Analysis/MedicationAnalyzer.swift",
+                "path" : "Analysis/MedicationAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_14",
+                "name" : "Analysis/MolecularScaffold.swift",
+                "path" : "Analysis/MolecularScaffold.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_15",
+                "name" : "Analysis/PartitionFunctionCalculator.swift",
+                "path" : "Analysis/PartitionFunctionCalculator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_16",
+                "name" : "Analysis/PharmacokineticProfile.swift",
+                "path" : "Analysis/PharmacokineticProfile.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_17",
+                "name" : "Analysis/PokeDrugEvolution.swift",
+                "path" : "Analysis/PokeDrugEvolution.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_18",
+                "name" : "Analysis/PokeDrugHabitat.swift",
+                "path" : "Analysis/PokeDrugHabitat.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_19",
+                "name" : "Analysis/PokeDrugMatchup.swift",
+                "path" : "Analysis/PokeDrugMatchup.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_20",
+                "name" : "Analysis/PokeDrugSpecies.swift",
+                "path" : "Analysis/PokeDrugSpecies.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_21",
+                "name" : "Analysis/PokeDrugStatComparator.swift",
+                "path" : "Analysis/PokeDrugStatComparator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_22",
+                "name" : "Analysis/PokeDrugStats.swift",
+                "path" : "Analysis/PokeDrugStats.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_23",
+                "name" : "Analysis/PokeDrugSuperaCluster.swift",
+                "path" : "Analysis/PokeDrugSuperaCluster.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_24",
+                "name" : "Analysis/PokeDrugType.swift",
+                "path" : "Analysis/PokeDrugType.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_25",
+                "name" : "Analysis/PolypharmacologyAnalyzer.swift",
+                "path" : "Analysis/PolypharmacologyAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_26",
+                "name" : "Analysis/PopulationPKAnalyzer.swift",
+                "path" : "Analysis/PopulationPKAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_27",
+                "name" : "Analysis/ProfileConsistencyValidator.swift",
+                "path" : "Analysis/ProfileConsistencyValidator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_28",
+                "name" : "Analysis/SelectivityEntropyAnalyzer.swift",
+                "path" : "Analysis/SelectivityEntropyAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_29",
+                "name" : "Analysis/SignalAnalyzer.swift",
+                "path" : "Analysis/SignalAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_30",
+                "name" : "Analysis/ThermodynamicBindingProfile.swift",
+                "path" : "Analysis/ThermodynamicBindingProfile.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_31",
+                "name" : "Models/LocalizedString.swift",
+                "path" : "Models/LocalizedString.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_32",
+                "name" : "Models/Pose.swift",
+                "path" : "Models/Pose.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_33",
+                "name" : "Models/PoseCatalog.swift",
+                "path" : "Models/PoseCatalog.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_34",
+                "name" : "Models/PoseKinematics.swift",
+                "path" : "Models/PoseKinematics.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_35",
+                "name" : "Models/WorkoutMetadata.swift",
+                "path" : "Models/WorkoutMetadata.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_36",
+                "name" : "Models/WorkoutResult.swift",
+                "path" : "Models/WorkoutResult.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_37",
+                "name" : "TVDisplay/HeartRateGaugeView.swift",
+                "path" : "TVDisplay/HeartRateGaugeView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_38",
+                "name" : "TVDisplay/PoseCountdownView.swift",
+                "path" : "TVDisplay/PoseCountdownView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_39",
+                "name" : "TVDisplay/SCIVisualizationView.swift",
+                "path" : "TVDisplay/SCIVisualizationView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_40",
+                "name" : "TVDisplay/SessionProgressView.swift",
+                "path" : "TVDisplay/SessionProgressView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_41",
+                "name" : "TVDisplay/TVDisplayPayload.swift",
+                "path" : "TVDisplay/TVDisplayPayload.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_42",
+                "name" : "TVDisplay/TVDisplayView.swift",
+                "path" : "TVDisplay/TVDisplayView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_43",
+                "name" : "UI/AnimationPhase.swift",
+                "path" : "UI/AnimationPhase.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_44",
+                "name" : "UI/MotionCoachProfile.swift",
+                "path" : "UI/MotionCoachProfile.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_45",
+                "name" : "UI/MotionCoachView.swift",
+                "path" : "UI/MotionCoachView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_2",
+            "name" : "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore",
+            "path" : "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_0",
+                "name" : "Analysis/AnalysisConfiguration.swift",
+                "path" : "Analysis/AnalysisConfiguration.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_1",
+                "name" : "Analysis/BindingEntropyProfile.swift",
+                "path" : "Analysis/BindingEntropyProfile.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_2",
+                "name" : "Analysis/CrossDomainValidator.swift",
+                "path" : "Analysis/CrossDomainValidator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_3",
+                "name" : "Analysis/DockingInsightAnalyzer.swift",
+                "path" : "Analysis/DockingInsightAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_4",
+                "name" : "Analysis/DrugResponseAnalyzer.swift",
+                "path" : "Analysis/DrugResponseAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_5",
+                "name" : "Analysis/EnthalpyEntropyCompensation.swift",
+                "path" : "Analysis/EnthalpyEntropyCompensation.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_6",
+                "name" : "Analysis/EntropyCalculator.swift",
+                "path" : "Analysis/EntropyCalculator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_7",
+                "name" : "Analysis/EvolutionThermodynamics.swift",
+                "path" : "Analysis/EvolutionThermodynamics.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_8",
+                "name" : "Analysis/FeedbackEngine.swift",
+                "path" : "Analysis/FeedbackEngine.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_9",
+                "name" : "Analysis/FlexAIDdSAnalyzer.swift",
+                "path" : "Analysis/FlexAIDdSAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_10",
+                "name" : "Analysis/HRVAnalyzer.swift",
+                "path" : "Analysis/HRVAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_11",
+                "name" : "Analysis/HealthSignal.swift",
+                "path" : "Analysis/HealthSignal.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_12",
+                "name" : "Analysis/LigandEfficiencyCalculator.swift",
+                "path" : "Analysis/LigandEfficiencyCalculator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_13",
+                "name" : "Analysis/MedicationAnalyzer.swift",
+                "path" : "Analysis/MedicationAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_14",
+                "name" : "Analysis/MolecularScaffold.swift",
+                "path" : "Analysis/MolecularScaffold.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_15",
+                "name" : "Analysis/PartitionFunctionCalculator.swift",
+                "path" : "Analysis/PartitionFunctionCalculator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_16",
+                "name" : "Analysis/PharmacokineticProfile.swift",
+                "path" : "Analysis/PharmacokineticProfile.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_17",
+                "name" : "Analysis/PokeDrugEvolution.swift",
+                "path" : "Analysis/PokeDrugEvolution.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_18",
+                "name" : "Analysis/PokeDrugHabitat.swift",
+                "path" : "Analysis/PokeDrugHabitat.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_19",
+                "name" : "Analysis/PokeDrugMatchup.swift",
+                "path" : "Analysis/PokeDrugMatchup.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_20",
+                "name" : "Analysis/PokeDrugSpecies.swift",
+                "path" : "Analysis/PokeDrugSpecies.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_21",
+                "name" : "Analysis/PokeDrugStatComparator.swift",
+                "path" : "Analysis/PokeDrugStatComparator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_22",
+                "name" : "Analysis/PokeDrugStats.swift",
+                "path" : "Analysis/PokeDrugStats.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_23",
+                "name" : "Analysis/PokeDrugSuperaCluster.swift",
+                "path" : "Analysis/PokeDrugSuperaCluster.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_24",
+                "name" : "Analysis/PokeDrugType.swift",
+                "path" : "Analysis/PokeDrugType.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_25",
+                "name" : "Analysis/PolypharmacologyAnalyzer.swift",
+                "path" : "Analysis/PolypharmacologyAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_26",
+                "name" : "Analysis/PopulationPKAnalyzer.swift",
+                "path" : "Analysis/PopulationPKAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_27",
+                "name" : "Analysis/ProfileConsistencyValidator.swift",
+                "path" : "Analysis/ProfileConsistencyValidator.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_28",
+                "name" : "Analysis/SelectivityEntropyAnalyzer.swift",
+                "path" : "Analysis/SelectivityEntropyAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_29",
+                "name" : "Analysis/SignalAnalyzer.swift",
+                "path" : "Analysis/SignalAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_30",
+                "name" : "Analysis/ThermodynamicBindingProfile.swift",
+                "path" : "Analysis/ThermodynamicBindingProfile.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_31",
+                "name" : "Models/LocalizedString.swift",
+                "path" : "Models/LocalizedString.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_32",
+                "name" : "Models/Pose.swift",
+                "path" : "Models/Pose.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_33",
+                "name" : "Models/PoseCatalog.swift",
+                "path" : "Models/PoseCatalog.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_34",
+                "name" : "Models/PoseKinematics.swift",
+                "path" : "Models/PoseKinematics.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_35",
+                "name" : "Models/WorkoutMetadata.swift",
+                "path" : "Models/WorkoutMetadata.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_36",
+                "name" : "Models/WorkoutResult.swift",
+                "path" : "Models/WorkoutResult.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_37",
+                "name" : "TVDisplay/HeartRateGaugeView.swift",
+                "path" : "TVDisplay/HeartRateGaugeView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_38",
+                "name" : "TVDisplay/PoseCountdownView.swift",
+                "path" : "TVDisplay/PoseCountdownView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_39",
+                "name" : "TVDisplay/SCIVisualizationView.swift",
+                "path" : "TVDisplay/SCIVisualizationView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_40",
+                "name" : "TVDisplay/SessionProgressView.swift",
+                "path" : "TVDisplay/SessionProgressView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_41",
+                "name" : "TVDisplay/TVDisplayPayload.swift",
+                "path" : "TVDisplay/TVDisplayPayload.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_42",
+                "name" : "TVDisplay/TVDisplayView.swift",
+                "path" : "TVDisplay/TVDisplayView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_43",
+                "name" : "UI/AnimationPhase.swift",
+                "path" : "UI/AnimationPhase.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_44",
+                "name" : "UI/MotionCoachProfile.swift",
+                "path" : "UI/MotionCoachProfile.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_45",
+                "name" : "UI/MotionCoachView.swift",
+                "path" : "UI/MotionCoachView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:bonhommecore::MAINGROUP::REF_3",
+            "name" : "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore",
+            "path" : "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          }
+        ],
+        "guid" : "PACKAGE:bonhommecore::MAINGROUP",
+        "name" : "",
+        "path" : "",
+        "sourceTree" : "<group>",
+        "type" : "group"
+      },
+      "guid" : "PACKAGE:bonhommecore",
+      "path" : "/Users/lp.more/Projects/NATURaL/BonhommeCore/Package.swift",
+      "projectDirectory" : "/Users/lp.more/Projects/NATURaL/BonhommeCore",
+      "projectIsPackage" : "true",
+      "projectName" : "BonhommeCore",
+      "targets" : [
+        "8d1ed4035f13db6ddc9c8f84dedec4d5dd03d832b63ca79d234cd93dfc154f3f",
+        "1dcf6b64e34cc137ea9b468054a6f30fcb5bfd51fb7d2aaa1554eee735cac890",
+        "626c5e423dc992990f65b09a5ab6084e5e6c7577a9e2df3edfd7b90657a50a4a",
+        "94bcaa5a5b6959e57d1086b5629e440f88739fede5033d5f3b81ef24e6c4c719"
+      ]
+    },
+    "signature" : "1ec8e5b19b4b33f77259fdbf619d3fdb62f0167d7b3f6b094d43bd754bc3fb7b",
+    "type" : "project"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "USES_SWIFTPM_UNSAFE_FLAGS" : "NO"
+          },
+          "guid" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "USES_SWIFTPM_UNSAFE_FLAGS" : "NO"
+          },
+          "guid" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-TARGET:BonhommeCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "frameworksBuildPhase" : {
+        "buildFiles" : [
+          {
+            "guid" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore::BUILDPHASE_0::0",
+            "platformFilters" : [
+
+            ],
+            "targetReference" : "PACKAGE-TARGET:BonhommeCore"
+          }
+        ],
+        "guid" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore::BUILDPHASE_0",
+        "type" : "com.apple.buildphase.frameworks"
+      },
+      "guid" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore",
+      "name" : "BonhommeCore-product",
+      "type" : "packageProduct"
+    },
+    "signature" : "8d1ed4035f13db6ddc9c8f84dedec4d5dd03d832b63ca79d234cd93dfc154f3f",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "MODULEMAP_FILE_CONTENTS" : "module BonhommeCore {\nheader \"BonhommeCore-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/BonhommeCore.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "bonhommecore.BonhommeCore",
+            "PRODUCT_MODULE_NAME" : "BonhommeCore",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "BonhommeCore-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "bonhommecore",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/BonhommeCore.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "BonhommeCore",
+            "TARGET_NAME" : "BonhommeCore",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/BonhommeCore.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "MODULEMAP_FILE_CONTENTS" : "module BonhommeCore {\nheader \"BonhommeCore-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/BonhommeCore.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "bonhommecore.BonhommeCore",
+            "PRODUCT_MODULE_NAME" : "BonhommeCore",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "BonhommeCore-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "bonhommecore",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/BonhommeCore.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "BonhommeCore",
+            "TARGET_NAME" : "BonhommeCore",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/BonhommeCore.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_0",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_1",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_2",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::2",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_3",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::3",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_4",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::4",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_5",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::5",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_6",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::6",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_7",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::7",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_8",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::8",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_9",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::9",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_10",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::10",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_11",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::11",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_12",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::12",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_13",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::13",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_14",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::14",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_15",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::15",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_16",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::16",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_17",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::17",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_18",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::18",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_19",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::19",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_20",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::20",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_21",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::21",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_22",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::22",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_23",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::23",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_24",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::24",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_25",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::25",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_26",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::26",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_27",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::27",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_28",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::28",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_29",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::29",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_30",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::30",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_31",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::31",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_32",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::32",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_33",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::33",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_34",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::34",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_35",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::35",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_36",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::36",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_37",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::37",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_38",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::38",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_39",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::39",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_40",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::40",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_41",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::41",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_42",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::42",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_43",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::43",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_44",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::44",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_2::REF_45",
+              "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0::45",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:BonhommeCore::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+
+      ],
+      "dynamicTargetVariantGuid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic",
+      "guid" : "PACKAGE-TARGET:BonhommeCore",
+      "name" : "BonhommeCore",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-TARGET:BonhommeCore",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "org.swift.product-type.library.static",
+      "type" : "standard"
+    },
+    "signature" : "1dcf6b64e34cc137ea9b468054a6f30fcb5bfd51fb7d2aaa1554eee735cac890",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "PACKAGE-PRODUCT:bonhommecore-BonhommeCorePackageTests.BonhommeCorePackageTests::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "PACKAGE-PRODUCT:bonhommecore-BonhommeCorePackageTests.BonhommeCorePackageTests::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+
+      ],
+      "guid" : "PACKAGE-PRODUCT:bonhommecore-BonhommeCorePackageTests.BonhommeCorePackageTests",
+      "name" : "BonhommeCorePackageTests-product",
+      "type" : "aggregate"
+    },
+    "signature" : "94bcaa5a5b6959e57d1086b5629e440f88739fede5033d5f3b81ef24e6c4c719",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "MODULEMAP_FILE_CONTENTS" : "module BonhommeCore {\nheader \"BonhommeCore-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/BonhommeCore.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "bonhommecore.BonhommeCore",
+            "PRODUCT_MODULE_NAME" : "BonhommeCore",
+            "PRODUCT_NAME" : "BonhommeCore",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "BonhommeCore-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "bonhommecore",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/BonhommeCore.symbolgraphs",
+            "TARGET_NAME" : "BonhommeCore",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/BonhommeCore.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "MODULEMAP_FILE_CONTENTS" : "module BonhommeCore {\nheader \"BonhommeCore-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/BonhommeCore.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "bonhommecore.BonhommeCore",
+            "PRODUCT_MODULE_NAME" : "BonhommeCore",
+            "PRODUCT_NAME" : "BonhommeCore",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "BonhommeCore-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "bonhommecore",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/BonhommeCore.symbolgraphs",
+            "TARGET_NAME" : "BonhommeCore",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/BonhommeCore.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_0",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_1",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_2",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::2",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_3",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::3",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_4",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::4",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_5",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::5",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_6",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::6",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_7",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::7",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_8",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::8",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_9",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::9",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_10",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::10",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_11",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::11",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_12",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::12",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_13",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::13",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_14",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::14",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_15",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::15",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_16",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::16",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_17",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::17",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_18",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::18",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_19",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::19",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_20",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::20",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_21",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::21",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_22",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::22",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_23",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::23",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_24",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::24",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_25",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::25",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_26",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::26",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_27",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::27",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_28",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::28",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_29",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::29",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_30",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::30",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_31",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::31",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_32",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::32",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_33",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::33",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_34",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::34",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_35",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::35",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_36",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::36",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_37",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::37",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_38",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::38",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_39",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::39",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_40",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::40",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_41",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::41",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_42",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::42",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_43",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::43",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_44",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::44",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:bonhommecore::MAINGROUP::REF_3::REF_45",
+              "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0::45",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+
+      ],
+      "guid" : "PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic",
+      "name" : "BonhommeCore",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-TARGET:BonhommeCore--27C24A6D10B21C36-dynamic",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.library.dynamic",
+      "type" : "standard"
+    },
+    "signature" : "626c5e423dc992990f65b09a5ab6084e5e6c7577a9e2df3edfd7b90657a50a4a",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "CLANG_ENABLE_MODULES[__platform_filter=driverkit]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios-maccatalyst]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios;ios-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=macos]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=tvos;tvos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=watchos;watchos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=xros;xros-simulator]" : "YES",
+            "CODE_SIGNING_REQUIRED" : "NO",
+            "CODE_SIGN_IDENTITY" : "",
+            "COMPILER_WORKING_DIRECTORY" : "$(WORKSPACE_DIR)",
+            "COPY_PHASE_STRIP" : "NO",
+            "DEBUG_INFORMATION_FORMAT" : "dwarf",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=driverkit]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios-maccatalyst]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios;ios-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=macos]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=tvos;tvos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=watchos;watchos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=xros;xros-simulator]" : "@rpath",
+            "ENABLE_NS_ASSERTIONS" : "YES",
+            "ENABLE_TESTABILITY" : "YES",
+            "ENABLE_TESTING_SEARCH_PATHS" : "YES",
+            "ENTITLEMENTS_REQUIRED" : "NO",
+            "GCC_OPTIMIZATION_LEVEL" : "0",
+            "GCC_PREPROCESSOR_DEFINITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE",
+              "DEBUG=1"
+            ],
+            "INDEX_ENABLE_DATA_STORE" : "YES",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "17.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "17.0",
+            "KEEP_PRIVATE_EXTERNS" : "NO",
+            "LIBTOOL_NO_WARNING_FOR_NO_SYMBOLS" : "YES",
+            "LINKER_DRIVER" : "auto",
+            "MACOSX_DEPLOYMENT_TARGET" : "14.0",
+            "ONLY_ACTIVE_ARCH" : "YES",
+            "OTHER_CFLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "OTHER_LDRFLAGS" : [
+
+            ],
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SKIP_INSTALL" : "YES",
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=ios;ios-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=macos]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=tvos;tvos-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=watchos;watchos-simulator]" : [
+
+            ],
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ],
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE",
+              "DEBUG"
+            ],
+            "SWIFT_INSTALL_OBJC_HEADER" : "NO",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "",
+            "SWIFT_OPTIMIZATION_LEVEL" : "-Onone",
+            "TARGETED_DEVICE_FAMILY" : "",
+            "TVOS_DEPLOYMENT_TARGET" : "17.0",
+            "USE_HEADERMAP" : "NO",
+            "WATCHOS_DEPLOYMENT_TARGET" : "10.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE:clusterfuck::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "CLANG_ENABLE_MODULES[__platform_filter=driverkit]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios-maccatalyst]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=ios;ios-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=macos]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=tvos;tvos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=watchos;watchos-simulator]" : "YES",
+            "CLANG_ENABLE_MODULES[__platform_filter=xros;xros-simulator]" : "YES",
+            "CODE_SIGNING_REQUIRED" : "NO",
+            "CODE_SIGN_IDENTITY" : "",
+            "COMPILER_WORKING_DIRECTORY" : "$(WORKSPACE_DIR)",
+            "COPY_PHASE_STRIP" : "YES",
+            "DEBUG_INFORMATION_FORMAT" : "dwarf-with-dsym",
+            "DEPLOYMENT_POSTPROCESSING" : "YES",
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=driverkit]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios-maccatalyst]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=ios;ios-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=macos]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=tvos;tvos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=watchos;watchos-simulator]" : "@rpath",
+            "DYLIB_INSTALL_NAME_BASE[__platform_filter=xros;xros-simulator]" : "@rpath",
+            "ENABLE_TESTING_SEARCH_PATHS" : "YES",
+            "ENTITLEMENTS_REQUIRED" : "NO",
+            "GCC_OPTIMIZATION_LEVEL" : "s",
+            "GCC_PREPROCESSOR_DEFINITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE"
+            ],
+            "IPHONEOS_DEPLOYMENT_TARGET" : "17.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "17.0",
+            "KEEP_PRIVATE_EXTERNS" : "NO",
+            "LIBTOOL_NO_WARNING_FOR_NO_SYMBOLS" : "YES",
+            "LINKER_DRIVER" : "auto",
+            "MACOSX_DEPLOYMENT_TARGET" : "14.0",
+            "OTHER_CFLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "OTHER_LDRFLAGS" : [
+
+            ],
+            "OTHER_SWIFT_FLAGS" : [
+              "$(inherited)",
+              "-DXcode"
+            ],
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SKIP_INSTALL" : "YES",
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=ios;ios-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=macos]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=tvos;tvos-simulator]" : [
+
+            ],
+            "SPECIALIZATION_SDK_OPTIONS[__platform_filter=watchos;watchos-simulator]" : [
+
+            ],
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ],
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_PACKAGE"
+            ],
+            "SWIFT_INSTALL_OBJC_HEADER" : "NO",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "",
+            "SWIFT_OPTIMIZATION_LEVEL" : "-Owholemodule",
+            "TARGETED_DEVICE_FAMILY" : "",
+            "TVOS_DEPLOYMENT_TARGET" : "17.0",
+            "USE_HEADERMAP" : "NO",
+            "WATCHOS_DEPLOYMENT_TARGET" : "10.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE:clusterfuck::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "defaultConfigurationName" : "Release",
+      "groupTree" : {
+        "children" : [
+          {
+            "children" : [
+
+            ],
+            "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_0",
+            "name" : "AdditionalFiles",
+            "path" : "/",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+
+            ],
+            "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_1",
+            "name" : "Binaries",
+            "path" : "/",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_0",
+                "name" : "AlexaPlusTests.swift",
+                "path" : "AlexaPlusTests.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_1",
+                "name" : "ControlLoopIntegrationTests.swift",
+                "path" : "ControlLoopIntegrationTests.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_2",
+                "name" : "CrooksCycleControllerTests.swift",
+                "path" : "CrooksCycleControllerTests.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_3",
+                "name" : "CrooksMathTests.swift",
+                "path" : "CrooksMathTests.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_4",
+                "name" : "DeltaHRVFlexAIDTests.swift",
+                "path" : "DeltaHRVFlexAIDTests.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_5",
+                "name" : "MusicAndAirPodsTests.swift",
+                "path" : "MusicAndAirPodsTests.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_2",
+            "name" : "/Users/lp.more/Projects/ClusterFuck/Tests/NaturalRemoteTests",
+            "path" : "/Users/lp.more/Projects/ClusterFuck/Tests/NaturalRemoteTests",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_0",
+                "name" : "Actuators/AlexaAndFoundation.swift",
+                "path" : "Actuators/AlexaAndFoundation.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_1",
+                "name" : "AirPods/AirPodsStack.swift",
+                "path" : "AirPods/AirPodsStack.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_2",
+                "name" : "Analysis/DeltaHRVAnalyzer.swift",
+                "path" : "Analysis/DeltaHRVAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_3",
+                "name" : "Analysis/DeltaHRVFlexAIDMapper.swift",
+                "path" : "Analysis/DeltaHRVFlexAIDMapper.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_4",
+                "name" : "Analysis/EigenMetalBridge.swift",
+                "path" : "Analysis/EigenMetalBridge.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_5",
+                "name" : "Core/ActuatorBus.swift",
+                "path" : "Core/ActuatorBus.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_6",
+                "name" : "Core/CrooksCycleController.swift",
+                "path" : "Core/CrooksCycleController.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_7",
+                "name" : "Core/CrooksMath.swift",
+                "path" : "Core/CrooksMath.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_8",
+                "name" : "Core/RemoteModels.swift",
+                "path" : "Core/RemoteModels.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_9",
+                "name" : "DrugKit/DrugKitEngine.swift",
+                "path" : "DrugKit/DrugKitEngine.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_10",
+                "name" : "Music/AudioSpectralAnalyzer.swift",
+                "path" : "Music/AudioSpectralAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_11",
+                "name" : "Music/MusicStack.swift",
+                "path" : "Music/MusicStack.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_12",
+                "name" : "NaturalRemote.swift",
+                "path" : "NaturalRemote.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_13",
+                "name" : "Session/PharmaControlSessionManager.swift",
+                "path" : "Session/PharmaControlSessionManager.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_14",
+                "name" : "Session/RemoteControlLoop.swift",
+                "path" : "Session/RemoteControlLoop.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_15",
+                "name" : "Session/RemoteSessionView.swift",
+                "path" : "Session/RemoteSessionView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_3",
+            "name" : "/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote",
+            "path" : "/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          },
+          {
+            "children" : [
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_0",
+                "name" : "Actuators/AlexaAndFoundation.swift",
+                "path" : "Actuators/AlexaAndFoundation.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_1",
+                "name" : "AirPods/AirPodsStack.swift",
+                "path" : "AirPods/AirPodsStack.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_2",
+                "name" : "Analysis/DeltaHRVAnalyzer.swift",
+                "path" : "Analysis/DeltaHRVAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_3",
+                "name" : "Analysis/DeltaHRVFlexAIDMapper.swift",
+                "path" : "Analysis/DeltaHRVFlexAIDMapper.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_4",
+                "name" : "Analysis/EigenMetalBridge.swift",
+                "path" : "Analysis/EigenMetalBridge.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_5",
+                "name" : "Core/ActuatorBus.swift",
+                "path" : "Core/ActuatorBus.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_6",
+                "name" : "Core/CrooksCycleController.swift",
+                "path" : "Core/CrooksCycleController.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_7",
+                "name" : "Core/CrooksMath.swift",
+                "path" : "Core/CrooksMath.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_8",
+                "name" : "Core/RemoteModels.swift",
+                "path" : "Core/RemoteModels.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_9",
+                "name" : "DrugKit/DrugKitEngine.swift",
+                "path" : "DrugKit/DrugKitEngine.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_10",
+                "name" : "Music/AudioSpectralAnalyzer.swift",
+                "path" : "Music/AudioSpectralAnalyzer.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_11",
+                "name" : "Music/MusicStack.swift",
+                "path" : "Music/MusicStack.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_12",
+                "name" : "NaturalRemote.swift",
+                "path" : "NaturalRemote.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_13",
+                "name" : "Session/PharmaControlSessionManager.swift",
+                "path" : "Session/PharmaControlSessionManager.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_14",
+                "name" : "Session/RemoteControlLoop.swift",
+                "path" : "Session/RemoteControlLoop.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              },
+              {
+                "fileType" : "sourcecode.swift",
+                "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_15",
+                "name" : "Session/RemoteSessionView.swift",
+                "path" : "Session/RemoteSessionView.swift",
+                "sourceTree" : "<group>",
+                "type" : "file"
+              }
+            ],
+            "guid" : "PACKAGE:clusterfuck::MAINGROUP::REF_4",
+            "name" : "/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote",
+            "path" : "/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote",
+            "sourceTree" : "<absolute>",
+            "type" : "group"
+          }
+        ],
+        "guid" : "PACKAGE:clusterfuck::MAINGROUP",
+        "name" : "",
+        "path" : "",
+        "sourceTree" : "<group>",
+        "type" : "group"
+      },
+      "guid" : "PACKAGE:clusterfuck",
+      "path" : "/Users/lp.more/Projects/ClusterFuck/Package.swift",
+      "projectDirectory" : "/Users/lp.more/Projects/ClusterFuck",
+      "projectIsPackage" : "true",
+      "projectName" : "NaturalRemote",
+      "targets" : [
+        "fa14a0554acd2d0d262130d009b3fa9475715c68cf35d2a8abcdacf15b5a3d71",
+        "9cc65f39995bddd762549c808730a0d43659adf68f7c6b035fc1624cad1f04bc",
+        "8ad54f8412b0336846b4e3217662ea4d1fbb9bb3974821cbce635171fd82bc4f",
+        "cced78938944b11d5bf0f93c8085eaabd3bb9b01181658e223f21a2cb3e47b6a",
+        "f8fa869d7cabdbb0bb50000a1ef8baafb720ebc53f7e32628c457529f4079197",
+        "9e46b5266ea904124adeabdf0c9d1ea80b3b3696c4762cad3690b90b3a7141bd"
+      ]
+    },
+    "signature" : "458976abec6100d384c3af4fd644e23da382fb2698fbaa05f308135417a6509f",
+    "type" : "project"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "BUILD_SERVER_PROTOCOL_TARGET_TAGS" : [
+              "$(inherited)",
+              "test"
+            ],
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "NO",
+            "GENERATE_INFOPLIST_FILE" : "YES",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "INDEX_ENABLE_DATA_STORE" : "YES",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "17.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "17.0",
+            "LD_RUNPATH_SEARCH_PATHS" : [
+              "$(RPATH_ORIGIN)/Frameworks",
+              "$(RPATH_ORIGIN)/../Frameworks",
+              "$(inherited)"
+            ],
+            "MACOSX_DEPLOYMENT_TARGET" : "14.0",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "clusterfuck.NaturalRemoteTests",
+            "PRODUCT_MODULE_NAME" : "NaturalRemoteTests",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SKIP_INSTALL" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_PACKAGE_NAME" : "clusterfuck",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/NaturalRemoteTests.symbolgraphs",
+            "TARGET_NAME" : "NaturalRemoteTests",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "TVOS_DEPLOYMENT_TARGET" : "17.0",
+            "WATCHOS_DEPLOYMENT_TARGET" : "26.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "BUILD_SERVER_PROTOCOL_TARGET_TAGS" : [
+              "$(inherited)",
+              "test"
+            ],
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "GENERATE_EMBED_IN_CODE_ACCESSORS" : "NO",
+            "GENERATE_INFOPLIST_FILE" : "YES",
+            "GENERATE_RESOURCE_ACCESSORS" : "YES",
+            "INDEX_ENABLE_DATA_STORE" : "YES",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "17.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "17.0",
+            "LD_RUNPATH_SEARCH_PATHS" : [
+              "$(RPATH_ORIGIN)/Frameworks",
+              "$(RPATH_ORIGIN)/../Frameworks",
+              "$(inherited)"
+            ],
+            "MACOSX_DEPLOYMENT_TARGET" : "14.0",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "clusterfuck.NaturalRemoteTests",
+            "PRODUCT_MODULE_NAME" : "NaturalRemoteTests",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SKIP_INSTALL" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_PACKAGE_NAME" : "clusterfuck",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/NaturalRemoteTests.symbolgraphs",
+            "TARGET_NAME" : "NaturalRemoteTests",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "TVOS_DEPLOYMENT_TARGET" : "17.0",
+            "WATCHOS_DEPLOYMENT_TARGET" : "26.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_0",
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_1",
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_2",
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_0::2",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_3",
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_0::3",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_4",
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_0::4",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_2::REF_5",
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_0::5",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        },
+        {
+          "buildFiles" : [
+            {
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_1::0",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore"
+            },
+            {
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_1::1",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-TARGET:NaturalRemote"
+            }
+          ],
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests::BUILDPHASE_1",
+          "type" : "com.apple.buildphase.frameworks"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-TARGET:NaturalRemote",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests",
+      "name" : "NaturalRemoteTests-product",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.bundle.unit-test",
+      "type" : "standard"
+    },
+    "signature" : "fa14a0554acd2d0d262130d009b3fa9475715c68cf35d2a8abcdacf15b5a3d71",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "17.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "17.0",
+            "LD_RUNPATH_SEARCH_PATHS" : [
+              "$(inherited)",
+              "$(RPATH_ORIGIN)"
+            ],
+            "LINKER_DRIVER" : "swiftc",
+            "MACOSX_DEPLOYMENT_TARGET" : "14.0",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "clusterfuck.NaturalRemoteTests-test-runner",
+            "PRODUCT_MODULE_NAME" : "NaturalRemoteTests_test_runner",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SKIP_INSTALL" : "NO",
+            "SWIFT_VERSION" : "5.0",
+            "TARGET_NAME" : "NaturalRemoteTests-test-runner",
+            "TVOS_DEPLOYMENT_TARGET" : "17.0",
+            "WATCHOS_DEPLOYMENT_TARGET" : "26.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE-TARGET:NaturalRemoteTests_test_runner::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DRIVERKIT_DEPLOYMENT_TARGET" : "21.0",
+            "IPHONEOS_DEPLOYMENT_TARGET" : "17.0",
+            "IPHONEOS_DEPLOYMENT_TARGET[__platform_filter=ios-maccatalyst]" : "17.0",
+            "LD_RUNPATH_SEARCH_PATHS" : [
+              "$(inherited)",
+              "$(RPATH_ORIGIN)"
+            ],
+            "LINKER_DRIVER" : "swiftc",
+            "MACOSX_DEPLOYMENT_TARGET" : "14.0",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "clusterfuck.NaturalRemoteTests-test-runner",
+            "PRODUCT_MODULE_NAME" : "NaturalRemoteTests_test_runner",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SKIP_INSTALL" : "NO",
+            "SWIFT_VERSION" : "5.0",
+            "TARGET_NAME" : "NaturalRemoteTests-test-runner",
+            "TVOS_DEPLOYMENT_TARGET" : "17.0",
+            "WATCHOS_DEPLOYMENT_TARGET" : "26.0",
+            "XROS_DEPLOYMENT_TARGET" : "1.0"
+          },
+          "guid" : "PACKAGE-TARGET:NaturalRemoteTests_test_runner::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+
+          ],
+          "guid" : "PACKAGE-TARGET:NaturalRemoteTests_test_runner::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        },
+        {
+          "buildFiles" : [
+            {
+              "guid" : "PACKAGE-TARGET:NaturalRemoteTests_test_runner::BUILDPHASE_1::0",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:NaturalRemoteTests_test_runner::BUILDPHASE_1",
+          "type" : "com.apple.buildphase.frameworks"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-TARGET:NaturalRemoteTests_test_runner",
+      "name" : "NaturalRemoteTests-test-runner",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-TARGET:NaturalRemoteTests_test_runner",
+        "name" : "NaturalRemoteTests-test-runner",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.tool.swiftpm-test-runner",
+      "type" : "standard"
+    },
+    "signature" : "9cc65f39995bddd762549c808730a0d43659adf68f7c6b035fc1624cad1f04bc",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "PRODUCT_NAME" : "NaturalRemote",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "TARGET_NAME" : "NaturalRemote-product",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "USES_SWIFTPM_UNSAFE_FLAGS" : "NO"
+          },
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "PRODUCT_NAME" : "NaturalRemote",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "TARGET_NAME" : "NaturalRemote-product",
+            "TARGET_TEMP_DIR_SUFFIX" : "-p",
+            "USES_SWIFTPM_UNSAFE_FLAGS" : "NO"
+          },
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-TARGET:NaturalRemote"
+            },
+            {
+              "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore"
+            }
+          ],
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.frameworks"
+        },
+        {
+          "buildFiles" : [
+
+          ],
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote::BUILDPHASE_1",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-TARGET:NaturalRemote",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote",
+      "name" : "NaturalRemote-product",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.library.static",
+      "type" : "standard"
+    },
+    "signature" : "8ad54f8412b0336846b4e3217662ea4d1fbb9bb3974821cbce635171fd82bc4f",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "MODULEMAP_FILE_CONTENTS" : "module NaturalRemote {\nheader \"NaturalRemote-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/NaturalRemote.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "clusterfuck.NaturalRemote",
+            "PRODUCT_MODULE_NAME" : "NaturalRemote",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "NaturalRemote-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "clusterfuck",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/NaturalRemote.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "NaturalRemote",
+            "TARGET_NAME" : "NaturalRemote",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/NaturalRemote.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "GENERATE_PRELINK_OBJECT_FILE" : "NO",
+            "MODULEMAP_FILE_CONTENTS" : "module NaturalRemote {\nheader \"NaturalRemote-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/NaturalRemote.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "clusterfuck.NaturalRemote",
+            "PRODUCT_MODULE_NAME" : "NaturalRemote",
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "STRIP_INSTALLED_PRODUCT" : "NO",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "NaturalRemote-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "clusterfuck",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/NaturalRemote.symbolgraphs",
+            "TAPI_DYLIB_INSTALL_NAME" : "NaturalRemote",
+            "TARGET_NAME" : "NaturalRemote",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/NaturalRemote.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_0",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_1",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_2",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::2",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_3",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::3",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_4",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::4",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_5",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::5",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_6",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::6",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_7",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::7",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_8",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::8",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_9",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::9",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_10",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::10",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_11",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::11",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_12",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::12",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_13",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::13",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_14",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::14",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_3::REF_15",
+              "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0::15",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:NaturalRemote::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "dynamicTargetVariantGuid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic",
+      "guid" : "PACKAGE-TARGET:NaturalRemote",
+      "name" : "NaturalRemote",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-TARGET:NaturalRemote",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "org.swift.product-type.library.static",
+      "type" : "standard"
+    },
+    "signature" : "cced78938944b11d5bf0f93c8085eaabd3bb9b01181658e223f21a2cb3e47b6a",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "PACKAGE-PRODUCT:clusterfuck-NaturalRemotePackageTests.NaturalRemotePackageTests::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "PACKAGE-PRODUCT:clusterfuck-NaturalRemotePackageTests.NaturalRemotePackageTests::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-TARGET:NaturalRemoteTests_test_runner",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-PRODUCT:clusterfuck-NaturalRemotePackageTests.NaturalRemotePackageTests",
+      "name" : "NaturalRemotePackageTests-product",
+      "type" : "aggregate"
+    },
+    "signature" : "9e46b5266ea904124adeabdf0c9d1ea80b3b3696c4762cad3690b90b3a7141bd",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "approvedByUser" : "true",
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "MODULEMAP_FILE_CONTENTS" : "module NaturalRemote {\nheader \"NaturalRemote-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/NaturalRemote.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "clusterfuck.NaturalRemote",
+            "PRODUCT_MODULE_NAME" : "NaturalRemote",
+            "PRODUCT_NAME" : "NaturalRemote",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "NaturalRemote-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "clusterfuck",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/NaturalRemote.symbolgraphs",
+            "TARGET_NAME" : "NaturalRemote",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/NaturalRemote.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "DEFINES_MODULE" : "YES",
+            "EXECUTABLE_PREFIX" : "lib",
+            "EXECUTABLE_PREFIX[__platform_filter=windows-msvc]" : "",
+            "MODULEMAP_FILE_CONTENTS" : "module NaturalRemote {\nheader \"NaturalRemote-Swift.h\"\nexport *\n}",
+            "MODULEMAP_PATH" : "$(GENERATED_MODULEMAP_DIR)/NaturalRemote.modulemap",
+            "PACKAGE_RESOURCE_TARGET_KIND" : "regular",
+            "PRODUCT_BUNDLE_IDENTIFIER" : "clusterfuck.NaturalRemote",
+            "PRODUCT_MODULE_NAME" : "NaturalRemote",
+            "PRODUCT_NAME" : "NaturalRemote",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SUPPORTS_TEXT_BASED_API" : "NO",
+            "SWIFT_ACTIVE_COMPILATION_CONDITIONS" : [
+              "$(inherited)",
+              "SWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE"
+            ],
+            "SWIFT_DISABLE_PARSE_AS_LIBRARY" : "NO",
+            "SWIFT_ENABLE_BARE_SLASH_REGEX" : "NO",
+            "SWIFT_LIBRARIES_ONLY" : "YES",
+            "SWIFT_OBJC_INTERFACE_HEADER_DIR" : "$(GENERATED_MODULEMAP_DIR)",
+            "SWIFT_OBJC_INTERFACE_HEADER_NAME" : "NaturalRemote-Swift.h",
+            "SWIFT_PACKAGE_NAME" : "clusterfuck",
+            "SWIFT_VERSION" : "5",
+            "SYMBOL_GRAPH_EXTRACTOR_OUTPUT_DIR" : "$(TARGET_BUILD_DIR)/$(CURRENT_ARCH)/NaturalRemote.symbolgraphs",
+            "TARGET_NAME" : "NaturalRemote",
+            "TARGET_TEMP_DIR_SUFFIX" : "-t"
+          },
+          "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+              "FRAMEWORK_SEARCH_PATHS" : [
+                "$(BUILT_PRODUCTS_DIR)/PackageFrameworks",
+                "$(inherited)"
+              ],
+              "LD_RUNPATH_SEARCH_PATHS" : [
+                "$(RPATH_ORIGIN)",
+                "$(inherited)"
+              ],
+              "LD_WARN_DUPLICATE_LIBRARIES" : "NO",
+              "OTHER_CFLAGS" : [
+                "-fmodule-map-file=$(GENERATED_MODULEMAP_DIR)/NaturalRemote.modulemap",
+                "$(inherited)"
+              ]
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+        {
+          "buildFiles" : [
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_0",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::0",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_1",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::1",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_2",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::2",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_3",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::3",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_4",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::4",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_5",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::5",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_6",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::6",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_7",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::7",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_8",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::8",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_9",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::9",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_10",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::10",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_11",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::11",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_12",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::12",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_13",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::13",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_14",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::14",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            },
+            {
+              "codeSignOnCopy" : "false",
+              "fileReference" : "PACKAGE:clusterfuck::MAINGROUP::REF_4::REF_15",
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0::15",
+              "platformFilters" : [
+
+              ],
+              "removeHeadersOnCopy" : "false"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_0",
+          "type" : "com.apple.buildphase.sources"
+        },
+        {
+          "buildFiles" : [
+            {
+              "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_1::0",
+              "platformFilters" : [
+
+              ],
+              "targetReference" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore"
+            }
+          ],
+          "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic::BUILDPHASE_1",
+          "type" : "com.apple.buildphase.frameworks"
+        }
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-PRODUCT:bonhommecore_BonhommeCore.BonhommeCore",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic",
+      "name" : "NaturalRemote",
+      "productReference" : {
+        "guid" : "PRODUCTREF-PACKAGE-TARGET:NaturalRemote--7285DFBEA78C53B0-dynamic",
+        "name" : "$(EXECUTABLE_NAME)",
+        "type" : "file"
+      },
+      "productTypeIdentifier" : "com.apple.product-type.library.dynamic",
+      "type" : "standard"
+    },
+    "signature" : "f8fa869d7cabdbb0bb50000a1ef8baafb720ebc53f7e32628c457529f4079197",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SKIP_INSTALL" : "YES",
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ]
+          },
+          "guid" : "AGGREGATE::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+            "PRODUCT_NAME" : "$(TARGET_NAME)",
+            "SDKROOT" : "auto",
+            "SDK_VARIANT" : "auto",
+            "SKIP_INSTALL" : "YES",
+            "SUPPORTED_PLATFORMS" : [
+              "$(AVAILABLE_PLATFORMS)"
+            ]
+          },
+          "guid" : "AGGREGATE::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "defaultConfigurationName" : "Release",
+      "developmentRegion" : "en",
+      "groupTree" : {
+        "children" : [
+
+        ],
+        "guid" : "AGGREGATE::MAINGROUP",
+        "name" : "",
+        "path" : "",
+        "sourceTree" : "<group>",
+        "type" : "group"
+      },
+      "guid" : "AGGREGATE",
+      "path" : "/Users/lp.more/Projects/NATURaL/BonhommeCore/Package.swift",
+      "projectDirectory" : "/Users/lp.more/Projects/NATURaL/BonhommeCore",
+      "projectIsPackage" : "true",
+      "projectName" : "Aggregate",
+      "targets" : [
+        "8946508f049cdd1153d461785addef4313c63d637dfea9e8586728252641f383",
+        "b85baa10b097ee140683b14c54940fdf3e3cb15a6edbae6121d15056f40a23e6"
+      ]
+    },
+    "signature" : "d65f712bdf0fbd77474a9961da64b4cd02770751077c8eb101204fb55a3534dd",
+    "type" : "project"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "ALL-INCLUDING-TESTS::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "ALL-INCLUDING-TESTS::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemoteTests.NaturalRemoteTests",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-TARGET:NaturalRemoteTests_test_runner",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-TARGET:NaturalRemote",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "ALL-INCLUDING-TESTS",
+      "name" : "AllIncludingTests",
+      "type" : "aggregate"
+    },
+    "signature" : "8946508f049cdd1153d461785addef4313c63d637dfea9e8586728252641f383",
+    "type" : "target"
+  },
+  {
+    "contents" : {
+      "buildConfigurations" : [
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "ALL-EXCLUDING-TESTS::BUILDCONFIG_0",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Debug"
+        },
+        {
+          "buildSettings" : {
+
+          },
+          "guid" : "ALL-EXCLUDING-TESTS::BUILDCONFIG_1",
+          "impartedBuildProperties" : {
+            "buildSettings" : {
+
+            }
+          },
+          "name" : "Release"
+        }
+      ],
+      "buildPhases" : [
+
+      ],
+      "buildRules" : [
+
+      ],
+      "customTasks" : [
+
+      ],
+      "dependencies" : [
+        {
+          "guid" : "PACKAGE-PRODUCT:clusterfuck_NaturalRemote.NaturalRemote",
+          "platformFilters" : [
+
+          ]
+        },
+        {
+          "guid" : "PACKAGE-TARGET:NaturalRemote",
+          "platformFilters" : [
+
+          ]
+        }
+      ],
+      "guid" : "ALL-EXCLUDING-TESTS",
+      "name" : "AllExcludingTests",
+      "type" : "aggregate"
+    },
+    "signature" : "b85baa10b097ee140683b14c54940fdf3e3cb15a6edbae6121d15056f40a23e6",
+    "type" : "target"
+  }
+]

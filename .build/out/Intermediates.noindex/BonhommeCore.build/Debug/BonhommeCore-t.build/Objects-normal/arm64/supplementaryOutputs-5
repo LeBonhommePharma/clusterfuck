@@ -1,0 +1,30 @@
+{
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/PokeDrugHabitat.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugHabitat.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugHabitat.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugHabitat.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugHabitat.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugHabitat.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/PokeDrugMatchup.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugMatchup.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugMatchup.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugMatchup.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugMatchup.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugMatchup.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/PokeDrugSpecies.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugSpecies.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugSpecies.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugSpecies.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugSpecies.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugSpecies.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/PokeDrugStatComparator.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugStatComparator.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugStatComparator.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugStatComparator.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugStatComparator.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugStatComparator.swiftdeps"
+  }
+}

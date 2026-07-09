@@ -1,0 +1,30 @@
+{
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/MolecularScaffold.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/MolecularScaffold.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/MolecularScaffold.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/MolecularScaffold.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/MolecularScaffold.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/MolecularScaffold.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/PartitionFunctionCalculator.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PartitionFunctionCalculator.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PartitionFunctionCalculator.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PartitionFunctionCalculator.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PartitionFunctionCalculator.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PartitionFunctionCalculator.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/PharmacokineticProfile.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PharmacokineticProfile.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PharmacokineticProfile.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PharmacokineticProfile.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PharmacokineticProfile.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PharmacokineticProfile.swiftdeps"
+  },
+  "/Users/lp.more/Projects/NATURaL/BonhommeCore/Sources/BonhommeCore/Analysis/PokeDrugEvolution.swift" : {
+    "const-values" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugEvolution.swiftconstvalues",
+    "dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugEvolution.d",
+    "diagnostics" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugEvolution.dia",
+    "object" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugEvolution.o",
+    "swift-dependencies" : "/Users/lp.more/Projects/ClusterFuck/.build/out/Intermediates.noindex/BonhommeCore.build/Debug/BonhommeCore-t.build/Objects-normal/arm64/PokeDrugEvolution.swiftdeps"
+  }
+}

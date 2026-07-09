@@ -1,0 +1,17 @@
+Target dependency graph (6 targets)
+Target 'AllIncludingTests' in project 'Aggregate'
+➜ Explicit dependency on target 'NaturalRemoteTests-product' in project 'NaturalRemote'
+➜ Dependency on target 'NaturalRemoteTests-product' in project 'NaturalRemote' via transitive dependency through 'NaturalRemoteTests-test-runner'
+➜ Explicit dependency on target 'NaturalRemote-product' in project 'NaturalRemote'
+➜ Explicit dependency on target 'NaturalRemote' in project 'NaturalRemote'
+Target 'NaturalRemote-product' in project 'NaturalRemote'
+➜ Explicit dependency on target 'NaturalRemote' in project 'NaturalRemote'
+➜ Explicit dependency on target 'BonhommeCore-product' in project 'BonhommeCore'
+Target 'NaturalRemoteTests-product' in project 'NaturalRemote'
+➜ Explicit dependency on target 'NaturalRemote' in project 'NaturalRemote'
+➜ Explicit dependency on target 'BonhommeCore-product' in project 'BonhommeCore'
+Target 'NaturalRemote' in project 'NaturalRemote'
+➜ Explicit dependency on target 'BonhommeCore-product' in project 'BonhommeCore'
+Target 'BonhommeCore-product' in project 'BonhommeCore'
+➜ Explicit dependency on target 'BonhommeCore' in project 'BonhommeCore'
+Target 'BonhommeCore' in project 'BonhommeCore' (no dependencies)

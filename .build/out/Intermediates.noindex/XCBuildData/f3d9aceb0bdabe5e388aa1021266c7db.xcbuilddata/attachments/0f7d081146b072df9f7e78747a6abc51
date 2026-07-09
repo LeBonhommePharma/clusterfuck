@@ -1,0 +1,16 @@
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Actuators/AlexaAndFoundation.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/AirPods/AirPodsStack.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Analysis/DeltaHRVAnalyzer.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Analysis/DeltaHRVFlexAIDMapper.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Analysis/EigenMetalBridge.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Core/ActuatorBus.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Core/CrooksCycleController.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Core/CrooksMath.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Core/RemoteModels.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/DrugKit/DrugKitEngine.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Music/AudioSpectralAnalyzer.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Music/MusicStack.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/NaturalRemote.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Session/PharmaControlSessionManager.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Session/RemoteControlLoop.swift
+/Users/lp.more/Projects/ClusterFuck/Sources/NaturalRemote/Session/RemoteSessionView.swift

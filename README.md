@@ -1,6 +1,10 @@
 # NATURaL Remote — Entropy Docking Edition
 
+**Repo codename:** `ClusterFuck` · **Org trajectory:** candidate **main pharmacovigilance tool for Le Bonhomme Pharma**.
+
 Wrist-oriented **Crooks σ_irr minimization** control stack: multi-service music, **Alexa + Alexa+** (AI Action / Smart Home v3 / skill proxy), AirPods H1/H2 surfaces, Foundation Model routing, HealthKit/DrugKit, DeltaHRV ↔ FlexAID∆S hybrid, reusing **NATURaL BonhommeCore** (`EntropyCalculator`, `FeedbackEngine`, `HRVAnalyzer`, `SCIVisualizationView`).
+
+This is not “just a media remote.” Dose logs, ΔHRV, hybrid predictions, actuator events, and σ_irr trajectories are first-class **pharmacovigilance signals** — exposure, outcome, intervention, audit. See [`docs/PHARMACOVIGILANCE.md`](docs/PHARMACOVIGILANCE.md).
 
 Alexa+ details: [`docs/ALEXA_PLUS.md`](docs/ALEXA_PLUS.md).
 
@@ -32,5 +36,8 @@ docs/
 
 ## Docs
 
+- **Pharmacovigilance mission:** [`docs/PHARMACOVIGILANCE.md`](docs/PHARMACOVIGILANCE.md)
 - Swarm prompts: [`docs/SESSION_PROMPTS.md`](docs/SESSION_PROMPTS.md)
 - Roadmap: [`docs/IMPLEMENTATION_ROADMAP.md`](docs/IMPLEMENTATION_ROADMAP.md)
+- Alexa+: [`docs/ALEXA_PLUS.md`](docs/ALEXA_PLUS.md)
+- Capabilities: [`docs/CAPABILITIES.md`](docs/CAPABILITIES.md)
