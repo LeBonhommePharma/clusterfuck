@@ -17,11 +17,15 @@ public final class AudioSpectralAnalyzer: @unchecked Sendable {
     private let fftLog2n: vDSP_Length
     private let fftSetup: FFTSetup?
     private let frameSize: Int
+    private let window: [Float]
 
     public init(frameSize: Int = 1024) {
         self.frameSize = frameSize
         self.fftLog2n = vDSP_Length(log2(Double(frameSize)))
         self.fftSetup = vDSP_create_fftsetup(fftLog2n, FFTRadix(kFFTRadix2))
+        var hann = [Float](repeating: 0, count: frameSize)
+        vDSP_hann_window(&hann, vDSP_Length(frameSize), Int32(vDSP_HANN_NORM))
+        self.window = hann
     }
 
     deinit {
@@ -79,9 +83,7 @@ public final class AudioSpectralAnalyzer: @unchecked Sendable {
             windowed.append(contentsOf: repeatElement(0, count: frameSize - windowed.count))
         }
 
-        // Hann window
-        var window = [Float](repeating: 0, count: frameSize)
-        vDSP_hann_window(&window, vDSP_Length(frameSize), Int32(vDSP_HANN_NORM))
+        // Precomputed Hann window (cached in init).
         vDSP_vmul(windowed, 1, window, 1, &windowed, 1, vDSP_Length(frameSize))
 
         guard let fftSetup else {
