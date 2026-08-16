@@ -29,9 +29,8 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
     }
 
     func testHybridPredictionDeviationPath() {
-        // Zero weight on observed so predicted is independent of observed Δ — enables exact match.
+        // Observed Δ is not a model feature, so the prediction is independent of observed Δ.
         let mapper = DeltaHRVFlexAIDMapper(
-            weights: [0, 4.0, 0.02, -8.0, 0.01],
             bias: 10,
             deviationThreshold: 0.2
         )

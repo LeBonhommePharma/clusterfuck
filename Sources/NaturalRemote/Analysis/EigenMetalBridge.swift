@@ -56,7 +56,7 @@ public final class ANEPharmaPredictor: @unchecked Sendable {
     private let bias: Double
     public private(set) var usedCoreML: Bool = false
 
-    public init(weights: [Double] = [0.55, 4.0, 0.02, -8.0, 0.01], bias: Double = 2.0) {
+    public init(weights: [Double] = [4.0, 0.02, -8.0, 0.01], bias: Double = 2.0) {
         self.weights = weights
         self.bias = bias
         // Attempt Core ML load if model present; failure is non-fatal.

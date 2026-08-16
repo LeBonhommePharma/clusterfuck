@@ -30,7 +30,6 @@ public struct DeltaHRVFlexAIDFeatures: Sendable, Equatable {
 
     public var vector: [Double] {
         [
-            observedDeltaRMSSD,
             flexAIDDeltaS,
             doseMg,
             baselineSCI,
@@ -67,7 +66,7 @@ public final class DeltaHRVFlexAIDMapper: @unchecked Sendable {
     private let predictor: ANEPharmaPredictor?
 
     public init(
-        weights: [Double] = [0.55, 4.0, 0.02, -8.0, 0.01],
+        weights: [Double] = [4.0, 0.02, -8.0, 0.01],
         bias: Double = 2.0,
         deviationThreshold: Double = 0.35,
         predictor: ANEPharmaPredictor? = nil
