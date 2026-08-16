@@ -91,4 +91,27 @@ final class CrooksCycleControllerTests: XCTestCase {
         XCTAssertEqual(snap.workRev, 0, accuracy: 1e-12)
         XCTAssertEqual(snap.cycleCount, 0)
     }
+
+    func testBusRecordsFailureEventAndRethrows() async {
+        let bus = ActuatorBus()
+        bus.register(ThrowingActuator(service: .spotify))
+        do {
+            try await bus.execute(RemoteCommand(service: .spotify, action: "play"))
+            XCTFail("expected actuator failure to propagate")
+        } catch {
+            // expected
+        }
+        let events = bus.recordedEvents()
+        XCTAssertEqual(events.last?.detail, "failed")
+    }
+}
+
+private enum TestError: Error { case boom }
+
+private final class ThrowingActuator: RemoteActuator, @unchecked Sendable {
+    let service: RemoteService
+    init(service: RemoteService) { self.service = service }
+    func execute(_ command: RemoteCommand) async throws {
+        throw TestError.boom
+    }
 }
