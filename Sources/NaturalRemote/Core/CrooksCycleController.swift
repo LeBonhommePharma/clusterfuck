@@ -19,7 +19,7 @@ public actor CrooksCycleController {
     private var flipThreshold: Double
 
     public init(
-        deltaG: Double = -8.2,
+        deltaG: Double = 0.05,
         bus: ActuatorBus = ActuatorBus(),
         minimizeThreshold: Double = 0.15,
         flipThreshold: Double = 0.03

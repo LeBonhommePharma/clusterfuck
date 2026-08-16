@@ -145,6 +145,19 @@ public struct DrugLog: Codable, Sendable, Equatable {
     }
 }
 
+/// Deterministic substance identifier (FNV-1a 64-bit over UTF-8).
+///
+/// Stable across runs, unlike Swift's per-process-seeded `hashValue`, so
+/// pharmacovigilance records and FlexAID features remain reproducible.
+func stableSubstanceID(_ substance: String) -> Int {
+    var hash: UInt64 = 0xcbf2_9ce4_8422_2325
+    for byte in substance.utf8 {
+        hash ^= UInt64(byte)
+        hash &*= 0x100_0000_01b3
+    }
+    return Int(hash % 10_000)
+}
+
 /// Audio feature vector from AVAudioEngine spectral analysis.
 public struct AudioFeatureFrame: Codable, Sendable, Equatable {
     public var bpm: Double

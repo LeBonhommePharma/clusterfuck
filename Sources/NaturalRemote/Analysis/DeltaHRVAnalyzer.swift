@@ -7,6 +7,7 @@ public final class DeltaHRVAnalyzer: @unchecked Sendable {
 
     private let lock = NSLock()
     private var rmssdSeries: [(Date, Double)] = []
+    private var sdnnSeries: [(Date, Double)] = []
     private var lastDeltaRMSSD: Double = 0
     private var lastDeltaSDNN: Double = 0
     private let windowSeconds: TimeInterval
@@ -38,8 +39,10 @@ public final class DeltaHRVAnalyzer: @unchecked Sendable {
     public func ingest(rmssd: Double, sdnn: Double, rrIntervals: [Double] = [], at date: Date = Date()) -> DeltaHRVResult {
         lock.lock()
         rmssdSeries.append((date, rmssd))
+        sdnnSeries.append((date, sdnn))
         let cutoff = date.addingTimeInterval(-windowSeconds)
         rmssdSeries = rmssdSeries.filter { $0.0 >= cutoff }
+        sdnnSeries = sdnnSeries.filter { $0.0 >= cutoff }
 
         let values = rmssdSeries.map(\.1)
         let half = max(1, values.count / 2)
@@ -49,15 +52,14 @@ public final class DeltaHRVAnalyzer: @unchecked Sendable {
         let meanSecond = second.isEmpty ? rmssd : second.reduce(0, +) / Double(second.count)
         lastDeltaRMSSD = meanSecond - meanFirst
 
-        // SDNN delta from successive ingest of sdnn via parallel estimate on RR if present.
-        if rrIntervals.count >= 4 {
-            let meanRR = rrIntervals.reduce(0, +) / Double(rrIntervals.count)
-            let variance = rrIntervals.map { ($0 - meanRR) * ($0 - meanRR) }.reduce(0, +) / Double(rrIntervals.count)
-            let currentSDNN = sqrt(variance)
-            lastDeltaSDNN = currentSDNN - sdnn
-        } else {
-            lastDeltaSDNN = 0
-        }
+        // ΔSDNN mirrors ΔRMSSD: windowed first-half vs second-half mean of the SDNN series.
+        let sdnnValues = sdnnSeries.map(\.1)
+        let sdnnHalf = max(1, sdnnValues.count / 2)
+        let sdnnFirst = Array(sdnnValues.prefix(sdnnHalf))
+        let sdnnSecond = Array(sdnnValues.suffix(sdnnValues.count - sdnnHalf))
+        let meanSDNNFirst = sdnnFirst.isEmpty ? sdnn : sdnnFirst.reduce(0, +) / Double(sdnnFirst.count)
+        let meanSDNNSecond = sdnnSecond.isEmpty ? sdnn : sdnnSecond.reduce(0, +) / Double(sdnnSecond.count)
+        lastDeltaSDNN = meanSDNNSecond - meanSDNNFirst
 
         let entropySource = rrIntervals.count >= 4 ? rrIntervals : values
         let entropy = entropyCalc.shannonEntropy(entropySource)
@@ -81,6 +83,7 @@ public final class DeltaHRVAnalyzer: @unchecked Sendable {
     public func reset() {
         lock.lock()
         rmssdSeries.removeAll()
+        sdnnSeries.removeAll()
         lastDeltaRMSSD = 0
         lastDeltaSDNN = 0
         lock.unlock()

@@ -25,10 +25,16 @@ public final class ActuatorBus: @unchecked Sendable {
         let actuator = actuators[command.service]
         lock.unlock()
 
-        let detail: String
+        var detail: String
+        var failure: Error?
         if let actuator {
-            try await actuator.execute(command)
-            detail = "executed"
+            do {
+                try await actuator.execute(command)
+                detail = "executed"
+            } catch {
+                failure = error
+                detail = "failed"
+            }
         } else {
             detail = "no_actuator_registered"
         }
@@ -41,6 +47,10 @@ public final class ActuatorBus: @unchecked Sendable {
         lock.lock()
         events.append(event)
         lock.unlock()
+
+        if let failure {
+            throw failure
+        }
     }
 
     public func recordedEvents() -> [ActuatorEvent] {

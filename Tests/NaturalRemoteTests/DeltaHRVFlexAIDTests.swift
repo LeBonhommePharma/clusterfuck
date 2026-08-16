@@ -29,9 +29,8 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
     }
 
     func testHybridPredictionDeviationPath() {
-        // Zero weight on observed so predicted is independent of observed Δ — enables exact match.
+        // Observed Δ is not a model feature, so the prediction is independent of observed Δ.
         let mapper = DeltaHRVFlexAIDMapper(
-            weights: [0, 4.0, 0.02, -8.0, 0.01],
             bias: 10,
             deviationThreshold: 0.2
         )
@@ -65,6 +64,14 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
         XCTAssertEqual(alert.action, "grounding_alert")
         XCTAssertTrue(alert.isGroundingAlert)
         XCTAssertGreaterThan(alert.deviation, 0.2)
+    }
+
+    func testSubstanceIDDeterministicAcrossCalls() {
+        // FNV-1a is stable per-process-run, unlike String.hashValue (SipHash, per-process seed).
+        XCTAssertEqual(stableSubstanceID("LSD"), 4084)
+        XCTAssertEqual(stableSubstanceID("2C-B"), 1597)
+        XCTAssertEqual(stableSubstanceID("psilocybin"), 4387)
+        XCTAssertNotEqual(stableSubstanceID("LSD"), stableSubstanceID("MDMA"))
     }
 
     func testEigenMetalPCCIInUnitInterval() {
