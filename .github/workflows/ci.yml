@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [Bonhomme, main, master]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout ClusterFuck
+        uses: actions/checkout@v4
+        with:
+          path: ClusterFuck
+
+      # Path dependency ../NATURaL/BonhommeCore requires the sibling repo.
+      - name: Checkout NATURaL sibling
+        uses: actions/checkout@v4
+        with:
+          repository: LeBonhommePharma/NATURaL
+          path: NATURaL
+
+      - name: Build library
+        working-directory: ClusterFuck
+        run: swift build
+
+      - name: Run tests
+        working-directory: ClusterFuck
+        run: swift test
