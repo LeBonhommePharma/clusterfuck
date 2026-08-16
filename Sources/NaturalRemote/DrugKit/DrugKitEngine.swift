@@ -147,6 +147,10 @@ public final class DrugKitEngine: @unchecked Sendable {
         return bridge.computePCCI(vector)
     }
 
+    /// Non-clinical, informational reference only. Not medical advice and never
+    /// serialized into `PharmacovigilanceRecord`. Disable to suppress the demo text.
+    public var nonClinicalDemoMode = true
+
     public func predictInteraction(substance: String) -> String {
         let known: [String: String] = [
             "LSD": "5-HT2A agonist ensemble — expect elevated ΔS_config; prefer reverse-phase grounding after peak.",
@@ -155,7 +159,11 @@ public final class DrugKitEngine: @unchecked Sendable {
             "psilocybin": "5-HT2A — classic configurational collapse opportunity in reverse phase.",
             "caffeine": "Adenosine antagonism — mild forward-phase exploration bias.",
         ]
-        return known[substance] ?? "Unknown substance '\(substance)': log set/setting and track ΔHRV vs baseline SCI."
+        let note = known[substance] ?? "Unknown substance '\(substance)': log set/setting and track ΔHRV vs baseline SCI."
+        guard nonClinicalDemoMode else {
+            return "Clinical guidance disabled — log set/setting and track ΔHRV vs baseline SCI."
+        }
+        return "Non-clinical demo — \(note)"
     }
 
     public func analyzeWithFlexAID(
