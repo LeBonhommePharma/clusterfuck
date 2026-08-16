@@ -18,6 +18,8 @@ public final class EigenMetalBridge: @unchecked Sendable {
     ///
     /// vector layout: [HRV_norm, spotifyValence, alexaState, drugDelta, fmUncertainty, ...]
     /// Returns PCCI in [0, 1] where 1 = full collapse / high coherence.
+    /// Normalized against the histogram entropy ceiling (log₂(binCount)), not the
+    /// sample count, so PCCI reflects coherence rather than vector length.
     public func computePCCI(_ vector: [Double]) -> Double {
         let clean = vector.filter { $0.isFinite }
         guard clean.count >= 2 else {
@@ -27,9 +29,7 @@ public final class EigenMetalBridge: @unchecked Sendable {
             return 0
         }
         let entropy = entropyCalc.shannonEntropy(clean)
-        let maxH = log2(Double(max(2, clean.count)))
-        let normalized = maxH > 0 ? entropy / maxH : 0
-        return min(1.0, max(0.0, 1.0 - normalized))
+        return entropyCalc.entropyToScore(entropy)
     }
 
     /// Batch collapse for streaming frames.
