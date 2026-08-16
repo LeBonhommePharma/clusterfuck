@@ -67,6 +67,14 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
         XCTAssertGreaterThan(alert.deviation, 0.2)
     }
 
+    func testSubstanceIDDeterministicAcrossCalls() {
+        // FNV-1a is stable per-process-run, unlike String.hashValue (SipHash, per-process seed).
+        XCTAssertEqual(stableSubstanceID("LSD"), 4084)
+        XCTAssertEqual(stableSubstanceID("2C-B"), 1597)
+        XCTAssertEqual(stableSubstanceID("psilocybin"), 4387)
+        XCTAssertNotEqual(stableSubstanceID("LSD"), stableSubstanceID("MDMA"))
+    }
+
     func testEigenMetalPCCIInUnitInterval() {
         let bridge = EigenMetalBridge()
         let pcci = bridge.computePCCI([0.8, 0.73, 0.4, 1.2, 0.9])

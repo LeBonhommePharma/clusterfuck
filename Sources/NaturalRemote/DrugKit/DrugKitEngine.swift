@@ -176,7 +176,7 @@ public final class DrugKitEngine: @unchecked Sendable {
             flexAIDDeltaS: deltaS,
             doseMg: log.doseMg,
             baselineSCI: baselineSCI,
-            substanceID: abs(log.substance.hashValue % 10_000)
+            substanceID: stableSubstanceID(log.substance)
         )
         return mapper.predict(features)
     }

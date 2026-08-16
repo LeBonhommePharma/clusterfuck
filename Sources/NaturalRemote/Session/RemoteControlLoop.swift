@@ -148,7 +148,7 @@ public final class RemoteControlLoop: @unchecked Sendable {
         _state.flexAIDDeltaS = prediction.flexAIDDeltaS
         _state.pcci = pcci
         _state.doseMg = log.doseMg
-        _state.substanceID = abs(log.substance.hashValue % 10_000)
+        _state.substanceID = stableSubstanceID(log.substance)
         if prediction.isGroundingAlert {
             _state.musicBPM = min(_state.musicBPM, 90)
         }
