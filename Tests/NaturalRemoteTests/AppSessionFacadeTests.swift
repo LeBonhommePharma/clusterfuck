@@ -72,4 +72,16 @@ final class AppSessionFacadeTests: XCTestCase {
         manager.stop()
         XCTAssertFalse(manager.isRunning)
     }
+
+    func testIdleAlexaLightsLabelDoesNotInventDefaultPercent() async {
+        let model = RemoteSessionViewModel()
+        XCTAssertFalse(model.isSessionRunning)
+        XCTAssertEqual(model.alexaLightsLabel, "Alexa lights: —")
+        XCTAssertEqual(model.alexaLights, 60, "stored default stays; HUD must still dash while idle")
+        await model.start()
+        XCTAssertTrue(model.isSessionRunning)
+        XCTAssertEqual(model.alexaLightsLabel, "Alexa lights: \(model.alexaLights)%")
+        model.stop()
+        XCTAssertEqual(model.alexaLightsLabel, "Alexa lights: —")
+    }
 }
