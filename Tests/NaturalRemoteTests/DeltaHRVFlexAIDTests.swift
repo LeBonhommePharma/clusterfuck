@@ -1,6 +1,5 @@
 import XCTest
 @testable import NaturalRemote
-import BonhommeCore
 
 final class DeltaHRVFlexAIDTests: XCTestCase {
     func testDeltaHRVChangesAcrossWindows() {
@@ -36,7 +35,8 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
     }
 
     func testFlexAIDDeltaSUsesBonhommeEntropy() {
-        let mapper = DeltaHRVFlexAIDMapper()
+        // Module-qualified: BonhommeCore also exports actor DeltaHRVFlexAIDMapper.
+        let mapper = NaturalRemote.DeltaHRVFlexAIDMapper()
         // Deterministic: uniform wrap-around vs a frozen rotor at 0°.
         let free = stride(from: -180.0, to: 180.0, by: 1.8).map { $0 }
         let bound = Array(repeating: 0.0, count: 200)
@@ -61,7 +61,7 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
 
     func testHybridPredictionDeviationPath() {
         // Observed Δ is not a model feature, so the prediction is independent of observed Δ.
-        let mapper = DeltaHRVFlexAIDMapper(
+        let mapper = NaturalRemote.DeltaHRVFlexAIDMapper(
             bias: 10,
             deviationThreshold: 0.2
         )

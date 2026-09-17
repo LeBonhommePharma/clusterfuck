@@ -52,8 +52,11 @@ def test_feature_vector_no_observed_delta() -> None:
     mapper = read("Sources/NaturalRemote/Analysis/DeltaHRVFlexAIDMapper.swift")
     if "func configurationalDeltaS(freeAngles" not in mapper:
         fail("mapper must expose configurationalDeltaS (not a flexAIDDeltaS method that collides in tests)")
-    if "func flexAIDDeltaS(freeAngles" in mapper:
-        fail("do not reintroduce flexAIDDeltaS(freeAngles:) — test-module name clash")
+    tests = read("Tests/NaturalRemoteTests/DeltaHRVFlexAIDTests.swift")
+    if "import BonhommeCore" in tests:
+        fail("DeltaHRVFlexAIDTests must not import BonhommeCore (actor DeltaHRVFlexAIDMapper name clash)")
+    if "NaturalRemote.DeltaHRVFlexAIDMapper" not in tests:
+        fail("FlexAID tests must module-qualify NaturalRemote.DeltaHRVFlexAIDMapper")
 
 
 def test_control_honesty() -> None:
