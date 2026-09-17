@@ -63,6 +63,12 @@ def test_design_system() -> None:
         fail("idle music HUD must not invent BPM 120 / H_audio 0")
     if 'PCCI — · ΔHRV —' not in vm:
         fail("idle DrugKit HUD must not invent PCCI 0 / ΔHRV 0")
+    if 'Alexa lights: —' not in vm:
+        fail("idle environment HUD must not invent Alexa lights 60%")
+    if 'Text("Alexa lights: \\(model.alexaLights)%")' in vm:
+        fail("environment HUD must not always interpolate Alexa lights")
+    if "alexaLightsLabel" not in vm:
+        fail("environment HUD must fail closed through alexaLightsLabel")
     if "ClusterFuckPressStyle" not in theme:
         fail("Remote buttons must use ClusterFuckPressStyle (Reduce Motion aware)")
     if "ClusterFuckLoadingRow" not in theme:

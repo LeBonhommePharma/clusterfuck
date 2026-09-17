@@ -207,9 +207,12 @@ public struct RemoteSessionView: View {
             Label("Environment", systemImage: ClusterFuckSymbol.environment.systemName)
                 .font(ClusterFuckType.headline)
                 .symbolRenderingMode(.monochrome)
-            Text("Alexa lights: \(model.alexaLights)%")
-                .font(ClusterFuckType.caption)
+            Text(model.alexaLightsLabel)
+                .font(ClusterFuckType.caption.monospacedDigit())
                 .foregroundStyle(Color.clusterFuckMute)
+                .accessibilityLabel(model.isSessionRunning
+                    ? "Alexa lights \(model.alexaLights) percent"
+                    : "Alexa lights unknown")
             HStack(spacing: ClusterFuckSpacing.sm) {
                 Button("ANC") { Task { await model.setANC() } }
                     .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
@@ -282,6 +285,12 @@ public final class RemoteSessionViewModel: ObservableObject {
     }
 
     public var isSessionRunning: Bool { manager.isRunning }
+
+    /// Idle must not invent the Alexa default 60%. Live sessions show the loop percent.
+    public var alexaLightsLabel: String {
+        guard isSessionRunning else { return "Alexa lights: —" }
+        return "Alexa lights: \(alexaLights)%"
+    }
 
     /// Drive multi-signal update through the **shipped** control path (app UI + tests).
     @discardableResult
