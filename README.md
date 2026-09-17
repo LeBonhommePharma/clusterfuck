@@ -12,7 +12,7 @@ This is not “just a media remote.” Dose logs, ΔHRV, hybrid predictions, act
 /Users/lp.more/Projects/
   NATURaL/          # https://github.com/LeBonhommePharma/NATURaL
   ClusterFuck/      # this repo — path dep ../NATURaL/BonhommeCore
-  ShannonUI/Exergy/ # remaining-quota tracker (sibling; not this remote)
+  ShannonUI/Exergy/ # remaining-quota tracker (Mac / iPhone / iPad / Watch)
 ```
 
 ## Build & test (SPM kernel)
