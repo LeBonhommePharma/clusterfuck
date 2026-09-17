@@ -105,6 +105,13 @@ final class HonestyContractsTests: XCTestCase {
         XCTAssertNil(clean["accessToken"])
         let nested = clean["tokens"] as? [String: String]
         XCTAssertEqual(nested, ["device": "watch"])
+        XCTAssertNil(nested?["access_token"])
+        let scalar = SecretFieldPolicy.sanitizeWatchContext([
+            "tokens": "sk-live",
+            "type": "ok",
+        ])
+        XCTAssertNil(scalar["tokens"], "scalar secret bags must still be dropped")
+        XCTAssertEqual(scalar["type"] as? String, "ok")
         XCTAssertTrue(SecretFieldPolicy.isSecretKey("listen_key"))
         XCTAssertFalse(SecretFieldPolicy.isSecretKey("substance"))
     }

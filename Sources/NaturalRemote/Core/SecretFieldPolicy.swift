@@ -16,20 +16,23 @@ public enum SecretFieldPolicy: Sendable {
         params.filter { !isSecretKey($0.key) }
     }
 
-    /// Application-context payloads: keep `type` only plus non-secret metadata.
+    /// Application-context payloads: recurse dictionaries so a bag named `tokens`
+    /// can keep non-secret metadata (`device`) while scalar secret keys are dropped.
     public static func sanitizeWatchContext(_ payload: [String: Any]) -> [String: Any] {
         var out: [String: Any] = [:]
         for (key, value) in payload {
-            if isSecretKey(key) { continue }
             if let nested = value as? [String: String] {
                 let clean = strippingSecrets(nested)
                 if !clean.isEmpty { out[key] = clean }
-            } else if let nestedAny = value as? [String: Any] {
+                continue
+            }
+            if let nestedAny = value as? [String: Any] {
                 let clean = sanitizeWatchContext(nestedAny)
                 if !clean.isEmpty { out[key] = clean }
-            } else {
-                out[key] = value
+                continue
             }
+            if isSecretKey(key) { continue }
+            out[key] = value
         }
         return out
     }
