@@ -26,16 +26,40 @@ def test_design_system() -> None:
         fail("design-system/clusterfuck/MASTER.md missing")
         return
     text = master.read_text(encoding="utf-8")
-    for needle in ("#0284C7", "#16A34A", "#DC2626", "#F0F9FF"):
+    for needle in ("#45E0A8", "#8B5CF6", "#08091A", "Brand override"):
         if needle not in text:
             fail(f"MASTER.md missing {needle}")
     for page in ("watchos", "ios", "macos"):
         if not (ROOT / f"design-system/clusterfuck/pages/{page}.md").is_file():
             fail(f"missing page override {page}.md")
     theme = read("Sources/NaturalRemote/Theme/ClusterFuckTheme.swift")
-    for needle in ("0x0284C7", "0x0F0F23", "0x16A34A", "accessibilityReduceMotion", "waveform.path.ecg"):
+    for needle in ("0x45E0A8", "0x8B5CF6", "0x08091A", "accessibilityReduceMotion", "waveform.path.ecg"):
         if needle not in theme:
             fail(f"ClusterFuckTheme missing {needle}")
+    if "0x0284C7" in theme:
+        fail("ClusterFuckTheme must not ship the generated clinical blue")
+    remote = read("Sources/NaturalRemote/Session/RemoteSessionView.swift")
+    if ".tabItem" not in remote:
+        fail("phone TabView must keep labeled tab items")
+    hud = read("Sources/NaturalRemote/Session/SigmaHUDView.swift")
+    if '"—"' not in hud:
+        fail("σ_irr HUD must render em-dash for non-finite values")
+    if '"Closure —"' not in hud:
+        fail("unknown σ_irr must not invent Closure 0%")
+    if "if known" not in hud:
+        fail("σ_irr ring trim must omit fill when the value is unknown")
+    if "case .unknown" not in theme:
+        fail("unknown σ_irr must map to a mute band, not elevated")
+    vm = read("Sources/NaturalRemote/Session/RemoteSessionView.swift")
+    if "sigmaIrr: Double = .nan" not in vm:
+        fail("idle ViewModel must start σ_irr as non-finite, never 0")
+    if "ClusterFuckPressStyle" not in theme:
+        fail("Remote buttons must use ClusterFuckPressStyle (Reduce Motion aware)")
+    if "ClusterFuckLoadingRow" not in theme:
+        fail("busy state must use ClusterFuckLoadingRow, not a frozen HUD")
+    root = read("Apps/Shared/ClusterFuckRootView.swift")
+    if "preferredColorScheme(.dark)" in root:
+        fail("Remote must follow system light/dark, not lock dark")
 
 
 def test_feature_vector_no_observed_delta() -> None:

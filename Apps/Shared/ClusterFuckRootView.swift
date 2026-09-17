@@ -33,13 +33,13 @@ public struct ClusterFuckRootView: View {
         #if os(macOS)
         .frame(minWidth: 420, minHeight: 560)
         #endif
-        .preferredColorScheme(.dark)
     }
 
     private var sessionBadge: some View {
-        Text(model.isSessionRunning ? "LIVE" : "IDLE")
-            .font(.caption.bold())
+        Label(model.isSessionRunning ? "Live" : "Idle", systemImage: model.isSessionRunning ? "dot.radiowaves.left.and.right" : "pause.circle")
+            .font(.caption.weight(.semibold))
             .foregroundStyle(model.isSessionRunning ? Color.clusterFuckAccent : Color.clusterFuckMute)
+            .labelStyle(.titleAndIcon)
             .accessibilityLabel(model.isSessionRunning ? "Session live" : "Session idle")
     }
 }
