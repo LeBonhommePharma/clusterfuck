@@ -210,17 +210,34 @@ gsap.from(el, { opacity: 0, y: 12, duration: 0.35, ease: 'power1.out', scrollTri
 
 ---
 
+## Brand override (NATURaL Remote / Crooks HUD)
+
+The generated aerospace/clinical palette (`#0284C7` / `#16A34A` / `#F0F9FF`) is **not** used. ClusterFuck is NATURaL’s wrist/Mac remote — same FlexAIDΔS family as Shannon and NATURaL, **not** Exergy gold gauges.
+
+Shipping tokens (`ClusterFuckTheme`):
+
+| Role | Hex | Quantity |
+|------|-----|----------|
+| Ink / dark HUD | `#08091A` | Surface |
+| Light paper | `#F8FAFC` | Light appearance |
+| Closure CTA | `#45E0A8` mint | ΔH |
+| σ_irr ring | `#8B5CF6` violet | ΔS |
+| Environment | `#00A2FF` aqua | ΔS_vib |
+| Elevated | `#FF2F92` strawberry | Receptor / warn |
+| Fail | `#F5232B` firetruck | T |
+
+Orbitron/JetBrains map to **SF Pro / SF Mono**. Density 8 stays for the control HUD. Distinguish from NATURaL yoga (no pose catalog) and Exergy (no remaining-quota gold). Hits ≥44pt. Reduce Motion pauses ring trim. Unknown σ_irr renders `—`, never `0`.
+
+---
+
 ## Pre-Delivery Checklist
 
 Before delivering any UI code, verify:
 
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
-- [ ] Light mode: text contrast 4.5:1 minimum
-- [ ] Focus states visible for keyboard navigation
-- [ ] `prefers-reduced-motion` respected
-- [ ] Responsive: 375px, 768px, 1024px, 1440px
-- [ ] No content hidden behind fixed navbars
-- [ ] No horizontal scroll on mobile
+- [ ] No emojis used as icons (SF Symbols only)
+- [ ] Hits ≥44pt; 8pt gaps
+- [ ] `accessibilityReduceMotion` respected
+- [ ] Light and dark text contrast 4.5:1
+- [ ] Color is never the only meaning (σ_irr number + band copy)
+- [ ] Bottom nav ≤5 with labels
+- [ ] Safe areas respected

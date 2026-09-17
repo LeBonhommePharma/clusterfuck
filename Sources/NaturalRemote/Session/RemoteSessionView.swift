@@ -27,9 +27,10 @@ public struct RemoteSessionView: View {
                         navRow(3, title: "Environment", symbol: .environment)
                     }
                     .navigationTitle("Remote")
+                    .navigationSplitViewColumnWidth(min: 200, ideal: 240, max: 300)
                 } detail: {
                     page(for: model.selectedTab)
-                        .padding()
+                        .padding(ClusterFuckSpacing.lg)
                         .frame(maxWidth: 720, alignment: .top)
                 }
             } else {
@@ -45,10 +46,18 @@ public struct RemoteSessionView: View {
 
     private var pagedRemote: some View {
         TabView(selection: $model.selectedTab) {
-            sigmaTab.tag(0)
-            musicTab.tag(1)
-            doseTab.tag(2)
-            environmentTab.tag(3)
+            sigmaTab
+                .tabItem { Label("σ_irr", systemImage: ClusterFuckSymbol.sigma.systemName) }
+                .tag(0)
+            musicTab
+                .tabItem { Label("Music", systemImage: ClusterFuckSymbol.music.systemName) }
+                .tag(1)
+            doseTab
+                .tabItem { Label("DrugKit", systemImage: ClusterFuckSymbol.dose.systemName) }
+                .tag(2)
+            environmentTab
+                .tabItem { Label("Environment", systemImage: ClusterFuckSymbol.environment.systemName) }
+                .tag(3)
         }
         #if os(watchOS)
         .tabViewStyle(.verticalPage)
@@ -59,6 +68,7 @@ public struct RemoteSessionView: View {
         Label(title, systemImage: symbol.systemName)
             .tag(tag)
             .symbolRenderingMode(.monochrome)
+            .frame(minHeight: ClusterFuckIconSize.hit)
     }
 
     @ViewBuilder
@@ -95,6 +105,9 @@ public struct RemoteSessionView: View {
                         .foregroundStyle(Color.clusterFuckDestructive)
                         .accessibilityLabel("Error \(err)")
                 }
+                if model.isBusy {
+                    ClusterFuckLoadingRow()
+                }
             }
             .padding(ClusterFuckSpacing.md)
         }
@@ -110,7 +123,7 @@ public struct RemoteSessionView: View {
             Text(model.isSessionRunning ? "Stop" : "Start")
                 .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
         }
-        .buttonStyle(.bordered)
+        .buttonStyle(ClusterFuckPressStyle())
         .disabled(model.isBusy)
         .accessibilityLabel(model.isSessionRunning ? "Stop pharmacovigilance session" : "Start pharmacovigilance session")
     }
@@ -122,7 +135,7 @@ public struct RemoteSessionView: View {
             Label(model.isBusy ? "Working…" : "Minimize σ", systemImage: ClusterFuckSymbol.minimize.systemName)
                 .frame(minHeight: ClusterFuckIconSize.hit)
         }
-        .buttonStyle(.borderedProminent)
+        .buttonStyle(ClusterFuckPressStyle())
         .tint(Color.clusterFuckAccent)
         .disabled(model.isBusy)
         .accessibilityLabel("Minimize irreversible entropy production")
@@ -139,11 +152,13 @@ public struct RemoteSessionView: View {
                 .foregroundStyle(Color.clusterFuckMute)
             HStack(spacing: ClusterFuckSpacing.sm) {
                 Button("Ground") { Task { await model.groundMusic() } }
-                    .frame(minHeight: ClusterFuckIconSize.hit)
+                    .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
+                    .buttonStyle(ClusterFuckPressStyle())
                     .disabled(model.isBusy)
                     .accessibilityLabel("Queue grounding music")
                 Button("Explore") { Task { await model.exploreMusic() } }
-                    .frame(minHeight: ClusterFuckIconSize.hit)
+                    .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
+                    .buttonStyle(ClusterFuckPressStyle())
                     .disabled(model.isBusy)
                     .accessibilityLabel("Allow exploratory music")
             }
@@ -170,9 +185,10 @@ public struct RemoteSessionView: View {
             .disabled(model.isBusy)
             .accessibilityLabel("Log demo dose for pharmacovigilance")
             if model.groundingAlert {
-                Text("grounding_alert")
+                Label("Grounding alert", systemImage: "exclamationmark.triangle")
                     .foregroundStyle(Color.clusterFuckDestructive)
                     .font(.caption.bold())
+                    .symbolRenderingMode(.hierarchical)
                     .accessibilityLabel("Grounding alert: predicted versus observed delta HRV mismatch")
             }
         }
@@ -190,11 +206,13 @@ public struct RemoteSessionView: View {
                 .foregroundStyle(Color.clusterFuckMute)
             HStack(spacing: ClusterFuckSpacing.sm) {
                 Button("ANC") { Task { await model.setANC() } }
-                    .frame(minHeight: ClusterFuckIconSize.hit)
+                    .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
+                    .buttonStyle(ClusterFuckPressStyle())
                     .disabled(model.isBusy)
                     .accessibilityLabel("Enable AirPods noise cancellation")
                 Button("Transparency") { Task { await model.setTransparency() } }
-                    .frame(minHeight: ClusterFuckIconSize.hit)
+                    .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
+                    .buttonStyle(ClusterFuckPressStyle())
                     .disabled(model.isBusy)
                     .accessibilityLabel("Enable AirPods transparency")
             }
@@ -221,11 +239,11 @@ public struct RemoteSessionView: View {
 @MainActor
 public final class RemoteSessionViewModel: ObservableObject {
     @Published public var selectedTab = 0
-    @Published public var sigmaIrr: Double = 0
+    @Published public var sigmaIrr: Double = .nan
     @Published public var closurePercent: Double = 0
     @Published public var phaseLabel: String = CrooksCyclePhase.forward.rawValue
     @Published public var lastAction: String = "idle"
-    @Published public var sciScore: Double? = 0.5
+    @Published public var sciScore: Double? = nil
     @Published public var sciTrend: SCITrend = .stable
     @Published public var musicBPM: Double = 120
     @Published public var audioEntropy: Double = 0

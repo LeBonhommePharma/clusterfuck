@@ -38,9 +38,11 @@ public struct SigmaHUDView: View {
                     .rotationEffect(.degrees(-90))
                     .animation(ClusterFuckMotion.animation(reduceMotion: reduceMotion), value: frac)
                 VStack(spacing: 2) {
-                    Text(String(format: "%.3f", sigmaIrr.isFinite ? sigmaIrr : 0))
+                    Text(sigmaIrr.isFinite ? String(format: "%.3f", sigmaIrr) : "—")
                         .font(compact ? ClusterFuckType.caption.monospacedDigit() : ClusterFuckType.mono)
                         .foregroundStyle(Color.clusterFuckInk)
+                        .minimumScaleFactor(0.7)
+                        .lineLimit(1)
                     Text("σ_irr")
                         .font(.caption2)
                         .foregroundStyle(Color.clusterFuckMute)
@@ -53,7 +55,7 @@ public struct SigmaHUDView: View {
                 .font(ClusterFuckType.caption)
                 .foregroundStyle(Color.clusterFuckMute)
                 .monospacedDigit()
-            Text(lastAction)
+            Text(humanize(lastAction))
                 .font(.caption2)
                 .foregroundStyle(Color.clusterFuckMute)
                 .lineLimit(2)
@@ -71,7 +73,11 @@ public struct SigmaHUDView: View {
     }
 
     private func accessibilityText(band: ClusterFuckSigmaBand) -> String {
-        let sigma = sigmaIrr.isFinite ? String(format: "%.3f", sigmaIrr) : "non-finite"
-        return "Irreversible entropy production \(sigma), closure \(Int(closurePercent.rounded())) percent, phase \(phase.rawValue), band \(band.rawValue), last action \(lastAction)"
+        let sigma = sigmaIrr.isFinite ? String(format: "%.3f", sigmaIrr) : "unavailable"
+        return "Irreversible entropy production \(sigma), closure \(Int(closurePercent.rounded())) percent, phase \(phase.rawValue), band \(band.rawValue), last action \(humanize(lastAction))"
+    }
+
+    private func humanize(_ raw: String) -> String {
+        raw.replacingOccurrences(of: "_", with: " ")
     }
 }

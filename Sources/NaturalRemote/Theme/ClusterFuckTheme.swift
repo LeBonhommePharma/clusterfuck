@@ -9,30 +9,28 @@ import UIKit
 /// Semantic palette from `design-system/clusterfuck/MASTER.md` with dark HUD
 /// overrides from `pages/watchos.md` / `pages/macos.md`. Hex lives here only.
 public enum ClusterFuckPalette: Sendable {
-    /// MASTER primary
-    public static let primary: UInt32 = 0x0284C7
-    /// MASTER secondary
-    public static let secondary: UInt32 = 0x0891B2
-    /// MASTER accent (closure / calm)
-    public static let accent: UInt32 = 0x16A34A
-    /// MASTER light background
-    public static let lightBackground: UInt32 = 0xF0F9FF
-    /// watch/mac page override
-    public static let darkBackground: UInt32 = 0x0F0F23
+    /// ΔS · configurational entropy · σ_irr ring
+    public static let primary: UInt32 = 0x8B5CF6
+    /// ΔS_vib · environment / AirPods
+    public static let secondary: UInt32 = 0x00A2FF
+    /// ΔH · closure / calm CTA
+    public static let accent: UInt32 = 0x45E0A8
+    /// Light paper (family, not clinical sky)
+    public static let lightBackground: UInt32 = 0xF8FAFC
+    /// NATURaL / Shannon ink
+    public static let darkBackground: UInt32 = 0x08091A
     public static let lightSurface: UInt32 = 0xFFFFFF
-    public static let darkSurface: UInt32 = 0x1E1B4B
-    /// MASTER foreground
-    public static let lightInk: UInt32 = 0x0C4A6E
-    public static let darkInk: UInt32 = 0xF8FAFC
+    public static let darkSurface: UInt32 = 0x111226
+    public static let lightInk: UInt32 = 0x08091A
+    public static let darkInk: UInt32 = 0xE4E3F5
     public static let lightMute: UInt32 = 0x475569
-    public static let darkMute: UInt32 = 0x94A3B8
-    /// MASTER border
-    public static let lightBorder: UInt32 = 0xBAE6FD
-    public static let darkBorder: UInt32 = 0x4338CA
-    /// MASTER destructive
-    public static let destructive: UInt32 = 0xDC2626
-    /// watchOS elevated σ_irr
-    public static let warning: UInt32 = 0xF97316
+    public static let darkMute: UInt32 = 0x8D8CB0
+    public static let lightBorder: UInt32 = 0xCBD5E1
+    public static let darkBorder: UInt32 = 0x334155
+    /// T · fail
+    public static let destructive: UInt32 = 0xF5232B
+    /// Receptor · elevated σ_irr
+    public static let warning: UInt32 = 0xFF2F92
 }
 
 /// Density 8 dashboard grid from MASTER.md.
@@ -79,11 +77,57 @@ public enum ClusterFuckSymbol: String, Sendable {
 }
 
 public enum ClusterFuckType {
-    public static var display: Font { .system(.title2, design: .rounded).weight(.semibold) }
-    public static var headline: Font { .system(.headline, design: .rounded) }
+    public static var display: Font { .system(.title2, design: .default).weight(.semibold) }
+    public static var headline: Font { .headline }
     public static var body: Font { .body }
     public static var caption: Font { .caption }
     public static var mono: Font { .body.monospacedDigit().weight(.medium) }
+}
+
+/// Pressed scale stays inside the hit box. 180ms, Reduce Motion off.
+public struct ClusterFuckPressStyle: ButtonStyle {
+    public var pressedScale: CGFloat = 0.97
+
+    public init(pressedScale: CGFloat = 0.97) {
+        self.pressedScale = pressedScale
+    }
+
+    public func makeBody(configuration: Configuration) -> some View {
+        ClusterFuckPressStyleBody(configuration: configuration, pressedScale: pressedScale)
+    }
+}
+
+private struct ClusterFuckPressStyleBody: View {
+    let configuration: ButtonStyleConfiguration
+    var pressedScale: CGFloat
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    var body: some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? pressedScale : 1)
+            .opacity(configuration.isPressed ? 0.92 : 1)
+            .animation(
+                ClusterFuckMotion.animation(reduceMotion: reduceMotion, duration: ClusterFuckMotion.short),
+                value: configuration.isPressed
+            )
+    }
+}
+
+public struct ClusterFuckLoadingRow: View {
+    public init() {}
+
+    public var body: some View {
+        HStack(spacing: ClusterFuckSpacing.sm) {
+            ProgressView()
+                .accessibilityHidden(true)
+            Text("Working…")
+                .font(ClusterFuckType.caption)
+                .foregroundStyle(Color.clusterFuckMute)
+        }
+        .frame(maxWidth: .infinity, minHeight: ClusterFuckIconSize.hit, alignment: .leading)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Working")
+    }
 }
 
 public struct ClusterFuckRGBA: Equatable, Sendable {
@@ -149,12 +193,13 @@ public extension Color {
 }
 
 public enum ClusterFuckSigmaBand: String, Sendable {
+    case unknown
     case closed
     case settling
     case elevated
 
     public static func classify(_ sigmaIrr: Double) -> ClusterFuckSigmaBand {
-        if !sigmaIrr.isFinite { return .elevated }
+        if !sigmaIrr.isFinite { return .unknown }
         if sigmaIrr < 0.03 { return .closed }
         if sigmaIrr <= 0.15 { return .settling }
         return .elevated
@@ -162,6 +207,7 @@ public enum ClusterFuckSigmaBand: String, Sendable {
 
     public var color: Color {
         switch self {
+        case .unknown: return .clusterFuckMute
         case .closed: return .clusterFuckAccent
         case .settling: return .clusterFuckPrimary
         case .elevated: return .clusterFuckWarning
