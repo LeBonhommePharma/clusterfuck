@@ -29,6 +29,8 @@ def test_design_system() -> None:
     for needle in ("#45E0A8", "#8B5CF6", "#08091A", "Brand override"):
         if needle not in text:
             fail(f"MASTER.md missing {needle}")
+    if "| Primary | `#0284C7`" in text:
+        fail("MASTER primary table must not ship clinical blue as source of truth")
     for page in ("watchos", "ios", "macos"):
         if not (ROOT / f"design-system/clusterfuck/pages/{page}.md").is_file():
             fail(f"missing page override {page}.md")

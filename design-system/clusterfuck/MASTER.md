@@ -19,30 +19,27 @@
 
 | Role | Hex | CSS Variable |
 |------|-----|--------------|
-| Primary | `#0284C7` | `--color-primary` |
+| Primary / σ_irr | `#8B5CF6` | `--color-primary` |
 | On Primary | `#FFFFFF` | `--color-on-primary` |
-| Secondary | `#0891B2` | `--color-secondary` |
-| Accent/CTA | `#16A34A` | `--color-accent` |
-| Background | `#F0F9FF` | `--color-background` |
-| Foreground | `#0C4A6E` | `--color-foreground` |
-| Muted | `#E8F2F8` | `--color-muted` |
-| Border | `#BAE6FD` | `--color-border` |
-| Destructive | `#DC2626` | `--color-destructive` |
-| Ring | `#0284C7` | `--color-ring` |
+| Secondary / env | `#00A2FF` | `--color-secondary` |
+| Accent/CTA | `#45E0A8` | `--color-accent` |
+| Background (dark HUD) | `#08091A` | `--color-background` |
+| Light paper | `#F8FAFC` | `--color-background-light` |
+| Foreground | `#E4E3F5` | `--color-foreground` |
+| Muted | `#8D8CB0` | `--color-muted` |
+| Border | `#334155` | `--color-border` |
+| Destructive | `#F5232B` | `--color-destructive` |
+| Warning | `#FF2F92` | `--color-warning` |
+| Ring | `#8B5CF6` | `--color-ring` |
 
-**Color Notes:** Clinical blue + health green + alert red
+**Color Notes:** Same FlexAIDΔS family as NATURaL / Shannon. Not Exergy gold remaining rings. Generated aerospace `#0284C7` / `#16A34A` / `#F0F9FF` is unused.
 
 ### Typography
 
-- **Heading Font:** Orbitron
-- **Body Font:** JetBrains Mono
-- **Mood:** cyberpunk, neon, glitch, hud, sci-fi, dark, matrix green, magenta, chamfered, tactical
-- **Google Fonts:** [Orbitron + JetBrains Mono](https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@700;900&display=swap)
-
-**CSS Import:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Orbitron:wght@700;900&display=swap');
-```
+- **Heading Font:** SF Pro (Orbitron maps here; do not ship Google Fonts in the apps)
+- **Body Font:** SF Pro
+- **Metrics:** SF Mono
+- **Mood:** dense Crooks control HUD, mint closure, violet σ_irr
 
 ### Spacing Variables
 
@@ -76,7 +73,7 @@
 ```css
 /* Primary Button */
 .btn-primary {
-  background: #16A34A;
+  background: #45E0A8;
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -93,8 +90,8 @@
 /* Secondary Button */
 .btn-secondary {
   background: transparent;
-  color: #0284C7;
-  border: 2px solid #0284C7;
+  color: #8B5CF6;
+  border: 2px solid #8B5CF6;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
@@ -107,7 +104,7 @@
 
 ```css
 .card {
-  background: #F0F9FF;
+  background: #08091A;
   border-radius: 12px;
   padding: 24px;
   box-shadow: var(--shadow-md);
@@ -133,9 +130,9 @@
 }
 
 .input:focus {
-  border-color: #0284C7;
+  border-color: #8B5CF6;
   outline: none;
-  box-shadow: 0 0 0 3px #0284C720;
+  box-shadow: 0 0 0 3px #8B5CF620;
 }
 ```
 
