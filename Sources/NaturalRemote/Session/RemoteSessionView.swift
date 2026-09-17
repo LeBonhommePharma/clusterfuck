@@ -93,7 +93,7 @@ public struct RemoteSessionView: View {
                 )
                 SCIVisualizationView(score: model.sciScore, trend: model.sciTrend)
                     .frame(minHeight: compactChrome ? 64 : 88)
-                    .accessibilityLabel("Shannon collapse index \(model.sciScore.map { String(format: "%.2f", $0) } ?? "unknown")")
+                    .accessibilityLabel(model.sciAccessibilityLabel)
 
                 HStack(spacing: ClusterFuckSpacing.sm) {
                     sessionButton
@@ -290,6 +290,14 @@ public final class RemoteSessionViewModel: ObservableObject {
     public var alexaLightsLabel: String {
         guard isSessionRunning else { return "Alexa lights: —" }
         return "Alexa lights: \(alexaLights)%"
+    }
+
+    /// VoiceOver must not speak "nan" when SCI is missing or non-finite.
+    public var sciAccessibilityLabel: String {
+        guard let score = sciScore, score.isFinite else {
+            return "Shannon collapse index unavailable"
+        }
+        return String(format: "Shannon collapse index %.2f", score)
     }
 
     /// Drive multi-signal update through the **shipped** control path (app UI + tests).
