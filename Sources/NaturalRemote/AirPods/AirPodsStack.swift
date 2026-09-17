@@ -328,6 +328,14 @@ public final class AirPodsDualStack: RemoteActuator, @unchecked Sendable {
         lock.lock(); activeChip = chip; lock.unlock()
     }
 
+    public func activeTelemetry() -> AirPodsTelemetry {
+        lock.lock(); let chip = activeChip; lock.unlock()
+        if chip.uppercased().contains("H1") {
+            return maxH1.currentTelemetry()
+        }
+        return proH2.currentTelemetry()
+    }
+
     public func execute(_ command: RemoteCommand) async throws {
         lock.lock(); let chip = activeChip; lock.unlock()
         if chip.uppercased().contains("H1") {

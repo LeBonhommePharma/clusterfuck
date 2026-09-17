@@ -6,6 +6,16 @@ on:
   pull_request:
 
 jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ClusterFuck
+        uses: actions/checkout@v4
+      - name: Submission + honesty contracts
+        run: |
+          python3 scripts/validate-submission.py
+          python3 scripts/test_contracts.py
+
   build-and-test:
     runs-on: macos-latest
     steps:
@@ -20,6 +30,12 @@ jobs:
         with:
           repository: LeBonhommePharma/NATURaL
           path: NATURaL
+
+      - name: Contracts
+        working-directory: ClusterFuck
+        run: |
+          python3 scripts/validate-submission.py
+          python3 scripts/test_contracts.py
 
       - name: Build library
         working-directory: ClusterFuck

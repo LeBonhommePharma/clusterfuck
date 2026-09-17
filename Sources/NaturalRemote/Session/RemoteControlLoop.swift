@@ -34,7 +34,7 @@ public final class RemoteControlLoop: @unchecked Sendable {
         self.airPods = AirPodsDualStack()
         self.alexa = AlexaProxyController()
         self.foundation = FoundationModelOrchestrator()
-        self.drugKit = DrugKitEngine.shared
+        self.drugKit = DrugKitEngine()
         self.drugActuator = DrugKitActuator(engine: self.drugKit)
         self.researchKit = ResearchKitBridge(feedbackEngine: feedback)
         self.deltaHRV = DeltaHRVAnalyzer()
@@ -75,6 +75,7 @@ public final class RemoteControlLoop: @unchecked Sendable {
         lock.lock()
         _state.deltaHRV = delta.deltaRMSSD
         _state.sci = delta.sci
+        _state.physiologicalSCI = delta.sci
         var local = _state
         lock.unlock()
 
@@ -176,6 +177,7 @@ public final class RemoteControlLoop: @unchecked Sendable {
             musicBPM: local.musicBPM,
             audioEntropyBits: local.audioEntropyBits,
             alexaLightsPercent: alexa.lightsPercent,
+            airPodsNoiseMode: airPods.activeTelemetry().noiseMode.rawValue,
             flexAIDDeltaS: prediction.flexAIDDeltaS
         )
         drugKit.recordPharmacovigilance(pv)
@@ -196,5 +198,12 @@ public final class RemoteControlLoop: @unchecked Sendable {
         for cmd in commands {
             try? await bus.execute(cmd)
         }
+    }
+
+    /// Test/UI override of the live multi-signal vector (does not bypass Crooks).
+    public func replaceState(_ state: RemoteMultiSignalState) {
+        lock.lock()
+        _state = state
+        lock.unlock()
     }
 }

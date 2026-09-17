@@ -73,67 +73,73 @@ public actor CrooksCycleController {
         let target = CrooksMath.targetBPM(phase: phase, currentBPM: currentBPM, sigmaIrr: sigmaIrr)
         var actions: [String] = []
 
-        // Music tempo / grounding selection
-        let musicService: RemoteService = .appleMusic
-        try? await bus.execute(RemoteCommand(
-            service: musicService,
-            action: "setTargetBPM",
-            params: ["bpm": String(format: "%.1f", target), "phase": phase.rawValue]
+        actions.append(await dispatch(
+            RemoteCommand(
+                service: .appleMusic,
+                action: "setTargetBPM",
+                params: ["bpm": String(format: "%.1f", target), "phase": phase.rawValue]
+            ),
+            label: "musicBPM→\(String(format: "%.0f", target))"
         ))
-        actions.append("musicBPM→\(String(format: "%.0f", target))")
-
-        try? await bus.execute(RemoteCommand(
-            service: .spotify,
-            action: phase == .reverse ? "queueGrounding" : "allowExploration",
-            params: ["sigmaIrr": String(format: "%.4f", sigmaIrr)]
+        actions.append(await dispatch(
+            RemoteCommand(
+                service: .spotify,
+                action: phase == .reverse ? "queueGrounding" : "allowExploration",
+                params: ["sigmaIrr": String(format: "%.4f", sigmaIrr)]
+            ),
+            label: "spotify"
         ))
-        actions.append("spotify")
-
-        try? await bus.execute(RemoteCommand(
-            service: .sonos,
-            action: "setVolumeCurve",
-            params: ["mode": phase == .reverse ? "dim" : "neutral"]
+        actions.append(await dispatch(
+            RemoteCommand(
+                service: .sonos,
+                action: "setVolumeCurve",
+                params: ["mode": phase == .reverse ? "dim" : "neutral"]
+            ),
+            label: "sonos"
         ))
-
-        try? await bus.execute(RemoteCommand(
-            service: .diFm,
-            action: phase == .reverse ? "preferChillChannel" : "preferProgressiveChannel",
-            params: [:]
+        actions.append(await dispatch(
+            RemoteCommand(
+                service: .diFm,
+                action: phase == .reverse ? "preferChillChannel" : "preferProgressiveChannel",
+                params: [:]
+            ),
+            label: "diFm"
         ))
-
-        // Environment
-        try? await bus.execute(RemoteCommand(
-            service: .alexa,
-            action: phase == .reverse ? "breatheAndDim" : "neutralAmbient",
-            params: ["lights": phase == .reverse ? "30" : "60"]
+        actions.append(await dispatch(
+            RemoteCommand(
+                service: .alexa,
+                action: phase == .reverse ? "breatheAndDim" : "neutralAmbient",
+                params: ["lights": phase == .reverse ? "30" : "60"]
+            ),
+            label: "alexa"
         ))
-        actions.append("alexa")
-
-        // AirPods acoustic gate
-        try? await bus.execute(RemoteCommand(
-            service: .airPods,
-            action: phase == .reverse ? "enableANC" : "transparency",
-            params: [:]
+        actions.append(await dispatch(
+            RemoteCommand(
+                service: .airPods,
+                action: phase == .reverse ? "enableANC" : "transparency",
+                params: [:]
+            ),
+            label: "airPods"
         ))
-        actions.append("airPods")
-
-        // Foundation model suggestion context
-        try? await bus.execute(RemoteCommand(
-            service: .foundationModel,
-            action: "suggestToReduceSigma",
-            params: [
-                "sigmaIrr": String(format: "%.4f", sigmaIrr),
-                "phase": phase.rawValue,
-            ]
+        actions.append(await dispatch(
+            RemoteCommand(
+                service: .foundationModel,
+                action: "suggestToReduceSigma",
+                params: [
+                    "sigmaIrr": String(format: "%.4f", sigmaIrr),
+                    "phase": phase.rawValue,
+                ]
+            ),
+            label: "foundation"
         ))
-
-        // Subjective PV check-in when entropy production is elevated
-        try? await bus.execute(RemoteCommand(
-            service: .researchKit,
-            action: "promptCurrentState",
-            params: ["sigmaIrr": String(format: "%.4f", sigmaIrr)]
+        actions.append(await dispatch(
+            RemoteCommand(
+                service: .researchKit,
+                action: "promptCurrentState",
+                params: ["sigmaIrr": String(format: "%.4f", sigmaIrr)]
+            ),
+            label: "researchKit"
         ))
-        actions.append("researchKit")
 
         lastActionSummary = actions.joined(separator: "+")
     }
@@ -176,5 +182,29 @@ public actor CrooksCycleController {
         phase = phase == .forward ? .reverse : .forward
         cycleCount += 1
         lastActionSummary = "phaseFlip→\(phase.rawValue)"
+    }
+
+    /// Record the **actual** bus outcome. Never claim an actuator fired when it
+    /// failed or was unregistered (`try?` used to swallow that).
+    private func dispatch(_ command: RemoteCommand, label: String) async -> String {
+        let before = bus.recordedEvents().count
+        do {
+            try await bus.execute(command)
+        } catch {
+            return "\(label):failed"
+        }
+        guard let last = bus.recordedEvents().dropFirst(before).last else {
+            return "\(label):unknown"
+        }
+        switch last.detail {
+        case "executed":
+            return label
+        case "failed":
+            return "\(label):failed"
+        case "no_actuator_registered":
+            return "\(label):unregistered"
+        default:
+            return "\(label):\(last.detail)"
+        }
     }
 }

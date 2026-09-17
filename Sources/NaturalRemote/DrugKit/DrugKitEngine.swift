@@ -22,6 +22,7 @@ public struct PharmacovigilanceRecord: Codable, Sendable, Equatable {
     public var musicBPM: Double
     public var audioEntropyBits: Double
     public var alexaLightsPercent: Int
+    public var airPodsNoiseMode: String
     public var flexAIDDeltaS: Double
     public var sourceBuild: String
 
@@ -42,6 +43,7 @@ public struct PharmacovigilanceRecord: Codable, Sendable, Equatable {
         musicBPM: Double,
         audioEntropyBits: Double,
         alexaLightsPercent: Int,
+        airPodsNoiseMode: String = "",
         flexAIDDeltaS: Double,
         sourceBuild: String = NaturalRemoteInfo.version
     ) {
@@ -61,6 +63,7 @@ public struct PharmacovigilanceRecord: Codable, Sendable, Equatable {
         self.musicBPM = musicBPM
         self.audioEntropyBits = audioEntropyBits
         self.alexaLightsPercent = alexaLightsPercent
+        self.airPodsNoiseMode = airPodsNoiseMode
         self.flexAIDDeltaS = flexAIDDeltaS
         self.sourceBuild = sourceBuild
     }

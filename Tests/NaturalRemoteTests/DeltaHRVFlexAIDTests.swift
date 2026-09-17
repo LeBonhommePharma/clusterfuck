@@ -17,6 +17,25 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
         XCTAssertNotEqual(early, late, accuracy: 1e-9)
     }
 
+    func testDeltaSDNNIsIndependentOfRMSSD() {
+        let analyzer = DeltaHRVAnalyzer(windowSeconds: 1000)
+        let t0 = Date(timeIntervalSince1970: 1_700_000_000)
+        for i in 0..<10 {
+            _ = analyzer.ingest(rmssd: 30, sdnn: 50, rrIntervals: Array(repeating: 800, count: 16), at: t0.addingTimeInterval(Double(i)))
+        }
+        for i in 10..<30 {
+            _ = analyzer.ingest(rmssd: 80, sdnn: 50, rrIntervals: Array(repeating: 700, count: 16), at: t0.addingTimeInterval(Double(i)))
+        }
+        XCTAssertNotEqual(analyzer.latestDeltaRMSSD(), 0, accuracy: 1e-9)
+        XCTAssertEqual(
+            analyzer.latestDeltaSDNN(),
+            0,
+            accuracy: 1e-9,
+            "ΔSDNN must track the SDNN series, not copy ΔRMSSD"
+        )
+    }
+    }
+
     func testFlexAIDDeltaSUsesBonhommeEntropy() {
         let mapper = DeltaHRVFlexAIDMapper()
         // Free: broad angles; bound: tight cluster → negative ΔS
@@ -120,6 +139,7 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
         XCTAssertEqual(decoded.count, 1)
         XCTAssertEqual(decoded[0].substance, "2C-B")
         XCTAssertEqual(decoded[0].action, "grounding_alert")
+        XCTAssertEqual(decoded[0].airPodsNoiseMode, "")
         XCTAssertEqual(NaturalRemoteInfo.strategicRole, "primary_pharmacovigilance_candidate")
     }
 }

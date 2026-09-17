@@ -18,6 +18,9 @@
 		ED5624C4FB8CE4558B7F98B7 /* ClusterFuckRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A9F14CF650931501385338 /* ClusterFuckRootView.swift */; };
 		F015F47D1D948F821343219A /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = 2D8CEEE264D9E232347B6BCF /* NaturalRemote */; };
 		F3631A57057C16ECB37DEED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFF1706EEA8B1D5783EA68D1 /* Assets.xcassets */; };
+		A10B00000000000000000002 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A10B00000000000000000001 /* PrivacyInfo.xcprivacy */; };
+		A10B00000000000000000003 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A10B00000000000000000001 /* PrivacyInfo.xcprivacy */; };
+		A10B00000000000000000005 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A10B00000000000000000004 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,8 @@
 		F172CF59E3B564DA93DC6A30 /* ClusterFuck.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ClusterFuck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A9F14CF650931501385338 /* ClusterFuckRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckRootView.swift; sourceTree = "<group>"; };
 		FFF1706EEA8B1D5783EA68D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A10B00000000000000000001 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A10B00000000000000000004 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +107,7 @@
 			children = (
 				FFF1706EEA8B1D5783EA68D1 /* Assets.xcassets */,
 				41131B387FBBF7FBB8F80F73 /* ClusterFuckApp.swift */,
+				A10B00000000000000000001 /* PrivacyInfo.xcprivacy */,
 			);
 			path = ClusterFuck;
 			sourceTree = "<group>";
@@ -119,6 +125,7 @@
 			children = (
 				41020D54B7E61C61B0D0E734 /* Assets.xcassets */,
 				93DE12BEBE45351378046A1B /* ClusterFuckWatchApp.swift */,
+				A10B00000000000000000004 /* PrivacyInfo.xcprivacy */,
 			);
 			path = ClusterFuckWatch;
 			sourceTree = "<group>";
@@ -239,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B054A44AB08390187EF9FED3 /* Assets.xcassets in Resources */,
+				A10B00000000000000000003 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B04A061F3019A8C1D9C8B58 /* Assets.xcassets in Resources */,
+				A10B00000000000000000005 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3631A57057C16ECB37DEED2 /* Assets.xcassets in Resources */,
+				A10B00000000000000000002 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,12 +329,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_ALLOWED = YES;
-				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuck.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuckMac.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Apps/ClusterFuck/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuck/MacInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClusterFuck;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "ClusterFuck reads HR/HRV for ΔHRV and σ_irr.";
@@ -433,12 +443,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGNING_ALLOWED = YES;
-				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuck.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuckMac.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Apps/ClusterFuck/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuck/MacInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClusterFuck;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "ClusterFuck reads HR/HRV for ΔHRV and σ_irr.";

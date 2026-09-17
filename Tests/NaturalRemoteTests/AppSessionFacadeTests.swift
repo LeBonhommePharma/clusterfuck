@@ -30,6 +30,8 @@ final class AppSessionFacadeTests: XCTestCase {
         XCTAssertNotEqual(calm.sigmaIrr, hot.sigmaIrr, accuracy: 1e-12)
         XCTAssertEqual(model.sigmaIrr, hot.sigmaIrr, accuracy: 1e-12)
         XCTAssertEqual(model.musicBPM, 148, accuracy: 1e-9)
+        XCTAssertEqual(model.manager.loop.state.musicBPM, 148, accuracy: 1e-9)
+        XCTAssertEqual(model.manager.loop.state.physiologicalSCI, 0.12, accuracy: 1e-9)
 
         model.stop()
         XCTAssertFalse(model.isSessionRunning)

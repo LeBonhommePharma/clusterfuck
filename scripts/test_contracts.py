@@ -1,0 +1,171 @@
+#!/usr/bin/env python3
+"""Linux-runnable contracts for ClusterFuck / NATURaL Remote."""
+from __future__ import annotations
+
+import json
+import pathlib
+import re
+import struct
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+FAILS: list[str] = []
+
+
+def fail(msg: str) -> None:
+    FAILS.append(msg)
+
+
+def read(rel: str) -> str:
+    return (ROOT / rel).read_text(encoding="utf-8")
+
+
+def test_design_system() -> None:
+    master = ROOT / "design-system/clusterfuck/MASTER.md"
+    if not master.is_file():
+        fail("design-system/clusterfuck/MASTER.md missing")
+        return
+    text = master.read_text(encoding="utf-8")
+    for needle in ("#0284C7", "#16A34A", "#DC2626", "#F0F9FF"):
+        if needle not in text:
+            fail(f"MASTER.md missing {needle}")
+    for page in ("watchos", "ios", "macos"):
+        if not (ROOT / f"design-system/clusterfuck/pages/{page}.md").is_file():
+            fail(f"missing page override {page}.md")
+    theme = read("Sources/NaturalRemote/Theme/ClusterFuckTheme.swift")
+    for needle in ("0x0284C7", "0x0F0F23", "0x16A34A", "accessibilityReduceMotion", "waveform.path.ecg"):
+        if needle not in theme:
+            fail(f"ClusterFuckTheme missing {needle}")
+
+
+def test_feature_vector_no_observed_delta() -> None:
+    src = read("Sources/NaturalRemote/Analysis/DeltaHRVFlexAIDMapper.swift")
+    match = re.search(r"public var vector: \[Double\] \{(.+?)\n    \}", src, re.S)
+    if not match:
+        fail("DeltaHRVFlexAIDFeatures.vector missing")
+        return
+    body = match.group(1)
+    if "observedDelta" in body:
+        fail("feature vector must not include observed ΔHRV (label leakage)")
+    if "flexAIDDeltaS" not in body:
+        fail("feature vector must include flexAIDDeltaS")
+
+
+def test_control_honesty() -> None:
+    loop = read("Sources/NaturalRemote/Session/RemoteControlLoop.swift")
+    if "self.drugKit = DrugKitEngine.shared" in loop:
+        fail("RemoteControlLoop must not share DrugKitEngine.shared")
+    if "DrugKitEngine()" not in loop:
+        fail("RemoteControlLoop must construct its own DrugKitEngine")
+    crooks = read("Sources/NaturalRemote/Core/CrooksCycleController.swift")
+    if "deltaG: Double = 0.05" not in crooks:
+        fail("default ΔG must remain 0.05")
+    if "try? await bus.execute" in crooks:
+        fail("minimizeSigma must not swallow actuator results with try?")
+    if ":unregistered" not in crooks:
+        fail("lastActionSummary must record unregistered actuators")
+    apply = read("Sources/NaturalRemote/Actuators/ResearchKitBridge.swift")
+    if "state.physiologicalSCI" not in apply:
+        fail("ResearchKit apply must blend from physiologicalSCI")
+    voice = read("Sources/NaturalRemote/Actuators/AlexaAndFoundation.swift")
+    if 'lowered.contains("up")' in voice:
+        fail("voice parser must not match substring 'up'")
+    http = read("Sources/NaturalRemote/Core/RemoteHTTPHonesty.swift")
+    if "requireSuccess" not in http:
+        fail("RemoteHTTPHonesty.requireSuccess missing")
+    phone = read("Apps/BonhommeRemotePhone/App/PhoneConnectivityBridge.swift")
+    if 'context["tokens"] = tokens' in phone:
+        fail("WC application context must not carry OAuth tokens")
+
+
+def test_privacy_and_watch_plist() -> None:
+    for rel in (
+        "Apps/ClusterFuck/PrivacyInfo.xcprivacy",
+        "Apps/ClusterFuckWatch/PrivacyInfo.xcprivacy",
+        "Apps/BonhommeRemotePhone/PrivacyInfo.xcprivacy",
+        "Apps/BonhommeRemoteWatch/PrivacyInfo.xcprivacy",
+    ):
+        text = read(rel)
+        if "NSPrivacyTracking" not in text:
+            fail(f"{rel} missing tracking key")
+        if "<false/>" not in text:
+            fail(f"{rel} must set NSPrivacyTracking false")
+        if "NSPrivacyCollectedDataTypes" not in text:
+            fail(f"{rel} missing collected types")
+    watch = read("Apps/BonhommeRemoteWatch/Info.plist")
+    if "<key>WKApplication</key>\n\t<true/>" not in watch.replace("\r", ""):
+        if "<key>WKApplication</key>\n    <true/>" not in watch:
+            fail("BonhommeRemoteWatch WKApplication must be boolean true")
+    mac_plist = read("Apps/ClusterFuck/MacInfo.plist")
+    if "LSRequiresIPhoneOS" in mac_plist:
+        fail("Mac Info.plist must not require iPhone OS")
+    mac_ent = read("Apps/ClusterFuck/ClusterFuckMac.entitlements")
+    if "com.apple.security.app-sandbox" not in mac_ent:
+        fail("Mac entitlements must sandbox")
+
+
+def _png_rgb_1024(path: pathlib.Path, platform: str) -> None:
+    if not path.is_file():
+        fail(f"{platform} icon missing: {path}")
+        return
+    data = path.read_bytes()
+    if data[:8] != b"\x89PNG\r\n\x1a\n":
+        fail(f"{platform} icon is not PNG")
+        return
+    width, height, depth, color = struct.unpack(">IIBB", data[16:26])
+    if (width, height) != (1024, 1024):
+        fail(f"{platform} icon {width}x{height}, need 1024")
+    if depth != 8 or color != 2:
+        fail(f"{platform} icon must be 8-bit RGB (got depth={depth} color={color})")
+    if b"tRNS" in data:
+        fail(f"{platform} icon must be opaque (no tRNS)")
+
+
+def test_icons() -> None:
+    _png_rgb_1024(
+        ROOT / "Apps/ClusterFuck/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+        "ios",
+    )
+    _png_rgb_1024(
+        ROOT / "Apps/ClusterFuck/Assets.xcassets/AppIcon.appiconset/AppIcon-Mac-1024.png",
+        "macos",
+    )
+    _png_rgb_1024(
+        ROOT / "Apps/ClusterFuckWatch/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+        "watchos",
+    )
+    ios_json = json.loads(
+        (ROOT / "Apps/ClusterFuck/Assets.xcassets/AppIcon.appiconset/Contents.json").read_text()
+    )
+    platforms = {img.get("platform") for img in ios_json["images"] if "platform" in img}
+    if "ios" not in platforms:
+        fail("ClusterFuck AppIcon must declare ios platform")
+    watch_json = json.loads(
+        (ROOT / "Apps/ClusterFuckWatch/Assets.xcassets/AppIcon.appiconset/Contents.json").read_text()
+    )
+    if watch_json["images"][0].get("platform") != "watchos":
+        fail("watch AppIcon platform must be watchos")
+
+
+def test_no_invented_tvos_app() -> None:
+    if (ROOT / "Apps/ClusterFuckTV").exists():
+        fail("do not invent a tvOS app host")
+
+
+def main() -> int:
+    test_design_system()
+    test_feature_vector_no_observed_delta()
+    test_control_honesty()
+    test_privacy_and_watch_plist()
+    test_icons()
+    test_no_invented_tvos_app()
+    if FAILS:
+        for item in FAILS:
+            print("FAIL:", item)
+        return 1
+    print("OK ClusterFuck contracts")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

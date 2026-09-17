@@ -25,7 +25,14 @@
 		BD268D62BDF689FE38D14F8C /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = 7C171AFF3FAF07AD4AF89BBC /* NaturalRemote */; };
 		D5CB8692606C17AE30C83520 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 321640F2B4CF1F5936F256F9 /* BonhommeCore */; };
 		FEEDBC21E96068FA6E0C48E0 /* ClusterFuckWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3316115E810184D7DBF2B36C /* ClusterFuckWatchApp.swift */; };
+		A20B00000000000000000002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20B00000000000000000001 /* Assets.xcassets */; };
+		A20B00000000000000000004 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20B00000000000000000003 /* PrivacyInfo.xcprivacy */; };
+		A20B00000000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20B00000000000000000006 /* Assets.xcassets */; };
+		A20B00000000000000000009 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20B00000000000000000008 /* PrivacyInfo.xcprivacy */; };
+		A20B0000000000000000000B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20B0000000000000000000C /* PrivacyInfo.xcprivacy */; };
+		A20B0000000000000000000D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20B0000000000000000000E /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
+
 
 /* Begin PBXContainerItemProxy section */
 		221EED8099D3FE11BA3324FC /* PBXContainerItemProxy */ = {
@@ -75,7 +82,14 @@
 		E736BB4867842BC6BB4C7266 /* BonhommeRemoteWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonhommeRemoteWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB59502156033935FB07A3F /* ClusterFuckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckApp.swift; sourceTree = "<group>"; };
 		FEB8948F5045B5438FDF29C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A20B00000000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A20B00000000000000000003 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A20B00000000000000000006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A20B00000000000000000008 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A20B0000000000000000000C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		A20B0000000000000000000E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
 
 /* Begin PBXFrameworksBuildPhase section */
 		7B69DEC94697C6F145055C43 /* Frameworks */ = {
@@ -165,6 +179,7 @@
 				D476328C557C42D8462FA2EE /* ClusterFuckWatch.entitlements */,
 				3316115E810184D7DBF2B36C /* ClusterFuckWatchApp.swift */,
 				D9EBBFA349805667C642790B /* Info.plist */,
+				A20B0000000000000000000E /* PrivacyInfo.xcprivacy */,
 			);
 			path = ClusterFuckWatch;
 			sourceTree = "<group>";
@@ -190,8 +205,10 @@
 			isa = PBXGroup;
 			children = (
 				3B15515B623B524CB54A9A2B /* App */,
+				A20B00000000000000000006 /* Assets.xcassets */,
 				657A5257038789B7FDA58814 /* BonhommeRemoteWatch.entitlements */,
 				FEB8948F5045B5438FDF29C9 /* Info.plist */,
+				A20B00000000000000000008 /* PrivacyInfo.xcprivacy */,
 			);
 			path = BonhommeRemoteWatch;
 			sourceTree = "<group>";
@@ -203,6 +220,7 @@
 				D2C8B0E23940AE30360C41C7 /* ClusterFuck.entitlements */,
 				FBB59502156033935FB07A3F /* ClusterFuckApp.swift */,
 				0C8D805450A161AF3AC0B70A /* Info.plist */,
+				A20B0000000000000000000C /* PrivacyInfo.xcprivacy */,
 			);
 			path = ClusterFuck;
 			sourceTree = "<group>";
@@ -211,8 +229,10 @@
 			isa = PBXGroup;
 			children = (
 				86EA6AC22E328F546B32214B /* App */,
+				A20B00000000000000000001 /* Assets.xcassets */,
 				45665E301A6D233C6DC91324 /* BonhommeRemotePhone.entitlements */,
 				5B8889597211A2E6CD8B2643 /* Info.plist */,
+				A20B00000000000000000003 /* PrivacyInfo.xcprivacy */,
 			);
 			path = BonhommeRemotePhone;
 			sourceTree = "<group>";
@@ -255,6 +275,7 @@
 			buildConfigurationList = A0801CA69E014842BB40BC92 /* Build configuration list for PBXNativeTarget "BonhommeRemoteWatch" */;
 			buildPhases = (
 				9414C362A33931CE10410964 /* Sources */,
+				A20B0000000000000000000A /* Resources */,
 				7B69DEC94697C6F145055C43 /* Frameworks */,
 			);
 			buildRules = (
@@ -296,6 +317,7 @@
 			buildConfigurationList = 8A613A3F842A8C357D2BB05E /* Build configuration list for PBXNativeTarget "BonhommeRemotePhone" */;
 			buildPhases = (
 				5C227E3C42FBA7CA2346DCB1 /* Sources */,
+				A20B00000000000000000005 /* Resources */,
 				7CC838AF48E90D70B8C273BF /* Frameworks */,
 				9B4168682A0A9FE7A208924A /* Embed Watch Content */,
 			);
@@ -372,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D7F3E685E4F6772EFCB07A7 /* Assets.xcassets in Resources */,
+				A20B0000000000000000000D /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +403,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CB335B078620D2C3ED60B0D /* Assets.xcassets in Resources */,
+				A20B0000000000000000000B /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+
+		A20B00000000000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A20B00000000000000000002 /* Assets.xcassets in Resources */,
+				A20B00000000000000000004 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A20B0000000000000000000A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A20B00000000000000000007 /* Assets.xcassets in Resources */,
+				A20B00000000000000000009 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

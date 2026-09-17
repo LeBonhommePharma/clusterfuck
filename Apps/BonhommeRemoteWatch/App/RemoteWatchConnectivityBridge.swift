@@ -1,4 +1,5 @@
 import Foundation
+import NaturalRemote
 
 #if canImport(WatchConnectivity)
 import WatchConnectivity
@@ -76,7 +77,7 @@ final class RemoteWatchConnectivityBridge: NSObject {
     private func updateApplicationContext(_ message: [String: Any]) {
         guard let session = wcSession else { return }
         do {
-            try session.updateApplicationContext(message)
+            try session.updateApplicationContext(SecretFieldPolicy.sanitizeWatchContext(message))
             lastSyncDate = Date()
         } catch {
             lastErrorDescription = error.localizedDescription

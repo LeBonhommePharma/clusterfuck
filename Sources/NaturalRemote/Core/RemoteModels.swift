@@ -43,6 +43,9 @@ public struct RemoteMultiSignalState: Codable, Sendable, Equatable {
     public var musicBPM: Double
     public var audioEntropyBits: Double
     public var sci: Double
+    /// HRV-derived SCI **before** survey blending. `ResearchKitBridge.apply` always
+    /// blends from this field so re-apply cannot ratchet `sci` toward the survey.
+    public var physiologicalSCI: Double
     public var pcci: Double
     public var alexaEntropyHint: Double
     /// Last ResearchKit/subjective survey work contribution (idempotent; never accumulate across ticks).
@@ -58,6 +61,7 @@ public struct RemoteMultiSignalState: Codable, Sendable, Equatable {
         musicBPM: Double = 120,
         audioEntropyBits: Double = 0,
         sci: Double = 0.5,
+        physiologicalSCI: Double? = nil,
         pcci: Double = 0.5,
         alexaEntropyHint: Double = 0,
         subjectiveWorkHint: Double = 0,
@@ -71,6 +75,7 @@ public struct RemoteMultiSignalState: Codable, Sendable, Equatable {
         self.musicBPM = musicBPM
         self.audioEntropyBits = audioEntropyBits
         self.sci = sci
+        self.physiologicalSCI = physiologicalSCI ?? sci
         self.pcci = pcci
         self.alexaEntropyHint = alexaEntropyHint
         self.subjectiveWorkHint = subjectiveWorkHint

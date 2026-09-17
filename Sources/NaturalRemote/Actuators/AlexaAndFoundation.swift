@@ -88,6 +88,7 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
     public let service: RemoteService = .alexa
     public private(set) var config: AlexaProxyConfig
     public var transportHook: (@Sendable (String, [String: String]) async throws -> Void)?
+    private let session: URLSession
 
     private let lock = NSLock()
     private var lastIntent: String = ""
@@ -97,8 +98,14 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
     private var lastDirective: AlexaSmartHomeDirective?
     private var lastHTTPStatus: Int?
 
-    public init(config: AlexaProxyConfig = AlexaProxyConfig()) {
+    public init(config: AlexaProxyConfig = AlexaProxyConfig(), session: URLSession = .shared) {
         self.config = config
+        self.session = session
+    }
+
+    public var lastHTTPStatusCode: Int? {
+        lock.lock(); defer { lock.unlock() }
+        return lastHTTPStatus
     }
 
     public func updateConfig(_ config: AlexaProxyConfig) {
@@ -381,9 +388,10 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
             request.setValue("Bearer \(bearer)", forHTTPHeaderField: "Authorization")
         }
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
-        let (_, response) = try await URLSession.shared.data(for: request)
+        let (_, response) = try await session.data(for: request)
         let status = (response as? HTTPURLResponse)?.statusCode
         lock.lock(); lastHTTPStatus = status; lock.unlock()
+        try RemoteHTTPHonesty.requireSuccess(status)
     }
 }
 
@@ -437,7 +445,9 @@ public final class FoundationModelOrchestrator: RemoteActuator, @unchecked Senda
             commands.append(RemoteCommand(service: .alexa, action: "breatheAndDim", params: ["lights": "30"]))
             commands.append(RemoteCommand(service: .airPods, action: "enableANC"))
         }
-        if lowered.contains("explore") || lowered.contains("energy") || lowered.contains("up") {
+        // Whole-word / phrase match — substring "up" used to fire on "what's up".
+        if lowered.contains("explore") || lowered.contains("energy")
+            || lowered.contains("turn up") || lowered.contains("amp up") {
             commands.append(RemoteCommand(service: .diFm, action: "preferProgressiveChannel"))
             commands.append(RemoteCommand(service: .airPods, action: "transparency"))
         }

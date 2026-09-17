@@ -1,18 +1,49 @@
 import SwiftUI
 import BonhommeCore
 
-/// Watch/iOS remote UI reusing NATURaL `SCIVisualizationView` patterns and vertical session paging.
+/// Watch/iOS/macOS remote UI: Crooks σ_irr HUD + actuator pages.
 ///
-/// Extends the BonhommeWatch SessionView topology: multi-page TabView with biofeedback + controls,
-/// now centered on σ_irr minimization rather than yoga pose flow.
+/// Reuses NATURaL `SCIVisualizationView` for the coherence ring. Layout is a
+/// control remote (sigma / music / dose / environment) — not a yoga pose flow.
 public struct RemoteSessionView: View {
     @ObservedObject private var model: RemoteSessionViewModel
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     public init(model: RemoteSessionViewModel) {
         self.model = model
     }
 
     public var body: some View {
+        Group {
+            #if os(watchOS)
+            pagedRemote
+            #else
+            if sizeClass == .regular {
+                NavigationSplitView {
+                    List(selection: $model.selectedTab) {
+                        navRow(0, title: "σ_irr", symbol: .sigma)
+                        navRow(1, title: "Music", symbol: .music)
+                        navRow(2, title: "DrugKit", symbol: .dose)
+                        navRow(3, title: "Environment", symbol: .environment)
+                    }
+                    .navigationTitle("Remote")
+                } detail: {
+                    page(for: model.selectedTab)
+                        .padding()
+                        .frame(maxWidth: 720, alignment: .top)
+                }
+            } else {
+                pagedRemote
+            }
+            #endif
+        }
+        .background(Color.clusterFuckBackground.ignoresSafeArea())
+        .task {
+            await model.start()
+        }
+    }
+
+    private var pagedRemote: some View {
         TabView(selection: $model.selectedTab) {
             sigmaTab.tag(0)
             musicTab.tag(1)
@@ -22,92 +53,168 @@ public struct RemoteSessionView: View {
         #if os(watchOS)
         .tabViewStyle(.verticalPage)
         #endif
-        .task {
-            await model.start()
+    }
+
+    private func navRow(_ tag: Int, title: String, symbol: ClusterFuckSymbol) -> some View {
+        Label(title, systemImage: symbol.systemName)
+            .tag(tag)
+            .symbolRenderingMode(.monochrome)
+    }
+
+    @ViewBuilder
+    private func page(for tag: Int) -> some View {
+        switch tag {
+        case 1: musicTab
+        case 2: doseTab
+        case 3: environmentTab
+        default: sigmaTab
         }
     }
 
     private var sigmaTab: some View {
-        VStack(spacing: 10) {
-            // Reuse NATURaL SCIVisualizationView for coherence ring.
-            SCIVisualizationView(score: model.sciScore, trend: model.sciTrend)
-            Text(String(format: "σ_irr: %.3f", model.sigmaIrr))
-                .font(.system(.headline, design: .rounded))
-                .monospacedDigit()
-                .foregroundStyle(model.sigmaIrr < 0.05 ? .green : .orange)
-            Text(String(format: "Closure: %.0f%% · %@", model.closurePercent, model.phaseLabel))
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            Text(model.lastAction)
-                .font(.caption2)
-                .lineLimit(2)
-                .foregroundStyle(.secondary)
-            HStack(spacing: 8) {
-                Button(model.isSessionRunning ? "Stop" : "Start") {
-                    Task {
-                        if model.isSessionRunning { model.stop() }
-                        else { await model.start() }
-                    }
+        ScrollView {
+            VStack(spacing: ClusterFuckSpacing.md) {
+                SigmaHUDView(
+                    sigmaIrr: model.sigmaIrr,
+                    closurePercent: model.closurePercent,
+                    phase: CrooksCyclePhase(rawValue: model.phaseLabel) ?? .forward,
+                    lastAction: model.lastAction,
+                    compact: compactChrome
+                )
+                SCIVisualizationView(score: model.sciScore, trend: model.sciTrend)
+                    .frame(minHeight: compactChrome ? 64 : 88)
+                    .accessibilityLabel("Shannon collapse index \(model.sciScore.map { String(format: "%.2f", $0) } ?? "unknown")")
+
+                HStack(spacing: ClusterFuckSpacing.sm) {
+                    sessionButton
+                    minimizeButton
                 }
-                .buttonStyle(.bordered)
-                Button("Minimize σ") {
-                    Task { await model.forceMinimize() }
+                if let err = model.lastError, !err.isEmpty {
+                    Text(err)
+                        .font(ClusterFuckType.caption)
+                        .foregroundStyle(Color.clusterFuckDestructive)
+                        .accessibilityLabel("Error \(err)")
                 }
-                .buttonStyle(.borderedProminent)
             }
+            .padding(ClusterFuckSpacing.md)
         }
-        .padding()
+    }
+
+    private var sessionButton: some View {
+        Button {
+            Task {
+                if model.isSessionRunning { model.stop() }
+                else { await model.start() }
+            }
+        } label: {
+            Text(model.isSessionRunning ? "Stop" : "Start")
+                .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
+        }
+        .buttonStyle(.bordered)
+        .disabled(model.isBusy)
+        .accessibilityLabel(model.isSessionRunning ? "Stop pharmacovigilance session" : "Start pharmacovigilance session")
+    }
+
+    private var minimizeButton: some View {
+        Button {
+            Task { await model.forceMinimize() }
+        } label: {
+            Label(model.isBusy ? "Working…" : "Minimize σ", systemImage: ClusterFuckSymbol.minimize.systemName)
+                .frame(minHeight: ClusterFuckIconSize.hit)
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(Color.clusterFuckAccent)
+        .disabled(model.isBusy)
+        .accessibilityLabel("Minimize irreversible entropy production")
+        .accessibilityHint("Drives music, Alexa, and AirPods actuators")
     }
 
     private var musicTab: some View {
-        VStack(spacing: 8) {
-            Text("Music Stack").font(.headline)
+        VStack(spacing: ClusterFuckSpacing.sm) {
+            Label("Music stack", systemImage: ClusterFuckSymbol.music.systemName)
+                .font(ClusterFuckType.headline)
+                .symbolRenderingMode(.monochrome)
             Text(String(format: "BPM %.0f · H_audio %.2f bit", model.musicBPM, model.audioEntropy))
-                .font(.caption)
-                .monospacedDigit()
-            HStack {
+                .font(ClusterFuckType.caption.monospacedDigit())
+                .foregroundStyle(Color.clusterFuckMute)
+            HStack(spacing: ClusterFuckSpacing.sm) {
                 Button("Ground") { Task { await model.groundMusic() } }
+                    .frame(minHeight: ClusterFuckIconSize.hit)
+                    .disabled(model.isBusy)
+                    .accessibilityLabel("Queue grounding music")
                 Button("Explore") { Task { await model.exploreMusic() } }
+                    .frame(minHeight: ClusterFuckIconSize.hit)
+                    .disabled(model.isBusy)
+                    .accessibilityLabel("Allow exploratory music")
             }
             Text("Apple Music · Spotify · Sonos · DI.fm")
                 .font(.caption2)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Color.clusterFuckMute)
         }
-        .padding()
+        .padding(ClusterFuckSpacing.md)
+        .frame(maxWidth: .infinity)
     }
 
     private var doseTab: some View {
-        VStack(spacing: 8) {
-            Text("DrugKit").font(.headline)
+        VStack(spacing: ClusterFuckSpacing.sm) {
+            Label("DrugKit", systemImage: ClusterFuckSymbol.dose.systemName)
+                .font(ClusterFuckType.headline)
+                .symbolRenderingMode(.monochrome)
             Text(String(format: "PCCI %.2f · ΔHRV %.1f", model.pcci, model.deltaHRV))
-                .font(.caption)
-                .monospacedDigit()
+                .font(ClusterFuckType.caption.monospacedDigit())
+                .foregroundStyle(Color.clusterFuckMute)
             Button("Log demo dose") {
                 Task { await model.logDemoDose() }
             }
+            .frame(minHeight: ClusterFuckIconSize.hit)
+            .disabled(model.isBusy)
+            .accessibilityLabel("Log demo dose for pharmacovigilance")
             if model.groundingAlert {
                 Text("grounding_alert")
-                    .foregroundStyle(.red)
+                    .foregroundStyle(Color.clusterFuckDestructive)
                     .font(.caption.bold())
+                    .accessibilityLabel("Grounding alert: predicted versus observed delta HRV mismatch")
             }
         }
-        .padding()
+        .padding(ClusterFuckSpacing.md)
+        .frame(maxWidth: .infinity)
     }
 
     private var environmentTab: some View {
-        VStack(spacing: 8) {
-            Text("Environment").font(.headline)
+        VStack(spacing: ClusterFuckSpacing.sm) {
+            Label("Environment", systemImage: ClusterFuckSymbol.environment.systemName)
+                .font(ClusterFuckType.headline)
+                .symbolRenderingMode(.monochrome)
             Text("Alexa lights: \(model.alexaLights)%")
-                .font(.caption)
-            HStack {
+                .font(ClusterFuckType.caption)
+                .foregroundStyle(Color.clusterFuckMute)
+            HStack(spacing: ClusterFuckSpacing.sm) {
                 Button("ANC") { Task { await model.setANC() } }
+                    .frame(minHeight: ClusterFuckIconSize.hit)
+                    .disabled(model.isBusy)
+                    .accessibilityLabel("Enable AirPods noise cancellation")
                 Button("Transparency") { Task { await model.setTransparency() } }
+                    .frame(minHeight: ClusterFuckIconSize.hit)
+                    .disabled(model.isBusy)
+                    .accessibilityLabel("Enable AirPods transparency")
             }
             Button("Voice: chill + dim") {
                 Task { await model.voiceChill() }
             }
+            .frame(minHeight: ClusterFuckIconSize.hit)
+            .disabled(model.isBusy)
+            .accessibilityLabel("Voice command chill music and dim lights")
         }
-        .padding()
+        .padding(ClusterFuckSpacing.md)
+        .frame(maxWidth: .infinity)
+    }
+
+    private var compactChrome: Bool {
+        #if os(watchOS)
+        true
+        #else
+        sizeClass != .regular
+        #endif
     }
 }
 
@@ -126,6 +233,8 @@ public final class RemoteSessionViewModel: ObservableObject {
     @Published public var deltaHRV: Double = 0
     @Published public var groundingAlert = false
     @Published public var alexaLights: Int = 60
+    @Published public var isBusy = false
+    @Published public var lastError: String?
 
     public let manager: PharmaControlSessionManager
 
@@ -134,6 +243,8 @@ public final class RemoteSessionViewModel: ObservableObject {
     }
 
     public func start() async {
+        isBusy = true
+        defer { isBusy = false }
         await manager.start()
         refreshFromLoop()
     }
@@ -171,7 +282,9 @@ public final class RemoteSessionViewModel: ObservableObject {
         state.musicBPM = musicBPM
         state.audioEntropyBits = audioEntropy
         state.sci = sci
+        state.physiologicalSCI = sci
         let snap = await manager.loop.crooks.update(with: state)
+        manager.loop.replaceState(state)
         self.sigmaIrr = snap.sigmaIrr
         self.closurePercent = snap.closurePercent
         self.phaseLabel = snap.phase.rawValue
@@ -184,6 +297,8 @@ public final class RemoteSessionViewModel: ObservableObject {
     }
 
     public func forceMinimize() async {
+        isBusy = true
+        defer { isBusy = false }
         await manager.loop.crooks.minimizeSigma(currentBPM: musicBPM)
         refreshFromLoop()
     }
@@ -202,6 +317,8 @@ public final class RemoteSessionViewModel: ObservableObject {
     }
 
     public func logDemoDose() async {
+        isBusy = true
+        defer { isBusy = false }
         let result = await manager.loop.logDose(
             DrugLog(substance: "2C-B", doseMg: 12, setAndSetting: "home / lo-fi", hrDelta: 8, entropyShift: 1.2)
         )
@@ -221,6 +338,8 @@ public final class RemoteSessionViewModel: ObservableObject {
     }
 
     public func voiceChill() async {
+        isBusy = true
+        defer { isBusy = false }
         await manager.loop.handleVoice("chill music and dim lights")
         alexaLights = manager.loop.alexa.lightsPercent
         refreshFromLoop()
@@ -245,9 +364,3 @@ public final class RemoteSessionViewModel: ObservableObject {
         }
     }
 }
-
-// MARK: - SCITrend bridge
-
-// BonhommeCore SCIVisualizationView uses SCITrend — ensure we reference the same type.
-// If SCITrend lives next to SCIVisualizationView in BonhommeCore, this compiles.
-// Fallback alias if needed is unnecessary when importing BonhommeCore fully.
