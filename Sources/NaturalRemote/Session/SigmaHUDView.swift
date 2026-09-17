@@ -33,7 +33,7 @@ public struct SigmaHUDView: View {
             ZStack {
                 Circle()
                     .stroke(Color.clusterFuckBorder.opacity(0.45), lineWidth: compact ? 6 : 10)
-                if known {
+                if known, frac > 0 {
                     Circle()
                         .trim(from: 0, to: frac)
                         .stroke(band.color, style: StrokeStyle(lineWidth: compact ? 6 : 10, lineCap: .round))

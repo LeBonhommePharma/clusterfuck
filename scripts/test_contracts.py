@@ -50,6 +50,10 @@ def test_design_system() -> None:
         fail("unknown σ_irr must not invent Closure 0%")
     if "if known" not in hud:
         fail("σ_irr ring trim must omit fill when the value is unknown")
+    if "if known, frac > 0" not in hud:
+        fail("σ_irr ring must omit fill at 0% closure")
+    if "if known {" in hud:
+        fail("σ_irr ring must not stroke a 0% round-cap stub")
     if "case .unknown" not in theme:
         fail("unknown σ_irr must map to a mute band, not elevated")
     vm = read("Sources/NaturalRemote/Session/RemoteSessionView.swift")
