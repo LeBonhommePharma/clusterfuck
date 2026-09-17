@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [Bonhomme, main, master]
+    branches: [Bonhomme, main, master, "entropy/**"]
   pull_request:
 
 jobs:
