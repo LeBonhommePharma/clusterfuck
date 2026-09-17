@@ -34,7 +34,6 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
             "ΔSDNN must track the SDNN series, not copy ΔRMSSD"
         )
     }
-    }
 
     func testFlexAIDDeltaSUsesBonhommeEntropy() {
         let mapper = DeltaHRVFlexAIDMapper()
