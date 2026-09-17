@@ -49,6 +49,11 @@ def test_feature_vector_no_observed_delta() -> None:
         fail("feature vector must not include observed ΔHRV (label leakage)")
     if "flexAIDDeltaS" not in body:
         fail("feature vector must include flexAIDDeltaS")
+    mapper = read("Sources/NaturalRemote/Analysis/DeltaHRVFlexAIDMapper.swift")
+    if "func configurationalDeltaS(freeAngles" not in mapper:
+        fail("mapper must expose configurationalDeltaS (not a flexAIDDeltaS method that collides in tests)")
+    if "func flexAIDDeltaS(freeAngles" in mapper:
+        fail("do not reintroduce flexAIDDeltaS(freeAngles:) — test-module name clash")
 
 
 def test_control_honesty() -> None:

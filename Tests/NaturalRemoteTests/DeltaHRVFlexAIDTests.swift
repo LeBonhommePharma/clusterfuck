@@ -37,13 +37,26 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
 
     func testFlexAIDDeltaSUsesBonhommeEntropy() {
         let mapper = DeltaHRVFlexAIDMapper()
-        // Free: broad angles; bound: tight cluster → negative ΔS
-        let free = (0..<200).map { _ in Double.random(in: -180...180) }
-        let bound = (0..<200).map { _ in Double.random(in: -10...10) }
-        let dS = mapper.flexAIDDeltaS(freeAngles: free, boundAngles: bound)
+        // Deterministic: uniform wrap-around vs a frozen rotor at 0°.
+        let free = stride(from: -180.0, to: 180.0, by: 1.8).map { $0 }
+        let bound = Array(repeating: 0.0, count: 200)
+        let dS = mapper.configurationalDeltaS(freeAngles: free, boundAngles: bound)
         XCTAssertLessThan(dS, 0, "binding should reduce configurational entropy")
         let penalty = mapper.entropyPenaltyKcal(deltaSBits: dS)
         XCTAssertTrue(penalty.isFinite)
+        XCTAssertGreaterThan(penalty, 0, "negative ΔS_config (binding) must produce a positive kcal penalty")
+
+        let engine = DrugKitEngine()
+        let log = DrugLog(substance: "LSD", doseMg: 0.1, hrDelta: 12, entropyShift: 9)
+        let pred = engine.analyzeWithFlexAID(
+            log,
+            observedDelta: 20,
+            baselineSCI: 0.6,
+            freeAngles: free,
+            boundAngles: bound
+        )
+        XCTAssertEqual(pred.flexAIDDeltaS, dS, accuracy: 1e-12)
+        XCTAssertLessThan(pred.flexAIDDeltaS, log.entropyShift)
     }
 
     func testHybridPredictionDeviationPath() {

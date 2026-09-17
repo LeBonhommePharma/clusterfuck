@@ -178,7 +178,7 @@ public final class DrugKitEngine: @unchecked Sendable {
     ) -> DeltaHRVFlexAIDPrediction {
         let deltaS: Double
         if let free = freeAngles, let bound = boundAngles, free.count >= 4, bound.count >= 4 {
-            deltaS = mapper.flexAIDDeltaS(freeAngles: free, boundAngles: bound)
+            deltaS = mapper.configurationalDeltaS(freeAngles: free, boundAngles: bound)
         } else {
             deltaS = log.entropyShift
         }
