@@ -84,4 +84,15 @@ final class AppSessionFacadeTests: XCTestCase {
         model.stop()
         XCTAssertEqual(model.alexaLightsLabel, "Alexa lights: —")
     }
+
+    func testSciAccessibilityLabelFailsClosedOnNilAndNaN() {
+        let model = RemoteSessionViewModel()
+        XCTAssertEqual(model.sciAccessibilityLabel, "Shannon collapse index unavailable")
+        model.sciScore = .nan
+        XCTAssertEqual(model.sciAccessibilityLabel, "Shannon collapse index unavailable")
+        model.sciScore = .infinity
+        XCTAssertEqual(model.sciAccessibilityLabel, "Shannon collapse index unavailable")
+        model.sciScore = 0.85
+        XCTAssertEqual(model.sciAccessibilityLabel, "Shannon collapse index 0.85")
+    }
 }

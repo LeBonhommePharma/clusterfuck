@@ -69,6 +69,12 @@ def test_design_system() -> None:
         fail("environment HUD must not always interpolate Alexa lights")
     if "alexaLightsLabel" not in vm:
         fail("environment HUD must fail closed through alexaLightsLabel")
+    if '?? "unknown"' in vm:
+        fail("SCI VoiceOver must not format NaN via map")
+    if "sciAccessibilityLabel" not in vm:
+        fail("SCI VoiceOver must fail closed through sciAccessibilityLabel")
+    if "score.isFinite" not in vm:
+        fail("SCI VoiceOver must treat non-finite SCI as unavailable")
     if "ClusterFuckPressStyle" not in theme:
         fail("Remote buttons must use ClusterFuckPressStyle (Reduce Motion aware)")
     if "ClusterFuckLoadingRow" not in theme:
