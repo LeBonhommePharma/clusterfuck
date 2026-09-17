@@ -84,6 +84,11 @@ def test_control_honesty() -> None:
     phone = read("Apps/BonhommeRemotePhone/App/PhoneConnectivityBridge.swift")
     if 'context["tokens"] = tokens' in phone:
         fail("WC application context must not carry OAuth tokens")
+    session = read("Sources/NaturalRemote/Session/PharmaControlSessionManager.swift")
+    if "canRequestReadAuthorization" not in session:
+        fail("HealthKit request must be gated (NSInvalidArgumentException without usage description)")
+    if "requestAuthorization" in session and "canRequestReadAuthorization()" not in session:
+        fail("requestAuthorization must sit behind canRequestReadAuthorization()")
 
 
 def test_privacy_and_watch_plist() -> None:

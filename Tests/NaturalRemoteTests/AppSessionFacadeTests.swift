@@ -51,4 +51,25 @@ final class AppSessionFacadeTests: XCTestCase {
         XCTAssertFalse(events.isEmpty, "minimize must hit the real actuator bus")
         XCTAssertFalse(model.lastAction.isEmpty)
     }
+
+    func testHealthKitGateRefusesBundleWithoutUsageDescription() {
+        let bundle = Bundle(for: AppSessionFacadeTests.self)
+        XCTAssertNil(
+            bundle.object(forInfoDictionaryKey: "NSHealthShareUsageDescription"),
+            "SPM test bundle must not pretend to be a HealthKit host"
+        )
+        XCTAssertFalse(
+            HealthKitAuthorizationGate.canRequestReadAuthorization(in: bundle),
+            "requestAuthorization without NSHealthShareUsageDescription aborts the process"
+        )
+    }
+
+    func testSessionStartCompletesWithoutHealthKitPlist() async {
+        let manager = PharmaControlSessionManager()
+        await manager.start()
+        XCTAssertTrue(manager.isRunning)
+        XCTAssertNotNil(manager.startedAt)
+        manager.stop()
+        XCTAssertFalse(manager.isRunning)
+    }
 }
