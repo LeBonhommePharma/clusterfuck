@@ -44,6 +44,10 @@ def test_design_system() -> None:
     hud = read("Sources/NaturalRemote/Session/SigmaHUDView.swift")
     if '"—"' not in hud:
         fail("σ_irr HUD must render em-dash for non-finite values")
+    if '"Closure —"' not in hud:
+        fail("unknown σ_irr must not invent Closure 0%")
+    if "if known" not in hud:
+        fail("σ_irr ring trim must omit fill when the value is unknown")
     if "case .unknown" not in theme:
         fail("unknown σ_irr must map to a mute band, not elevated")
     vm = read("Sources/NaturalRemote/Session/RemoteSessionView.swift")
