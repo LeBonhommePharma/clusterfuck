@@ -22,6 +22,9 @@ When wrapping `NaturalRemote` in app targets (`Apps/BonhommeRemoteWatch`, `Apps/
 |---|---|
 | BonhommeRemotePhone | `com.natural.BonhommeRemote` |
 | BonhommeRemoteWatch | `com.natural.BonhommeRemote.watchkitapp` |
+| ClusterFuck | `com.lebonhommepharma.clusterfuck` |
+| ClusterFuckWatch | `com.lebonhommepharma.clusterfuck.watchkitapp` |
+| ClusterFuckMac | `com.lebonhommepharma.clusterfuck.mac` |
 
 ### Info.plist usage strings
 

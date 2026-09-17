@@ -1,6 +1,5 @@
 import XCTest
 @testable import NaturalRemote
-import BonhommeCore
 
 final class DeltaHRVFlexAIDTests: XCTestCase {
     func testDeltaHRVChangesAcrossWindows() {
@@ -17,20 +16,52 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
         XCTAssertNotEqual(early, late, accuracy: 1e-9)
     }
 
+    func testDeltaSDNNIsIndependentOfRMSSD() {
+        let analyzer = DeltaHRVAnalyzer(windowSeconds: 1000)
+        let t0 = Date(timeIntervalSince1970: 1_700_000_000)
+        for i in 0..<10 {
+            _ = analyzer.ingest(rmssd: 30, sdnn: 50, rrIntervals: Array(repeating: 800, count: 16), at: t0.addingTimeInterval(Double(i)))
+        }
+        for i in 10..<30 {
+            _ = analyzer.ingest(rmssd: 80, sdnn: 50, rrIntervals: Array(repeating: 700, count: 16), at: t0.addingTimeInterval(Double(i)))
+        }
+        XCTAssertNotEqual(analyzer.latestDeltaRMSSD(), 0, accuracy: 1e-9)
+        XCTAssertEqual(
+            analyzer.latestDeltaSDNN(),
+            0,
+            accuracy: 1e-9,
+            "ΔSDNN must track the SDNN series, not copy ΔRMSSD"
+        )
+    }
+
     func testFlexAIDDeltaSUsesBonhommeEntropy() {
-        let mapper = DeltaHRVFlexAIDMapper()
-        // Free: broad angles; bound: tight cluster → negative ΔS
-        let free = (0..<200).map { _ in Double.random(in: -180...180) }
-        let bound = (0..<200).map { _ in Double.random(in: -10...10) }
-        let dS = mapper.flexAIDDeltaS(freeAngles: free, boundAngles: bound)
+        // Module-qualified: BonhommeCore also exports actor DeltaHRVFlexAIDMapper.
+        let mapper = NaturalRemote.DeltaHRVFlexAIDMapper()
+        // Deterministic: uniform wrap-around vs a frozen rotor at 0°.
+        let free = stride(from: -180.0, to: 180.0, by: 1.8).map { $0 }
+        let bound = Array(repeating: 0.0, count: 200)
+        let dS = mapper.configurationalDeltaS(freeAngles: free, boundAngles: bound)
         XCTAssertLessThan(dS, 0, "binding should reduce configurational entropy")
         let penalty = mapper.entropyPenaltyKcal(deltaSBits: dS)
         XCTAssertTrue(penalty.isFinite)
+        XCTAssertGreaterThan(penalty, 0, "negative ΔS_config (binding) must produce a positive kcal penalty")
+
+        let engine = DrugKitEngine()
+        let log = DrugLog(substance: "LSD", doseMg: 0.1, hrDelta: 12, entropyShift: 9)
+        let pred = engine.analyzeWithFlexAID(
+            log,
+            observedDelta: 20,
+            baselineSCI: 0.6,
+            freeAngles: free,
+            boundAngles: bound
+        )
+        XCTAssertEqual(pred.flexAIDDeltaS, dS, accuracy: 1e-12)
+        XCTAssertLessThan(pred.flexAIDDeltaS, log.entropyShift)
     }
 
     func testHybridPredictionDeviationPath() {
         // Observed Δ is not a model feature, so the prediction is independent of observed Δ.
-        let mapper = DeltaHRVFlexAIDMapper(
+        let mapper = NaturalRemote.DeltaHRVFlexAIDMapper(
             bias: 10,
             deviationThreshold: 0.2
         )
@@ -120,6 +151,7 @@ final class DeltaHRVFlexAIDTests: XCTestCase {
         XCTAssertEqual(decoded.count, 1)
         XCTAssertEqual(decoded[0].substance, "2C-B")
         XCTAssertEqual(decoded[0].action, "grounding_alert")
+        XCTAssertEqual(decoded[0].airPodsNoiseMode, "")
         XCTAssertEqual(NaturalRemoteInfo.strategicRole, "primary_pharmacovigilance_candidate")
     }
 }

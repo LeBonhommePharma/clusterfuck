@@ -216,7 +216,8 @@ public final class SpotifyRemoteController: MusicTransportControlling, RemoteAct
         var request = URLRequest(url: url)
         request.httpMethod = method
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        _ = try await session.data(for: request)
+        let (_, response) = try await session.data(for: request)
+        try RemoteHTTPHonesty.requireSuccess((response as? HTTPURLResponse)?.statusCode)
     }
 }
 

@@ -30,6 +30,8 @@ final class AppSessionFacadeTests: XCTestCase {
         XCTAssertNotEqual(calm.sigmaIrr, hot.sigmaIrr, accuracy: 1e-12)
         XCTAssertEqual(model.sigmaIrr, hot.sigmaIrr, accuracy: 1e-12)
         XCTAssertEqual(model.musicBPM, 148, accuracy: 1e-9)
+        XCTAssertEqual(model.manager.loop.state.musicBPM, 148, accuracy: 1e-9)
+        XCTAssertEqual(model.manager.loop.state.physiologicalSCI, 0.12, accuracy: 1e-9)
 
         model.stop()
         XCTAssertFalse(model.isSessionRunning)
@@ -48,5 +50,26 @@ final class AppSessionFacadeTests: XCTestCase {
         let events = await model.manager.loop.crooks.recordedEvents()
         XCTAssertFalse(events.isEmpty, "minimize must hit the real actuator bus")
         XCTAssertFalse(model.lastAction.isEmpty)
+    }
+
+    func testHealthKitGateRefusesBundleWithoutUsageDescription() {
+        let bundle = Bundle(for: AppSessionFacadeTests.self)
+        XCTAssertNil(
+            bundle.object(forInfoDictionaryKey: "NSHealthShareUsageDescription"),
+            "SPM test bundle must not pretend to be a HealthKit host"
+        )
+        XCTAssertFalse(
+            HealthKitAuthorizationGate.canRequestReadAuthorization(in: bundle),
+            "requestAuthorization without NSHealthShareUsageDescription aborts the process"
+        )
+    }
+
+    func testSessionStartCompletesWithoutHealthKitPlist() async {
+        let manager = PharmaControlSessionManager()
+        await manager.start()
+        XCTAssertTrue(manager.isRunning)
+        XCTAssertNotNil(manager.startedAt)
+        manager.stop()
+        XCTAssertFalse(manager.isRunning)
     }
 }

@@ -14,6 +14,7 @@ struct BonhommeRemoteWatchApp: App {
     var body: some Scene {
         WindowGroup {
             RemoteSessionView(model: sessionModel)
+                .background(Color.clusterFuckBackground.ignoresSafeArea())
                 .onAppear {
                     connectivity.activateIfNeeded()
                 }

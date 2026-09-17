@@ -16,5 +16,6 @@ struct WatchRootView: View {
 
     var body: some View {
         RemoteSessionView(model: model)
+            .background(Color.clusterFuckBackground.ignoresSafeArea())
     }
 }

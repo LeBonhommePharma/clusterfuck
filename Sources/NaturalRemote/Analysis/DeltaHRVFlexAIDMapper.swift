@@ -98,8 +98,12 @@ public final class DeltaHRVFlexAIDMapper: @unchecked Sendable {
         )
     }
 
-    /// Convenience: estimate FlexAID-style ΔS from free vs bound angle samples using BonhommeCore.
-    public func flexAIDDeltaS(freeAngles: [Double], boundAngles: [Double]) -> Double {
+    /// FlexAID-style ΔS_config = H_circular(bound) − H_circular(free).
+    ///
+    /// Named distinctly from the `flexAIDDeltaS` *property* on features/predictions.
+    /// The colliding method base name was invisible to the test module (CI:
+    /// "no member 'flexAIDDeltaS'" since the first macOS job on main).
+    public func configurationalDeltaS(freeAngles: [Double], boundAngles: [Double]) -> Double {
         let sFree = entropyCalc.circularShannonEntropy(freeAngles)
         let sBound = entropyCalc.circularShannonEntropy(boundAngles)
         return sBound - sFree

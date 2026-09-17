@@ -4,6 +4,24 @@ import Foundation
 import HealthKit
 #endif
 
+/// Whether this process may call `HKHealthStore.requestAuthorization` without aborting.
+///
+/// `requestAuthorization` raises `NSInvalidArgumentException` (not a Swift `Error`)
+/// when `NSHealthShareUsageDescription` is missing. SPM `swift test` has no app
+/// Info.plist, so the Crooks loop must still start on injected samples.
+public enum HealthKitAuthorizationGate: Sendable {
+    public static func canRequestReadAuthorization(in bundle: Bundle = .main) -> Bool {
+        #if canImport(HealthKit)
+        guard HKHealthStore.isHealthDataAvailable() else { return false }
+        let raw = bundle.object(forInfoDictionaryKey: "NSHealthShareUsageDescription") as? String
+        let text = raw?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return !text.isEmpty
+        #else
+        return false
+        #endif
+    }
+}
+
 /// Session lifecycle manager: HealthKit workout session optional, Crooks loop always active.
 public final class PharmaControlSessionManager: @unchecked Sendable {
     public let loop: RemoteControlLoop
@@ -38,14 +56,16 @@ public final class PharmaControlSessionManager: @unchecked Sendable {
         lock.unlock()
 
         #if canImport(HealthKit)
-        let types: Set<HKSampleType> = [
-            HKQuantityType.quantityType(forIdentifier: .heartRate)!,
-            HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!,
-        ]
-        do {
-            try await healthStore.requestAuthorization(toShare: [], read: types)
-        } catch {
-            // Authorization may fail in unit tests / CI — loop still runs on injected samples.
+        if HealthKitAuthorizationGate.canRequestReadAuthorization() {
+            let types: Set<HKSampleType> = [
+                HKQuantityType.quantityType(forIdentifier: .heartRate)!,
+                HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!,
+            ]
+            do {
+                try await healthStore.requestAuthorization(toShare: [], read: types)
+            } catch {
+                // Authorization may fail in simulator / unsigned hosts — loop still runs.
+            }
         }
         #endif
     }

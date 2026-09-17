@@ -20,6 +20,10 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>WKApplication</key>
+	<true/>
+	<key>WKRunsIndependentlyOfCompanionApp</key>
+	<true/>
 	<key>NSHealthShareUsageDescription</key>
 	<string>NATURaL Remote reads heart rate and HRV to minimize irreversible entropy production (σ_irr) and support pharmacovigilance logging.</string>
 	<key>NSHealthUpdateUsageDescription</key>
@@ -28,12 +32,11 @@
 	<string>NATURaL Remote analyzes audio entropy and optional voice commands on-device.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>NATURaL Remote uses headphone motion for AirPods Max head-pose control.</string>
-	<key>WKApplication</key>
-	<dict>
-		<key>WKBackgroundModes</key>
-		<array>
-			<string>workout-processing</string>
-		</array>
-	</dict>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
 </dict>
 </plist>
