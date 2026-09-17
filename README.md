@@ -21,6 +21,8 @@ This is not “just a media remote.” Dose logs, ΔHRV, hybrid predictions, act
 cd /Users/lp.more/Projects/ClusterFuck
 swift package describe
 swift test
+python3 scripts/test_contracts.py
+python3 scripts/validate-submission.py
 ```
 
 ## App hosts (Session 0)
@@ -36,6 +38,11 @@ open BonhommeRemote.xcodeproj
 |---|---|---|
 | Watch | `Apps/BonhommeRemoteWatch` | `com.natural.BonhommeRemote.watchkitapp` |
 | Phone | `Apps/BonhommeRemotePhone` | `com.natural.BonhommeRemote` |
+| ClusterFuck | `Apps/ClusterFuck` + `Apps/Shared` | `com.lebonhommepharma.clusterfuck` |
+| ClusterFuck Watch | `Apps/ClusterFuckWatch` | `com.lebonhommepharma.clusterfuck.watchkitapp` |
+| ClusterFuck Mac | `Apps/ClusterFuck` (MacInfo) | `com.lebonhommepharma.clusterfuck.mac` |
+
+App Store prep: [`docs/AppStore/README.md`](docs/AppStore/README.md) · design tokens: [`design-system/clusterfuck/MASTER.md`](design-system/clusterfuck/MASTER.md)
 
 Details: [`docs/XCODE_TARGET_SETUP.md`](docs/XCODE_TARGET_SETUP.md) · [`docs/CAPABILITIES.md`](docs/CAPABILITIES.md)
 

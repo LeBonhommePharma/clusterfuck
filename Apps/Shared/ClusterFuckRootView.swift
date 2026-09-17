@@ -29,14 +29,17 @@ public struct ClusterFuckRootView: View {
                 .navigationTitle("ClusterFuck")
                 #endif
         }
+        .background(Color.clusterFuckBackground)
         #if os(macOS)
         .frame(minWidth: 420, minHeight: 560)
         #endif
+        .preferredColorScheme(.dark)
     }
 
     private var sessionBadge: some View {
         Text(model.isSessionRunning ? "LIVE" : "IDLE")
             .font(.caption.bold())
-            .foregroundStyle(model.isSessionRunning ? .green : .secondary)
+            .foregroundStyle(model.isSessionRunning ? Color.clusterFuckAccent : Color.clusterFuckMute)
+            .accessibilityLabel(model.isSessionRunning ? "Session live" : "Session idle")
     }
 }

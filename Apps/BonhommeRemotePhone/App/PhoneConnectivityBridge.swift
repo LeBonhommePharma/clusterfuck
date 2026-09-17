@@ -1,4 +1,5 @@
 import Foundation
+import NaturalRemote
 
 #if canImport(WatchConnectivity)
 import WatchConnectivity
@@ -43,9 +44,8 @@ final class PhoneConnectivityBridge: NSObject {
         pendingTokenPayload = tokens
         #if canImport(WatchConnectivity)
         guard let session = wcSession else { return }
-        var context = session.receivedApplicationContext
-        context["type"] = "token_refresh"
-        context["tokens"] = tokens
+        // Never put bearer tokens in WC application context (it is not Keychain).
+        let context = SecretFieldPolicy.sanitizeWatchContext(["type": "token_refresh"])
         do {
             try session.updateApplicationContext(context)
         } catch {

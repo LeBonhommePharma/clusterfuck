@@ -19,6 +19,7 @@ open BonhommeRemote.xcodeproj
 | `BonhommeRemoteWatch` | watchOS | `Apps/BonhommeRemoteWatch` |
 | `ClusterFuck` | iOS | `Apps/ClusterFuck` + `Apps/Shared` |
 | `ClusterFuckWatch` | watchOS | `Apps/ClusterFuckWatch` |
+| `ClusterFuckMac` | macOS | `Apps/ClusterFuck` + `Apps/Shared` (`MacInfo.plist`, sandboxed) |
 
 All four link SPM products **NaturalRemote** + **BonhommeCore**.
 

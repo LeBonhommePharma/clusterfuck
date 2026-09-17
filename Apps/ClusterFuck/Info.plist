@@ -50,6 +50,8 @@
 	<string>ClusterFuck uses the microphone for AVAudioEngine spectral analysis of music tempo and audio entropy.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>ClusterFuck uses headphone motion for AirPods Max head tracking.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>processing</string>

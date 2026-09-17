@@ -80,6 +80,11 @@ public final class DeltaHRVAnalyzer: @unchecked Sendable {
         return lastDeltaRMSSD
     }
 
+    public func latestDeltaSDNN() -> Double {
+        lock.lock(); defer { lock.unlock() }
+        return lastDeltaSDNN
+    }
+
     public func reset() {
         lock.lock()
         rmssdSeries.removeAll()

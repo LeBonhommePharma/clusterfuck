@@ -30,5 +30,11 @@
 	<string>ClusterFuck Watch may record session-related health context.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Optional audio analysis when available on watchOS.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
 </dict>
 </plist>

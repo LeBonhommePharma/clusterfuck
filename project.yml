@@ -116,6 +116,31 @@ targets:
       - package: BonhommeCore
         product: BonhommeCore
 
+  ClusterFuckMac:
+    type: application
+    platform: macOS
+    sources:
+      - path: Apps/ClusterFuck
+        excludes:
+          - Info.plist
+          - ClusterFuck.entitlements
+      - path: Apps/Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.lebonhommepharma.clusterfuck.mac
+        PRODUCT_NAME: ClusterFuck
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Apps/ClusterFuck/MacInfo.plist
+        CODE_SIGN_ENTITLEMENTS: Apps/ClusterFuck/ClusterFuckMac.entitlements
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
+        COMBINE_HIDPI_IMAGES: YES
+        ITSAppUsesNonExemptEncryption: "NO"
+    dependencies:
+      - package: NaturalRemote
+        product: NaturalRemote
+      - package: BonhommeCore
+        product: BonhommeCore
+
 schemes:
   BonhommeRemotePhone:
     build:
@@ -140,5 +165,11 @@ schemes:
     build:
       targets:
         ClusterFuckWatch: all
+    run:
+      config: Debug
+  ClusterFuckMac:
+    build:
+      targets:
+        ClusterFuckMac: all
     run:
       config: Debug

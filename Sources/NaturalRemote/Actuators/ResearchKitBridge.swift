@@ -171,14 +171,13 @@ public final class ResearchKitBridge: RemoteActuator, @unchecked Sendable {
 
     /// Apply last survey into multi-signal state for Crooks.
     ///
-    /// Idempotent: assigns (does not accumulate) so repeated HRV ticks after one survey
-    /// cannot unbounded-grow `subjectiveWorkHint` or `alexaEntropyHint`.
+    /// Idempotent: assigns (does not accumulate) so repeated HRV ticks or a second
+    /// `apply` cannot unbounded-grow `subjectiveWorkHint` or ratchet `sci`.
+    /// SCI is always `0.5 * physiologicalSCI + 0.5 * lastNormalizedScore`.
     public func apply(to state: inout RemoteMultiSignalState) {
-        // Recompute from last survey only — never `+=` onto prior state.
         state.subjectiveWorkHint = lastSubjectiveWorkHint
         if let score = lastNormalizedScore {
-            // Pure blend of current (HRV-derived) SCI and survey wellness; stable across re-apply.
-            let blended = state.sci * 0.5 + score * 0.5
+            let blended = state.physiologicalSCI * 0.5 + score * 0.5
             state.sci = min(1, max(0, blended))
         }
     }
