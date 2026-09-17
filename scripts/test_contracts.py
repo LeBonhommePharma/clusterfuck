@@ -29,6 +29,8 @@ def test_design_system() -> None:
     for needle in ("#45E0A8", "#8B5CF6", "#08091A", "Brand override"):
         if needle not in text:
             fail(f"MASTER.md missing {needle}")
+    if "| Primary | `#0284C7`" in text:
+        fail("MASTER primary table must not ship clinical blue as source of truth")
     for page in ("watchos", "ios", "macos"):
         if not (ROOT / f"design-system/clusterfuck/pages/{page}.md").is_file():
             fail(f"missing page override {page}.md")
@@ -53,6 +55,10 @@ def test_design_system() -> None:
     vm = read("Sources/NaturalRemote/Session/RemoteSessionView.swift")
     if "sigmaIrr: Double = .nan" not in vm:
         fail("idle ViewModel must start σ_irr as non-finite, never 0")
+    if 'BPM — · H_audio —' not in vm:
+        fail("idle music HUD must not invent BPM 120 / H_audio 0")
+    if 'PCCI — · ΔHRV —' not in vm:
+        fail("idle DrugKit HUD must not invent PCCI 0 / ΔHRV 0")
     if "ClusterFuckPressStyle" not in theme:
         fail("Remote buttons must use ClusterFuckPressStyle (Reduce Motion aware)")
     if "ClusterFuckLoadingRow" not in theme:

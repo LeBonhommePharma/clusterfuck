@@ -148,7 +148,9 @@ public struct RemoteSessionView: View {
             Label("Music stack", systemImage: ClusterFuckSymbol.music.systemName)
                 .font(ClusterFuckType.headline)
                 .symbolRenderingMode(.monochrome)
-            Text(String(format: "BPM %.0f · H_audio %.2f bit", model.musicBPM, model.audioEntropy))
+            Text(model.isSessionRunning
+                 ? String(format: "BPM %.0f · H_audio %.2f bit", model.musicBPM, model.audioEntropy)
+                 : "BPM — · H_audio —")
                 .font(ClusterFuckType.caption.monospacedDigit())
                 .foregroundStyle(Color.clusterFuckMute)
             HStack(spacing: ClusterFuckSpacing.sm) {
@@ -176,7 +178,9 @@ public struct RemoteSessionView: View {
             Label("DrugKit", systemImage: ClusterFuckSymbol.dose.systemName)
                 .font(ClusterFuckType.headline)
                 .symbolRenderingMode(.monochrome)
-            Text(String(format: "PCCI %.2f · ΔHRV %.1f", model.pcci, model.deltaHRV))
+            Text(model.isSessionRunning
+                 ? String(format: "PCCI %.2f · ΔHRV %.1f", model.pcci, model.deltaHRV)
+                 : "PCCI — · ΔHRV —")
                 .font(ClusterFuckType.caption.monospacedDigit())
                 .foregroundStyle(Color.clusterFuckMute)
             Button("Log demo dose") {
