@@ -133,10 +133,11 @@ public struct RemoteSessionView: View {
             Task { await model.forceMinimize() }
         } label: {
             Label(model.isBusy ? "Working…" : "Minimize σ", systemImage: ClusterFuckSymbol.minimize.systemName)
-                .frame(minHeight: ClusterFuckIconSize.hit)
+                .frame(maxWidth: .infinity, minHeight: ClusterFuckIconSize.hit)
+                .foregroundStyle(Color.clusterFuckBackground)
+                .background(Color.clusterFuckAccent, in: RoundedRectangle(cornerRadius: ClusterFuckRadius.sm, style: .continuous))
         }
         .buttonStyle(ClusterFuckPressStyle())
-        .tint(Color.clusterFuckAccent)
         .disabled(model.isBusy)
         .accessibilityLabel("Minimize irreversible entropy production")
         .accessibilityHint("Drives music, Alexa, and AirPods actuators")
@@ -181,7 +182,8 @@ public struct RemoteSessionView: View {
             Button("Log demo dose") {
                 Task { await model.logDemoDose() }
             }
-            .frame(minHeight: ClusterFuckIconSize.hit)
+            .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
+            .buttonStyle(ClusterFuckPressStyle())
             .disabled(model.isBusy)
             .accessibilityLabel("Log demo dose for pharmacovigilance")
             if model.groundingAlert {
@@ -219,7 +221,8 @@ public struct RemoteSessionView: View {
             Button("Voice: chill + dim") {
                 Task { await model.voiceChill() }
             }
-            .frame(minHeight: ClusterFuckIconSize.hit)
+            .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
+            .buttonStyle(ClusterFuckPressStyle())
             .disabled(model.isBusy)
             .accessibilityLabel("Voice command chill music and dim lights")
         }
