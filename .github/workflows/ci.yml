@@ -44,3 +44,21 @@ jobs:
       - name: Run tests
         working-directory: ClusterFuck
         run: swift test
+
+      - name: Standalone Health and HUD contracts
+        working-directory: ClusterFuck
+        run: |
+          swiftc Sources/NaturalRemote/Session/RemoteHUDEvidence.swift scripts/test-hud-evidence.swift -o /tmp/clusterfuck-hud-tests
+          /tmp/clusterfuck-hud-tests
+          swiftc Sources/NaturalRemote/Session/RemoteHealthObservation.swift scripts/test-health-observation.swift -o /tmp/clusterfuck-health-tests
+          /tmp/clusterfuck-health-tests
+
+      - name: Compile iOS and watchOS hosts
+        working-directory: ClusterFuck
+        run: |
+          xcodebuild -project ClusterFuck.xcodeproj -scheme ClusterFuck -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/clusterfuck-ios CODE_SIGNING_ALLOWED=NO build
+
+      - name: Compile native Mac host
+        working-directory: ClusterFuck
+        run: |
+          xcodebuild -project ClusterFuck.xcodeproj -scheme ClusterFuckMac -configuration Debug -destination 'generic/platform=macOS' -derivedDataPath /tmp/clusterfuck-mac CODE_SIGNING_ALLOWED=NO build

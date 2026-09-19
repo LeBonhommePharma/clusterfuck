@@ -39,6 +39,13 @@ public struct RemoteSessionView: View {
             #endif
         }
         .background(Color.clusterFuckBackground.ignoresSafeArea())
+        .task {
+            while !Task.isCancelled {
+                model.refreshHealthReadings()
+                do { try await Task.sleep(for: .seconds(1)) }
+                catch { break }
+            }
+        }
         .alert("Action could not complete", isPresented: Binding(
             get: { model.lastError != nil },
             set: { if !$0 { model.lastError = nil } }
@@ -90,6 +97,13 @@ public struct RemoteSessionView: View {
         ScrollView {
             VStack(spacing: ClusterFuckSpacing.md) {
                 evidenceLabel(model.controlEvidence.label)
+                Text(model.healthStatusLabel)
+                    .font(.caption)
+                    .foregroundStyle(Color.clusterFuckMute)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text(model.healthMetricsLabel)
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(Color.clusterFuckInk)
                 SigmaHUDView(
                     sigmaIrr: model.displaySigma,
                     closurePercent: model.closurePercent,
@@ -307,6 +321,10 @@ public final class RemoteSessionViewModel: ObservableObject {
     @Published public private(set) var audioEvidence: RemoteHUDEvidence = .unavailable
     @Published public private(set) var doseEvidence: RemoteHUDEvidence = .unavailable
     @Published public private(set) var requestedLights: Int?
+    @Published public private(set) var healthStatusLabel = RemoteHealthStatus.idle.message
+    @Published public private(set) var healthMetricsLabel = "Heart rate — · SDNN —"
+    @Published public private(set) var hasHealthReadings = false
+    private var lastHealthBeatDate: Date?
     private var generation = 0
 
     public let manager: PharmaControlSessionManager
@@ -342,14 +360,49 @@ public final class RemoteSessionViewModel: ObservableObject {
         sciScore = nil
         groundingAlert = false
         requestedLights = nil
+        lastHealthBeatDate = nil
+        hasHealthReadings = false
+        healthStatusLabel = RemoteHealthStatus.idle.message
+        healthMetricsLabel = "Heart rate — · SDNN —"
         lastAction = "session_stopped"
     }
 
     public var isSessionRunning: Bool { manager.isRunning }
 
+    public func refreshHealthReadings(at date: Date = Date()) {
+        let health = manager.observedHealth(at: date)
+        hasHealthReadings = health.readings.hasReadings
+        healthStatusLabel = health.readings.message
+        let heart = health.readings.heartRate.map { String(format: "%.0f bpm", $0.value) } ?? "—"
+        let sdnn = health.readings.sdnn.map { String(format: "%.1f ms", $0.value) } ?? "—"
+        healthMetricsLabel = "Heart rate \(heart) · SDNN \(sdnn)"
+        if let beats = health.readings.beats, let control = health.control {
+            // Keep any demo clearly marked until the user stops that demo session.
+            guard physiologicalEvidence != .simulated, controlEvidence != .simulated else { return }
+            guard beats.date != lastHealthBeatDate else { return }
+            lastHealthBeatDate = beats.date
+            physiologicalEvidence = .measured
+            controlEvidence = .derived
+            let state = manager.loop.state
+            sciScore = state.sci
+            deltaHRV = state.deltaHRV
+            sigmaIrr = control.sigmaIrr
+            closurePercent = control.closurePercent
+            phaseLabel = control.phase.rawValue
+            lastAction = control.lastActionSummary
+        } else if physiologicalEvidence == .measured {
+            physiologicalEvidence = .unavailable
+            controlEvidence = .unavailable
+            sciScore = nil
+            sigmaIrr = .nan
+            closurePercent = 0
+            lastHealthBeatDate = nil
+        }
+    }
+
     public var sessionStatusLabel: String {
         RemoteHUDEvidence.sessionLabel(isRunning: isSessionRunning,
-            evidence: [controlEvidence, physiologicalEvidence, audioEvidence, doseEvidence])
+            evidence: [controlEvidence, physiologicalEvidence, audioEvidence, doseEvidence, hasHealthReadings ? .measured : .unavailable])
     }
 
     public var displaySigma: Double { controlEvidence.displayValue(sigmaIrr) ?? .nan }

@@ -1,0 +1,41 @@
+import Foundation
+@main struct HealthObservationTests {
+    static func main() {
+        let now = Date(timeIntervalSince1970: 10_000)
+        var state = RemoteHealthReadings()
+        state.apply(.status(.noDataOrDenied), now: now)
+        precondition(!state.hasReadings)
+        state.apply(.heartRate(72, now), now: now)
+        state.apply(.sdnn(42, now), now: now)
+        precondition(state.heartRate?.value == 72 && state.sdnn?.value == 42)
+        precondition(state.beats == nil, "HR/SDNN scalars cannot invent RR intervals or RMSSD")
+        state.apply(.heartRate(.nan, now), now: now)
+        state.apply(.heartRate(150, now.addingTimeInterval(-121)), now: now)
+        precondition(state.heartRate?.value == 72)
+        state.apply(.heartRate(160, now.addingTimeInterval(30)), now: now)
+        precondition(state.heartRate?.value == 72)
+        state.apply(.heartRate(80, now.addingTimeInterval(-1)), now: now)
+        precondition(state.heartRate?.value == 72, "Late callbacks cannot replace newer data")
+        state.apply(.beatIntervals([800, 810, 790, 820], now), now: now)
+        precondition(abs(state.beats!.rmssd - sqrt(1400.0 / 3)) < 1e-9)
+        precondition(abs(state.beats!.sdnn - sqrt(500.0 / 3)) < 1e-9)
+        state.apply(.invalidated(.beatIntervals), now: now)
+        precondition(state.beats == nil)
+        state.expire(at: now.addingTimeInterval(121))
+        precondition(!state.hasReadings)
+        precondition(state.message.contains("not be granted"))
+        precondition(RemoteBeatStatistics(intervals: [800, 800, .infinity, 800], date: now) == nil)
+        precondition(RemoteBeatStatistics(intervals: [800, 810, 820], date: now) == nil)
+        var series = RemoteHeartbeatAccumulator()
+        [0.0, 0.8, 1.61, 2.4, 3.22].forEach { series.append(time: $0, precededByGap: false) }
+        precondition(series.statistics(at: now) != nil)
+        series.append(time: 8, precededByGap: true)
+        precondition(series.statistics(at: now) == nil, "Missing beats must break the interval run")
+        [8.8, 9.6, 10.4, 11.2].forEach { series.append(time: $0, precededByGap: false) }
+        precondition(series.statistics(at: now)!.rmssd < 1e-8)
+        state.apply(.heartRate(70, now), now: now)
+        state.apply(.status(.failed("locked")), now: now)
+        precondition(!state.hasReadings)
+        print("PASS: Health reading validity, freshness, gaps, RMSSD/SDNN and invalidation assertions")
+    }
+}

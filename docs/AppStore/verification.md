@@ -33,3 +33,13 @@ swiftc -module-cache-path /private/tmp/clusterfuck-hud-module-cache Sources/Natu
 ```
 
 Result: **PASS — 12 runtime assertions** (numeric validity, unavailable masking, genuine zero, demo precedence, waiting/idle/measured labels). Source syntax parsing, Python contracts, project validator and `git diff --check` also pass after these edits. This does not exercise SwiftUI or actual sensor connections.
+
+## HealthKit observation implementation
+
+Added a cancellable anchored-query stream for saved heart-rate/SDNN samples and heartbeat series. Actual contiguous inter-beat intervals supply RMSSD and SDNN; read-access denial remains indistinguishable from absent data as required by HealthKit privacy. The HUD labels recent health readings as measured and sigma as a model estimate; absent/stale intervals leave SCI unavailable. Readings expire after two minutes, out-of-order/invalid samples are rejected, and stop cancels observations. This is foreground observation of saved Health data, not a claim of continuous wrist/background acquisition.
+
+Standalone compiled health assertions PASS: finite values, genuine zeros, stale/future/out-of-order rejection, interval gaps, analytical RMSSD/SDNN and deleted/error-state clearing. Injected-source XCTest covers permission/no-data, real interval delivery, expiry, failure, deletion and cancellation; remote CI results are required before claiming those tests pass.
+
+Fixed Ubuntu CI's confirmed `FileNotFoundError: plutil` from run [35468939018](https://github.com/LeBonhommePharma/clusterfuck/actions/runs/35468939018). Portable project parsing matches Apple's plutil output exactly for both committed projects; all previous project checks remain enforced. That run's macOS package build and XCTest passed. CI now also compiles the iOS/watchOS and native Mac app hosts.
+
+API references: [read authorization privacy](https://developer.apple.com/documentation/healthkit/authorizing-access-to-health-data), [anchored queries](https://developer.apple.com/documentation/healthkit/hkanchoredobjectquery), [heartbeat query and gaps](https://developer.apple.com/documentation/healthkit/hkheartbeatseriesquery/init(heartbeatseries:datahandler:)).

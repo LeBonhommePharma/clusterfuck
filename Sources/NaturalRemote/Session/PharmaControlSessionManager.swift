@@ -29,13 +29,24 @@ public final class PharmaControlSessionManager: @unchecked Sendable {
     private var _running = false
     private var _startedAt: Date?
 
-    #if canImport(HealthKit)
-    private let healthStore = HKHealthStore()
-    private var workoutSession: HKWorkoutSession?
-    #endif
+    private let healthSource: any RemoteHealthObserving
+    private var observationTask: Task<Void, Never>?
+    private var generation = 0
+    private var readings = RemoteHealthReadings()
+    private var healthControlSnapshot: CrooksSnapshot?
 
-    public init(loop: RemoteControlLoop = RemoteControlLoop()) {
+    public init(loop: RemoteControlLoop = RemoteControlLoop(), healthSource: any RemoteHealthObserving = HealthKitRemoteSource()) {
         self.loop = loop
+        self.healthSource = healthSource
+    }
+
+    deinit { observationTask?.cancel() }
+
+    public func observedHealth(at date: Date = Date()) -> (readings: RemoteHealthReadings, control: CrooksSnapshot?) {
+        lock.lock(); defer { lock.unlock() }
+        var current = readings
+        current.expire(at: date)
+        return (current, current.beats == nil ? nil : healthControlSnapshot)
     }
 
     public var isRunning: Bool {
@@ -49,35 +60,55 @@ public final class PharmaControlSessionManager: @unchecked Sendable {
     }
 
     public func start() async {
+        lock.lock()
+        guard !_running else { lock.unlock(); return }
+        _running = true
+        generation += 1
+        let currentGeneration = generation
+        _startedAt = Date()
+        readings = RemoteHealthReadings()
+        healthControlSnapshot = nil
+        lock.unlock()
+        loop.deltaHRV.reset()
+        loop.replaceState(RemoteMultiSignalState())
+        await loop.crooks.reset()
         await loop.attach()
         lock.lock()
-        _running = true
-        _startedAt = Date()
-        lock.unlock()
-
-        #if canImport(HealthKit)
-        if HealthKitAuthorizationGate.canRequestReadAuthorization() {
-            let types: Set<HKSampleType> = [
-                HKQuantityType.quantityType(forIdentifier: .heartRate)!,
-                HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!,
-            ]
-            do {
-                try await healthStore.requestAuthorization(toShare: [], read: types)
-            } catch {
-                // Authorization may fail in simulator / unsigned hosts — loop still runs.
+        guard _running, generation == currentGeneration else { lock.unlock(); return }
+        let source = healthSource
+        observationTask = Task { [weak self] in
+            for await event in source.events() {
+                guard !Task.isCancelled else { break }
+                await self?.receive(event, generation: currentGeneration)
             }
         }
-        #endif
+        lock.unlock()
     }
 
     public func stop() {
         lock.lock()
         _running = false
+        generation += 1
+        observationTask?.cancel()
+        observationTask = nil
+        readings = RemoteHealthReadings()
+        healthControlSnapshot = nil
         lock.unlock()
-        #if canImport(HealthKit)
-        workoutSession?.end()
-        workoutSession = nil
-        #endif
+    }
+
+    private func receive(_ event: RemoteHealthEvent, generation expected: Int) async {
+        lock.lock()
+        guard _running, generation == expected else { lock.unlock(); return }
+        readings.apply(event)
+        let beats = readings.beats
+        lock.unlock()
+        guard case .beatIntervals(_, let date) = event, let beats, beats.date == date else { return }
+        // Neither a heart-rate scalar nor Apple's SDNN quantity can stand in for
+        // RMSSD. Only actual contiguous beat intervals enter the HRV control path.
+        let control = await loop.ingestHRV(rmssd: beats.rmssd, sdnn: beats.sdnn, rrIntervals: beats.intervals)
+        lock.lock(); defer { lock.unlock() }
+        guard _running, generation == expected else { return }
+        healthControlSnapshot = control
     }
 
     public func logDose(substance: String, doseMg: Double, setAndSetting: String) async -> CrooksSnapshot {

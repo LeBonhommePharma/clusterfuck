@@ -20,10 +20,11 @@ Source preparation is in progress. No signed archive, successful app build, devi
 
 ## Product work still required
 
-- [ ] Connect live HealthKit samples to the control loop. Current manager requests read authorization but performs no HK sample/observer query; synthetic test signals do not prove a live product.
+- [x] Implement cancellable HealthKit observation for saved heart-rate, SDNN and heartbeat-series samples. Only contiguous real beat intervals feed RMSSD/SCI control; permission success and scalar HR/SDNN do not invent intervals.
+- [ ] Verify actual HealthKit collection/updates and permissions on paired hardware; foreground observation of saved samples does not guarantee continuous wrist acquisition.
 - [ ] Implement and verify supported integration setup/authentication. The default controllers include local simulation/no-op paths; currently no end-user credentials/configuration UI proves Spotify, Alexa, Sonos or Apple Music operation.
 - [x] Gate HUD metrics on per-signal provenance; synthetic readings/doses are labeled Demo, missing signals remain unavailable after start, and light command targets are explicitly unconfirmed.
-- [ ] Validate the provenance UI on all platforms and connect measured evidence only from actual sensor/integration adapters; none is currently shipped.
+- [ ] Validate the provenance UI on all platforms and verify measured HealthKit adapter behavior, expiration and sensor loss; external actuator confirmation remains unavailable.
 - [ ] Verify actual audio/headphone capture and supported controls on hardware. Do not claim system ANC or playback changes from locally updated variables.
 - [ ] Complete durable dose history, export/deletion UX if those features are included in the release description; current in-memory demo is insufficient evidence.
 - [ ] Localize user-facing app copy and permission descriptions for the intended release languages.

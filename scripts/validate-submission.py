@@ -6,7 +6,7 @@ import json
 import pathlib
 import struct
 import plistlib
-import subprocess
+from pbxproj import load_project
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -44,7 +44,7 @@ def check_privacy(path: pathlib.Path) -> None:
 
 
 def check_project(path: pathlib.Path) -> None:
-    data = json.loads(subprocess.check_output(["plutil", "-convert", "json", "-o", "-", str(path)]))
+    data = load_project(path)
     objects = data["objects"]
     targets = {v["name"]: v for v in objects.values() if v.get("isa") == "PBXNativeTarget"}
     project = objects[data["rootObject"]]
