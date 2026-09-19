@@ -61,8 +61,12 @@ def test_design_system() -> None:
         fail("idle ViewModel must start σ_irr as non-finite, never 0")
     if 'BPM — · H_audio —' not in vm:
         fail("idle music HUD must not invent BPM 120 / H_audio 0")
-    if 'PCCI — · ΔHRV —' not in vm:
-        fail("idle DrugKit HUD must not invent PCCI 0 / ΔHRV 0")
+    if "doseEvidence.displayValue(pcci)" not in vm or "physiologicalEvidence.displayValue(deltaHRV)" not in vm:
+        fail("DrugKit HUD must gate each metric on its own source evidence")
+    if "Text(model.musicMetricsLabel)" not in vm or "Text(model.doseMetricsLabel)" not in vm:
+        fail("HUD must render provenance-aware metric labels")
+    if "sigmaIrr: model.displaySigma" not in vm or "score: model.displaySCI" not in vm:
+        fail("rings must not display raw kernel defaults")
     if 'Alexa lights: —' not in vm:
         fail("idle environment HUD must not invent Alexa lights 60%")
     if 'Text("Alexa lights: \\(model.alexaLights)%")' in vm:

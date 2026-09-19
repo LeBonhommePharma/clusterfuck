@@ -36,10 +36,10 @@ public struct ClusterFuckRootView: View {
     }
 
     private var sessionBadge: some View {
-        Label(model.isSessionRunning ? "Live" : "Idle", systemImage: model.isSessionRunning ? "dot.radiowaves.left.and.right" : "pause.circle")
+        Label(model.sessionStatusLabel, systemImage: model.sessionStatusLabel == "Demo" ? "testtube.2" : "pause.circle")
             .font(.caption.weight(.semibold))
-            .foregroundStyle(model.isSessionRunning ? Color.clusterFuckAccent : Color.clusterFuckMute)
+            .foregroundStyle(model.sessionStatusLabel == "Demo" ? Color.clusterFuckWarning : Color.clusterFuckMute)
             .labelStyle(.titleAndIcon)
-            .accessibilityLabel(model.isSessionRunning ? "Session live" : "Session idle")
+            .accessibilityLabel(model.sessionStatusLabel)
     }
 }

@@ -22,7 +22,8 @@ Source preparation is in progress. No signed archive, successful app build, devi
 
 - [ ] Connect live HealthKit samples to the control loop. Current manager requests read authorization but performs no HK sample/observer query; synthetic test signals do not prove a live product.
 - [ ] Implement and verify supported integration setup/authentication. The default controllers include local simulation/no-op paths; currently no end-user credentials/configuration UI proves Spotify, Alexa, Sonos or Apple Music operation.
-- [ ] Distinguish measured data, requested actuator targets, and simulated states throughout the HUD; session-running alone is not sensor availability.
+- [x] Gate HUD metrics on per-signal provenance; synthetic readings/doses are labeled Demo, missing signals remain unavailable after start, and light command targets are explicitly unconfirmed.
+- [ ] Validate the provenance UI on all platforms and connect measured evidence only from actual sensor/integration adapters; none is currently shipped.
 - [ ] Verify actual audio/headphone capture and supported controls on hardware. Do not claim system ANC or playback changes from locally updated variables.
 - [ ] Complete durable dose history, export/deletion UX if those features are included in the release description; current in-memory demo is insufficient evidence.
 - [ ] Localize user-facing app copy and permission descriptions for the intended release languages.

@@ -89,14 +89,15 @@ public struct RemoteSessionView: View {
     private var sigmaTab: some View {
         ScrollView {
             VStack(spacing: ClusterFuckSpacing.md) {
+                evidenceLabel(model.controlEvidence.label)
                 SigmaHUDView(
-                    sigmaIrr: model.sigmaIrr,
+                    sigmaIrr: model.displaySigma,
                     closurePercent: model.closurePercent,
                     phase: CrooksCyclePhase(rawValue: model.phaseLabel) ?? .forward,
                     lastAction: model.lastAction,
                     compact: compactChrome
                 )
-                SCIVisualizationView(score: model.sciScore, trend: model.sciTrend)
+                SCIVisualizationView(score: model.displaySCI, trend: model.sciTrend)
                     .frame(minHeight: compactChrome ? 64 : 88)
                     .accessibilityLabel(model.sciAccessibilityLabel)
 
@@ -164,9 +165,8 @@ public struct RemoteSessionView: View {
             Label("Music stack", systemImage: ClusterFuckSymbol.music.systemName)
                 .font(ClusterFuckType.headline)
                 .symbolRenderingMode(.monochrome)
-            Text(model.isSessionRunning
-                 ? String(format: "BPM %.0f · H_audio %.2f bit", model.musicBPM, model.audioEntropy)
-                 : "BPM — · H_audio —")
+            evidenceLabel(model.audioEvidence.label)
+            Text(model.musicMetricsLabel)
                 .font(ClusterFuckType.caption.monospacedDigit())
                 .foregroundStyle(Color.clusterFuckMute)
             HStack(spacing: ClusterFuckSpacing.sm) {
@@ -196,9 +196,8 @@ public struct RemoteSessionView: View {
             Label("DrugKit", systemImage: ClusterFuckSymbol.dose.systemName)
                 .font(ClusterFuckType.headline)
                 .symbolRenderingMode(.monochrome)
-            Text(model.isSessionRunning
-                 ? String(format: "PCCI %.2f · ΔHRV %.1f", model.pcci, model.deltaHRV)
-                 : "PCCI — · ΔHRV —")
+            evidenceLabel(model.doseEvidence.label)
+            Text(model.doseMetricsLabel)
                 .font(ClusterFuckType.caption.monospacedDigit())
                 .foregroundStyle(Color.clusterFuckMute)
             Button("Log demo dose") {
@@ -209,11 +208,11 @@ public struct RemoteSessionView: View {
             .disabled(model.isBusy)
             .accessibilityLabel("Log demo dose for pharmacovigilance")
             if model.groundingAlert {
-                Label("Grounding alert", systemImage: "exclamationmark.triangle")
+                Label("Demo grounding alert", systemImage: "exclamationmark.triangle")
                     .foregroundStyle(Color.clusterFuckDestructive)
                     .font(.caption.bold())
                     .symbolRenderingMode(.hierarchical)
-                    .accessibilityLabel("Grounding alert: predicted versus observed delta HRV mismatch")
+                    .accessibilityLabel("Simulated grounding alert, not a measured health finding")
             }
         }
         .padding(ClusterFuckSpacing.md)
@@ -230,9 +229,11 @@ public struct RemoteSessionView: View {
             Text(model.alexaLightsLabel)
                 .font(ClusterFuckType.caption.monospacedDigit())
                 .foregroundStyle(Color.clusterFuckMute)
-                .accessibilityLabel(model.isSessionRunning
-                    ? "Alexa lights \(model.alexaLights) percent"
-                    : "Alexa lights unknown")
+                .accessibilityLabel(model.alexaLightsLabel)
+            Text("Device state unavailable. Commands express intent until an integration confirms the result.")
+                .font(.caption)
+                .foregroundStyle(Color.clusterFuckMute)
+                .fixedSize(horizontal: false, vertical: true)
             HStack(spacing: ClusterFuckSpacing.sm) {
                 Button("ANC") { Task { await model.setANC() } }
                     .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
@@ -256,6 +257,14 @@ public struct RemoteSessionView: View {
         .padding(ClusterFuckSpacing.md)
         .frame(maxWidth: .infinity)
         }
+    }
+
+    private func evidenceLabel(_ label: String) -> some View {
+        Label(label, systemImage: label.contains("Demo") ? "testtube.2" : "sensor.tag.radiowaves.forward")
+            .font(.caption.weight(.semibold))
+            .foregroundStyle(Color.clusterFuckMute)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .fixedSize(horizontal: false, vertical: true)
     }
 
     private var usesSidebar: Bool {
@@ -293,6 +302,13 @@ public final class RemoteSessionViewModel: ObservableObject {
     @Published public var isBusy = false
     @Published public var lastError: String?
 
+    @Published public private(set) var controlEvidence: RemoteHUDEvidence = .unavailable
+    @Published public private(set) var physiologicalEvidence: RemoteHUDEvidence = .unavailable
+    @Published public private(set) var audioEvidence: RemoteHUDEvidence = .unavailable
+    @Published public private(set) var doseEvidence: RemoteHUDEvidence = .unavailable
+    @Published public private(set) var requestedLights: Int?
+    private var generation = 0
+
     public let manager: PharmaControlSessionManager
 
     public init(manager: PharmaControlSessionManager = PharmaControlSessionManager()) {
@@ -304,31 +320,69 @@ public final class RemoteSessionViewModel: ObservableObject {
         lastError = nil
         isBusy = true
         defer { isBusy = false }
+        let operationGeneration = generation
         await manager.start()
-        refreshFromLoop()
+        guard generation == operationGeneration else {
+            manager.stop()
+            return
+        }
+        await refreshFromLoop()
     }
 
     /// Stop the pharmacovigilance / remote session.
     public func stop() {
+        generation += 1
         manager.stop()
+        controlEvidence = .unavailable
+        physiologicalEvidence = .unavailable
+        audioEvidence = .unavailable
+        doseEvidence = .unavailable
+        sigmaIrr = .nan
+        closurePercent = 0
+        sciScore = nil
+        groundingAlert = false
+        requestedLights = nil
         lastAction = "session_stopped"
-        refreshFromLoop()
     }
 
     public var isSessionRunning: Bool { manager.isRunning }
 
-    /// Idle must not invent the Alexa default 60%. Live sessions show the loop percent.
-    public var alexaLightsLabel: String {
-        guard isSessionRunning else { return "Alexa lights: —" }
-        return "Alexa lights: \(alexaLights)%"
+    public var sessionStatusLabel: String {
+        RemoteHUDEvidence.sessionLabel(isRunning: isSessionRunning,
+            evidence: [controlEvidence, physiologicalEvidence, audioEvidence, doseEvidence])
     }
 
-    /// VoiceOver must not speak "nan" when SCI is missing or non-finite.
+    public var displaySigma: Double { controlEvidence.displayValue(sigmaIrr) ?? .nan }
+    public var displaySCI: Double? { physiologicalEvidence.displayValue(sciScore) }
+
+    public var musicMetricsLabel: String {
+        guard let bpm = audioEvidence.displayValue(musicBPM),
+              let entropy = audioEvidence.displayValue(audioEntropy) else {
+            return "BPM — · H_audio —"
+        }
+        let prefix = audioEvidence == .simulated ? "Demo · " : ""
+        return prefix + String(format: "BPM %.0f · H_audio %.2f bit", bpm, entropy)
+    }
+
+    public var doseMetricsLabel: String {
+        let pcciText = doseEvidence.displayValue(pcci).map { String(format: "%.2f", $0) } ?? "—"
+        let hrvText = physiologicalEvidence.displayValue(deltaHRV).map { String(format: "%.1f", $0) } ?? "—"
+        let prefix = doseEvidence == .simulated || physiologicalEvidence == .simulated ? "Demo · " : ""
+        return prefix + "PCCI \(pcciText) · ΔHRV \(hrvText)"
+    }
+
+    /// Local command targets do not establish the state of a physical light.
+    public var alexaLightsLabel: String {
+        guard let requestedLights else { return "Alexa lights: —" }
+        return "Requested lights: \(requestedLights)% · unconfirmed"
+    }
+
     public var sciAccessibilityLabel: String {
-        guard let score = sciScore, score.isFinite else {
+        guard let score = displaySCI, score.isFinite else {
             return "Shannon collapse index unavailable"
         }
-        return String(format: "Shannon collapse index %.2f", score)
+        let prefix = physiologicalEvidence == .simulated ? "Simulated " : ""
+        return prefix + String(format: "Shannon collapse index %.2f", score)
     }
 
     /// Drive multi-signal update through the **shipped** control path (app UI + tests).
@@ -339,6 +393,7 @@ public final class RemoteSessionViewModel: ObservableObject {
         audioEntropy: Double,
         sci: Double
     ) async -> CrooksSnapshot {
+        let operationGeneration = generation
         if !manager.isRunning {
             await manager.start()
         }
@@ -358,6 +413,10 @@ public final class RemoteSessionViewModel: ObservableObject {
         state.physiologicalSCI = sci
         let snap = await manager.loop.crooks.update(with: state)
         manager.loop.replaceState(state)
+        guard generation == operationGeneration else { return snap }
+        controlEvidence = .simulated
+        physiologicalEvidence = .simulated
+        audioEvidence = .simulated
         self.sigmaIrr = snap.sigmaIrr
         self.closurePercent = snap.closurePercent
         self.phaseLabel = snap.phase.rawValue
@@ -373,7 +432,7 @@ public final class RemoteSessionViewModel: ObservableObject {
         isBusy = true
         defer { isBusy = false }
         await manager.loop.crooks.minimizeSigma(currentBPM: musicBPM)
-        refreshFromLoop()
+        await refreshFromLoop()
     }
 
     public func groundMusic() async {
@@ -394,12 +453,16 @@ public final class RemoteSessionViewModel: ObservableObject {
     public func logDemoDose() async {
         isBusy = true
         defer { isBusy = false }
+        let operationGeneration = generation
         let result = await manager.loop.logDose(
             DrugLog(substance: "2C-B", doseMg: 12, setAndSetting: "home / lo-fi", hrDelta: 8, entropyShift: 1.2)
         )
+        guard generation == operationGeneration else { return }
+        controlEvidence = .simulated
+        doseEvidence = .simulated
         groundingAlert = result.prediction.isGroundingAlert
         pcci = result.pcci
-        refreshFromLoop()
+        await refreshFromLoop()
     }
 
     public func setANC() async {
@@ -418,8 +481,8 @@ public final class RemoteSessionViewModel: ObservableObject {
         isBusy = true
         defer { isBusy = false }
         await manager.loop.handleVoice("chill music and dim lights")
-        alexaLights = manager.loop.alexa.lightsPercent
-        refreshFromLoop()
+        requestedLights = manager.loop.alexa.lightsPercent
+        await refreshFromLoop()
     }
 
     private func performCommands(_ commands: [RemoteCommand]) async {
@@ -436,25 +499,23 @@ public final class RemoteSessionViewModel: ObservableObject {
             }
         }
         if !failures.isEmpty { lastError = failures.joined(separator: "\n") }
-        refreshFromLoop()
+        await refreshFromLoop()
     }
 
-    private func refreshFromLoop() {
+    private func refreshFromLoop() async {
+        let operationGeneration = generation
+        let snap = await manager.loop.crooks.snapshot()
+        guard generation == operationGeneration else { return }
         let state = manager.loop.state
         musicBPM = state.musicBPM
         audioEntropy = state.audioEntropyBits
         deltaHRV = state.deltaHRV
         pcci = state.pcci
-        sciScore = state.sci
+        sciScore = physiologicalEvidence.displayValue(state.sci)
         alexaLights = manager.loop.alexa.lightsPercent
-        Task {
-            let snap = await manager.loop.crooks.snapshot()
-            await MainActor.run {
-                self.sigmaIrr = snap.sigmaIrr
-                self.closurePercent = snap.closurePercent
-                self.phaseLabel = snap.phase.rawValue
-                self.lastAction = snap.lastActionSummary
-            }
-        }
+        sigmaIrr = controlEvidence.displayValue(snap.sigmaIrr) ?? .nan
+        closurePercent = controlEvidence == .unavailable ? 0 : snap.closurePercent
+        phaseLabel = snap.phase.rawValue
+        lastAction = snap.lastActionSummary
     }
 }

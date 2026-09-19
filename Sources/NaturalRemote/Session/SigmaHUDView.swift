@@ -27,7 +27,7 @@ public struct SigmaHUDView: View {
 
     public var body: some View {
         let band = ClusterFuckSigmaBand.classify(sigmaIrr)
-        let known = sigmaIrr.isFinite
+        let known = sigmaIrr.isFinite && closurePercent.isFinite
         let frac = known ? min(1, max(0, closurePercent / 100.0)) : 0
         VStack(spacing: compact ? ClusterFuckSpacing.xs : ClusterFuckSpacing.sm) {
             ZStack {
@@ -77,7 +77,8 @@ public struct SigmaHUDView: View {
 
     private func accessibilityText(band: ClusterFuckSigmaBand) -> String {
         let sigma = sigmaIrr.isFinite ? String(format: "%.3f", sigmaIrr) : "unavailable"
-        let closure = sigmaIrr.isFinite ? "\(Int(closurePercent.rounded())) percent" : "unavailable"
+        let closure = sigmaIrr.isFinite && closurePercent.isFinite
+            ? String(format: "%.0f percent", min(100, max(0, closurePercent))) : "unavailable"
         return "Irreversible entropy production \(sigma), closure \(closure), phase \(phase.rawValue), band \(band.rawValue), last action \(humanize(lastAction))"
     }
 

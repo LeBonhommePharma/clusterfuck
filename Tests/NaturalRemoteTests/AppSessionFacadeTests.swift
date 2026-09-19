@@ -80,7 +80,7 @@ final class AppSessionFacadeTests: XCTestCase {
         XCTAssertEqual(model.alexaLights, 60, "stored default stays; HUD must still dash while idle")
         await model.start()
         XCTAssertTrue(model.isSessionRunning)
-        XCTAssertEqual(model.alexaLightsLabel, "Alexa lights: \(model.alexaLights)%")
+        XCTAssertEqual(model.alexaLightsLabel, "Alexa lights: —", "Starting a session does not confirm a device reading")
         model.stop()
         XCTAssertEqual(model.alexaLightsLabel, "Alexa lights: —")
     }
@@ -93,7 +93,7 @@ final class AppSessionFacadeTests: XCTestCase {
         model.sciScore = .infinity
         XCTAssertEqual(model.sciAccessibilityLabel, "Shannon collapse index unavailable")
         model.sciScore = 0.85
-        XCTAssertEqual(model.sciAccessibilityLabel, "Shannon collapse index 0.85")
+        XCTAssertEqual(model.sciAccessibilityLabel, "Shannon collapse index unavailable", "A numeric value without provenance is not a measurement")
     }
     func testMusicFailureReachesVisibleErrorState() async {
         let model = RemoteSessionViewModel()
@@ -104,6 +104,44 @@ final class AppSessionFacadeTests: XCTestCase {
         XCTAssertNotNil(model.lastError)
         XCTAssertTrue(model.lastError?.contains("spotify") == true)
         XCTAssertFalse(model.isBusy)
+    }
+
+    func testStartedSessionDoesNotInventSensorReadings() async {
+        let model = RemoteSessionViewModel()
+        await model.start()
+        XCTAssertEqual(model.sessionStatusLabel, "Waiting for sensors")
+        XCTAssertNil(model.displaySCI)
+        XCTAssertFalse(model.displaySigma.isFinite)
+        XCTAssertEqual(model.musicMetricsLabel, "BPM — · H_audio —")
+        XCTAssertEqual(model.doseMetricsLabel, "PCCI — · ΔHRV —")
+        await model.forceMinimize()
+        XCTAssertFalse(model.displaySigma.isFinite, "An actuator action is not a sensor measurement")
+    }
+
+    func testSyntheticReadingsAreAlwaysLabeledDemoAndClearOnStop() async {
+        let model = RemoteSessionViewModel()
+        _ = await model.applySyntheticMultiSignal(deltaHRV: 3, musicBPM: 88, audioEntropy: 0.4, sci: 0.8)
+        XCTAssertEqual(model.sessionStatusLabel, "Demo")
+        XCTAssertEqual(model.controlEvidence, .simulated)
+        XCTAssertTrue(model.musicMetricsLabel.hasPrefix("Demo"))
+        XCTAssertTrue(model.sciAccessibilityLabel.hasPrefix("Simulated"))
+        model.stop()
+        XCTAssertEqual(model.sessionStatusLabel, "Idle")
+        XCTAssertNil(model.displaySCI)
+        XCTAssertFalse(model.displaySigma.isFinite)
+        await model.start()
+        XCTAssertEqual(model.sessionStatusLabel, "Waiting for sensors")
+        XCTAssertNil(model.displaySCI, "Previous simulation must not become a new live reading")
+    }
+
+    func testDemoDoseDoesNotInventPhysiologicalEvidence() async {
+        let model = RemoteSessionViewModel()
+        await model.logDemoDose()
+        XCTAssertEqual(model.sessionStatusLabel, "Demo")
+        XCTAssertEqual(model.doseEvidence, .simulated)
+        XCTAssertEqual(model.physiologicalEvidence, .unavailable)
+        XCTAssertTrue(model.doseMetricsLabel.contains("ΔHRV —"))
+        XCTAssertNil(model.displaySCI)
     }
 
 }
