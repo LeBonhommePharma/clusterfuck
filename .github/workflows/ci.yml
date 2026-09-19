@@ -69,7 +69,7 @@ jobs:
           for result in /tmp/clusterfuck-ios.xcresult /tmp/clusterfuck-mac.xcresult; do
             if [ -d "$result" ]; then
               xcrun xcresulttool get object --legacy --format json --path "$result" > /tmp/clusterfuck-diagnostics.json
-              python3 -c 'import json; d=json.load(open("/tmp/clusterfuck-diagnostics.json")); print(json.dumps(d.get("issues", {}), indent=2))'
+              python3 -c 'import json; d=json.load(open("/tmp/clusterfuck-diagnostics.json")); print(json.dumps(d.get("issues", {}).get("errorSummaries", {}), indent=2))'
             fi
           done
 

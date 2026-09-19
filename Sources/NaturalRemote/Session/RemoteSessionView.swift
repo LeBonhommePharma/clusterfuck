@@ -20,7 +20,10 @@ public struct RemoteSessionView: View {
             #else
             if usesSidebar {
                 NavigationSplitView {
-                    List(selection: $model.selectedTab) {
+                    List(selection: Binding<Int?>(
+                        get: { model.selectedTab },
+                        set: { if let selection = $0 { model.selectedTab = selection } }
+                    )) {
                         navRow(0, title: "σ_irr", symbol: .sigma)
                         navRow(1, title: "Music", symbol: .music)
                         navRow(2, title: "DrugKit", symbol: .dose)
