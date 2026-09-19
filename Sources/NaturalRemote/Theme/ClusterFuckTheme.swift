@@ -156,6 +156,9 @@ public enum ClusterFuckAdaptiveColor {
             let rgba = ClusterFuckRGBA(hex: darkMode ? dark : light, alpha: alpha)
             return NSColor(srgbRed: rgba.red, green: rgba.green, blue: rgba.blue, alpha: rgba.alpha)
         }))
+        #elseif os(watchOS)
+        // watchOS has no dynamic UIColor provider; use the approved dark wrist palette.
+        return ClusterFuckRGBA(hex: dark, alpha: alpha).color
         #elseif canImport(UIKit)
         return Color(uiColor: UIColor { traits in
             let rgba = ClusterFuckRGBA(
