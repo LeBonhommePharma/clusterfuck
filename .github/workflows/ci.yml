@@ -56,9 +56,30 @@ jobs:
       - name: Compile iOS and watchOS hosts
         working-directory: ClusterFuck
         run: |
-          xcodebuild -project ClusterFuck.xcodeproj -scheme ClusterFuck -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/clusterfuck-ios CODE_SIGNING_ALLOWED=NO build
+          xcodebuild -jobs 2 -resultBundlePath /tmp/clusterfuck-ios.xcresult -project ClusterFuck.xcodeproj -scheme ClusterFuck -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/clusterfuck-ios CODE_SIGNING_ALLOWED=NO build
 
       - name: Compile native Mac host
         working-directory: ClusterFuck
         run: |
-          xcodebuild -project ClusterFuck.xcodeproj -scheme ClusterFuckMac -configuration Debug -destination 'generic/platform=macOS' -derivedDataPath /tmp/clusterfuck-mac CODE_SIGNING_ALLOWED=NO build
+          xcodebuild -jobs 2 -resultBundlePath /tmp/clusterfuck-mac.xcresult -project ClusterFuck.xcodeproj -scheme ClusterFuckMac -configuration Debug -destination 'generic/platform=macOS' -derivedDataPath /tmp/clusterfuck-mac CODE_SIGNING_ALLOWED=NO build
+
+      - name: Report Xcode failure diagnostics
+        if: failure()
+        run: |
+          for result in /tmp/clusterfuck-ios.xcresult /tmp/clusterfuck-mac.xcresult; do
+            if [ -d "$result" ]; then
+              xcrun xcresulttool get object --legacy --format json --path "$result" > /tmp/clusterfuck-diagnostics.json
+              python3 -c 'import json; d=json.load(open("/tmp/clusterfuck-diagnostics.json")); print(json.dumps(d.get("issues", {}), indent=2))'
+            fi
+          done
+
+      - name: Preserve app build results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: clusterfuck-app-build-results
+          path: |
+            /tmp/clusterfuck-ios.xcresult
+            /tmp/clusterfuck-mac.xcresult
+          if-no-files-found: ignore
+          retention-days: 7
