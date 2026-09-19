@@ -50,7 +50,9 @@ def check_project(path: pathlib.Path) -> None:
     project = objects[data["rootObject"]]
     project_configs = objects[project["buildConfigurationList"]]["buildConfigurations"]
     for config in project_configs:
-        require(objects[config]["buildSettings"].get("DEVELOPMENT_TEAM") == "ZJLX84G8QV", str(path) + " release team")
+        settings = objects[config]["buildSettings"]
+        require(settings.get("DEVELOPMENT_TEAM") == "ZJLX84G8QV", str(path) + " release team")
+        require(settings.get("SWIFT_VERSION") in ("5", "5.0", "6", "6.0"), str(path) + " supported Swift language mode")
     for name, target in targets.items():
         for config in objects[target["buildConfigurationList"]]["buildConfigurations"]:
             settings = objects[config]["buildSettings"]
