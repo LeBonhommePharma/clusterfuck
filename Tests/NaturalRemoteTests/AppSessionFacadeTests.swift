@@ -95,4 +95,15 @@ final class AppSessionFacadeTests: XCTestCase {
         model.sciScore = 0.85
         XCTAssertEqual(model.sciAccessibilityLabel, "Shannon collapse index 0.85")
     }
+    func testMusicFailureReachesVisibleErrorState() async {
+        let model = RemoteSessionViewModel()
+        model.manager.loop.music.spotify.transportHook = { _, _ in
+            throw RemoteHTTPError.status(503)
+        }
+        await model.groundMusic()
+        XCTAssertNotNil(model.lastError)
+        XCTAssertTrue(model.lastError?.contains("spotify") == true)
+        XCTAssertFalse(model.isBusy)
+    }
+
 }

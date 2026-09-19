@@ -1,0 +1,4 @@
+# Both Xcode projects derive from the same release configuration.
+include:
+  - project.yml
+name: ClusterFuck

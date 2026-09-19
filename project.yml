@@ -23,8 +23,9 @@ settings:
     SWIFT_VERSION: "5.9"
     MARKETING_VERSION: "1.0.0"
     CURRENT_PROJECT_VERSION: "1"
-    DEVELOPMENT_TEAM: ""
+    DEVELOPMENT_TEAM: "ZJLX84G8QV"
     CODE_SIGN_STYLE: Automatic
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 
 targets:
   # Canonical Session 0 phone host (OAuth liver + full RemoteSessionView)
@@ -33,6 +34,7 @@ targets:
     platform: iOS
     sources:
       - path: Apps/BonhommeRemotePhone
+      - path: Apps/Shared
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.natural.BonhommeRemote
@@ -78,6 +80,9 @@ targets:
     platform: iOS
     sources:
       - path: Apps/ClusterFuck
+        excludes:
+          - MacInfo.plist
+          - ClusterFuckMac.entitlements
       - path: Apps/Shared
     settings:
       base:
@@ -93,6 +98,9 @@ targets:
         product: NaturalRemote
       - package: BonhommeCore
         product: BonhommeCore
+
+      - target: ClusterFuckWatch
+        embed: true
 
   # Codename watch host
   ClusterFuckWatch:

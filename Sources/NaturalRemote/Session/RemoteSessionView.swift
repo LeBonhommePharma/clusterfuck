@@ -18,7 +18,7 @@ public struct RemoteSessionView: View {
             #if os(watchOS)
             pagedRemote
             #else
-            if sizeClass == .regular {
+            if usesSidebar {
                 NavigationSplitView {
                     List(selection: $model.selectedTab) {
                         navRow(0, title: "σ_irr", symbol: .sigma)
@@ -39,8 +39,13 @@ public struct RemoteSessionView: View {
             #endif
         }
         .background(Color.clusterFuckBackground.ignoresSafeArea())
-        .task {
-            await model.start()
+        .alert("Action could not complete", isPresented: Binding(
+            get: { model.lastError != nil },
+            set: { if !$0 { model.lastError = nil } }
+        )) {
+            Button("OK") { model.lastError = nil }
+        } message: {
+            Text(model.lastError ?? "")
         }
     }
 
@@ -95,10 +100,20 @@ public struct RemoteSessionView: View {
                     .frame(minHeight: compactChrome ? 64 : 88)
                     .accessibilityLabel(model.sciAccessibilityLabel)
 
-                HStack(spacing: ClusterFuckSpacing.sm) {
-                    sessionButton
-                    minimizeButton
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: ClusterFuckSpacing.sm) {
+                        sessionButton
+                        minimizeButton
+                    }
+                    VStack(spacing: ClusterFuckSpacing.sm) {
+                        sessionButton
+                        minimizeButton
+                    }
                 }
+                Text("Experimental control index. Not a medical measurement or dosing recommendation.")
+                    .font(.caption)
+                    .foregroundStyle(Color.clusterFuckMute)
+                    .fixedSize(horizontal: false, vertical: true)
                 if let err = model.lastError, !err.isEmpty {
                     Text(err)
                         .font(ClusterFuckType.caption)
@@ -134,7 +149,7 @@ public struct RemoteSessionView: View {
         } label: {
             Label(model.isBusy ? "Working…" : "Minimize σ", systemImage: ClusterFuckSymbol.minimize.systemName)
                 .frame(maxWidth: .infinity, minHeight: ClusterFuckIconSize.hit)
-                .foregroundStyle(Color.clusterFuckBackground)
+                .foregroundStyle(Color.clusterFuckOnAccent)
                 .background(Color.clusterFuckAccent, in: RoundedRectangle(cornerRadius: ClusterFuckRadius.sm, style: .continuous))
         }
         .buttonStyle(ClusterFuckPressStyle())
@@ -144,6 +159,7 @@ public struct RemoteSessionView: View {
     }
 
     private var musicTab: some View {
+        ScrollView {
         VStack(spacing: ClusterFuckSpacing.sm) {
             Label("Music stack", systemImage: ClusterFuckSymbol.music.systemName)
                 .font(ClusterFuckType.headline)
@@ -171,9 +187,11 @@ public struct RemoteSessionView: View {
         }
         .padding(ClusterFuckSpacing.md)
         .frame(maxWidth: .infinity)
+        }
     }
 
     private var doseTab: some View {
+        ScrollView {
         VStack(spacing: ClusterFuckSpacing.sm) {
             Label("DrugKit", systemImage: ClusterFuckSymbol.dose.systemName)
                 .font(ClusterFuckType.headline)
@@ -200,9 +218,11 @@ public struct RemoteSessionView: View {
         }
         .padding(ClusterFuckSpacing.md)
         .frame(maxWidth: .infinity)
+        }
     }
 
     private var environmentTab: some View {
+        ScrollView {
         VStack(spacing: ClusterFuckSpacing.sm) {
             Label("Environment", systemImage: ClusterFuckSymbol.environment.systemName)
                 .font(ClusterFuckType.headline)
@@ -235,13 +255,22 @@ public struct RemoteSessionView: View {
         }
         .padding(ClusterFuckSpacing.md)
         .frame(maxWidth: .infinity)
+        }
+    }
+
+    private var usesSidebar: Bool {
+        #if os(macOS)
+        true
+        #else
+        sizeClass == .regular
+        #endif
     }
 
     private var compactChrome: Bool {
         #if os(watchOS)
         true
         #else
-        sizeClass != .regular
+        !usesSidebar
         #endif
     }
 }
@@ -271,6 +300,8 @@ public final class RemoteSessionViewModel: ObservableObject {
     }
 
     public func start() async {
+        guard !isBusy, !manager.isRunning else { return }
+        lastError = nil
         isBusy = true
         defer { isBusy = false }
         await manager.start()
@@ -346,16 +377,18 @@ public final class RemoteSessionViewModel: ObservableObject {
     }
 
     public func groundMusic() async {
-        try? await manager.loop.bus.execute(RemoteCommand(service: .appleMusic, action: "queueGrounding"))
-        try? await manager.loop.bus.execute(RemoteCommand(service: .spotify, action: "queueGrounding"))
-        try? await manager.loop.bus.execute(RemoteCommand(service: .diFm, action: "preferChillChannel"))
-        refreshFromLoop()
+        await performCommands([
+            RemoteCommand(service: .appleMusic, action: "queueGrounding"),
+            RemoteCommand(service: .spotify, action: "queueGrounding"),
+            RemoteCommand(service: .diFm, action: "preferChillChannel")
+        ])
     }
 
     public func exploreMusic() async {
-        try? await manager.loop.bus.execute(RemoteCommand(service: .diFm, action: "preferProgressiveChannel"))
-        try? await manager.loop.bus.execute(RemoteCommand(service: .appleMusic, action: "allowExploration"))
-        refreshFromLoop()
+        await performCommands([
+            RemoteCommand(service: .diFm, action: "preferProgressiveChannel"),
+            RemoteCommand(service: .appleMusic, action: "allowExploration")
+        ])
     }
 
     public func logDemoDose() async {
@@ -370,13 +403,15 @@ public final class RemoteSessionViewModel: ObservableObject {
     }
 
     public func setANC() async {
-        try? await manager.loop.bus.execute(RemoteCommand(service: .airPods, action: "enableANC"))
-        refreshFromLoop()
+        await performCommands([
+            RemoteCommand(service: .airPods, action: "enableANC")
+        ])
     }
 
     public func setTransparency() async {
-        try? await manager.loop.bus.execute(RemoteCommand(service: .airPods, action: "transparency"))
-        refreshFromLoop()
+        await performCommands([
+            RemoteCommand(service: .airPods, action: "transparency")
+        ])
     }
 
     public func voiceChill() async {
@@ -384,6 +419,23 @@ public final class RemoteSessionViewModel: ObservableObject {
         defer { isBusy = false }
         await manager.loop.handleVoice("chill music and dim lights")
         alexaLights = manager.loop.alexa.lightsPercent
+        refreshFromLoop()
+    }
+
+    private func performCommands(_ commands: [RemoteCommand]) async {
+        guard !isBusy else { return }
+        isBusy = true
+        lastError = nil
+        defer { isBusy = false }
+        var failures: [String] = []
+        for command in commands {
+            do {
+                try await manager.loop.bus.execute(command)
+            } catch {
+                failures.append("\(command.service.rawValue): \(error.localizedDescription)")
+            }
+        }
+        if !failures.isEmpty { lastError = failures.joined(separator: "\n") }
         refreshFromLoop()
     }
 

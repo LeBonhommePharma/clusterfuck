@@ -187,6 +187,7 @@ public extension Color {
         ClusterFuckAdaptiveColor.make(light: ClusterFuckPalette.lightBorder, dark: ClusterFuckPalette.darkBorder)
     }
     static var clusterFuckPrimary: Color { ClusterFuckRGBA(hex: ClusterFuckPalette.primary).color }
+    static var clusterFuckOnAccent: Color { ClusterFuckRGBA(hex: ClusterFuckPalette.darkBackground).color }
     static var clusterFuckAccent: Color { ClusterFuckRGBA(hex: ClusterFuckPalette.accent).color }
     static var clusterFuckWarning: Color { ClusterFuckRGBA(hex: ClusterFuckPalette.warning).color }
     static var clusterFuckDestructive: Color { ClusterFuckRGBA(hex: ClusterFuckPalette.destructive).color }

@@ -7,32 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B186E891FAA9864DB2C9FAD /* ClusterFuckRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB16BA840ADE3DE5CB0D75 /* ClusterFuckRootView.swift */; };
+		0B88782AB68D686C0E41F73B /* ClusterFuckRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB16BA840ADE3DE5CB0D75 /* ClusterFuckRootView.swift */; };
+		0F8BC847F7EB543BF227052F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F22CCEE4F293A3F192DC580C /* PrivacyInfo.xcprivacy */; };
+		107CC78FEA6568E962664B19 /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = C49A38D0554134BB15003E0D /* NaturalRemote */; };
+		1356DD12C21403E50282DA93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BB4B0675A9A6F43244F71A8 /* Assets.xcassets */; };
 		1D7F3E685E4F6772EFCB07A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01EA915B1E41BAF63F6B96F0 /* Assets.xcassets */; };
 		22314F5A9B29411E99E9A78D /* PhoneConnectivityBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A241EDA3E447E40D17AC91CA /* PhoneConnectivityBridge.swift */; };
 		289F8106B05C008F24C29F53 /* ClusterFuckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59502156033935FB07A3F /* ClusterFuckApp.swift */; };
+		2D4218955DE0C3CE35675D00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7201BEA3EC48F84CFBA918FB /* Assets.xcassets */; };
+		2F6ECAFEC9F24BABC51702BB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 07A59FEC90874C3F47C5222A /* PrivacyInfo.xcprivacy */; };
 		351317DE2743B0F931433E23 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6BB21FF78D6894984838F6D4 /* BonhommeCore */; };
+		4207051C89BB32EB707C091A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A151C44BE0B0D0AF599373E5 /* Assets.xcassets */; };
 		4926DEC8642DEFE96BE888F2 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 649E363B253F3D0D6F6DB00F /* BonhommeCore */; };
 		4B7BC9D11B383430F0625A85 /* RemoteWatchConnectivityBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B465B91DFC283EE7204C27C /* RemoteWatchConnectivityBridge.swift */; };
 		5438EEBFA01AB5F1C7DBDBA5 /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = 7B9C033794F1CB675A3BB5DB /* NaturalRemote */; };
+		5AB2A1A4B2A016AD5783A077 /* ClusterFuckWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1506B3FC10C91CD962931056 /* ClusterFuckWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5D1B728528D61514E2849D9C /* BonhommeRemotePhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0A0C2804C3FDE7E9667E2A /* BonhommeRemotePhoneApp.swift */; };
 		65653650AE4E0E5C9A36A1D3 /* ClusterFuckRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBB16BA840ADE3DE5CB0D75 /* ClusterFuckRootView.swift */; };
+		67FE8B7055BB7DD73EF977BA /* ClusterFuckApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB59502156033935FB07A3F /* ClusterFuckApp.swift */; };
+		707DE26FDFE0FD8B696117A9 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 282F4066D4383154AB251A7A /* PrivacyInfo.xcprivacy */; };
 		762B83808292C57DBB1B13BA /* BonhommeRemoteWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA97ECF456B50432B8B123C /* BonhommeRemoteWatchApp.swift */; };
 		834F007DAA13F22E9741AFE9 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = E2FAB413B6F1B7CCC3297A7E /* BonhommeCore */; };
 		8410A7AE519AB9F4D9FCDA95 /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = B45D8613D9E4CEF452C2524B /* NaturalRemote */; };
 		888FA14F4EDA1AF107DC7871 /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = C65FE58FF2A03946E5D13CE1 /* NaturalRemote */; };
 		8CB335B078620D2C3ED60B0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A151C44BE0B0D0AF599373E5 /* Assets.xcassets */; };
+		985C7610EAFBEC7FE06581F7 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = DAD0CD228FC833F27D6E7B92 /* BonhommeCore */; };
 		A174AB3AA470C96DFEAD32F1 /* BonhommeRemoteWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E736BB4867842BC6BB4C7266 /* BonhommeRemoteWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AFB028FF5A913DE62FCE0192 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F22CCEE4F293A3F192DC580C /* PrivacyInfo.xcprivacy */; };
+		BABBAF986413D33C2670B9AF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DB4BC86FB863625813C96FC7 /* PrivacyInfo.xcprivacy */; };
 		BD268D62BDF689FE38D14F8C /* NaturalRemote in Frameworks */ = {isa = PBXBuildFile; productRef = 7C171AFF3FAF07AD4AF89BBC /* NaturalRemote */; };
 		D5CB8692606C17AE30C83520 /* BonhommeCore in Frameworks */ = {isa = PBXBuildFile; productRef = 321640F2B4CF1F5936F256F9 /* BonhommeCore */; };
 		FEEDBC21E96068FA6E0C48E0 /* ClusterFuckWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3316115E810184D7DBF2B36C /* ClusterFuckWatchApp.swift */; };
-		A20B00000000000000000002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20B00000000000000000001 /* Assets.xcassets */; };
-		A20B00000000000000000004 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20B00000000000000000003 /* PrivacyInfo.xcprivacy */; };
-		A20B00000000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20B00000000000000000006 /* Assets.xcassets */; };
-		A20B00000000000000000009 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20B00000000000000000008 /* PrivacyInfo.xcprivacy */; };
-		A20B0000000000000000000B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20B0000000000000000000C /* PrivacyInfo.xcprivacy */; };
-		A20B0000000000000000000D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20B0000000000000000000E /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
-
 
 /* Begin PBXContainerItemProxy section */
 		221EED8099D3FE11BA3324FC /* PBXContainerItemProxy */ = {
@@ -42,9 +49,27 @@
 			remoteGlobalIDString = 2273A7E0C39595B4016CB2F3;
 			remoteInfo = BonhommeRemoteWatch;
 		};
+		CEE948A58884A6AEC1CB7661 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59B5DCA28E6D996993776A53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 984AE0B43AFD0BD308CA701D;
+			remoteInfo = ClusterFuckWatch;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		4041C2F0D2E84DD5C6878284 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				5AB2A1A4B2A016AD5783A077 /* ClusterFuckWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9B4168682A0A9FE7A208924A /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -60,15 +85,20 @@
 
 /* Begin PBXFileReference section */
 		01EA915B1E41BAF63F6B96F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		07A59FEC90874C3F47C5222A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		0BB4B0675A9A6F43244F71A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C8D805450A161AF3AC0B70A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1506B3FC10C91CD962931056 /* ClusterFuckWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClusterFuckWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C28F7A9BA3F40A9CCFF0457 /* ClusterFuck */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ClusterFuck; path = .; sourceTree = SOURCE_ROOT; };
+		282F4066D4383154AB251A7A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3316115E810184D7DBF2B36C /* ClusterFuckWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckWatchApp.swift; sourceTree = "<group>"; };
 		45665E301A6D233C6DC91324 /* BonhommeRemotePhone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BonhommeRemotePhone.entitlements; sourceTree = "<group>"; };
+		48915792E592043DC652EC3D /* MacInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = MacInfo.plist; sourceTree = "<group>"; };
 		5B465B91DFC283EE7204C27C /* RemoteWatchConnectivityBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWatchConnectivityBridge.swift; sourceTree = "<group>"; };
 		5B8889597211A2E6CD8B2643 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5BBB16BA840ADE3DE5CB0D75 /* ClusterFuckRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckRootView.swift; sourceTree = "<group>"; };
 		657A5257038789B7FDA58814 /* BonhommeRemoteWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BonhommeRemoteWatch.entitlements; sourceTree = "<group>"; };
+		7201BEA3EC48F84CFBA918FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		793233821D45250152208135 /* BonhommeRemotePhone.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BonhommeRemotePhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F3B023300E2DA3E18E88DBB /* ClusterFuck.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ClusterFuck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A151C44BE0B0D0AF599373E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,17 +109,14 @@
 		D2C8B0E23940AE30360C41C7 /* ClusterFuck.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClusterFuck.entitlements; sourceTree = "<group>"; };
 		D476328C557C42D8462FA2EE /* ClusterFuckWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClusterFuckWatch.entitlements; sourceTree = "<group>"; };
 		D9EBBFA349805667C642790B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DB4BC86FB863625813C96FC7 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		DE7E2D6548A878474DAC4D7E /* ClusterFuckMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClusterFuckMac.entitlements; sourceTree = "<group>"; };
 		E736BB4867842BC6BB4C7266 /* BonhommeRemoteWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonhommeRemoteWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F22CCEE4F293A3F192DC580C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		F4DF8954BCDD1F1C7AC06DEB /* ClusterFuckMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClusterFuckMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBB59502156033935FB07A3F /* ClusterFuckApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterFuckApp.swift; sourceTree = "<group>"; };
 		FEB8948F5045B5438FDF29C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		A20B00000000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A20B00000000000000000003 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		A20B00000000000000000006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A20B00000000000000000008 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		A20B0000000000000000000C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		A20B0000000000000000000E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
 
 /* Begin PBXFrameworksBuildPhase section */
 		7B69DEC94697C6F145055C43 /* Frameworks */ = {
@@ -116,6 +143,15 @@
 			files = (
 				5438EEBFA01AB5F1C7DBDBA5 /* NaturalRemote in Frameworks */,
 				834F007DAA13F22E9741AFE9 /* BonhommeCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF00FF14ACFAD72459060479 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				107CC78FEA6568E962664B19 /* NaturalRemote in Frameworks */,
+				985C7610EAFBEC7FE06581F7 /* BonhommeCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +182,7 @@
 				793233821D45250152208135 /* BonhommeRemotePhone.app */,
 				E736BB4867842BC6BB4C7266 /* BonhommeRemoteWatch.app */,
 				9F3B023300E2DA3E18E88DBB /* ClusterFuck.app */,
+				F4DF8954BCDD1F1C7AC06DEB /* ClusterFuckMac.app */,
 				1506B3FC10C91CD962931056 /* ClusterFuckWatch.app */,
 			);
 			name = Products;
@@ -179,7 +216,7 @@
 				D476328C557C42D8462FA2EE /* ClusterFuckWatch.entitlements */,
 				3316115E810184D7DBF2B36C /* ClusterFuckWatchApp.swift */,
 				D9EBBFA349805667C642790B /* Info.plist */,
-				A20B0000000000000000000E /* PrivacyInfo.xcprivacy */,
+				07A59FEC90874C3F47C5222A /* PrivacyInfo.xcprivacy */,
 			);
 			path = ClusterFuckWatch;
 			sourceTree = "<group>";
@@ -205,10 +242,10 @@
 			isa = PBXGroup;
 			children = (
 				3B15515B623B524CB54A9A2B /* App */,
-				A20B00000000000000000006 /* Assets.xcassets */,
+				0BB4B0675A9A6F43244F71A8 /* Assets.xcassets */,
 				657A5257038789B7FDA58814 /* BonhommeRemoteWatch.entitlements */,
 				FEB8948F5045B5438FDF29C9 /* Info.plist */,
-				A20B00000000000000000008 /* PrivacyInfo.xcprivacy */,
+				282F4066D4383154AB251A7A /* PrivacyInfo.xcprivacy */,
 			);
 			path = BonhommeRemoteWatch;
 			sourceTree = "<group>";
@@ -219,8 +256,10 @@
 				A151C44BE0B0D0AF599373E5 /* Assets.xcassets */,
 				D2C8B0E23940AE30360C41C7 /* ClusterFuck.entitlements */,
 				FBB59502156033935FB07A3F /* ClusterFuckApp.swift */,
+				DE7E2D6548A878474DAC4D7E /* ClusterFuckMac.entitlements */,
 				0C8D805450A161AF3AC0B70A /* Info.plist */,
-				A20B0000000000000000000C /* PrivacyInfo.xcprivacy */,
+				48915792E592043DC652EC3D /* MacInfo.plist */,
+				F22CCEE4F293A3F192DC580C /* PrivacyInfo.xcprivacy */,
 			);
 			path = ClusterFuck;
 			sourceTree = "<group>";
@@ -229,10 +268,10 @@
 			isa = PBXGroup;
 			children = (
 				86EA6AC22E328F546B32214B /* App */,
-				A20B00000000000000000001 /* Assets.xcassets */,
+				7201BEA3EC48F84CFBA918FB /* Assets.xcassets */,
 				45665E301A6D233C6DC91324 /* BonhommeRemotePhone.entitlements */,
 				5B8889597211A2E6CD8B2643 /* Info.plist */,
-				A20B00000000000000000003 /* PrivacyInfo.xcprivacy */,
+				DB4BC86FB863625813C96FC7 /* PrivacyInfo.xcprivacy */,
 			);
 			path = BonhommeRemotePhone;
 			sourceTree = "<group>";
@@ -256,10 +295,12 @@
 				30E33B45B2B59996E9F6BA4E /* Sources */,
 				FAB014647DEE73382866D53B /* Resources */,
 				FDAB21DCBF8A5F23250ABAE6 /* Frameworks */,
+				4041C2F0D2E84DD5C6878284 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B6A27B47C6F270EAC519B6C8 /* PBXTargetDependency */,
 			);
 			name = ClusterFuck;
 			packageProductDependencies = (
@@ -275,7 +316,7 @@
 			buildConfigurationList = A0801CA69E014842BB40BC92 /* Build configuration list for PBXNativeTarget "BonhommeRemoteWatch" */;
 			buildPhases = (
 				9414C362A33931CE10410964 /* Sources */,
-				A20B0000000000000000000A /* Resources */,
+				1B460C13DE47C1819CE0384C /* Resources */,
 				7B69DEC94697C6F145055C43 /* Frameworks */,
 			);
 			buildRules = (
@@ -317,7 +358,7 @@
 			buildConfigurationList = 8A613A3F842A8C357D2BB05E /* Build configuration list for PBXNativeTarget "BonhommeRemotePhone" */;
 			buildPhases = (
 				5C227E3C42FBA7CA2346DCB1 /* Sources */,
-				A20B00000000000000000005 /* Resources */,
+				C6455146321412002E185D5A /* Resources */,
 				7CC838AF48E90D70B8C273BF /* Frameworks */,
 				9B4168682A0A9FE7A208924A /* Embed Watch Content */,
 			);
@@ -335,6 +376,27 @@
 			productReference = 793233821D45250152208135 /* BonhommeRemotePhone.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E93F4CCD810B11E02EA2FC83 /* ClusterFuckMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00A8510C172F2F036D386882 /* Build configuration list for PBXNativeTarget "ClusterFuckMac" */;
+			buildPhases = (
+				04AD3C4C37F1229B8F2EEECD /* Sources */,
+				987C61A5C4105EC8EE831331 /* Resources */,
+				BF00FF14ACFAD72459060479 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClusterFuckMac;
+			packageProductDependencies = (
+				C49A38D0554134BB15003E0D /* NaturalRemote */,
+				DAD0CD228FC833F27D6E7B92 /* BonhommeCore */,
+			);
+			productName = ClusterFuckMac;
+			productReference = F4DF8954BCDD1F1C7AC06DEB /* ClusterFuckMac.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -345,19 +407,23 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					1C066168585FEB2985587BDA = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = ZJLX84G8QV;
 						ProvisioningStyle = Automatic;
 					};
 					2273A7E0C39595B4016CB2F3 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = ZJLX84G8QV;
 						ProvisioningStyle = Automatic;
 					};
 					984AE0B43AFD0BD308CA701D = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = ZJLX84G8QV;
 						ProvisioningStyle = Automatic;
 					};
 					DE61A9770E3A685D825CC6C7 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = ZJLX84G8QV;
+						ProvisioningStyle = Automatic;
+					};
+					E93F4CCD810B11E02EA2FC83 = {
+						DevelopmentTeam = ZJLX84G8QV;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -384,17 +450,45 @@
 				2273A7E0C39595B4016CB2F3 /* BonhommeRemoteWatch */,
 				1C066168585FEB2985587BDA /* ClusterFuck */,
 				984AE0B43AFD0BD308CA701D /* ClusterFuckWatch */,
+				E93F4CCD810B11E02EA2FC83 /* ClusterFuckMac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1B460C13DE47C1819CE0384C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1356DD12C21403E50282DA93 /* Assets.xcassets in Resources */,
+				707DE26FDFE0FD8B696117A9 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		987C61A5C4105EC8EE831331 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4207051C89BB32EB707C091A /* Assets.xcassets in Resources */,
+				AFB028FF5A913DE62FCE0192 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AE23457AD620B86BA3BFFAC8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1D7F3E685E4F6772EFCB07A7 /* Assets.xcassets in Resources */,
-				A20B0000000000000000000D /* PrivacyInfo.xcprivacy in Resources */,
+				2F6ECAFEC9F24BABC51702BB /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6455146321412002E185D5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D4218955DE0C3CE35675D00 /* Assets.xcassets in Resources */,
+				BABBAF986413D33C2670B9AF /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,32 +497,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CB335B078620D2C3ED60B0D /* Assets.xcassets in Resources */,
-				A20B0000000000000000000B /* PrivacyInfo.xcprivacy in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-
-		A20B00000000000000000005 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A20B00000000000000000002 /* Assets.xcassets in Resources */,
-				A20B00000000000000000004 /* PrivacyInfo.xcprivacy in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A20B0000000000000000000A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A20B00000000000000000007 /* Assets.xcassets in Resources */,
-				A20B00000000000000000009 /* PrivacyInfo.xcprivacy in Resources */,
+				0F8BC847F7EB543BF227052F /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		04AD3C4C37F1229B8F2EEECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67FE8B7055BB7DD73EF977BA /* ClusterFuckApp.swift in Sources */,
+				0B186E891FAA9864DB2C9FAD /* ClusterFuckRootView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		23BA55FF162C44B68A591CEC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -451,6 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D1B728528D61514E2849D9C /* BonhommeRemotePhoneApp.swift in Sources */,
+				0B88782AB68D686C0E41F73B /* ClusterFuckRootView.swift in Sources */,
 				22314F5A9B29411E99E9A78D /* PhoneConnectivityBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,6 +552,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B6A27B47C6F270EAC519B6C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 984AE0B43AFD0BD308CA701D /* ClusterFuckWatch */;
+			targetProxy = CEE948A58884A6AEC1CB7661 /* PBXContainerItemProxy */;
+		};
 		F87A15F5DE556E92F878133D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2273A7E0C39595B4016CB2F3 /* BonhommeRemoteWatch */;
@@ -491,6 +581,22 @@
 			};
 			name = Debug;
 		};
+		2D93CA503393274DD9D61B74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuckMac.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuck/MacInfo.plist;
+				ITSAppUsesNonExemptEncryption = NO;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.mac;
+				PRODUCT_NAME = ClusterFuck;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		3468B3776431343296398465 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -512,6 +618,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -545,7 +652,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZJLX84G8QV;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -568,6 +675,22 @@
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
+		};
+		82FC25CC62649F8BE318CFD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Apps/ClusterFuck/ClusterFuckMac.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Apps/ClusterFuck/MacInfo.plist;
+				ITSAppUsesNonExemptEncryption = NO;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.mac;
+				PRODUCT_NAME = ClusterFuck;
+				SDKROOT = macosx;
+			};
+			name = Debug;
 		};
 		875D6100E67C2ED409C2F3B7 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -672,6 +795,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -705,7 +829,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = ZJLX84G8QV;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -739,6 +863,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		00A8510C172F2F036D386882 /* Build configuration list for PBXNativeTarget "ClusterFuckMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82FC25CC62649F8BE318CFD3 /* Debug */,
+				2D93CA503393274DD9D61B74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		506D96F4E00B91CA7CAC134B /* Build configuration list for PBXNativeTarget "ClusterFuck" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -822,9 +955,17 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = NaturalRemote;
 		};
+		C49A38D0554134BB15003E0D /* NaturalRemote */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NaturalRemote;
+		};
 		C65FE58FF2A03946E5D13CE1 /* NaturalRemote */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NaturalRemote;
+		};
+		DAD0CD228FC833F27D6E7B92 /* BonhommeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BonhommeCore;
 		};
 		E2FAB413B6F1B7CCC3297A7E /* BonhommeCore */ = {
 			isa = XCSwiftPackageProductDependency;

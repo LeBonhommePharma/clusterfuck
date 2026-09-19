@@ -38,5 +38,7 @@
 	<array>
 		<string>workout-processing</string>
 	</array>
+	<key>WKCompanionAppBundleIdentifier</key>
+	<string>com.natural.BonhommeRemote</string>
 </dict>
 </plist>

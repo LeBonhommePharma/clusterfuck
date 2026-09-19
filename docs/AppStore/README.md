@@ -18,14 +18,14 @@ This repo ships **two** product families. Do not invent tvOS or visionOS store r
 | Subtitle | Wrist Crooks control | Entropy docking remote |
 | Category | Health & Fitness (secondary: Medical) | Health & Fitness |
 | Pricing | Free | Free |
-| Age | 17+ (dose / PV context; no actual clinical claims) | 17+ |
+| Age | Complete the current content questionnaire; no rating claimed yet | Complete the current content questionnaire |
 | Marketing | https://thebonhomme.com/ClusterFuck/ | https://thebonhomme.com/NATURaL-Remote/ |
 | Privacy | https://thebonhomme.com/ClusterFuck/privacy/ | same policy family |
 | App Group | `group.com.natural.BonhommeRemote` | `group.com.natural.BonhommeRemote` |
 
 ## App Privacy
 
-Health samples (HR / HRV) and on-device dose logs are used for **app functionality** (σ_irr control, pharmacovigilance export). Tracking is **off**. Tokens for Spotify / Alexa stay on the phone liver and are **not** written to WatchConnectivity application context.
+The intended data flows include Health samples (HR / HRV) and local dose logs for app functionality. Live sampling, durable logging and export must be verified before these become store claims. On-device processing alone does not constitute collection under Apple’s privacy definition; audit configured third-party requests before final answers. Tracking is **off**. Tokens for Spotify / Alexa stay on the phone and are **not** written to WatchConnectivity application context.
 
 Privacy manifests: `Apps/*/PrivacyInfo.xcprivacy`.
 
@@ -37,11 +37,15 @@ Privacy manifests: `Apps/*/PrivacyInfo.xcprivacy`.
 
 ClusterFuck is a wrist-oriented Crooks σ_irr remote for NATURaL. Demo dose logging is clearly a **non-clinical demo** (`DrugKitEngine.nonClinicalDemoMode`). HealthKit authorization may be skipped in simulator; the Crooks loop still runs on injected samples.
 
-Watch is an independent watchOS app (`WKApplication` = true). Mac is sandboxed.
+Watch supports independent operation and is embedded in its iOS companion. Mac has sandbox entitlements; signed behavior remains unverified.
 
 Contact: lp@thebonhomme.com
 
-## Remaining external gates
+## Remaining gates
+
+See [TODO.md](TODO.md) for unresolved product functionality and [verification.md](verification.md) for actual verification. Local configuration is not yet a production-ready product.
+
+## Account and publishing gates
 
 1. Register identifiers and App Group on team ZJLX84G8QV.
 2. App Store Connect records + screenshots (iPhone, iPad if universal, Watch, Mac).

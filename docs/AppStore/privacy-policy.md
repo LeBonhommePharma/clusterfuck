@@ -1,6 +1,6 @@
 # Privacy policy (source) — ClusterFuck / NATURaL Remote
 
-Published: [thebonhomme.com/ClusterFuck/privacy/](https://thebonhomme.com/ClusterFuck/privacy/).
+Draft; publication not verified: [thebonhomme.com/ClusterFuck/privacy/](https://thebonhomme.com/ClusterFuck/privacy/).
 
 ClusterFuck (NATURaL Remote) is a wrist-oriented Crooks σ_irr control surface. Le Bonhomme Pharma does not operate a ClusterFuck account server. Heart rate, HRV, dose logs, and actuator events stay **on device** unless the user exports a pharmacovigilance JSON file they chose to share.
 
