@@ -2,7 +2,7 @@
 
 Updated 19 September 2026. Owner: LP / Le Bonhomme Pharma.
 
-Source preparation is in progress. No signed archive, successful app build, device acceptance, upload, or submission is established by the Python contracts.
+Source preparation is in progress. [CI run 35469911750](https://github.com/LeBonhommePharma/clusterfuck/actions/runs/35469911750) verifies implementation head **98c9ed0**: 68 XCTest cases and unsigned Debug app builds for iOS/iPadOS, embedded watchOS, and native macOS all passed. Physical-device acceptance, signed Release archives, account setup, uploads and submission remain incomplete.
 
 ## Completed source preparation
 
@@ -33,7 +33,8 @@ Source preparation is in progress. No signed archive, successful app build, devi
 
 ## Xcode/device verification (Xcode currently uninstalled)
 
-- [ ] Run Swift XCTest including the new surfaced-command-failure regression test.
+- [x] Run Swift XCTest including surfaced-command-failure and injected Health observation regressions: 68 tests, zero failures in CI 35469911750.
+- [x] Compile unsigned Debug iOS/iPadOS + embedded watchOS and native macOS app hosts in CI 35469911750.
 - [ ] Build Release iOS/iPadOS, watchOS and native macOS from the regenerated projects.
 - [ ] Exercise first launch, consent denial/revocation, start/stop, network errors and sensor loss on actual devices.
 - [ ] Validate VoiceOver, largest text, smallest Watch, iPad resizing/orientation, keyboard navigation and Reduce Motion in the rendered app.
