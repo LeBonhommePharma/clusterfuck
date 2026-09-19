@@ -1,6 +1,6 @@
 # ClusterFuck / NATURaL Remote — App Store preparation
 
-Repository preparation, not an uploaded release. Team **ZJLX84G8QV**, account **lp@thebonhomme.com** (same as NATURaL / Exergy).
+Repository preparation, not an uploaded release. Implementation head **98c9ed0** has [green CI](https://github.com/LeBonhommePharma/clusterfuck/actions/runs/35469911750): 68 XCTest cases and unsigned Debug iOS/iPadOS, embedded Watch, and native Mac app builds. Signed Release archives and physical-device acceptance remain pending. Team **ZJLX84G8QV**, account **lp@thebonhomme.com** (same as NATURaL / Exergy).
 
 This repo ships **two** product families. Do not invent tvOS or visionOS store records.
 
