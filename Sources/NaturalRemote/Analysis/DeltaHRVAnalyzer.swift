@@ -86,12 +86,12 @@ public final class DeltaHRVAnalyzer: @unchecked Sendable {
     }
 
     public func reset() {
-        lock.lock()
+        lock.withLock {
         rmssdSeries.removeAll()
         sdnnSeries.removeAll()
         lastDeltaRMSSD = 0
         lastDeltaSDNN = 0
-        lock.unlock()
+        }
     }
 
     /// Self-test path using synthetic coherent then noisy RR series.

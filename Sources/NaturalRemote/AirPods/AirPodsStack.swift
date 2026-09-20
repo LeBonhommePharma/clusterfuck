@@ -115,24 +115,24 @@ public final class AirPodsMaxH1Controller: RemoteActuator, @unchecked Sendable {
         #if canImport(AVFoundation)
         // Persist desired volume for entropy work terms.
         #endif
-        lock.lock()
+        lock.withLock {
         telemetry.volume = v
-        lock.unlock()
+        }
         publish()
     }
 
     public func setNoiseMode(_ mode: NoiseControlMode) {
-        lock.lock()
+        lock.withLock {
         telemetry.noiseMode = mode
-        lock.unlock()
+        }
         // Public apps cannot force ANC via private API; we expose control surface + state for Crooks.
         publish()
     }
 
     public func setSpatialAudioEnabled(_ enabled: Bool) {
-        lock.lock()
+        lock.withLock {
         telemetry.spatialAudioEnabled = enabled
-        lock.unlock()
+        }
         publish()
     }
 
@@ -167,9 +167,9 @@ public final class AirPodsMaxH1Controller: RemoteActuator, @unchecked Sendable {
 
     /// Inject pose for unit tests / simulators without hardware.
     public func injectHeadPose(_ pose: HeadPose) {
-        lock.lock()
+        lock.withLock {
         telemetry.headPose = pose
-        lock.unlock()
+        }
         publish()
     }
 
@@ -228,41 +228,41 @@ public final class AirPodsProH2Controller: RemoteActuator, @unchecked Sendable {
     }
 
     public func setAdaptiveAudio(_ active: Bool) {
-        lock.lock()
+        lock.withLock {
         telemetry.adaptiveAudioActive = active
         if active { telemetry.noiseMode = .adaptive }
-        lock.unlock()
+        }
         publish()
     }
 
     public func setPersonalizedSpatial(_ enabled: Bool) {
-        lock.lock()
+        lock.withLock {
         telemetry.personalizedSpatialEnabled = enabled
         telemetry.spatialAudioEnabled = enabled || telemetry.spatialAudioEnabled
-        lock.unlock()
+        }
         publish()
     }
 
     public func setConversationAwareness(_ active: Bool) {
-        lock.lock()
+        lock.withLock {
         telemetry.conversationAwarenessActive = active
-        lock.unlock()
+        }
         publish()
     }
 
     public func setNoiseMode(_ mode: NoiseControlMode) {
-        lock.lock()
+        lock.withLock {
         telemetry.noiseMode = mode
-        lock.unlock()
+        }
         publish()
     }
 
     /// Ingest biometric samples from HealthKit headphone path or lab fixture.
     public func ingestHeartRate(bpm: Double, rrIntervalsMs: [Double]) {
-        lock.lock()
+        lock.withLock {
         telemetry.heartRateBPM = bpm
         telemetry.rrIntervalsMs = rrIntervalsMs
-        lock.unlock()
+        }
         publish()
     }
 
@@ -325,11 +325,11 @@ public final class AirPodsDualStack: RemoteActuator, @unchecked Sendable {
     }
 
     public func setActiveChip(_ chip: String) {
-        lock.lock(); activeChip = chip; lock.unlock()
+        lock.withLock { activeChip = chip }
     }
 
     public func activeTelemetry() -> AirPodsTelemetry {
-        lock.lock(); let chip = activeChip; lock.unlock()
+        let chip = lock.withLock { activeChip }
         if chip.uppercased().contains("H1") {
             return maxH1.currentTelemetry()
         }
@@ -337,7 +337,7 @@ public final class AirPodsDualStack: RemoteActuator, @unchecked Sendable {
     }
 
     public func execute(_ command: RemoteCommand) async throws {
-        lock.lock(); let chip = activeChip; lock.unlock()
+        let chip = lock.withLock { activeChip }
         if chip.uppercased().contains("H1") {
             try await maxH1.execute(command)
         } else {

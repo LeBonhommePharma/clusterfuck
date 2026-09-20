@@ -86,14 +86,14 @@ public final class PharmaControlSessionManager: @unchecked Sendable {
     }
 
     public func stop() {
-        lock.lock()
+        lock.withLock {
         _running = false
         generation += 1
         observationTask?.cancel()
         observationTask = nil
         readings = RemoteHealthReadings()
         healthControlSnapshot = nil
-        lock.unlock()
+        }
     }
 
     private func receive(_ event: RemoteHealthEvent, generation expected: Int) async {

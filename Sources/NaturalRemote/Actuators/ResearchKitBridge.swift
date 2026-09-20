@@ -85,9 +85,9 @@ public final class ResearchKitBridge: RemoteActuator, @unchecked Sendable {
     }
 
     public func attachFeedbackEngine(_ engine: FeedbackEngine) {
-        lock.lock()
+        lock.withLock {
         feedbackEngine = engine
-        lock.unlock()
+        }
     }
 
     public var latestSurveyResults: [ResearchKitSurveyResult] {
@@ -133,14 +133,14 @@ public final class ResearchKitBridge: RemoteActuator, @unchecked Sendable {
             timestamp: date
         )
 
-        lock.lock()
+        let engine = lock.withLock {
         latestResults.append(result)
         if latestResults.count > 200 {
             latestResults.removeFirst(latestResults.count - 200)
         }
         pendingPromptInstrument = nil
-        let engine = feedbackEngine
-        lock.unlock()
+            return feedbackEngine
+        }
 
         let signal = SurveySignal(
             timestamp: date,
@@ -286,13 +286,13 @@ public final class ResearchKitBridge: RemoteActuator, @unchecked Sendable {
     public func execute(_ command: RemoteCommand) async throws {
         switch command.action {
         case "promptLog", "promptSurvey", "promptCurrentState":
-            lock.lock()
+            lock.withLock {
             pendingPromptInstrument = .currentStateLog
-            lock.unlock()
+            }
         case "promptDoseEffect":
-            lock.lock()
+            lock.withLock {
             pendingPromptInstrument = .doseEffectRating
-            lock.unlock()
+            }
         case "inject":
             let instRaw = command.params["instrument"] ?? ResearchKitInstrument.currentStateLog.rawValue
             let instrument = ResearchKitInstrument(rawValue: instRaw) ?? .currentStateLog

@@ -46,10 +46,10 @@ public final class AppleMusicController: MusicTransportControlling, RemoteActuat
         #if canImport(MusicKit)
         let status = await MusicAuthorization.request()
         let ok = status == .authorized
-        lock.lock(); _authorized = ok; lock.unlock()
+        lock.withLock { _authorized = ok }
         return ok
         #else
-        lock.lock(); _authorized = true; lock.unlock()
+        lock.withLock { _authorized = true }
         return true
         #endif
     }
@@ -60,18 +60,18 @@ public final class AppleMusicController: MusicTransportControlling, RemoteActuat
             try await ApplicationMusicPlayer.shared.play()
         }
         #endif
-        lock.lock(); _playing = true; lock.unlock()
+        lock.withLock { _playing = true }
     }
 
     public func pause() async throws {
         #if canImport(MusicKit) && !os(watchOS)
         ApplicationMusicPlayer.shared.pause()
         #endif
-        lock.lock(); _playing = false; lock.unlock()
+        lock.withLock { _playing = false }
     }
 
     public func setTargetBPM(_ bpm: Double) async throws {
-        lock.lock(); _bpm = bpm; lock.unlock()
+        lock.withLock { _bpm = bpm }
         // MusicKit has no direct BPM set; selection policy is encoded as search mood.
         // ApplicationMusicPlayer is unavailable on watchOS — state-only control there.
         #if canImport(MusicKit) && !os(watchOS)
@@ -82,7 +82,7 @@ public final class AppleMusicController: MusicTransportControlling, RemoteActuat
             if let playlist = try? await request.response().playlists.first {
                 ApplicationMusicPlayer.shared.queue = [playlist]
                 try? await ApplicationMusicPlayer.shared.play()
-                lock.lock(); _playing = true; lock.unlock()
+                lock.withLock { _playing = true }
             }
         }
         #endif
@@ -155,16 +155,16 @@ public final class SpotifyRemoteController: MusicTransportControlling, RemoteAct
 
     public func play() async throws {
         try await perform(action: "play", path: "/me/player/play", method: "PUT")
-        lock.lock(); _playing = true; lock.unlock()
+        lock.withLock { _playing = true }
     }
 
     public func pause() async throws {
         try await perform(action: "pause", path: "/me/player/pause", method: "PUT")
-        lock.lock(); _playing = false; lock.unlock()
+        lock.withLock { _playing = false }
     }
 
     public func setTargetBPM(_ bpm: Double) async throws {
-        lock.lock(); _bpm = bpm; lock.unlock()
+        lock.withLock { _bpm = bpm }
         // Spotify Web API has no BPM set; encode as playlist preference via hook or no-op without token.
         try await perform(action: "setTargetBPM", path: "/me/player", method: "GET", params: ["bpm": "\(bpm)"])
     }
@@ -257,7 +257,7 @@ public final class SonosController: MusicTransportControlling, RemoteActuator, @
     }
 
     public func setRooms(_ rooms: [String]) {
-        lock.lock(); _rooms = rooms; lock.unlock()
+        lock.withLock { _rooms = rooms }
     }
 
     public var isPlaying: Bool {
@@ -270,16 +270,16 @@ public final class SonosController: MusicTransportControlling, RemoteActuator, @
 
     public func play() async throws {
         try await groupAction("play")
-        lock.lock(); _playing = true; lock.unlock()
+        lock.withLock { _playing = true }
     }
 
     public func pause() async throws {
         try await groupAction("pause")
-        lock.lock(); _playing = false; lock.unlock()
+        lock.withLock { _playing = false }
     }
 
     public func setTargetBPM(_ bpm: Double) async throws {
-        lock.lock(); _bpm = bpm; lock.unlock()
+        lock.withLock { _bpm = bpm }
     }
 
     public func queueGroundingTrack() async throws {
@@ -351,11 +351,11 @@ public final class DIFmController: MusicTransportControlling, RemoteActuator, @u
 
     public func play() async throws {
         try await tune(channelId: currentChannelId)
-        lock.lock(); _playing = true; lock.unlock()
+        lock.withLock { _playing = true }
     }
 
     public func pause() async throws {
-        lock.lock(); _playing = false; lock.unlock()
+        lock.withLock { _playing = false }
         if let transportHook {
             try await transportHook("pause", [:])
         }
@@ -410,11 +410,11 @@ public final class DIFmController: MusicTransportControlling, RemoteActuator, @u
 
     private func tune(channelId: String) async throws {
         let meta = Self.channelCatalog.first(where: { $0.id == channelId })
-        lock.lock()
+        lock.withLock {
         _channelId = channelId
         _bpm = meta?.nominalBPM ?? 120
         _playing = true
-        lock.unlock()
+        }
         if let transportHook {
             try await transportHook("tune", ["channel": channelId])
         }

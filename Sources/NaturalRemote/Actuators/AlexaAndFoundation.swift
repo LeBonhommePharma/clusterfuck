@@ -109,7 +109,7 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
     }
 
     public func updateConfig(_ config: AlexaProxyConfig) {
-        lock.lock(); self.config = config; lock.unlock()
+        lock.withLock { self.config = config }
     }
 
     public var lastIntentName: String {
@@ -139,7 +139,7 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
 
     /// Resolve effective plane for a call under `.auto`.
     public func resolveMode() -> AlexaAPIMode {
-        lock.lock(); let cfg = config; lock.unlock()
+        let cfg = lock.withLock { config }
         switch cfg.mode {
         case .auto:
             if cfg.alexaPlusEndpoint != nil || (cfg.accessToken?.isEmpty == false && cfg.mode == .auto) {
@@ -156,20 +156,20 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
     // MARK: High-level routines (Crooks / UI)
 
     public func invokeRoutine(_ name: String, params: [String: String] = [:]) async throws {
-        lock.lock()
+        let lights = lock.withLock {
         lastIntent = name
         if let lights = params["lights"], let v = Int(lights) {
             lastLightsPercent = min(100, max(0, v))
         }
-        let lights = lastLightsPercent
-        lock.unlock()
+            return lastLightsPercent
+        }
 
         if let transportHook {
             try await transportHook(name, params)
         }
 
         let mode = resolveMode()
-        lock.lock(); lastModeUsed = mode; lock.unlock()
+        lock.withLock { lastModeUsed = mode }
 
         switch mode {
         case .alexaPlus, .auto:
@@ -188,12 +188,12 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
 
     /// Explicit Alexa+ generative action (AI Action / Multi-Agent style).
     public func invokeAlexaPlusAction(_ action: AlexaPlusAction) async throws {
-        lock.lock()
+        let cfg = lock.withLock {
         lastPlusAction = action
         lastIntent = action.expert + ":" + action.utterance
         lastModeUsed = .alexaPlus
-        let cfg = config
-        lock.unlock()
+            return config
+        }
 
         if let transportHook {
             var p = action.slots
@@ -223,12 +223,12 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
 
     /// Explicit Smart Home v3 directive.
     public func invokeSmartHomeDirective(_ directive: AlexaSmartHomeDirective) async throws {
-        lock.lock()
+        let cfg = lock.withLock {
         lastDirective = directive
         lastIntent = "\(directive.namespace).\(directive.name)"
         lastModeUsed = .smartHomeV3
-        let cfg = config
-        lock.unlock()
+            return config
+        }
 
         if let transportHook {
             try await transportHook(
@@ -370,7 +370,7 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
     }
 
     private func invokeSkillProxy(intent: String, params: [String: String]) async throws {
-        lock.lock(); let cfg = config; lock.unlock()
+        let cfg = lock.withLock { config }
         guard let endpoint = cfg.skillEndpoint else { return }
         let body: [String: Any] = [
             "api": "skill_proxy",
@@ -390,7 +390,7 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         let (_, response) = try await session.data(for: request)
         let status = (response as? HTTPURLResponse)?.statusCode
-        lock.lock(); lastHTTPStatus = status; lock.unlock()
+        lock.withLock { lastHTTPStatus = status }
         try RemoteHTTPHonesty.requireSuccess(status)
     }
 }
@@ -475,10 +475,10 @@ public final class FoundationModelOrchestrator: RemoteActuator, @unchecked Senda
         }
 
         let suggestion = "SCI=\(String(format: "%.2f", currentSCI)) σ_irr=\(String(format: "%.3f", sigmaIrr)) phase=\(phase.rawValue) → \(commands.map(\.action).joined(separator: ","))"
-        lock.lock()
+        lock.withLock {
         lastSuggestion = suggestion
         lastCommands = commands
-        lock.unlock()
+        }
         return commands
     }
 
@@ -493,10 +493,10 @@ public final class FoundationModelOrchestrator: RemoteActuator, @unchecked Senda
                 phase: phase
             )
         } else {
-            lock.lock()
+            lock.withLock {
             lastCommands.append(command)
             lastSuggestion = command.action
-            lock.unlock()
+            }
         }
     }
 }
