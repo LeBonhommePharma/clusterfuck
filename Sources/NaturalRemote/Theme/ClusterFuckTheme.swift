@@ -117,8 +117,8 @@ public enum ClusterFuckRadius {
 }
 
 public enum ClusterFuckIconSize {
-    public static let sm: CGFloat = 16
-    public static let md: CGFloat = 20
+    /// Minimum interactive area. Icon glyphs size themselves with
+    /// `.imageScale`, which tracks Dynamic Type; fixed point sizes do not.
     public static let hit: CGFloat = 44
 }
 
