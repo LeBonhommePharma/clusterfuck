@@ -15,3 +15,9 @@ MASTER **brand override** (mint / violet / ink) is required. Do not ship the gen
 ## Tokens
 
 Views read `ClusterFuckTheme` only — no raw hex in `RemoteSessionView`.
+
+iOS follows the system appearance, so **both** grounds ship. Key colours resolve
+to their light-ground variant in light mode (`Color.clusterFuckAccent` →
+`#157F59`, `clusterFuckPrimary` → `#7E4AF5`, `clusterFuckSecondary` →
+`#0074B7`, `clusterFuckWarning` → `#DB0068`). Never render a dark-ground key
+colour on the light card — mint is 1.68:1 on white.

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import plistlib
 import re
 import struct
 import sys
@@ -29,8 +30,23 @@ def test_design_system() -> None:
     for needle in ("#45E0A8", "#8B5CF6", "#08091A", "Brand override"):
         if needle not in text:
             fail(f"MASTER.md missing {needle}")
-    if "| Primary | `#0284C7`" in text:
-        fail("MASTER primary table must not ship clinical blue as source of truth")
+    # The generated aerospace palette may be NAMED in MASTER.md, but only to
+    # exclude it. Any line that carries one of these values without saying so
+    # is presenting it as the source of truth.
+    #
+    # This replaces a check for the literal string "| Primary | `#0284C7`",
+    # which matched a table layout MASTER.md has never used and so could never
+    # fail. No table parsing here: the rule is per-line and needs no structure.
+    aerospace = ("#0284C7", "#16A34A", "#F0F9FF")
+    excluded = ("unused", "not used", "**not**", "do not ship", "is not")
+    for number, line in enumerate(text.splitlines(), start=1):
+        lowered = line.lower()
+        for value in aerospace:
+            if value.lower() in lowered and not any(mark in lowered for mark in excluded):
+                fail(
+                    f"MASTER.md:{number} presents aerospace {value} without marking it "
+                    f"excluded: {line.strip()[:70]}"
+                )
     for page in ("watchos", "ios", "macos"):
         if not (ROOT / f"design-system/clusterfuck/pages/{page}.md").is_file():
             fail(f"missing page override {page}.md")
@@ -148,23 +164,37 @@ def test_privacy_and_watch_plist() -> None:
         "Apps/BonhommeRemotePhone/PrivacyInfo.xcprivacy",
         "Apps/BonhommeRemoteWatch/PrivacyInfo.xcprivacy",
     ):
-        text = read(rel)
-        if "NSPrivacyTracking" not in text:
-            fail(f"{rel} missing tracking key")
-        if "<false/>" not in text:
-            fail(f"{rel} must set NSPrivacyTracking false")
-        if "NSPrivacyCollectedDataTypes" not in text:
+        # Parsed, not substring-matched. The previous version asked whether
+        # the text contained "NSPrivacyTracking" and whether it contained
+        # "<false/>" anywhere. Both were satisfiable without the property
+        # being set: NSPrivacyTrackingDomains contains the first as a
+        # substring, and the two <false/> values inside
+        # NSPrivacyCollectedDataTypes satisfy the second. Deleting the
+        # tracking key outright, or setting it to <true/>, both passed.
+        try:
+            plist = plistlib.loads((ROOT / rel).read_bytes())
+        except Exception as exc:  # noqa: BLE001 - surface any malformed plist
+            fail(f"{rel} is not a readable plist: {exc}")
+            continue
+        if plist.get("NSPrivacyTracking") is not False:
+            fail(f"{rel} must set NSPrivacyTracking to false, got {plist.get('NSPrivacyTracking')!r}")
+        if not isinstance(plist.get("NSPrivacyCollectedDataTypes"), list):
             fail(f"{rel} missing collected types")
-    watch = read("Apps/BonhommeRemoteWatch/Info.plist")
-    if "<key>WKApplication</key>\n\t<true/>" not in watch.replace("\r", ""):
-        if "<key>WKApplication</key>\n    <true/>" not in watch:
-            fail("BonhommeRemoteWatch WKApplication must be boolean true")
-    mac_plist = read("Apps/ClusterFuck/MacInfo.plist")
+    # All three parsed, not substring-matched. The previous forms asked
+    # whether a key's NAME appeared in the raw text, which says nothing about
+    # its value: the sandbox entitlement could be <false/> and both release
+    # gates stayed green. The WKApplication pair also depended on exact
+    # indentation, so reformatting the plist would have silently retired it.
+    watch = plistlib.loads((ROOT / "Apps/BonhommeRemoteWatch/Info.plist").read_bytes())
+    if watch.get("WKApplication") is not True:
+        fail(f"BonhommeRemoteWatch WKApplication must be true, got {watch.get('WKApplication')!r}")
+    mac_plist = plistlib.loads((ROOT / "Apps/ClusterFuck/MacInfo.plist").read_bytes())
     if "LSRequiresIPhoneOS" in mac_plist:
         fail("Mac Info.plist must not require iPhone OS")
-    mac_ent = read("Apps/ClusterFuck/ClusterFuckMac.entitlements")
-    if "com.apple.security.app-sandbox" not in mac_ent:
-        fail("Mac entitlements must sandbox")
+    mac_ent = plistlib.loads((ROOT / "Apps/ClusterFuck/ClusterFuckMac.entitlements").read_bytes())
+    if mac_ent.get("com.apple.security.app-sandbox") is not True:
+        fail(f"Mac entitlements must sandbox, got "
+             f"{mac_ent.get('com.apple.security.app-sandbox')!r}")
 
 
 def _png_rgb_1024(path: pathlib.Path, platform: str) -> None:

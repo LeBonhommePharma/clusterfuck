@@ -8,12 +8,39 @@ import BonhommeCore
 public struct RemoteSessionView: View {
     @ObservedObject private var model: RemoteSessionViewModel
     @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     public init(model: RemoteSessionViewModel) {
         self.model = model
     }
 
     public var body: some View {
+        VStack(spacing: 0) {
+            // One error channel. This used to be a modal alert *plus* an inline
+            // label on the σ tab only — so a failure was reported twice there
+            // and the inline copy was invisible on the other three tabs. A
+            // banner above the page is non-blocking, sits near the controls
+            // that caused it, and works on every tab.
+            if let err = model.lastError, !err.isEmpty {
+                errorBanner(err)
+            }
+            content
+        }
+        .background(Color.clusterFuckBackground.ignoresSafeArea())
+        .animation(
+            ClusterFuckMotion.animation(reduceMotion: reduceMotion),
+            value: model.lastError
+        )
+        .task {
+            while !Task.isCancelled {
+                model.refreshHealthReadings()
+                do { try await Task.sleep(for: .seconds(1)) }
+                catch { break }
+            }
+        }
+    }
+
+    private var content: some View {
         Group {
             #if os(watchOS)
             pagedRemote
@@ -33,7 +60,6 @@ public struct RemoteSessionView: View {
                     .navigationSplitViewColumnWidth(min: 200, ideal: 240, max: 300)
                 } detail: {
                     page(for: model.selectedTab)
-                        .padding(ClusterFuckSpacing.lg)
                         .frame(maxWidth: 720, alignment: .top)
                 }
             } else {
@@ -41,22 +67,42 @@ public struct RemoteSessionView: View {
             }
             #endif
         }
-        .background(Color.clusterFuckBackground.ignoresSafeArea())
-        .task {
-            while !Task.isCancelled {
-                model.refreshHealthReadings()
-                do { try await Task.sleep(for: .seconds(1)) }
-                catch { break }
+    }
+
+    /// Icon + text + colour, with an explicit dismiss. Colour is never the only
+    /// signal that this is a failure.
+    private func errorBanner(_ message: String) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: ClusterFuckSpacing.sm) {
+            Image(systemName: "exclamationmark.triangle")
+                .imageScale(.small)
+                .symbolRenderingMode(.monochrome)
+                .accessibilityHidden(true)
+            Text(message)
+                .font(ClusterFuckType.caption)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Button {
+                model.lastError = nil
+            } label: {
+                Image(systemName: "xmark")
+                    .imageScale(.small)
+                    .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
             }
+            .buttonStyle(ClusterFuckPressStyle())
+            .accessibilityLabel("Dismiss error")
         }
-        .alert("Action could not complete", isPresented: Binding(
-            get: { model.lastError != nil },
-            set: { if !$0 { model.lastError = nil } }
-        )) {
-            Button("OK") { model.lastError = nil }
-        } message: {
-            Text(model.lastError ?? "")
+        .foregroundStyle(Color.clusterFuckFailText)
+        .padding(.horizontal, ClusterFuckSpacing.md)
+        .padding(.vertical, ClusterFuckSpacing.xs)
+        .background(Color.clusterFuckFailText.opacity(0.12))
+        .overlay(alignment: .bottom) {
+            Rectangle()
+                .fill(Color.clusterFuckFailText.opacity(0.35))
+                .frame(height: 1)
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("Action could not complete. \(message)")
+        .transition(.move(edge: .top).combined(with: .opacity))
     }
 
     private var pagedRemote: some View {
@@ -98,14 +144,14 @@ public struct RemoteSessionView: View {
 
     private var sigmaTab: some View {
         ScrollView {
-            VStack(spacing: ClusterFuckSpacing.md) {
+            VStack(spacing: ClusterFuckSpacing.betweenSections) {
                 evidenceLabel(model.controlEvidence.label)
                 Text(model.healthStatusLabel)
-                    .font(.caption)
+                    .font(ClusterFuckType.caption)
                     .foregroundStyle(Color.clusterFuckMute)
                     .fixedSize(horizontal: false, vertical: true)
                 Text(model.healthMetricsLabel)
-                    .font(.caption.monospacedDigit())
+                    .font(ClusterFuckType.caption.monospacedDigit())
                     .foregroundStyle(Color.clusterFuckInk)
                 SigmaHUDView(
                     sigmaIrr: model.displaySigma,
@@ -119,30 +165,24 @@ public struct RemoteSessionView: View {
                     .accessibilityLabel(model.sciAccessibilityLabel)
 
                 ViewThatFits(in: .horizontal) {
-                    HStack(spacing: ClusterFuckSpacing.sm) {
+                    HStack(spacing: ClusterFuckSpacing.betweenControls) {
                         sessionButton
                         minimizeButton
                     }
-                    VStack(spacing: ClusterFuckSpacing.sm) {
+                    VStack(spacing: ClusterFuckSpacing.betweenControls) {
                         sessionButton
                         minimizeButton
                     }
                 }
                 Text("Experimental control index. Not a medical measurement or dosing recommendation.")
-                    .font(.caption)
+                    .font(ClusterFuckType.micro)
                     .foregroundStyle(Color.clusterFuckMute)
                     .fixedSize(horizontal: false, vertical: true)
-                if let err = model.lastError, !err.isEmpty {
-                    Text(err)
-                        .font(ClusterFuckType.caption)
-                        .foregroundStyle(Color.clusterFuckDestructive)
-                        .accessibilityLabel("Error \(err)")
-                }
                 if model.isBusy {
                     ClusterFuckLoadingRow()
                 }
             }
-            .padding(ClusterFuckSpacing.md)
+            .padding(pageInset)
         }
     }
 
@@ -154,9 +194,8 @@ public struct RemoteSessionView: View {
             }
         } label: {
             Text(model.isSessionRunning ? "Stop" : "Start")
-                .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
         }
-        .buttonStyle(ClusterFuckPressStyle())
+        .buttonStyle(ClusterFuckButtonStyle(.secondary, fillsWidth: true))
         .disabled(model.isBusy)
         .accessibilityLabel(model.isSessionRunning ? "Stop pharmacovigilance session" : "Start pharmacovigilance session")
     }
@@ -166,11 +205,10 @@ public struct RemoteSessionView: View {
             Task { await model.forceMinimize() }
         } label: {
             Label(model.isBusy ? "Working…" : "Minimize σ", systemImage: ClusterFuckSymbol.minimize.systemName)
-                .frame(maxWidth: .infinity, minHeight: ClusterFuckIconSize.hit)
-                .foregroundStyle(Color.clusterFuckOnAccent)
-                .background(Color.clusterFuckAccent, in: RoundedRectangle(cornerRadius: ClusterFuckRadius.sm, style: .continuous))
+                .symbolRenderingMode(.monochrome)
+                .imageScale(.small)
         }
-        .buttonStyle(ClusterFuckPressStyle())
+        .buttonStyle(ClusterFuckButtonStyle(.primary, fillsWidth: true))
         .disabled(model.isBusy)
         .accessibilityLabel("Minimize irreversible entropy production")
         .accessibilityHint("Drives music, Alexa, and AirPods actuators")
@@ -178,41 +216,35 @@ public struct RemoteSessionView: View {
 
     private var musicTab: some View {
         ScrollView {
-        VStack(spacing: ClusterFuckSpacing.sm) {
-            Label("Music stack", systemImage: ClusterFuckSymbol.music.systemName)
-                .font(ClusterFuckType.headline)
-                .symbolRenderingMode(.monochrome)
+        VStack(spacing: ClusterFuckSpacing.betweenSections) {
+            sectionHeader("Music stack", symbol: .music)
             evidenceLabel(model.audioEvidence.label)
             Text(model.musicMetricsLabel)
                 .font(ClusterFuckType.caption.monospacedDigit())
                 .foregroundStyle(Color.clusterFuckMute)
-            HStack(spacing: ClusterFuckSpacing.sm) {
+            HStack(spacing: ClusterFuckSpacing.betweenControls) {
                 Button("Ground") { Task { await model.groundMusic() } }
-                    .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
-                    .buttonStyle(ClusterFuckPressStyle())
+                    .buttonStyle(ClusterFuckButtonStyle(.secondary, fillsWidth: true))
                     .disabled(model.isBusy)
                     .accessibilityLabel("Queue grounding music")
                 Button("Explore") { Task { await model.exploreMusic() } }
-                    .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
-                    .buttonStyle(ClusterFuckPressStyle())
+                    .buttonStyle(ClusterFuckButtonStyle(.secondary, fillsWidth: true))
                     .disabled(model.isBusy)
                     .accessibilityLabel("Allow exploratory music")
             }
             Text("Apple Music · Spotify · Sonos · DI.fm")
-                .font(.caption2)
+                .font(ClusterFuckType.micro)
                 .foregroundStyle(Color.clusterFuckMute)
         }
-        .padding(ClusterFuckSpacing.md)
+        .padding(pageInset)
         .frame(maxWidth: .infinity)
         }
     }
 
     private var doseTab: some View {
         ScrollView {
-        VStack(spacing: ClusterFuckSpacing.sm) {
-            Label("DrugKit", systemImage: ClusterFuckSymbol.dose.systemName)
-                .font(ClusterFuckType.headline)
-                .symbolRenderingMode(.monochrome)
+        VStack(spacing: ClusterFuckSpacing.betweenSections) {
+            sectionHeader("DrugKit", symbol: .dose)
             evidenceLabel(model.doseEvidence.label)
             Text(model.doseMetricsLabel)
                 .font(ClusterFuckType.caption.monospacedDigit())
@@ -220,68 +252,83 @@ public struct RemoteSessionView: View {
             Button("Log demo dose") {
                 Task { await model.logDemoDose() }
             }
-            .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
-            .buttonStyle(ClusterFuckPressStyle())
+            .buttonStyle(ClusterFuckButtonStyle(.secondary, fillsWidth: true))
             .disabled(model.isBusy)
             .accessibilityLabel("Log demo dose for pharmacovigilance")
             if model.groundingAlert {
                 Label("Demo grounding alert", systemImage: "exclamationmark.triangle")
-                    .foregroundStyle(Color.clusterFuckDestructive)
-                    .font(.caption.bold())
+                    .foregroundStyle(Color.clusterFuckFailText)
+                    .font(ClusterFuckType.label)
                     .symbolRenderingMode(.hierarchical)
                     .accessibilityLabel("Simulated grounding alert, not a measured health finding")
             }
         }
-        .padding(ClusterFuckSpacing.md)
+        .padding(pageInset)
         .frame(maxWidth: .infinity)
         }
     }
 
     private var environmentTab: some View {
         ScrollView {
-        VStack(spacing: ClusterFuckSpacing.sm) {
-            Label("Environment", systemImage: ClusterFuckSymbol.environment.systemName)
-                .font(ClusterFuckType.headline)
-                .symbolRenderingMode(.monochrome)
+        VStack(spacing: ClusterFuckSpacing.betweenSections) {
+            sectionHeader("Environment", symbol: .environment, tint: .clusterFuckSecondary)
             Text(model.alexaLightsLabel)
                 .font(ClusterFuckType.caption.monospacedDigit())
                 .foregroundStyle(Color.clusterFuckMute)
                 .accessibilityLabel(model.alexaLightsLabel)
             Text("Device state unavailable. Commands express intent until an integration confirms the result.")
-                .font(.caption)
+                .font(ClusterFuckType.micro)
                 .foregroundStyle(Color.clusterFuckMute)
                 .fixedSize(horizontal: false, vertical: true)
-            HStack(spacing: ClusterFuckSpacing.sm) {
+            HStack(spacing: ClusterFuckSpacing.betweenControls) {
                 Button("ANC") { Task { await model.setANC() } }
-                    .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
-                    .buttonStyle(ClusterFuckPressStyle())
+                    .buttonStyle(ClusterFuckButtonStyle(.secondary, fillsWidth: true))
                     .disabled(model.isBusy)
                     .accessibilityLabel("Enable AirPods noise cancellation")
                 Button("Transparency") { Task { await model.setTransparency() } }
-                    .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
-                    .buttonStyle(ClusterFuckPressStyle())
+                    .buttonStyle(ClusterFuckButtonStyle(.secondary, fillsWidth: true))
                     .disabled(model.isBusy)
                     .accessibilityLabel("Enable AirPods transparency")
             }
             Button("Voice: chill + dim") {
                 Task { await model.voiceChill() }
             }
-            .frame(minWidth: ClusterFuckIconSize.hit, minHeight: ClusterFuckIconSize.hit)
-            .buttonStyle(ClusterFuckPressStyle())
+            .buttonStyle(ClusterFuckButtonStyle(.secondary, fillsWidth: true))
             .disabled(model.isBusy)
             .accessibilityLabel("Voice command chill music and dim lights")
         }
-        .padding(ClusterFuckSpacing.md)
+        .padding(pageInset)
         .frame(maxWidth: .infinity)
         }
     }
 
+    /// One header treatment for all four pages. `tint` is the colour bound to
+    /// that page's quantity where one exists — aqua is ΔS_vib, so Environment
+    /// gets aqua; Music and DrugKit are actuators, not quantities, so they stay
+    /// ink rather than borrowing a meaning they do not carry.
+    private func sectionHeader(_ title: String, symbol: ClusterFuckSymbol, tint: Color = .clusterFuckInk) -> some View {
+        Label(title, systemImage: symbol.systemName)
+            .font(ClusterFuckType.display)
+            .foregroundStyle(tint)
+            .symbolRenderingMode(.monochrome)
+            .imageScale(.medium)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityAddTraits(.isHeader)
+    }
+
     private func evidenceLabel(_ label: String) -> some View {
         Label(label, systemImage: label.contains("Demo") ? "testtube.2" : "sensor.tag.radiowaves.forward")
-            .font(.caption.weight(.semibold))
+            .font(ClusterFuckType.label)
+            .imageScale(.small)
             .foregroundStyle(Color.clusterFuckMute)
             .frame(maxWidth: .infinity, alignment: .leading)
             .fixedSize(horizontal: false, vertical: true)
+    }
+
+    /// Edge inset scales with the device class — a Mac window and a 41mm wrist
+    /// should not share a gutter.
+    private var pageInset: CGFloat {
+        compactChrome ? ClusterFuckSpacing.pageCompact : ClusterFuckSpacing.pageRegular
     }
 
     private var usesSidebar: Bool {

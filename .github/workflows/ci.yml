@@ -15,6 +15,13 @@ jobs:
         run: |
           python3 scripts/validate-submission.py
           python3 scripts/test_contracts.py
+          python3 scripts/test_icon_palette_guard.py
+          python3 scripts/check_icon_palette.py
+          python3 scripts/check_source_palette.py
+          python3 scripts/check_project_sync.py
+          python3 scripts/test_asset_diagnostics.py
+          python3 scripts/test_mutation_harness.py
+          python3 scripts/mutation_harness.py
 
   build-and-test:
     runs-on: macos-latest
@@ -36,6 +43,13 @@ jobs:
         run: |
           python3 scripts/validate-submission.py
           python3 scripts/test_contracts.py
+          python3 scripts/test_icon_palette_guard.py
+          python3 scripts/check_icon_palette.py
+          python3 scripts/check_source_palette.py
+          python3 scripts/check_project_sync.py
+          python3 scripts/test_asset_diagnostics.py
+          python3 scripts/test_mutation_harness.py
+          python3 scripts/mutation_harness.py
 
       - name: Build library
         working-directory: ClusterFuck
@@ -56,22 +70,30 @@ jobs:
       - name: Compile iOS and watchOS hosts
         working-directory: ClusterFuck
         run: |
-          xcodebuild -jobs 2 -resultBundlePath /tmp/clusterfuck-ios.xcresult -project ClusterFuck.xcodeproj -scheme ClusterFuck -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/clusterfuck-ios CODE_SIGNING_ALLOWED=NO build
+          set -o pipefail
+          xcodebuild -jobs 2 -resultBundlePath /tmp/clusterfuck-ios.xcresult -project ClusterFuck.xcodeproj -scheme ClusterFuck -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath /tmp/clusterfuck-ios CODE_SIGNING_ALLOWED=NO build 2>&1 | tee /tmp/clusterfuck-ios-build.log
 
       - name: Compile native Mac host
         working-directory: ClusterFuck
         run: |
-          xcodebuild -jobs 2 -resultBundlePath /tmp/clusterfuck-mac.xcresult -project ClusterFuck.xcodeproj -scheme ClusterFuckMac -configuration Debug -destination 'generic/platform=macOS' -derivedDataPath /tmp/clusterfuck-mac CODE_SIGNING_ALLOWED=NO build
+          set -o pipefail
+          xcodebuild -jobs 2 -resultBundlePath /tmp/clusterfuck-mac.xcresult -project ClusterFuck.xcodeproj -scheme ClusterFuckMac -configuration Debug -destination 'generic/platform=macOS' -derivedDataPath /tmp/clusterfuck-mac CODE_SIGNING_ALLOWED=NO build 2>&1 | tee /tmp/clusterfuck-mac-build.log
 
-      - name: Report Xcode failure diagnostics
-        if: failure()
+      # Runs on success too. The bar for the icon set is zero actool errors,
+      # warnings AND notices; while this ran only `if: failure()` and read only
+      # errorSummaries, that bar could not be measured on a green build.
+      # Reporting only — no ceiling is enforced here yet, on purpose.
+      - name: Report asset catalog diagnostics
+        if: always()
+        working-directory: ClusterFuck
         run: |
-          for result in /tmp/clusterfuck-ios.xcresult /tmp/clusterfuck-mac.xcresult; do
-            if [ -d "$result" ]; then
-              xcrun xcresulttool get object --legacy --format json --path "$result" > /tmp/clusterfuck-diagnostics.json
-              python3 -c 'import json; d=json.load(open("/tmp/clusterfuck-diagnostics.json")); print(json.dumps(d.get("issues", {}).get("errorSummaries", {}), indent=2))'
-            fi
-          done
+          python3 scripts/report_asset_diagnostics.py /tmp/clusterfuck-ios-build.log /tmp/clusterfuck-mac-build.log
+
+      - name: Report Xcode issue summaries
+        if: always()
+        working-directory: ClusterFuck
+        run: |
+          python3 scripts/report_xcresult_issues.py /tmp/clusterfuck-ios.xcresult /tmp/clusterfuck-mac.xcresult
 
       - name: Preserve app build results
         if: always()

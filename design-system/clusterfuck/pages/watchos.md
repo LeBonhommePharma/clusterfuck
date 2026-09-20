@@ -14,7 +14,14 @@ MASTER brand override (mint closure / violet σ_irr / `#08091A` ink). Dense Croo
 | σ_irr ring | `#8B5CF6` | violet ΔS |
 | Closure / calm | `#45E0A8` | mint ΔH |
 | Elevated σ_irr | `#FF2F92` | strawberry |
-| Destructive | `#F5232B` | firetruck |
+| Destructive | `#F5232B` | firetruck (12px and up) |
+| Fail text (small) | `#FF6B6B` | `ClusterFuckPalette.failTextDark` |
+| Stats / ΔG | `#FF9300` | tangerine |
+| Baseline / apo | `#DCDCE4` | magnesium |
+| Border | violet @ 35% | `Color.clusterFuckBorder` |
+
+watchOS is locked to the dark wrist palette — `ClusterFuckAdaptiveColor` has no
+dynamic provider here, so the light-ground variants never resolve on the watch.
 
 ## Layout
 
