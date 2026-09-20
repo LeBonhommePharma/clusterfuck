@@ -279,6 +279,54 @@ private final class ThrowingActuator: RemoteActuator, @unchecked Sendable {
         }
     }
 
+
+    /// State must never be carried by hue alone: every band needs a distinct
+    /// shape and a distinct word as well as a distinct colour.
+    func testBandsAreDistinguishableWithoutColour() {
+        let bands = ClusterFuckSigmaBand.allCases
+        XCTAssertEqual(Set(bands.map(\.symbol)).count, bands.count, "two bands share a symbol")
+        XCTAssertEqual(Set(bands.map(\.label)).count, bands.count, "two bands share a label")
+        for band in bands {
+            XCTAssertFalse(band.symbol.isEmpty, "\(band) has no symbol")
+            XCTAssertFalse(band.label.isEmpty, "\(band) has no label")
+        }
+        XCTAssertFalse(ClusterFuckSigmaBand.unknown.isKnown)
+        XCTAssertTrue(ClusterFuckSigmaBand.closed.isKnown)
+    }
+
+    /// A key colour used as a fill keeps its true value on both grounds. Taking
+    /// the light-ground variant here drops the CTA to 3.96:1.
+    func testPrimaryCTAFillContrastHoldsOnBothGrounds() {
+        let ratio = ThemeContrast.ratio(ClusterFuckPalette.darkBackground, ClusterFuckPalette.accent)
+        XCTAssertGreaterThanOrEqual(ratio, 4.5, "ink on the mint fill is \(ratio):1")
+        // The darkened mint is a foreground value and must not be used as the fill.
+        let wrong = ThemeContrast.ratio(ClusterFuckPalette.darkBackground, ClusterFuckPalette.accentLight)
+        XCTAssertLessThan(wrong, 4.5, "accentLight unexpectedly works as a fill; the guard above is now meaningless")
+    }
+
+    /// Disabled controls must be visibly de-emphasised.
+    func testDisabledOpacityIsReduced() {
+        XCTAssertLessThan(ClusterFuckMotion.disabledOpacity, 0.6)
+        XCTAssertGreaterThan(ClusterFuckMotion.disabledOpacity, 0.2)
+    }
+
+    /// Micro-interactions stay in the 150-300ms band with Reduce Motion honoured.
+    func testMotionDurationsAreInRange() {
+        for duration in [ClusterFuckMotion.short, ClusterFuckMotion.standard] {
+            XCTAssertGreaterThanOrEqual(duration, 0.15)
+            XCTAssertLessThanOrEqual(duration, 0.30)
+        }
+        XCTAssertNil(ClusterFuckMotion.animation(reduceMotion: true))
+    }
+
+    /// The spacing tiers must actually be tiers — a page gutter that equals the
+    /// gap between two buttons is what makes a dense HUD read as mush.
+    func testSpacingTiersAreOrdered() {
+        XCTAssertLessThan(ClusterFuckSpacing.withinGroup, ClusterFuckSpacing.betweenControls)
+        XCTAssertLessThan(ClusterFuckSpacing.betweenControls, ClusterFuckSpacing.betweenSections)
+        XCTAssertLessThan(ClusterFuckSpacing.pageCompact, ClusterFuckSpacing.pageRegular)
+        XCTAssertGreaterThanOrEqual(ClusterFuckIconSize.hit, 44)
+    }
 }
 
 

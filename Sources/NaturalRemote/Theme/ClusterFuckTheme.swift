@@ -86,6 +86,10 @@ public enum ClusterFuckPalette: Sendable {
 }
 
 /// Density 8 dashboard grid from MASTER.md.
+///
+/// The raw ladder is 4-based. The semantic tier below is what views should
+/// reach for: using `sm` for both "gap inside a control" and "gap between
+/// sections" is what makes a dense HUD read as undifferentiated mush.
 public enum ClusterFuckSpacing {
     public static let xxs: CGFloat = 2
     public static let xs: CGFloat = 4
@@ -93,6 +97,18 @@ public enum ClusterFuckSpacing {
     public static let md: CGFloat = 12
     public static let lg: CGFloat = 16
     public static let xl: CGFloat = 24
+
+    // ───────── Semantic tiers ─────────
+    /// Between elements inside one group (label and its value).
+    public static let withinGroup: CGFloat = xs
+    /// Between sibling controls in a row.
+    public static let betweenControls: CGFloat = sm
+    /// Between distinct sections of a page.
+    public static let betweenSections: CGFloat = lg
+    /// Page edge inset, compact (watch / phone).
+    public static let pageCompact: CGFloat = md
+    /// Page edge inset, regular (iPad / Mac).
+    public static let pageRegular: CGFloat = xl
 }
 
 public enum ClusterFuckRadius {
@@ -110,6 +126,8 @@ public enum ClusterFuckIconSize {
 public enum ClusterFuckMotion {
     public static let short: Double = 0.18
     public static let standard: Double = 0.22
+    /// Emphasis reduction for disabled controls.
+    public static let disabledOpacity: Double = 0.4
 
     public static func animation(reduceMotion: Bool, duration: Double = standard) -> Animation? {
         reduceMotion ? nil : .easeOut(duration: duration)
@@ -128,12 +146,26 @@ public enum ClusterFuckSymbol: String, Sendable {
     public var systemName: String { rawValue }
 }
 
+/// One scale, five steps. Every step is a Dynamic Type text style, so the whole
+/// HUD scales with the user's setting instead of pinning to a point size.
+///
+/// `metric` is the only dominant step and it belongs to σ_irr — the one number
+/// the whole app exists to show. Everything else is support.
 public enum ClusterFuckType {
+    /// The primary readout. Mono so digits do not jitter as the value updates.
+    public static var metric: Font { .system(.largeTitle, design: .monospaced).weight(.semibold).monospacedDigit() }
+    /// The primary readout on the wrist, where largeTitle will not fit.
+    public static var metricCompact: Font { .system(.title2, design: .monospaced).weight(.semibold).monospacedDigit() }
     public static var display: Font { .system(.title2, design: .default).weight(.semibold) }
     public static var headline: Font { .headline }
     public static var body: Font { .body }
     public static var caption: Font { .caption }
+    /// The smallest step. Still a text style, so it honours Dynamic Type.
+    public static var micro: Font { .caption2 }
+    /// Inline numerals in supporting copy.
     public static var mono: Font { .body.monospacedDigit().weight(.medium) }
+    /// Section headers and badges.
+    public static var label: Font { .caption.weight(.semibold) }
 }
 
 /// Pressed scale stays inside the hit box. 180ms, Reduce Motion off.
@@ -153,15 +185,31 @@ private struct ClusterFuckPressStyleBody: View {
     let configuration: ButtonStyleConfiguration
     var pressedScale: CGFloat
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    /// A custom `ButtonStyle` does not inherit the system's disabled dimming, and
+    /// a filled label paints its own background — so without this a disabled
+    /// Minimize button is pixel-identical to a live one.
+    @Environment(\.isEnabled) private var isEnabled
 
     var body: some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? pressedScale : 1)
-            .opacity(configuration.isPressed ? 0.92 : 1)
+            .scaleEffect(isEnabled && configuration.isPressed ? pressedScale : 1)
+            .opacity(opacity)
             .animation(
                 ClusterFuckMotion.animation(reduceMotion: reduceMotion, duration: ClusterFuckMotion.short),
                 value: configuration.isPressed
             )
+            .animation(
+                ClusterFuckMotion.animation(reduceMotion: reduceMotion, duration: ClusterFuckMotion.short),
+                value: isEnabled
+            )
+    }
+
+    /// `disabledOpacity` matches the platform convention. WCAG 1.4.3 exempts
+    /// inactive controls from the contrast minimum, and the checklist wants
+    /// disabled to be unmistakably de-emphasised.
+    private var opacity: Double {
+        guard isEnabled else { return ClusterFuckMotion.disabledOpacity }
+        return configuration.isPressed ? 0.92 : 1
     }
 }
 
@@ -297,9 +345,101 @@ public extension Color {
     static var clusterFuckOnAccent: Color {
         ClusterFuckRGBA(hex: ClusterFuckPalette.darkBackground).color
     }
+
+    // ───────── Fill roles ─────────
+    // A key colour used as a *fill* does not take the light-ground variant.
+    // The light variants exist for foreground-on-ground contrast; when the
+    // colour is the ground, contrast is measured against the label sitting on
+    // it. Swapping the fill to the darkened mint drops the CTA from 11.73:1 to
+    // 3.96:1 — the variant solves a problem the fill does not have.
+    /// ΔH fill for the primary CTA. True mint on both grounds.
+    static var clusterFuckAccentFill: Color {
+        ClusterFuckRGBA(hex: ClusterFuckPalette.accent).color
+    }
 }
 
-public enum ClusterFuckSigmaBand: String, Sendable {
+/// Button roles. A custom `ButtonStyle` replaces the platform chrome wholesale,
+/// so without an explicit role every secondary control renders as bare text
+/// with no affordance at all.
+public enum ClusterFuckButtonRole: Sendable {
+    /// Mint fill, ink label. One per screen.
+    case primary
+    /// Violet-wash outline, ink label. Everything else.
+    case secondary
+}
+
+/// The one button style. Carries chrome, press feedback, and disabled
+/// de-emphasis together so they cannot drift apart.
+public struct ClusterFuckButtonStyle: ButtonStyle {
+    public var role: ClusterFuckButtonRole
+    public var fillsWidth: Bool
+
+    public init(_ role: ClusterFuckButtonRole = .secondary, fillsWidth: Bool = false) {
+        self.role = role
+        self.fillsWidth = fillsWidth
+    }
+
+    public func makeBody(configuration: Configuration) -> some View {
+        ClusterFuckButtonStyleBody(configuration: configuration, role: role, fillsWidth: fillsWidth)
+    }
+}
+
+private struct ClusterFuckButtonStyleBody: View {
+    let configuration: ButtonStyleConfiguration
+    let role: ClusterFuckButtonRole
+    let fillsWidth: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.isEnabled) private var isEnabled
+
+    var body: some View {
+        configuration.label
+            .font(ClusterFuckType.body.weight(.medium))
+            .foregroundStyle(foreground)
+            .padding(.horizontal, ClusterFuckSpacing.md)
+            .frame(maxWidth: fillsWidth ? .infinity : nil, minHeight: ClusterFuckIconSize.hit)
+            .background(background, in: shape)
+            .overlay { if role == .secondary { shape.strokeBorder(border, lineWidth: 1) } }
+            .contentShape(shape)
+            // scaleEffect is a transform, so the pressed state never moves
+            // surrounding content.
+            .scaleEffect(isEnabled && configuration.isPressed ? 0.97 : 1)
+            .opacity(isEnabled ? 1 : ClusterFuckMotion.disabledOpacity)
+            .animation(motion, value: configuration.isPressed)
+            .animation(motion, value: isEnabled)
+    }
+
+    private var motion: Animation? {
+        ClusterFuckMotion.animation(reduceMotion: reduceMotion, duration: ClusterFuckMotion.short)
+    }
+
+    private var shape: RoundedRectangle {
+        RoundedRectangle(cornerRadius: ClusterFuckRadius.sm, style: .continuous)
+    }
+
+    private var foreground: Color {
+        role == .primary ? .clusterFuckOnAccent : .clusterFuckInk
+    }
+
+    private var background: Color {
+        switch role {
+        case .primary:
+            return configuration.isPressed ? .clusterFuckAccentFill.opacity(0.85) : .clusterFuckAccentFill
+        case .secondary:
+            return configuration.isPressed ? .clusterFuckBorder.opacity(0.5) : .clear
+        }
+    }
+
+    private var border: Color { .clusterFuckBorder }
+}
+
+/// σ_irr band.
+///
+/// The band is the app's primary state and it must never be carried by hue
+/// alone — roughly 1 in 12 men cannot separate the mint/strawberry pair, and
+/// the whole gauge is unreadable on a greyscale wrist face. Each band
+/// therefore ships a `symbol` and a `label` alongside its `color`, and the
+/// HUD renders all three.
+public enum ClusterFuckSigmaBand: String, Sendable, CaseIterable {
     case unknown
     case closed
     case settling
@@ -320,4 +460,29 @@ public enum ClusterFuckSigmaBand: String, Sendable {
         case .elevated: return .clusterFuckWarning
         }
     }
+
+    /// Redundant encoding #1 — shape. Outline SF Symbols, one family, no emoji.
+    public var symbol: String {
+        switch self {
+        case .unknown: return "questionmark.circle"
+        case .closed: return "checkmark.circle"
+        case .settling: return "arrow.down.right.circle"
+        case .elevated: return "exclamationmark.triangle"
+        }
+    }
+
+    /// Redundant encoding #2 — text. These are the existing domain terms, the
+    /// same ones already spoken in the accessibility label.
+    public var label: String {
+        switch self {
+        case .unknown: return "Unknown"
+        case .closed: return "Closed"
+        case .settling: return "Settling"
+        case .elevated: return "Elevated"
+        }
+    }
+
+    /// The gauge track is dashed when the value is unknown, so "no reading"
+    /// never reads as "a reading of zero".
+    public var isKnown: Bool { self != .unknown }
 }
