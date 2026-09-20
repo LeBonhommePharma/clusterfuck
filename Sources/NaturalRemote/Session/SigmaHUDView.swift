@@ -32,7 +32,7 @@ public struct SigmaHUDView: View {
         VStack(spacing: compact ? ClusterFuckSpacing.xs : ClusterFuckSpacing.sm) {
             ZStack {
                 Circle()
-                    .stroke(Color.clusterFuckBorder.opacity(0.45), lineWidth: compact ? 6 : 10)
+                    .stroke(Color.clusterFuckBorder, lineWidth: compact ? 6 : 10)
                 if known, frac > 0 {
                     Circle()
                         .trim(from: 0, to: frac)
@@ -69,7 +69,7 @@ public struct SigmaHUDView: View {
         .background(Color.clusterFuckSurface, in: RoundedRectangle(cornerRadius: ClusterFuckRadius.md, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: ClusterFuckRadius.md, style: .continuous)
-                .strokeBorder(Color.clusterFuckBorder.opacity(0.6), lineWidth: 1)
+                .strokeBorder(Color.clusterFuckBorder, lineWidth: 1)
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityText(band: band))

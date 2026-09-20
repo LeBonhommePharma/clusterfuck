@@ -2,6 +2,12 @@
 
 MASTER brand override (mint / violet / ink). Follows system light/dark — not locked dark, not Exergy gold gauges.
 
+Because the window tracks the system appearance, the light ground is a shipping
+surface, not a fallback. `ClusterFuckAdaptiveColor` swaps each key colour for
+its light-ground variant (same hue and chroma, lower lightness) via the
+`NSColor` dynamic provider; light background is `#F4F6FB`, card `#FFFFFF`,
+foreground `#1E293B`, muted `#5A6478`.
+
 **Design dials:** Variance 3 · Motion 3 · Density 7
 
 ## Layout

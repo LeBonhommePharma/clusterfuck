@@ -135,7 +135,7 @@ public struct RemoteSessionView: View {
                 if let err = model.lastError, !err.isEmpty {
                     Text(err)
                         .font(ClusterFuckType.caption)
-                        .foregroundStyle(Color.clusterFuckDestructive)
+                        .foregroundStyle(Color.clusterFuckFailText)
                         .accessibilityLabel("Error \(err)")
                 }
                 if model.isBusy {
@@ -226,7 +226,7 @@ public struct RemoteSessionView: View {
             .accessibilityLabel("Log demo dose for pharmacovigilance")
             if model.groundingAlert {
                 Label("Demo grounding alert", systemImage: "exclamationmark.triangle")
-                    .foregroundStyle(Color.clusterFuckDestructive)
+                    .foregroundStyle(Color.clusterFuckFailText)
                     .font(.caption.bold())
                     .symbolRenderingMode(.hierarchical)
                     .accessibilityLabel("Simulated grounding alert, not a measured health finding")
@@ -243,6 +243,7 @@ public struct RemoteSessionView: View {
             Label("Environment", systemImage: ClusterFuckSymbol.environment.systemName)
                 .font(ClusterFuckType.headline)
                 .symbolRenderingMode(.monochrome)
+                .foregroundStyle(Color.clusterFuckSecondary)
             Text(model.alexaLightsLabel)
                 .font(ClusterFuckType.caption.monospacedDigit())
                 .foregroundStyle(Color.clusterFuckMute)
