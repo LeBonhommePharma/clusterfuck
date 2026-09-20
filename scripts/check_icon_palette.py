@@ -62,7 +62,55 @@ LIGHT_BG, AQUA_LIGHT, MINT_LIGHT = _hex("F4F6FB"), _hex("0074B7"), _hex("157F59"
 # of the watch icon fall outside. Ground is #07132D (navy, where canon is
 # indigo #08091A and says never navy); accents are #24BDF6 / #0BADB0 /
 # #009BA0 / #00BBE8, the retired cyan-teal family. The icons predate v2.
-GOVERNED: dict[str, list[tuple[int, int, int]]] = {}
+IOS = "Apps/ClusterFuck/Assets.xcassets/AppIcon.appiconset"
+WATCH = "Apps/ClusterFuckWatch/Assets.xcassets/AppIcon.appiconset"
+_DARK = [INK, AQUA, MINT]
+_LIGHT = [LIGHT_BG, AQUA_LIGHT, MINT_LIGHT]
+
+GOVERNED: dict[str, list[tuple[int, int, int]]] = {
+    f"{IOS}/AppIcon-1024.png": _LIGHT,        # iOS default / App Store
+    f"{IOS}/AppIcon-Dark-1024.png": _DARK,    # iOS dark appearance
+    f"{IOS}/AppIcon-Mac-16.png": _DARK,
+    f"{IOS}/AppIcon-Mac-32.png": _DARK,
+    f"{IOS}/AppIcon-Mac-64.png": _DARK,
+    f"{IOS}/AppIcon-Mac-128.png": _DARK,
+    f"{IOS}/AppIcon-Mac-256.png": _DARK,
+    f"{IOS}/AppIcon-Mac-512.png": _DARK,
+    f"{IOS}/AppIcon-Mac-1024.png": _DARK,
+    f"{WATCH}/AppIcon-1024.png": _DARK,
+}
+
+# ───────── RECORDED EXCLUSIONS ─────────
+#
+# TINTED APPEARANCE — excluded from PALETTE governance only.
+#
+# iOS 18 tinted app icons take a greyscale image the system colours. Hue and
+# chroma are what carry identity here, and a greyscale asset has neither, so
+# it cannot be governed by a canonical palette without the palette ceasing to
+# mean anything. Declaring a greyscale ramp as "its palette" would technically
+# work and would quietly admit greys to the system, which is worse than an
+# honest exclusion.
+#
+# Excluded from palette governance is NOT excluded from everything. When a
+# tinted asset ships it is still subject to:
+#   - the inverse colour rule: no chroma at all, max(R,G,B) - min(R,G,B) <= 1.
+#     Stronger than palette governance, not weaker — and it catches the
+#     realistic mistake of pasting the colour version into the tinted slot.
+#   - silhouette correspondence with the dark master: threshold both against
+#     their ground luminance and compare the binary masks. Measured on the
+#     probe, a genuine luminance derivation agrees 100.000% and the same
+#     artwork shifted 20px agrees 63.022%, so a threshold near 98% separates
+#     "derived" from "drawn separately" with a 37-point margin.
+#   - every structural check that applies to the rest of the set —
+#     dimensions, 8-bit RGB, no tRNS, declared in Contents.json with the file
+#     present. check_icon and check_icon_catalog cover it exactly as they
+#     cover every other slot.
+# No tinted asset ships yet, so none of the above is wired; this records the
+# decision so the exclusion is not mistaken for an absence of one.
+#
+# BonhommeRemotePhone / BonhommeRemoteWatch — excluded entirely, by product.
+# They belong to BonhommeRemote.xcodeproj and must not change under a
+# ClusterFuck brief. A product decision, not a cleanup.
 
 
 def decode_rgb(path: pathlib.Path) -> tuple[int, int, list[tuple[int, int, int]]]:
