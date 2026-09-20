@@ -17,6 +17,8 @@ jobs:
           python3 scripts/test_contracts.py
           python3 scripts/test_icon_palette_guard.py
           python3 scripts/check_icon_palette.py
+          python3 scripts/test_mutation_harness.py
+          python3 scripts/mutation_harness.py
 
   build-and-test:
     runs-on: macos-latest
@@ -40,6 +42,8 @@ jobs:
           python3 scripts/test_contracts.py
           python3 scripts/test_icon_palette_guard.py
           python3 scripts/check_icon_palette.py
+          python3 scripts/test_mutation_harness.py
+          python3 scripts/mutation_harness.py
 
       - name: Build library
         working-directory: ClusterFuck

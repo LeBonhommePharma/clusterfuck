@@ -42,6 +42,26 @@ INK, AQUA, MINT = _hex("08091A"), _hex("00A2FF"), _hex("45E0A8")
 LIGHT_BG, AQUA_LIGHT, MINT_LIGHT = _hex("F4F6FB"), _hex("0074B7"), _hex("157F59")
 
 # path -> the colours that asset is drawn from.
+#
+# SCOPE, decided rather than defaulted:
+#
+#   Apps/ClusterFuck/...        governed once the new icon set lands. The
+#   Apps/ClusterFuckWatch/...   current files are off-system (see below) and
+#                               are being replaced, not corrected in place.
+#
+#   Apps/BonhommeRemotePhone/   NOT governed, deliberately. These belong to
+#   Apps/BonhommeRemoteWatch/   BonhommeRemote.xcodeproj -- a different
+#                               product. Their icons must not change under a
+#                               ClusterFuck brief. This is an explicit
+#                               exclusion, not an oversight: if you are
+#                               adding them later, that is a product
+#                               decision, not a cleanup.
+#
+# Measured 2026-09-20, against all eight canonical colours plus every derived
+# relight plus both grounds: 99.25% of Apps/ClusterFuck's 1024 icon and 99.18%
+# of the watch icon fall outside. Ground is #07132D (navy, where canon is
+# indigo #08091A and says never navy); accents are #24BDF6 / #0BADB0 /
+# #009BA0 / #00BBE8, the retired cyan-teal family. The icons predate v2.
 GOVERNED: dict[str, list[tuple[int, int, int]]] = {}
 
 

@@ -180,16 +180,21 @@ def test_privacy_and_watch_plist() -> None:
             fail(f"{rel} must set NSPrivacyTracking to false, got {plist.get('NSPrivacyTracking')!r}")
         if not isinstance(plist.get("NSPrivacyCollectedDataTypes"), list):
             fail(f"{rel} missing collected types")
-    watch = read("Apps/BonhommeRemoteWatch/Info.plist")
-    if "<key>WKApplication</key>\n\t<true/>" not in watch.replace("\r", ""):
-        if "<key>WKApplication</key>\n    <true/>" not in watch:
-            fail("BonhommeRemoteWatch WKApplication must be boolean true")
-    mac_plist = read("Apps/ClusterFuck/MacInfo.plist")
+    # All three parsed, not substring-matched. The previous forms asked
+    # whether a key's NAME appeared in the raw text, which says nothing about
+    # its value: the sandbox entitlement could be <false/> and both release
+    # gates stayed green. The WKApplication pair also depended on exact
+    # indentation, so reformatting the plist would have silently retired it.
+    watch = plistlib.loads((ROOT / "Apps/BonhommeRemoteWatch/Info.plist").read_bytes())
+    if watch.get("WKApplication") is not True:
+        fail(f"BonhommeRemoteWatch WKApplication must be true, got {watch.get('WKApplication')!r}")
+    mac_plist = plistlib.loads((ROOT / "Apps/ClusterFuck/MacInfo.plist").read_bytes())
     if "LSRequiresIPhoneOS" in mac_plist:
         fail("Mac Info.plist must not require iPhone OS")
-    mac_ent = read("Apps/ClusterFuck/ClusterFuckMac.entitlements")
-    if "com.apple.security.app-sandbox" not in mac_ent:
-        fail("Mac entitlements must sandbox")
+    mac_ent = plistlib.loads((ROOT / "Apps/ClusterFuck/ClusterFuckMac.entitlements").read_bytes())
+    if mac_ent.get("com.apple.security.app-sandbox") is not True:
+        fail(f"Mac entitlements must sandbox, got "
+             f"{mac_ent.get('com.apple.security.app-sandbox')!r}")
 
 
 def _png_rgb_1024(path: pathlib.Path, platform: str) -> None:

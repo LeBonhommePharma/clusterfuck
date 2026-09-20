@@ -94,8 +94,9 @@ def main() -> None:
     require("com.lebonhommepharma.clusterfuck.watchkitapp" in yml, "watch bundle id")
     require("com.lebonhommepharma.clusterfuck.mac" in yml, "mac bundle id")
     require("ITSAppUsesNonExemptEncryption" in (ROOT / "Apps/ClusterFuck/Info.plist").read_text(), "export compliance")
-    mac = (ROOT / "Apps/ClusterFuck/ClusterFuckMac.entitlements").read_text()
-    require("com.apple.security.app-sandbox" in mac, "Mac sandbox")
+    mac = plistlib.loads((ROOT / "Apps/ClusterFuck/ClusterFuckMac.entitlements").read_bytes())
+    require(mac.get("com.apple.security.app-sandbox") is True,
+            f"Mac sandbox must be true, got {mac.get('com.apple.security.app-sandbox')!r}")
     watch_plist = (ROOT / "Apps/BonhommeRemoteWatch/Info.plist").read_text()
     # Parsed, not substring-matched. The previous form asked whether the key
     # existed AND whether "<true/>" appeared anywhere in the document, which a
@@ -103,7 +104,8 @@ def main() -> None:
     watch_parsed = plistlib.loads((ROOT / "Apps/BonhommeRemoteWatch/Info.plist").read_bytes())
     require(watch_parsed.get("WKApplication") is True,
             f"WKApplication must be boolean true, got {watch_parsed.get('WKApplication')!r}")
-    require("LSRequiresIPhoneOS" not in (ROOT / "Apps/ClusterFuck/MacInfo.plist").read_text(), "Mac not iPhone")
+    require("LSRequiresIPhoneOS" not in plistlib.loads(
+        (ROOT / "Apps/ClusterFuck/MacInfo.plist").read_bytes()), "Mac must not require iPhone OS")
     for project in ("ClusterFuck", "BonhommeRemote"):
         check_project(ROOT / (project + ".xcodeproj") / "project.pbxproj")
     print("OK ClusterFuck source/configuration contracts; signed archives and device validation remain required")
