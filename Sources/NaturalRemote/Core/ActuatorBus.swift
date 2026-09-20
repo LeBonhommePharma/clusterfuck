@@ -15,15 +15,15 @@ public final class ActuatorBus: @unchecked Sendable {
     public init() {}
 
     public func register(_ actuator: any RemoteActuator) {
-        lock.lock()
+        lock.withLock {
         actuators[actuator.service] = actuator
-        lock.unlock()
+        }
     }
 
     public func execute(_ command: RemoteCommand) async throws {
-        lock.lock()
-        let actuator = actuators[command.service]
-        lock.unlock()
+        let actuator = lock.withLock {
+            return actuators[command.service]
+        }
 
         var detail: String
         var failure: Error?
@@ -44,9 +44,9 @@ public final class ActuatorBus: @unchecked Sendable {
             action: command.action,
             detail: detail
         )
-        lock.lock()
+        lock.withLock {
         events.append(event)
-        lock.unlock()
+        }
 
         if let failure {
             throw failure
@@ -60,9 +60,9 @@ public final class ActuatorBus: @unchecked Sendable {
     }
 
     public func resetEvents() {
-        lock.lock()
+        lock.withLock {
         events.removeAll()
-        lock.unlock()
+        }
     }
 }
 
@@ -77,9 +77,9 @@ public final class RecordingActuator: RemoteActuator, @unchecked Sendable {
     }
 
     public func execute(_ command: RemoteCommand) async throws {
-        lock.lock()
+        lock.withLock {
         _commands.append(command)
-        lock.unlock()
+        }
     }
 
     public var commands: [RemoteCommand] {

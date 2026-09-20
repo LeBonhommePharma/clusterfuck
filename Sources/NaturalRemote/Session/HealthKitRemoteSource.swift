@@ -133,8 +133,7 @@ private final class LockedBeatAccumulator: @unchecked Sendable {
         accumulator.append(time: time, precededByGap: gap)
     }
     func statistics(at date: Date) -> RemoteBeatStatistics? {
-        lock.lock(); defer { lock.unlock() }
-        return accumulator.statistics(at: date)
+        return lock.withLock { accumulator.statistics(at: date) }
     }
 }
 #endif

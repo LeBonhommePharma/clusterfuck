@@ -50,13 +50,11 @@ public final class PharmaControlSessionManager: @unchecked Sendable {
     }
 
     public var isRunning: Bool {
-        lock.lock(); defer { lock.unlock() }
-        return _running
+        return lock.withLock { _running }
     }
 
     public var startedAt: Date? {
-        lock.lock(); defer { lock.unlock() }
-        return _startedAt
+        return lock.withLock { _startedAt }
     }
 
     public func start() async {
@@ -86,14 +84,14 @@ public final class PharmaControlSessionManager: @unchecked Sendable {
     }
 
     public func stop() {
-        lock.lock()
+        lock.withLock {
         _running = false
         generation += 1
         observationTask?.cancel()
         observationTask = nil
         readings = RemoteHealthReadings()
         healthControlSnapshot = nil
-        lock.unlock()
+        }
     }
 
     private func receive(_ event: RemoteHealthEvent, generation expected: Int) async {

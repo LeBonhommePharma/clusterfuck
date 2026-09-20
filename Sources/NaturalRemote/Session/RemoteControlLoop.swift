@@ -51,13 +51,11 @@ public final class RemoteControlLoop: @unchecked Sendable {
     }
 
     public var state: RemoteMultiSignalState {
-        lock.lock(); defer { lock.unlock() }
-        return _state
+        return lock.withLock { _state }
     }
 
     public var lastSnapshot: CrooksSnapshot? {
-        lock.lock(); defer { lock.unlock() }
-        return _snapshot
+        return lock.withLock { _snapshot }
     }
 
     /// Bootstrap actuator bus on the crooks actor.
@@ -72,20 +70,20 @@ public final class RemoteControlLoop: @unchecked Sendable {
         feedback.ingest(HRVSignal(timestamp: Date(), sdnn: sdnn, rmssd: rmssd, rrIntervals: rrIntervals))
         _ = feedback.analyze(for: .heartRateVariability)
 
-        lock.lock()
+        var local = lock.withLock {
         _state.deltaHRV = delta.deltaRMSSD
         _state.sci = delta.sci
         _state.physiologicalSCI = delta.sci
-        var local = _state
-        lock.unlock()
+            return _state
+        }
 
         airPods.proH2.apply(to: &local)
         researchKit.apply(to: &local)
         let snap = await crooks.update(with: local)
-        lock.lock()
+        lock.withLock {
         _state = local
         _snapshot = snap
-        lock.unlock()
+        }
         return snap
     }
 
@@ -102,15 +100,15 @@ public final class RemoteControlLoop: @unchecked Sendable {
             responses: responses
         )
         _ = feedback.analyze(for: .survey)
-        lock.lock()
-        var local = _state
-        lock.unlock()
+        var local = lock.withLock {
+            return _state
+        }
         researchKit.apply(to: &local)
         let snap = await crooks.update(with: local)
-        lock.lock()
+        lock.withLock {
         _state = local
         _snapshot = snap
-        lock.unlock()
+        }
         return (result, snap)
     }
 
@@ -118,12 +116,12 @@ public final class RemoteControlLoop: @unchecked Sendable {
     @discardableResult
     public func ingestAudio(samples: [Float], sampleRate: Double) async -> CrooksSnapshot {
         let frame = music.spectral.process(samples: samples, sampleRate: sampleRate)
-        lock.lock()
+        var local = lock.withLock {
         music.applySpectral(frame, to: &_state)
-        var local = _state
-        lock.unlock()
+            return _state
+        }
         let snap = await crooks.update(with: local)
-        lock.lock(); _snapshot = snap; lock.unlock()
+        lock.withLock { _snapshot = snap }
         return snap
     }
 
@@ -131,10 +129,9 @@ public final class RemoteControlLoop: @unchecked Sendable {
     @discardableResult
     public func logDose(_ log: DrugLog, freeAngles: [Double]? = nil, boundAngles: [Double]? = nil) async -> (pcci: Double, prediction: DeltaHRVFlexAIDPrediction, snapshot: CrooksSnapshot) {
         drugKit.log(log)
-        lock.lock()
-        let observed = _state.deltaHRV
-        let sci = _state.sci
-        lock.unlock()
+        // Both reads stay inside one critical section, as before: the pair is
+        // meant to be a consistent snapshot of _state, not two independent reads.
+        let (observed, sci) = lock.withLock { (_state.deltaHRV, _state.sci) }
 
         let prediction = drugKit.analyzeWithFlexAID(
             log,
@@ -145,7 +142,7 @@ public final class RemoteControlLoop: @unchecked Sendable {
         )
         let pcci = drugKit.analyze(log, spotifyValence: 0.5, alexaState: Double(alexa.lightsPercent) / 100.0)
 
-        lock.lock()
+        var local = lock.withLock {
         _state.flexAIDDeltaS = prediction.flexAIDDeltaS
         _state.pcci = pcci
         _state.doseMg = log.doseMg
@@ -153,8 +150,8 @@ public final class RemoteControlLoop: @unchecked Sendable {
         if prediction.isGroundingAlert {
             _state.musicBPM = min(_state.musicBPM, 90)
         }
-        var local = _state
-        lock.unlock()
+            return _state
+        }
 
         let snap = await crooks.update(with: local)
         if prediction.isGroundingAlert {
@@ -181,14 +178,14 @@ public final class RemoteControlLoop: @unchecked Sendable {
             flexAIDDeltaS: prediction.flexAIDDeltaS
         )
         drugKit.recordPharmacovigilance(pv)
-        lock.lock(); _snapshot = snap; lock.unlock()
+        lock.withLock { _snapshot = snap }
         return (pcci, prediction, snap)
     }
 
     /// Voice path through FoundationModelOrchestrator then bus.
     public func handleVoice(_ text: String) async {
         let snap = await crooks.snapshot()
-        lock.lock(); let sci = _state.sci; lock.unlock()
+        let sci = lock.withLock { _state.sci }
         let commands = await foundation.parseVoice(
             text,
             currentSCI: sci,
@@ -202,8 +199,8 @@ public final class RemoteControlLoop: @unchecked Sendable {
 
     /// Test/UI override of the live multi-signal vector (does not bypass Crooks).
     public func replaceState(_ state: RemoteMultiSignalState) {
-        lock.lock()
+        lock.withLock {
         _state = state
-        lock.unlock()
+        }
     }
 }

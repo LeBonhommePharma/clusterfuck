@@ -106,26 +106,24 @@ public final class DrugKitEngine: @unchecked Sendable {
     }
 
     public func log(_ entry: DrugLog) {
-        lock.lock()
+        lock.withLock {
         logs.append(entry)
-        lock.unlock()
+        }
     }
 
     public func allLogs() -> [DrugLog] {
-        lock.lock(); defer { lock.unlock() }
-        return logs
+        return lock.withLock { logs }
     }
 
     public func allPharmacovigilanceRecords() -> [PharmacovigilanceRecord] {
-        lock.lock(); defer { lock.unlock() }
-        return pvRecords
+        return lock.withLock { pvRecords }
     }
 
     /// Append a full PV record after hybrid analysis (call from control loop).
     public func recordPharmacovigilance(_ record: PharmacovigilanceRecord) {
-        lock.lock()
+        lock.withLock {
         pvRecords.append(record)
-        lock.unlock()
+        }
     }
 
     public func exportPharmacovigilanceJSON() throws -> Data {
@@ -205,19 +203,18 @@ public final class DrugKitActuator: RemoteActuator, @unchecked Sendable {
     }
 
     public var isPromptPending: Bool {
-        lock.lock(); defer { lock.unlock() }
-        return pendingPrompt
+        return lock.withLock { pendingPrompt }
     }
 
     public func execute(_ command: RemoteCommand) async throws {
         switch command.action {
         case "promptLog":
-            lock.lock(); pendingPrompt = true; lock.unlock()
+            lock.withLock { pendingPrompt = true }
         case "log":
             let substance = command.params["substance"] ?? "unknown"
             let dose = Double(command.params["doseMg"] ?? "0") ?? 0
             engine.log(DrugLog(substance: substance, doseMg: dose, setAndSetting: command.params["set"] ?? ""))
-            lock.lock(); pendingPrompt = false; lock.unlock()
+            lock.withLock { pendingPrompt = false }
         default:
             break
         }
