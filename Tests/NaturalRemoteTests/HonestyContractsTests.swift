@@ -187,7 +187,14 @@ private final class ThrowingActuator: RemoteActuator, @unchecked Sendable {
     func execute(_ command: RemoteCommand) async throws { throw HonestyTestError.boom }
 
     /// Light-mode variants may move lightness but must preserve the key colour's
-    /// identity — hue and chroma. Tolerance is rounding to 8-bit sRGB.
+    /// identity — hue and chroma.
+    ///
+    /// Tolerances cover 8-bit sRGB quantisation and nothing else. Measured
+    /// worst drift across the six pairs is 0.168° hue and 0.0035 saturation, so
+    /// these sit at roughly 3× that. They were previously 1.0° / 0.02, which is
+    /// ~6× the real drift — loose enough that a genuine reassignment slipped
+    /// through: a violet at #804AF5 (0.64° off) passed. A tolerance far wider
+    /// than the noise it exists to absorb is a check that cannot fail.
     func testLightVariantsPreserveHueAndChroma() {
         let pairs: [(String, UInt32, UInt32)] = [
             ("ΔS violet", ClusterFuckPalette.primary, ClusterFuckPalette.primaryLight),
@@ -199,8 +206,8 @@ private final class ThrowingActuator: RemoteActuator, @unchecked Sendable {
         ]
         for (name, dark, light) in pairs {
             let a = ThemeContrast.hsl(dark), b = ThemeContrast.hsl(light)
-            XCTAssertEqual(a.hue, b.hue, accuracy: 1.0, "\(name): hue drifted")
-            XCTAssertEqual(a.saturation, b.saturation, accuracy: 0.02, "\(name): chroma drifted")
+            XCTAssertEqual(a.hue, b.hue, accuracy: 0.5, "\(name): hue drifted")
+            XCTAssertEqual(a.saturation, b.saturation, accuracy: 0.01, "\(name): chroma drifted")
             XCTAssertLessThan(b.lightness, a.lightness, "\(name): light variant must be darker")
         }
     }
@@ -225,6 +232,11 @@ private final class ThrowingActuator: RemoteActuator, @unchecked Sendable {
             ("light ΔS_vib on bg", ClusterFuckPalette.secondaryLight, lightBG),
             ("ink on mint CTA", ClusterFuckPalette.darkBackground, ClusterFuckPalette.accent),
         ]
+        // `ratio` returns a raw Double and is compared raw. Rounding the ratio
+        // before the comparison would let 4.4976 report as "4.5, ok"; the
+        // tightest margin here is +0.111 (light receptor on bg, 4.6112), so
+        // rounding to 2dp would not flip a verdict today — but comparing
+        // rounded is a check that cannot fail, so it is never done.
         for (name, fg, bg) in bodyText {
             let r = ThemeContrast.ratio(fg, bg)
             XCTAssertGreaterThanOrEqual(r, 4.5, "\(name) is \(r):1, below AA body")
