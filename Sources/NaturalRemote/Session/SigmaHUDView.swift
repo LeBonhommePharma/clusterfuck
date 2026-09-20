@@ -92,18 +92,28 @@ public struct SigmaHUDView: View {
     }
 
     /// Colour + shape + text. Any one of the three carries the state on its own.
+    ///
+    /// The label is ink, not the band colour. A 12% wash of a colour lifts the
+    /// ground enough to eat that same colour's contrast against it — violet
+    /// landed at 3.89:1 on its own wash, and three of the light bands were also
+    /// under AA. Identity is carried by the symbol, the fill and the border,
+    /// none of which are body text; the word stays maximally legible.
     private var bandChip: some View {
-        Label(band.label, systemImage: band.symbol)
-            .font(ClusterFuckType.label)
-            .foregroundStyle(band.color)
-            .symbolRenderingMode(.monochrome)
-            .imageScale(.small)
-            .padding(.horizontal, ClusterFuckSpacing.sm)
-            .padding(.vertical, ClusterFuckSpacing.xs)
-            .background(band.color.opacity(0.12), in: Capsule())
-            .overlay(Capsule().strokeBorder(band.color.opacity(0.35), lineWidth: 1))
-            .animation(ClusterFuckMotion.animation(reduceMotion: reduceMotion), value: band)
-            .accessibilityHidden(true)
+        HStack(spacing: ClusterFuckSpacing.xs) {
+            Image(systemName: band.symbol)
+                .foregroundStyle(band.color)
+                .symbolRenderingMode(.monochrome)
+                .imageScale(.small)
+            Text(band.label)
+                .foregroundStyle(Color.clusterFuckInk)
+        }
+        .font(ClusterFuckType.label)
+        .padding(.horizontal, ClusterFuckSpacing.sm)
+        .padding(.vertical, ClusterFuckSpacing.xs)
+        .background(band.color.opacity(0.12), in: Capsule())
+        .overlay(Capsule().strokeBorder(band.color.opacity(0.35), lineWidth: 1))
+        .animation(ClusterFuckMotion.animation(reduceMotion: reduceMotion), value: band)
+        .accessibilityHidden(true)
     }
 
     private var supporting: some View {

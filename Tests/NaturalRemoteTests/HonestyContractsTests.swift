@@ -339,6 +339,48 @@ private final class ThrowingActuator: RemoteActuator, @unchecked Sendable {
         XCTAssertLessThan(ClusterFuckSpacing.pageCompact, ClusterFuckSpacing.pageRegular)
         XCTAssertGreaterThanOrEqual(ClusterFuckIconSize.hit, 44)
     }
+
+    /// Tinted chips composite their own colour into their background. A 12%
+    /// wash lifts the ground enough to eat that colour's contrast against it —
+    /// violet-on-violet-wash measured 3.89:1, and three light bands were also
+    /// under AA, which is why the chip label is ink and only the symbol,
+    /// fill and border carry the band colour.
+    func testTintedChipsCompositeAboveAA() {
+        let darkCard = ThemeContrast.composite(0x111226, over: 0x08091A, alpha: 0.92)
+        let wash = 0.12
+        let bands: [(String, UInt32, UInt32, UInt32)] = [
+            ("closed/dark", ClusterFuckPalette.accent, darkCard, ClusterFuckPalette.darkInk),
+            ("settling/dark", ClusterFuckPalette.primary, darkCard, ClusterFuckPalette.darkInk),
+            ("elevated/dark", ClusterFuckPalette.warning, darkCard, ClusterFuckPalette.darkInk),
+            ("unknown/dark", ClusterFuckPalette.darkMute, darkCard, ClusterFuckPalette.darkInk),
+            ("closed/light", ClusterFuckPalette.accentLight, ClusterFuckPalette.lightSurface, ClusterFuckPalette.lightInk),
+            ("settling/light", ClusterFuckPalette.primaryLight, ClusterFuckPalette.lightSurface, ClusterFuckPalette.lightInk),
+            ("elevated/light", ClusterFuckPalette.warningLight, ClusterFuckPalette.lightSurface, ClusterFuckPalette.lightInk),
+            ("unknown/light", ClusterFuckPalette.lightMute, ClusterFuckPalette.lightSurface, ClusterFuckPalette.lightInk),
+        ]
+        for (name, band, card, ink) in bands {
+            let ground = ThemeContrast.composite(band, over: card, alpha: wash)
+            // The word is ink and is body text.
+            let label = ThemeContrast.ratio(ink, ground)
+            XCTAssertGreaterThanOrEqual(label, 4.5, "\(name) chip label is \(label):1 on its own wash")
+            // The symbol is a non-text glyph carrying the same state.
+            let glyph = ThemeContrast.ratio(band, ground)
+            XCTAssertGreaterThanOrEqual(glyph, 3.0, "\(name) chip symbol is \(glyph):1 on its own wash")
+        }
+    }
+
+    /// The error banner uses the same self-tint pattern.
+    func testErrorBannerCompositesAboveAA() {
+        let cases: [(String, UInt32, UInt32)] = [
+            ("dark", ClusterFuckPalette.failTextDark, ClusterFuckPalette.darkBackground),
+            ("light", ClusterFuckPalette.failTextLight, ClusterFuckPalette.lightBackground),
+        ]
+        for (name, fg, bg) in cases {
+            let ground = ThemeContrast.composite(fg, over: bg, alpha: 0.12)
+            let r = ThemeContrast.ratio(fg, ground)
+            XCTAssertGreaterThanOrEqual(r, 4.5, "\(name) error banner is \(r):1 on its own wash")
+        }
+    }
 }
 
 
