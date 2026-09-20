@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import plistlib
 import re
 import struct
 import sys
@@ -163,12 +164,21 @@ def test_privacy_and_watch_plist() -> None:
         "Apps/BonhommeRemotePhone/PrivacyInfo.xcprivacy",
         "Apps/BonhommeRemoteWatch/PrivacyInfo.xcprivacy",
     ):
-        text = read(rel)
-        if "NSPrivacyTracking" not in text:
-            fail(f"{rel} missing tracking key")
-        if "<false/>" not in text:
-            fail(f"{rel} must set NSPrivacyTracking false")
-        if "NSPrivacyCollectedDataTypes" not in text:
+        # Parsed, not substring-matched. The previous version asked whether
+        # the text contained "NSPrivacyTracking" and whether it contained
+        # "<false/>" anywhere. Both were satisfiable without the property
+        # being set: NSPrivacyTrackingDomains contains the first as a
+        # substring, and the two <false/> values inside
+        # NSPrivacyCollectedDataTypes satisfy the second. Deleting the
+        # tracking key outright, or setting it to <true/>, both passed.
+        try:
+            plist = plistlib.loads((ROOT / rel).read_bytes())
+        except Exception as exc:  # noqa: BLE001 - surface any malformed plist
+            fail(f"{rel} is not a readable plist: {exc}")
+            continue
+        if plist.get("NSPrivacyTracking") is not False:
+            fail(f"{rel} must set NSPrivacyTracking to false, got {plist.get('NSPrivacyTracking')!r}")
+        if not isinstance(plist.get("NSPrivacyCollectedDataTypes"), list):
             fail(f"{rel} missing collected types")
     watch = read("Apps/BonhommeRemoteWatch/Info.plist")
     if "<key>WKApplication</key>\n\t<true/>" not in watch.replace("\r", ""):
