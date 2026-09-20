@@ -17,6 +17,7 @@ jobs:
           python3 scripts/test_contracts.py
           python3 scripts/test_icon_palette_guard.py
           python3 scripts/check_icon_palette.py
+          python3 scripts/check_source_palette.py
           python3 scripts/test_asset_diagnostics.py
           python3 scripts/test_mutation_harness.py
           python3 scripts/mutation_harness.py
@@ -43,6 +44,7 @@ jobs:
           python3 scripts/test_contracts.py
           python3 scripts/test_icon_palette_guard.py
           python3 scripts/check_icon_palette.py
+          python3 scripts/check_source_palette.py
           python3 scripts/test_asset_diagnostics.py
           python3 scripts/test_mutation_harness.py
           python3 scripts/mutation_harness.py
