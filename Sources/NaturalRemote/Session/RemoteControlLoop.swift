@@ -129,10 +129,9 @@ public final class RemoteControlLoop: @unchecked Sendable {
     @discardableResult
     public func logDose(_ log: DrugLog, freeAngles: [Double]? = nil, boundAngles: [Double]? = nil) async -> (pcci: Double, prediction: DeltaHRVFlexAIDPrediction, snapshot: CrooksSnapshot) {
         drugKit.log(log)
-        lock.lock()
-        let observed = _state.deltaHRV
-        let sci = _state.sci
-        lock.unlock()
+        // Both reads stay inside one critical section, as before: the pair is
+        // meant to be a consistent snapshot of _state, not two independent reads.
+        let (observed, sci) = lock.withLock { (_state.deltaHRV, _state.sci) }
 
         let prediction = drugKit.analyzeWithFlexAID(
             log,
