@@ -112,13 +112,11 @@ public final class DrugKitEngine: @unchecked Sendable {
     }
 
     public func allLogs() -> [DrugLog] {
-        lock.lock(); defer { lock.unlock() }
-        return logs
+        return lock.withLock { logs }
     }
 
     public func allPharmacovigilanceRecords() -> [PharmacovigilanceRecord] {
-        lock.lock(); defer { lock.unlock() }
-        return pvRecords
+        return lock.withLock { pvRecords }
     }
 
     /// Append a full PV record after hybrid analysis (call from control loop).
@@ -205,8 +203,7 @@ public final class DrugKitActuator: RemoteActuator, @unchecked Sendable {
     }
 
     public var isPromptPending: Bool {
-        lock.lock(); defer { lock.unlock() }
-        return pendingPrompt
+        return lock.withLock { pendingPrompt }
     }
 
     public func execute(_ command: RemoteCommand) async throws {

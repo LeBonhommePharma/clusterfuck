@@ -104,8 +104,7 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
     }
 
     public var lastHTTPStatusCode: Int? {
-        lock.lock(); defer { lock.unlock() }
-        return lastHTTPStatus
+        return lock.withLock { lastHTTPStatus }
     }
 
     public func updateConfig(_ config: AlexaProxyConfig) {
@@ -113,28 +112,23 @@ public final class AlexaProxyController: RemoteActuator, @unchecked Sendable {
     }
 
     public var lastIntentName: String {
-        lock.lock(); defer { lock.unlock() }
-        return lastIntent
+        return lock.withLock { lastIntent }
     }
 
     public var lightsPercent: Int {
-        lock.lock(); defer { lock.unlock() }
-        return lastLightsPercent
+        return lock.withLock { lastLightsPercent }
     }
 
     public var lastAPIModeUsed: AlexaAPIMode {
-        lock.lock(); defer { lock.unlock() }
-        return lastModeUsed
+        return lock.withLock { lastModeUsed }
     }
 
     public var lastAlexaPlusAction: AlexaPlusAction? {
-        lock.lock(); defer { lock.unlock() }
-        return lastPlusAction
+        return lock.withLock { lastPlusAction }
     }
 
     public var lastSmartHomeDirective: AlexaSmartHomeDirective? {
-        lock.lock(); defer { lock.unlock() }
-        return lastDirective
+        return lock.withLock { lastDirective }
     }
 
     /// Resolve effective plane for a call under `.auto`.
@@ -406,13 +400,11 @@ public final class FoundationModelOrchestrator: RemoteActuator, @unchecked Senda
     public init() {}
 
     public var lastSuggestionText: String {
-        lock.lock(); defer { lock.unlock() }
-        return lastSuggestion
+        return lock.withLock { lastSuggestion }
     }
 
     public var issuedCommands: [RemoteCommand] {
-        lock.lock(); defer { lock.unlock() }
-        return lastCommands
+        return lock.withLock { lastCommands }
     }
 
     /// Parse natural language into structured remote commands.

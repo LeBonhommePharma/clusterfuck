@@ -30,15 +30,13 @@ public final class AppleMusicController: MusicTransportControlling, RemoteActuat
 
     public var isPlaying: Bool {
         get async {
-            lock.lock(); defer { lock.unlock() }
-            return _playing
+            return lock.withLock { _playing }
         }
     }
 
     public var lastBPMHint: Double {
         get async {
-            lock.lock(); defer { lock.unlock() }
-            return _bpm
+            return lock.withLock { _bpm }
         }
     }
 
@@ -146,11 +144,11 @@ public final class SpotifyRemoteController: MusicTransportControlling, RemoteAct
     }
 
     public var isPlaying: Bool {
-        get async { lock.lock(); defer { lock.unlock() }; return _playing }
+        get async { lock.withLock { _playing } }
     }
 
     public var lastBPMHint: Double {
-        get async { lock.lock(); defer { lock.unlock() }; return _bpm }
+        get async { lock.withLock { _bpm } }
     }
 
     public func play() async throws {
@@ -252,8 +250,7 @@ public final class SonosController: MusicTransportControlling, RemoteActuator, @
     }
 
     public var rooms: [String] {
-        lock.lock(); defer { lock.unlock() }
-        return _rooms
+        return lock.withLock { _rooms }
     }
 
     public func setRooms(_ rooms: [String]) {
@@ -261,11 +258,11 @@ public final class SonosController: MusicTransportControlling, RemoteActuator, @
     }
 
     public var isPlaying: Bool {
-        get async { lock.lock(); defer { lock.unlock() }; return _playing }
+        get async { lock.withLock { _playing } }
     }
 
     public var lastBPMHint: Double {
-        get async { lock.lock(); defer { lock.unlock() }; return _bpm }
+        get async { lock.withLock { _bpm } }
     }
 
     public func play() async throws {
@@ -337,16 +334,15 @@ public final class DIFmController: MusicTransportControlling, RemoteActuator, @u
     }
 
     public var currentChannelId: String {
-        lock.lock(); defer { lock.unlock() }
-        return _channelId
+        return lock.withLock { _channelId }
     }
 
     public var isPlaying: Bool {
-        get async { lock.lock(); defer { lock.unlock() }; return _playing }
+        get async { lock.withLock { _playing } }
     }
 
     public var lastBPMHint: Double {
-        get async { lock.lock(); defer { lock.unlock() }; return _bpm }
+        get async { lock.withLock { _bpm } }
     }
 
     public func play() async throws {

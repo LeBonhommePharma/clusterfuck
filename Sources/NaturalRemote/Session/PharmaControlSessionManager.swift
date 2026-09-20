@@ -50,13 +50,11 @@ public final class PharmaControlSessionManager: @unchecked Sendable {
     }
 
     public var isRunning: Bool {
-        lock.lock(); defer { lock.unlock() }
-        return _running
+        return lock.withLock { _running }
     }
 
     public var startedAt: Date? {
-        lock.lock(); defer { lock.unlock() }
-        return _startedAt
+        return lock.withLock { _startedAt }
     }
 
     public func start() async {

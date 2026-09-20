@@ -91,23 +91,19 @@ public final class ResearchKitBridge: RemoteActuator, @unchecked Sendable {
     }
 
     public var latestSurveyResults: [ResearchKitSurveyResult] {
-        lock.lock(); defer { lock.unlock() }
-        return latestResults
+        return lock.withLock { latestResults }
     }
 
     public var lastNormalizedScore: Double? {
-        lock.lock(); defer { lock.unlock() }
-        return latestResults.last?.normalizedScore
+        return lock.withLock { latestResults.last?.normalizedScore }
     }
 
     public var lastSubjectiveWorkHint: Double {
-        lock.lock(); defer { lock.unlock() }
-        return latestResults.last?.crooksSubjectiveWorkHint ?? 0
+        return lock.withLock { latestResults.last?.crooksSubjectiveWorkHint ?? 0 }
     }
 
     public var isPromptPending: Bool {
-        lock.lock(); defer { lock.unlock() }
-        return pendingPromptInstrument != nil
+        return lock.withLock { pendingPromptInstrument != nil }
     }
 
     // MARK: - Inject / process (testable without ResearchKit binary)

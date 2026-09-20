@@ -51,13 +51,11 @@ public final class RemoteControlLoop: @unchecked Sendable {
     }
 
     public var state: RemoteMultiSignalState {
-        lock.lock(); defer { lock.unlock() }
-        return _state
+        return lock.withLock { _state }
     }
 
     public var lastSnapshot: CrooksSnapshot? {
-        lock.lock(); defer { lock.unlock() }
-        return _snapshot
+        return lock.withLock { _snapshot }
     }
 
     /// Bootstrap actuator bus on the crooks actor.

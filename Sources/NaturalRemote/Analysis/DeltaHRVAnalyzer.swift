@@ -76,13 +76,11 @@ public final class DeltaHRVAnalyzer: @unchecked Sendable {
     }
 
     public func latestDeltaRMSSD() -> Double {
-        lock.lock(); defer { lock.unlock() }
-        return lastDeltaRMSSD
+        return lock.withLock { lastDeltaRMSSD }
     }
 
     public func latestDeltaSDNN() -> Double {
-        lock.lock(); defer { lock.unlock() }
-        return lastDeltaSDNN
+        return lock.withLock { lastDeltaSDNN }
     }
 
     public func reset() {

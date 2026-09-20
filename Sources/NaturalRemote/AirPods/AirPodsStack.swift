@@ -96,8 +96,7 @@ public final class AirPodsMaxH1Controller: RemoteActuator, @unchecked Sendable {
     }
 
     public func currentTelemetry() -> AirPodsTelemetry {
-        lock.lock(); defer { lock.unlock() }
-        return telemetry
+        return lock.withLock { telemetry }
     }
 
     /// Digital Crown acts as temperature/intensity dial via system volume proxy.
@@ -223,8 +222,7 @@ public final class AirPodsProH2Controller: RemoteActuator, @unchecked Sendable {
     }
 
     public func currentTelemetry() -> AirPodsTelemetry {
-        lock.lock(); defer { lock.unlock() }
-        return telemetry
+        return lock.withLock { telemetry }
     }
 
     public func setAdaptiveAudio(_ active: Bool) {
