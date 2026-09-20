@@ -244,7 +244,18 @@ def classify(script: pathlib.Path, root: pathlib.Path) -> list[dict]:
 # rule. That is not mechanically derivable in general -- but its SHAPE is:
 # asserting something structural by matching raw text. So flag that shape.
 STRUCTURED_SUFFIXES = (".plist", ".xcprivacy", ".entitlements", ".json", ".pbxproj")
-STRUCTURAL_MARKUP = ("<key>", "<true/>", "<false/>", "<string>", "<array", "<dict", "|")
+STRUCTURAL_MARKUP = ("<key>", "<true/>", "<false/>", "<string>", "<array", "<dict")
+
+
+def _looks_like_table_row(needle: str) -> bool:
+    """A markdown table row, not a Swift `||`.
+
+    A bare "|" marker flagged `paused: !known || reduceMotion` and three other
+    Swift source literals across the family -- a 4-in-18 false-positive rate,
+    which is how a lint gets muted. Cell separators are pipe-then-space and a
+    row has at least two of them; `||` has none.
+    """
+    return needle.count("| ") >= 2
 
 
 def lint_substring_as_structure(script: pathlib.Path) -> list[str]:
@@ -265,7 +276,9 @@ def lint_substring_as_structure(script: pathlib.Path) -> list[str]:
             if rel and rel.endswith(STRUCTURED_SUFFIXES):
                 reason = f"substring match against structured file {rel}"
             elif any(m in needle for m in STRUCTURAL_MARKUP):
-                reason = "substring literal asserts structure (markup or table syntax)"
+                reason = "substring literal asserts structure (xml markup)"
+            elif _looks_like_table_row(needle):
+                reason = "substring literal asserts structure (markdown table row)"
             if reason:
                 findings.append(f"{script.name}:{node.lineno}: {reason} — parse it instead "
                                 f"({needle[:40]!r})")
