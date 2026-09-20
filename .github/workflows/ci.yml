@@ -15,6 +15,8 @@ jobs:
         run: |
           python3 scripts/validate-submission.py
           python3 scripts/test_contracts.py
+          python3 scripts/test_icon_palette_guard.py
+          python3 scripts/check_icon_palette.py
 
   build-and-test:
     runs-on: macos-latest
@@ -36,6 +38,8 @@ jobs:
         run: |
           python3 scripts/validate-submission.py
           python3 scripts/test_contracts.py
+          python3 scripts/test_icon_palette_guard.py
+          python3 scripts/check_icon_palette.py
 
       - name: Build library
         working-directory: ClusterFuck
