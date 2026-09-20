@@ -5,6 +5,39 @@ The previous inline version ran only `if: failure()` and read only
 `errorSummaries`, so warnings never surfaced at all. This reads all three
 summary kinds and runs on success too. Reporting only: exit 0 unless the
 bundle exists and cannot be read, which would mean the capture is broken.
+
+BASELINE, for whoever sets a warning policy
+-------------------------------------------
+Measured 2026-09-20, run 35499173864 (green, no probe):
+
+    iOS target   errorSummaries 0    warningSummaries 110
+    actool       0 errors, 0 warnings, 0 notices
+
+110 is the number as it stood the day these reporters were switched on. It
+is a BASELINE, not an approved level — it had simply never been visible,
+because the old step ran `if: failure()` and read only errorSummaries. If a
+later run shows a different figure, compare against 110 before assuming a
+regression; if it shows a lower one, that is progress rather than a bug in
+the counter.
+
+The bulk of it is one issue, not 110 separate ones: `lock`/`unlock` called
+from asynchronous contexts in Sources/NaturalRemote/DrugKit/DrugKitEngine.swift,
+2,350 occurrences across both targets in the raw log. Five of those are
+flagged "this is an error in the Swift 6 language mode", so they are a
+scheduling question rather than a tidiness one. Deliberately not fixed here:
+concurrency behaviour was out of scope for the design pass that added this.
+
+No ceiling is enforced. The number should sit in view for a while before
+anyone argues about what it ought to be.
+
+A NOTE ON THIS CODE PATH
+------------------------
+Until 2026-09-20 the xcresult extraction had never once executed: it was
+gated on `if: failure()` and the build had not failed since it was written.
+Whether `xcresulttool get object --legacy` still worked under Xcode 26.6 was
+therefore unknown, not assumed-good. Run 35498773988 exercised it for the
+first time and it does work. A code path that has never run is a hypothesis,
+not a fallback.
 """
 from __future__ import annotations
 
