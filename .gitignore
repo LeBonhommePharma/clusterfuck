@@ -2,3 +2,7 @@
 .swiftpm/
 DerivedData/
 *.xcodeproj/xcuserdata/
+
+# Python bytecode from running the contract scripts locally.
+__pycache__/
+*.pyc
