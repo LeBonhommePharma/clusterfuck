@@ -33,7 +33,12 @@ public final class PharmaControlSessionManager: @unchecked Sendable {
     private var observationTask: Task<Void, Never>?
     private var generation = 0
     private var readings = RemoteHealthReadings()
-    private var healthControlSnapshot: CrooksSnapshot?
+    /// Internal rather than private ONLY so a test can pin the generation
+    /// re-validation. `observedHealth()` masks this behind `beats == nil`, so
+    /// a snapshot written for a session that has already stopped is invisible
+    /// from the public surface — which is why the re-validation had no
+    /// behavioural pin. Visibility change only: no behaviour, no public API.
+    var healthControlSnapshot: CrooksSnapshot?
 
     public init(loop: RemoteControlLoop = RemoteControlLoop(), healthSource: any RemoteHealthObserving = HealthKitRemoteSource()) {
         self.loop = loop
@@ -52,6 +57,9 @@ public final class PharmaControlSessionManager: @unchecked Sendable {
     public var isRunning: Bool {
         return lock.withLock { _running }
     }
+
+    /// Test-only read of the generation counter. Visibility only.
+    var currentGenerationForTesting: Int { lock.withLock { generation } }
 
     public var startedAt: Date? {
         return lock.withLock { _startedAt }
