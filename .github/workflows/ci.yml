@@ -16,6 +16,8 @@ jobs:
           python3 scripts/validate-submission.py
           python3 scripts/test_contracts.py
           python3 scripts/test_icon_palette_guard.py
+          python3 scripts/test_icon_catalog_guard.py
+          python3 scripts/check_icon_catalog.py
           python3 scripts/check_icon_palette.py
           python3 scripts/check_source_palette.py
           python3 scripts/check_project_sync.py
@@ -44,6 +46,8 @@ jobs:
           python3 scripts/validate-submission.py
           python3 scripts/test_contracts.py
           python3 scripts/test_icon_palette_guard.py
+          python3 scripts/test_icon_catalog_guard.py
+          python3 scripts/check_icon_catalog.py
           python3 scripts/check_icon_palette.py
           python3 scripts/check_source_palette.py
           python3 scripts/check_project_sync.py
