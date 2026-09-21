@@ -135,7 +135,7 @@ targets:
       - path: Apps/Shared
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.lebonhommepharma.clusterfuck.mac
+        PRODUCT_BUNDLE_IDENTIFIER: com.lebonhommepharma.clusterfuck
         PRODUCT_NAME: ClusterFuck
         GENERATE_INFOPLIST_FILE: NO
         INFOPLIST_FILE: Apps/ClusterFuck/MacInfo.plist

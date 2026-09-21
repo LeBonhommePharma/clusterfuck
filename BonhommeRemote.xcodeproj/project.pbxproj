@@ -591,7 +591,7 @@
 				INFOPLIST_FILE = Apps/ClusterFuck/MacInfo.plist;
 				ITSAppUsesNonExemptEncryption = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.mac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck;
 				PRODUCT_NAME = ClusterFuck;
 				SDKROOT = macosx;
 			};
@@ -686,7 +686,7 @@
 				INFOPLIST_FILE = Apps/ClusterFuck/MacInfo.plist;
 				ITSAppUsesNonExemptEncryption = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck.mac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lebonhommepharma.clusterfuck;
 				PRODUCT_NAME = ClusterFuck;
 				SDKROOT = macosx;
 			};
