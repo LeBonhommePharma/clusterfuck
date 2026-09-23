@@ -4,12 +4,24 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 import struct
 import plistlib
 from pbxproj import load_project
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+
+
+_BUNDLE_ID_RE = re.compile(r"^[ \t]*PRODUCT_BUNDLE_IDENTIFIER:[ \t]*(\S+)[ \t]*$", re.M)
+
+
+def _declared_bundle_ids(path: pathlib.Path) -> dict:
+    """Exact identifier VALUES and their counts, anchored to whole lines."""
+    counts: dict = {}
+    for value in _BUNDLE_ID_RE.findall(path.read_text()):
+        counts[value] = counts.get(value, 0) + 1
+    return counts
 
 
 def require(cond: bool, message: str) -> None:
@@ -89,10 +101,21 @@ def main() -> None:
         "Apps/BonhommeRemoteWatch/PrivacyInfo.xcprivacy",
     ):
         check_privacy(ROOT / rel)
-    yml = (ROOT / "project.yml").read_text()
-    require("com.lebonhommepharma.clusterfuck" in yml, "ClusterFuck bundle id")
-    require("com.lebonhommepharma.clusterfuck.watchkitapp" in yml, "watch bundle id")
-    require("com.lebonhommepharma.clusterfuck.mac" in yml, "mac bundle id")
+    # One identifier per app, shared across platforms (LP, 2026-09-21): the Mac
+    # target declares the SAME id as iOS so both ship under one App Store
+    # Connect record. See Docs/AppStore/bundle-id-topology.md.
+    #
+    # Anchored and counted, never substring. The previous form asked whether
+    # "com.lebonhommepharma.clusterfuck" appeared anywhere in the file, which
+    # the watchkitapp line satisfies on its own — the main app's identifier
+    # could be deleted or mistyped and a sibling would cover for it. Presence
+    # tests over identifiers that share a prefix are worthless by construction.
+    require(_declared_bundle_ids(ROOT / "project.yml") == {
+        "com.natural.BonhommeRemote": 1,
+        "com.natural.BonhommeRemote.watchkitapp": 1,
+        "com.lebonhommepharma.clusterfuck": 2,   # iOS host + Mac host, one record
+        "com.lebonhommepharma.clusterfuck.watchkitapp": 1,
+    }, "project.yml bundle identifiers: " + repr(_declared_bundle_ids(ROOT / "project.yml")))
     require("ITSAppUsesNonExemptEncryption" in (ROOT / "Apps/ClusterFuck/Info.plist").read_text(), "export compliance")
     mac = plistlib.loads((ROOT / "Apps/ClusterFuck/ClusterFuckMac.entitlements").read_bytes())
     require(mac.get("com.apple.security.app-sandbox") is True,
